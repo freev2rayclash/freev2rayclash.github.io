@@ -1,4 +1,4 @@
-# 10月10日→20.3M/S|2024年最新免费节点Free V2ray Clash订阅链接地址  更新时间 2024-10-10 09:06:22
+# 10月11日→21.4M/S|2024年最新免费节点Free V2ray Clash订阅链接地址  更新时间 2024-10-11 06:45:21
 所有免费clash节点都爬取自网络，请勿用于非法用途 。节点地址：<a href="https://freev2rayclash.github.io" target="_blank">点击跳转</a>
 
 ## clash使用教程：
@@ -9,19 +9,19 @@
 
 ### Clash订阅链接
 
-- https://freev2rayclash.github.io/uploads/2024/10/0-20241010.yaml
-- https://freev2rayclash.github.io/uploads/2024/10/1-20241010.yaml
-- https://freev2rayclash.github.io/uploads/2024/10/2-20241010.yaml
-- https://freev2rayclash.github.io/uploads/2024/10/3-20241010.yaml
-- https://freev2rayclash.github.io/uploads/2024/10/4-20241010.yml
+- https://freev2rayclash.github.io/uploads/2024/10/0-20241011.yaml
+- https://freev2rayclash.github.io/uploads/2024/10/1-20241011.yaml
+- https://freev2rayclash.github.io/uploads/2024/10/2-20241011.yaml
+- https://freev2rayclash.github.io/uploads/2024/10/3-20241011.yaml
+- https://freev2rayclash.github.io/uploads/2024/10/4-20241011.yml
 
 ### V2ray订阅链接
 
-- https://freev2rayclash.github.io/uploads/2024/10/0-20241010.txt
-- https://freev2rayclash.github.io/uploads/2024/10/1-20241010.txt
-- https://freev2rayclash.github.io/uploads/2024/10/2-20241010.txt
-- https://freev2rayclash.github.io/uploads/2024/10/3-20241010.txt
-- https://freev2rayclash.github.io/uploads/2024/10/4-20241010.txt
+- https://freev2rayclash.github.io/uploads/2024/10/0-20241011.txt
+- https://freev2rayclash.github.io/uploads/2024/10/1-20241011.txt
+- https://freev2rayclash.github.io/uploads/2024/10/2-20241011.txt
+- https://freev2rayclash.github.io/uploads/2024/10/3-20241011.txt
+- https://freev2rayclash.github.io/uploads/2024/10/4-20241011.txt
 
 ## 更多clash节点订阅 ：
 
