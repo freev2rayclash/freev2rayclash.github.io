@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://freev2rayclash.github.io/news/article-21116.htm" />
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>我的树莓派 Raspberry Pi Zero 2W 折腾笔记，记录一些遇到的问题和解决办法</title>
+        <meta name="description" content="最近买了一块Raspberry Pi Zero 2W来玩，目的是想搭建一台远程运行的个人服务器，上面放个博客、点个灯啥的。于是就有了这篇文章。 树莓派官网地址：https://www.raspberr" />
+        <link rel="icon" href="__ADDON__/img/freev2rayclash/favicon.ico" type="image/x-icon"/>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,300;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- Template CSS -->
+    <link rel="stylesheet" href="/assets/website/css/freev2rayclash/style-starter.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SMY6EV424E"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-SMY6EV424E');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!--header-->
+    <header id="site-header" class="fixed-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-dark stroke">
+                                <a class="navbar-brand" href="/">
+                    <span>
+                        Free V2ray Clash
+                    </span>
+                </a>
+                                <!-- if logo is image enable this   
+      <a class="navbar-brand" href="#index.html">
+          <img src="image-path" alt="Your logo" title="Your logo" style="height:35px;" />
+      </a> -->
+                <button class="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon fa icon-expand fa-bars"></span>
+                    <span class="navbar-toggler-icon fa icon-close fa-times"></span>
+                    </span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                    <ul class="navbar-nav mx-lg-auto">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/free-nodes/">免费节点</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/paid-subscribe/">推荐机场</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/news/">新闻资讯</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="#">关于</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">联系</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <!--/header-->
+    <div class="inner-banner">
+    </div>
+    <section class="w3l-breadcrumb">
+        <div class="container">
+            <ul class="breadcrumbs-custom-path">
+                <li><a href="/">首页</a></li>
+                <li><a href="/news/"><span class="fa fa-arrow-right mx-2" aria-hidden="true"></span> 新闻资讯</a></li>
+                <li class="active"><span class="fa fa-arrow-right mx-2" aria-hidden="true"></span> 正文</li>
+            </ul>
+        </div>
+    </section>
+    <!--/about-->
+    <!--/w3l-faq-block-->
+    <div class="w3l-faq-block py-5" id="faq">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                    <h1 class="mb-5">我的树莓派 Raspberry Pi Zero 2W 折腾笔记，记录一些遇到的问题和解决办法</h1>
+                    
+                                      				  				  				</h1> <p>最近买了一块<code>Raspberry Pi Zero 2W</code>来玩，目的是想搭建一台远程运行的个人服务器，上面放个博客、点个灯啥的。于是就有了这篇文章。</p> <p>树莓派官网地址：<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.raspberrypi.com/"  target="_blank" rel="nofollow">https://www.raspberrypi.com/</a></p> <p>补一张图哈哈！</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/abf955cd49210cca5ba961f4e4805e4d.jpg" alt="我的树莓派 Raspberry Pi Zero 2W 折腾笔记，记录一些遇到的问题和解决办法"></p> </h1> <p>首先一开始买到手之后我是很懵的，于是在google上找到了以下几篇文章帮助了我很多。</p> <ul> <li><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.freesion.com/article/3840979679/"  target="_blank" rel="nofollow">https://www.freesion.com/article/3840979679/</a></li> <li><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.cnblogs.com/liaouser/p/15844159.html"  target="_blank" rel="nofollow">https://www.cnblogs.com/liaouser/p/15844159.html</a></li> <li><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.freebuf.com/geek/209255.html"  target="_blank" rel="nofollow">https://www.freebuf.com/geek/209255.html</a></li> <li><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://shumeipai.nxez.com/2018/02/20/raspberry-pi-zero-usb-ethernet-gadget-tutorial.html?variant=zh-cn"  target="_blank" rel="nofollow">https://shumeipai.nxez.com/2018/02/20/raspberry-pi-zero-usb-ethernet-gadget-tutorial.html?variant=zh-cn</a></li> <li><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.youtube.com/watch?v=sUU-ch8LEcE&amp;ab_channel=ITCommander"  target="_blank" rel="nofollow">https://www.youtube.com/watch?v=sUU-ch8LEcE&amp;ab_channel=ITCommander</a></li> </ul> <p>看了那个<code>youtube</code>上面的视频后，发现其实买之前是可以叫淘宝客服帮忙焊接<code>gpio</code>引脚的。然后发现我身边有一个电烙铁，于是打算试一下（从来焊接过），结局如下</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/1a0ca9391fe3f943233305ef136be0b6.jpg" alt="我的树莓派 Raspberry Pi Zero 2W 折腾笔记，记录一些遇到的问题和解决办法"></p> <blockquote> <p>贴一个国外大佬的树莓派zero2w gpio焊接教程：<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.youtube.com/watch?v=UDdbaMk39tM&amp;ab_channel=BasvanderSluis"  target="_blank" rel="nofollow">https://www.youtube.com/watch?v=UDdbaMk39tM&amp;ab_channel=BasvanderSluis</a></p> </blockquote> <p>还好，没有坏掉！哈哈，这就是不看教程就直接动手的后果，望大家引以为戒！那么，跟着上面的教程写入操作系统到sd卡之后就是安装驱动和<code>ssh</code>连接树莓派了，连接的时候遇到了一个问题就是<code>pi@raspberrypi.local's password</code>，ssh登录不上去，看了下官方发现：</p> <pre><code>There are also mechanisms to preconfigure an image without using Imager. To set up a user on first boot and bypass the wizard completely, create a file called userconf or userconf.txt in the boot partition of the SD card; this is the part of the SD card which can be seen when it is mounted in a Windows or MacOS computer.  This file should contain a single line of text, consisting of username:encrypted- password – so your desired username, followed immediately by a colon, followed immediately by an encrypted representation of the password you want to use.  To generate the encrypted password, the easiest way is to use OpenSSL on a Raspberry Pi that is already running – open a terminal window and enter  echo 'mypassword' | openssl passwd -6 -stdin This will produce what looks like a string of random characters, which is actually an encrypted version of the supplied password.</code></pre> <p><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.raspberrypi.com/news/raspberry-pi-bullseye-update-april-2022/"  target="_blank" rel="nofollow">https://www.raspberrypi.com/news/raspberry-pi-bullseye-update-april-2022/</a></p> <p>简单来说就是树莓派为了安全起见不在使用默认密码，所以需要在启动前在<code>boot</code>目录下创建一个<code>userconf.txt</code>，格式如下：</p> <pre><code>username:encrypted-password</code></pre> <p>其中<code>encrypted-password</code>可以用<code>echo 'mypassword' | openssl passwd -6 -stdin</code>这条命令生成，贴一下我生成的配置：</p> <pre><code>pi:$6$T12E4motTbeG7HXC$0vvzm.7sNj9bsEzVL2JT4P9OYXpvsk3lwqK6CzTVyyLrRdUA.fZVWrfzqmU./mmuU1O/i3xSueXPX4ieBjrCM/</code></pre> <p>也就是用户名为<code>pi</code>，密码为<code>raspberry</code>。重新写入sd卡之后，再次连接一波！</p> <pre><code class="language-bash">λ ssh pi@raspberrypi.local -p 22 Warning: Permanently added the ECDSA host key for IP address '169.254.155.237' to the list of known hosts. pi@raspberrypi.local's password: Linux raspberrypi 5.15.32-v8+ #1538 SMP PREEMPT Thu Mar 31 19:40:39 BST 2022 aarch64  The programs included with the Debian GNU/Linux system are free software; the exact distribution terms for each program are described in the individual files in /usr/share/doc/*/copyright.  Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent permitted by applicable law. Last login: Mon Apr  4 15:41:56 2022  SSH is enabled and the default password for the 'pi' user has not been changed. This is a security risk - please login as the 'pi' user and type 'passwd' to set a new password.   Wi-Fi is currently blocked by rfkill. Use raspi-config to set the country before use.  pi@raspberrypi:~ $</code></pre> <p>成功了！！！！！！！！！！！！！！！哇，成就感满满的！</p> </h1> <p>输入<code>sudo raspi-config</code>,选择国家—&gt; “System Options”—&gt;选第一个 —&gt; 输入WiFi名称密码—&gt; 重启<code>sudo reboot</code></p> <pre><code class="language-bash">pi@raspberrypi:~ $ ifconfig lo: flags=73&lt;UP,LOOPBACK,RUNNING&gt;  mtu 65536         inet 127.0.0.1  netmask 255.0.0.0         inet6 ::1  prefixlen 128  scopeid 0x10&lt;host&gt;         loop  txqueuelen 1000  (Local Loopback)         RX packets 10  bytes 1600 (1.5 KiB)         RX errors 0  dropped 0  overruns 0  frame 0         TX packets 10  bytes 1600 (1.5 KiB)         TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0  usb0: flags=4163&lt;UP,BROADCAST,RUNNING,MULTICAST&gt;  mtu 1500         inet 169.254.174.149  netmask 255.255.0.0  broadcast 169.254.255.255         inet6 fe80::74a7:e6a5:d1b2:66e  prefixlen 64  scopeid 0x20&lt;link&gt;         ether 62:ae:a7:2d:b5:2f  txqueuelen 1000  (Ethernet)         RX packets 187  bytes 19160 (18.7 KiB)         RX errors 0  dropped 0  overruns 0  frame 0         TX packets 30  bytes 5905 (5.7 KiB)         TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0  wlan0: flags=4163&lt;UP,BROADCAST,RUNNING,MULTICAST&gt;  mtu 1500         inet 192.168.1.4  netmask 255.255.255.0  broadcast 192.168.1.255         inet6 240e:379:1a87:b500:fc16:62d:3ce4:de2b  prefixlen 64  scopeid 0x0&lt;global&gt;         inet6 fe80::4ee:25c1:2732:51c0  prefixlen 64  scopeid 0x20&lt;link&gt;         ether e4:5f:01:4b:3a:e4  txqueuelen 1000  (Ethernet)         RX packets 157  bytes 24008 (23.4 KiB)         RX errors 0  dropped 0  overruns 0  frame 0         TX packets 87  bytes 14755 (14.4 KiB)         TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0  pi@raspberrypi:~ $ ping www.baidu.com PING www.a.shifen.com (14.215.177.39) 56(84) bytes of data. 64 bytes from 14.215.177.39 (14.215.177.39): icmp_seq=1 ttl=55 time=19.8 ms 64 bytes from 14.215.177.39 (14.215.177.39): icmp_seq=2 ttl=55 time=23.1 ms 64 bytes from 14.215.177.39 (14.215.177.39): icmp_seq=3 ttl=55 time=22.9 ms 64 bytes from 14.215.177.39 (14.215.177.39): icmp_seq=4 ttl=55 time=22.9 ms 64 bytes from 14.215.177.39 (14.215.177.39): icmp_seq=5 ttl=55 time=22.8 ms 64 bytes from 14.215.177.39 (14.215.177.39): icmp_seq=6 ttl=55 time=24.1 ms ^C --- www.a.shifen.com ping statistics --- 6 packets transmitted, 6 received, 0% packet loss, time 5007ms rtt min/avg/max/mdev = 19.849/22.594/24.104/1.306 ms pi@raspberrypi:~ $</code></pre> <p>连接网络成功！哦耶！</p> </h1> <p>那么先到这里，后续出一个电灯的文章！！！</p> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-20662.htm">宠物店开业活动文案（宠物店开业活动文案范文）</a></p>
+                                        <p>下一个：<a href="/news/article-21119.htm">为什么我建议需要定期重建数据量大但是性能关键的表_在线工具</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2024-10-1-node-share-links.htm" title="10月1日→21.6M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">10月1日→21.6M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-12-node-share.htm" title="11月12日→20.6M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">11月12日→20.6M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-27-clash-node-daily-updates.htm" title="9月27日→20.3M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">9月27日→20.3M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-7-node-share.htm" title="11月7日→21.5M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">11月7日→21.5M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-13-clash-node-daily-updates.htm" title="10月13日→19.5M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">10月13日→19.5M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-25-free-subscribe-node.htm" title="11月25日→20.2M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">11月25日→20.2M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-20-free-high-speed-nodes.htm" title="11月20日→22.6M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">11月20日→22.6M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-23-clash-node-daily-updates.htm" title="11月23日→22.8M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">11月23日→22.8M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-8-node-share.htm" title="10月8日→22.6M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">10月8日→22.6M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-27-free-clash.htm" title="10月27日→20.8M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">10月27日→20.8M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">12</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">12</span> <a href="/date/2024-09/" title="2024-09 归档">2024-09</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+        <!--//w3l-faq-block-->
+    <section class="w3l-footer-29-main w3l-copyright">
+        <div class="container">
+            <div class="bottom-copies">
+                <p class="copy-footer-29 text-center">
+                    <a href="/">Free V2ray Clash免费机场订阅节点官网</a> 版权所有 Powered by WordPress
+                </p>
+            </div>
+        </div>
+        <!-- move top -->
+        <button onclick="topFunction()" id="movetop" title="Go to top">
+            <span class="fa fa-angle-up"></span>
+        </button>
+        <script>
+        // When the user scrolls down 20px from the top of the document, show the button
+        window.onscroll = function() {
+            scrollFunction()
+        };
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                document.getElementById("movetop").style.display = "block";
+            } else {
+                document.getElementById("movetop").style.display = "none";
+            }
+        }
+
+        // When the user clicks on the button, scroll to the top of the document
+        function topFunction() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }
+        </script>
+        <!-- /move top -->
+    </section>
+    <!-- Template JavaScript -->
+    <script src="/assets/website/js/frontend/freev2rayclash/jquery-3.3.1.min.js"></script>
+    <!-- script for testimonials -->
+    <script>
+    $(document).ready(function() {
+        $('.owl-testimonial').owlCarousel({
+            loop: true,
+            margin: 0,
+            nav: true,
+            responsiveClass: true,
+            autoplay: true,
+            autoplayTimeout: 5000,
+            autoplaySpeed: 1000,
+            autoplayHoverPause: false,
+            responsive: {
+                0: {
+                    items: 1,
+                    nav: false
+                },
+                480: {
+                    items: 1,
+                    nav: false
+                },
+                667: {
+                    items: 1,
+                    nav: true
+                },
+                1000: {
+                    items: 1,
+                    nav: true
+                }
+            }
+        })
+    })
+    </script>
+    <!-- //script for testimonials -->
+    <script src="/assets/website/js/frontend/freev2rayclash/theme-change.js"></script>
+    <!-- js for portfolio lightbox -->
+    <!-- libhtbox -->
+    <script src="/assets/website/js/frontend/freev2rayclash/lightbox-plus-jquery.min.js"></script>
+    <!-- libhtbox -->
+    <script src="/assets/website/js/frontend/freev2rayclash/owl.carousel.js"></script>
+    <!-- script for banner slider-->
+    <script>
+    $(document).ready(function() {
+        $('.owl-one').owlCarousel({
+            loop: true,
+            margin: 0,
+            nav: false,
+            responsiveClass: true,
+            autoplay: true,
+            autoplayTimeout: 5000,
+            autoplaySpeed: 1000,
+            autoplayHoverPause: false,
+            responsive: {
+                0: {
+                    items: 1,
+                    nav: false
+                },
+                480: {
+                    items: 1,
+                    nav: false
+                },
+                667: {
+                    items: 1,
+                    nav: true
+                },
+                1000: {
+                    items: 1,
+                    nav: true
+                }
+            }
+        })
+    })
+    </script>
+    <!-- //script -->
+    <!-- stats number counter-->
+    <script src="/assets/website/js/frontend/freev2rayclash/jquery.waypoints.min.js"></script>
+    <script src="/assets/website/js/frontend/freev2rayclash/jquery.countup.js"></script>
+    <script>
+    $('.counter').countUp();
+    </script>
+    <!-- //stats number counter -->
+    <!-- disable body scroll which navbar is in active -->
+    <script>
+    $(function() {
+        $('.navbar-toggler').click(function() {
+            $('body').toggleClass('noscroll');
+        })
+    });
+    </script>
+    <!-- disable body scroll which navbar is in active -->
+    <!--/MENU-JS-->
+    <script>
+    $(window).on("scroll", function() {
+        var scroll = $(window).scrollTop();
+
+        if (scroll >= 80) {
+            $("#site-header").addClass("nav-fixed");
+        } else {
+            $("#site-header").removeClass("nav-fixed");
+        }
+    });
+
+    //Main navigation Active Class Add Remove
+    $(".navbar-toggler").on("click", function() {
+        $("header").toggleClass("active");
+    });
+    $(document).on("ready", function() {
+        if ($(window).width() > 991) {
+            $("header").removeClass("active");
+        }
+        $(window).on("resize", function() {
+            if ($(window).width() > 991) {
+                $("header").removeClass("active");
+            }
+        });
+    });
+    </script>
+    <!--//MENU-JS-->
+    <script src="/assets/website/js/frontend/freev2rayclash/bootstrap.min.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
