@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://freev2rayclash.github.io/news/article-23862.htm" />
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>js的二级菜单</title>
+        <meta name="description" content="&lt;!DOCTYPE html&gt; &lt;html lang="en"&gt; &lt;head&gt;     &lt;meta charset="UTF-8"&gt;     &lt;t" />
+        <link rel="icon" href="__ADDON__/img/freev2rayclash/favicon.ico" type="image/x-icon"/>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,300;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- Template CSS -->
+    <link rel="stylesheet" href="/assets/website/css/freev2rayclash/style-starter.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SMY6EV424E"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-SMY6EV424E');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!--header-->
+    <header id="site-header" class="fixed-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-dark stroke">
+                                <a class="navbar-brand" href="/">
+                    <span>
+                        Free V2ray Clash
+                    </span>
+                </a>
+                                <!-- if logo is image enable this   
+      <a class="navbar-brand" href="#index.html">
+          <img src="image-path" alt="Your logo" title="Your logo" style="height:35px;" />
+      </a> -->
+                <button class="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon fa icon-expand fa-bars"></span>
+                    <span class="navbar-toggler-icon fa icon-close fa-times"></span>
+                    </span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                    <ul class="navbar-nav mx-lg-auto">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/free-nodes/">免费节点</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/paid-subscribe/">推荐机场</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/news/">新闻资讯</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="#">关于</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">联系</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <!--/header-->
+    <div class="inner-banner">
+    </div>
+    <section class="w3l-breadcrumb">
+        <div class="container">
+            <ul class="breadcrumbs-custom-path">
+                <li><a href="/">首页</a></li>
+                <li><a href="/news/"><span class="fa fa-arrow-right mx-2" aria-hidden="true"></span> 新闻资讯</a></li>
+                <li class="active"><span class="fa fa-arrow-right mx-2" aria-hidden="true"></span> 正文</li>
+            </ul>
+        </div>
+    </section>
+    <!--/about-->
+    <!--/w3l-faq-block-->
+    <div class="w3l-faq-block py-5" id="faq">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                    <h1 class="mb-5">js的二级菜单</h1>
+                    
+                                      				  				  				<div id="content_views" class="htmledit_views"> <pre><code class="language-javascript">&lt;!DOCTYPE html&gt; &lt;html lang="en"&gt; &lt;head&gt;     &lt;meta charset="UTF-8"&gt;     &lt;title&gt;js的二级菜单&lt;/title&gt;   &lt;style&gt;       *{           padding:0;           margin: 0;       }       .king_box{           width: 100%;           height: 706px;/*包含一切的盒子*/       }     .main_menu{         /*二级菜单主体*/         width: 200px;         height: 100%;         margin:2px 2px;         background-color:grey;         overflow:auto;         /*主体和限定好高度让他溢出的部分能够滑动*/         overflow-x: hidden;     }      .main_menu::-webkit-scrollbar {           width: 0;          /*将滑动条的宽度设置为0可以滑动但不显示滑动条*/       }     .menu_title{         /*菜单头*/         width: 100%;         height:100px;         font-size: 55px;         text-align: center;         line-height: 100px;         border-bottom:1px solid black;     }     li{         /*li属于不能设置宽高的标签加上浮动或定位让他可以设置*/         position:relative;         width: 100%;         height: 25px;         list-style: none;         line-height: 25px;         border-bottom:1px solid black;         cursor:pointer;     }       .menu_sj{           /*设置三角形盒子不能让他超过li列表*/           width: 5px;           height:5px;           /*空心三角形是利用边框的厚度配合盒子的大小显示的*/           /*实心三角是单纯的边框显示的*/           float: left;           border: 2px solid transparent;           border-bottom-color: black;           border-right-color: black;           margin-top: 8px;           margin-left: 5px;           transform: rotate(-45deg);       }       .menu_lb       {           /*调整菜单标题*/           margin-left: 5px;           float: left;       }       li a{           /*调整二级菜单的二级链接*/           text-decoration: none;           color: black;           /*给他加浮动可以设置他的宽*/           float: left;           width: 100%;           height:100%;           /*调整二级菜单字体位置*/           padding-left:15%;       }       .public_div_style{             /*调整每个部分盒*/             width: 100%;             height: 26px !important;             overflow: hidden;             position: relative;             /*只让他显示25px 的高度加1px是让他把边框也显示出来*/         }       li:hover{           background-color:gold;       }       .open_list{           width: 100%;           overflow: hidden;           position: relative;       }   &lt;/style&gt;     &lt;script type="text/javascript"&gt;         window.onload=function(){             var open_menu=document.getElementsByName("open_menu");             var record=open_menu[0];/*记录被打开的list*/             for (let i=0;i&lt;open_menu.length;i++){                 open_menu[i].onclick=function(){                     let startHei=open_menu[i].parentNode.parentNode.offsetHeight;                     if(open_menu[i]!=record)                     {                         openList(open_menu[i],startHei);                     }else{                         record=null;                         closeList(open_menu[i]);                     }                 }             }             function openList(obj,startHei){                 if (record!=null) {                     record.parentNode.parentNode.className = "public_div_style";/*已打开的列表关闭*/                 }                 record=obj;                 obj.parentNode.parentNode.className="open_list";/*需要被打开的列表打开*/                 let needHei=obj.parentNode.parentNode.offsetHeight;                 obj.parentNode.parentNode.style.height=startHei+"px";                   if(startHei&lt;needHei){                       action_increase(obj,needHei);                   }                }                function closeList(obj){                    obj.parentNode.parentNode.className ="public_div_style";                }                function action_increase(obj,needHei){/*增长行为*/                 let begin_move=setInterval(function(){                     if (obj.parentNode.parentNode.offsetHeight&gt;=needHei) {                         /*完成后清除继续增长与style中的高*/                         clearInterval(begin_move);                         let clearHeiS=setTimeout(function(){                             //为什么我要用定时器清除style中的高?因为js执行速度有点快放出来直接不起作用                             obj.parentNode.parentNode.style.height="";                         },10);                     }                     obj.parentNode.parentNode.style.height=obj.parentNode.parentNode.offsetHeight+3+"px";                 },10);             }         }     &lt;/script&gt; &lt;/head&gt; &lt;body&gt; &lt;div class="king_box"&gt;     &lt;div id="main_menu" class="main_menu"&gt;         &lt;div id="menu_title" class="menu_title" &gt;Title&lt;/div&gt;         &lt;div class="open_list"&gt;             &lt;ul&gt;                 &lt;li name="open_menu"&gt;&lt;div class="menu_sj"&gt;&lt;/div&gt;&lt;span class="menu_lb"&gt;第一分部&lt;/span&gt;&lt;/li&gt;                 &lt;li&gt;&lt;a href="#"&gt;是是是&lt;/a&gt;&lt;/li&gt;                 &lt;li&gt;&lt;a href="#"&gt;是是是&lt;/a&gt;&lt;/li&gt;                 &lt;li&gt;&lt;a href="#"&gt;试试是&lt;/a&gt;&lt;/li&gt;                 &lt;li&gt;&lt;a href="#"&gt;试试是&lt;/a&gt;&lt;/li&gt;                 &lt;li&gt;&lt;a href="#"&gt;试试是&lt;/a&gt;&lt;/li&gt;                 &lt;li&gt;&lt;a href="#"&gt;试试是&lt;/a&gt;&lt;/li&gt;             &lt;/ul&gt;         &lt;/div&gt;         &lt;div class="public_div_style"&gt;             &lt;ul&gt;                 &lt;li name="open_menu"&gt;&lt;div class="menu_sj"&gt;&lt;/div&gt;&lt;span class="menu_lb"&gt;第二分部&lt;/span&gt;&lt;/li&gt;                 &lt;li&gt;&lt;a href="#"&gt;是是是&lt;/a&gt;&lt;/li&gt;                 &lt;li&gt;&lt;a href="#"&gt;是是是&lt;/a&gt;&lt;/li&gt;                 &lt;li&gt;&lt;a href="#"&gt;试试是&lt;/a&gt;&lt;/li&gt;             &lt;/ul&gt;         &lt;/div&gt;         &lt;div class="public_div_style"&gt;             &lt;ul&gt;                 &lt;li name="open_menu"&gt;&lt;div class="menu_sj"&gt;&lt;/div&gt;&lt;span class="menu_lb"&gt;第三分部&lt;/span&gt;&lt;/li&gt;                 &lt;li&gt;&lt;a href="#"&gt;是是是&lt;/a&gt;&lt;/li&gt;                 &lt;li&gt;&lt;a href="#"&gt;是是是&lt;/a&gt;&lt;/li&gt;                 &lt;li&gt;&lt;a href="#"&gt;试试是&lt;/a&gt;&lt;/li&gt;             &lt;/ul&gt;         &lt;/div&gt;         &lt;div class="public_div_style"&gt;             &lt;ul&gt;                 &lt;li name="open_menu"&gt;&lt;div class="menu_sj"&gt;&lt;/div&gt;&lt;span class="menu_lb"&gt;第四分部&lt;/span&gt;&lt;/li&gt;                 &lt;li&gt;&lt;a href="#"&gt;是是是&lt;/a&gt;&lt;/li&gt;                 &lt;li&gt;&lt;a href="#"&gt;是是是&lt;/a&gt;&lt;/li&gt;                 &lt;li&gt;&lt;a href="#"&gt;试试是&lt;/a&gt;&lt;/li&gt;             &lt;/ul&gt;         &lt;/div&gt;         &lt;div class="public_div_style"&gt;             &lt;ul&gt;                 &lt;li name="open_menu"&gt;&lt;div class="menu_sj"&gt;&lt;/div&gt;&lt;span class="menu_lb"&gt;第五分部&lt;/span&gt;&lt;/li&gt;                 &lt;li&gt;&lt;a href="#"&gt;是是是&lt;/a&gt;&lt;/li&gt;                 &lt;li&gt;&lt;a href="#"&gt;是是是&lt;/a&gt;&lt;/li&gt;                 &lt;li&gt;&lt;a href="#"&gt;试试是&lt;/a&gt;&lt;/li&gt;             &lt;/ul&gt;         &lt;/div&gt;         &lt;div class="public_div_style"&gt;             &lt;ul&gt;                 &lt;li name="open_menu"&gt;&lt;div class="menu_sj"&gt;&lt;/div&gt;&lt;span class="menu_lb"&gt;第六分部&lt;/span&gt;&lt;/li&gt;                 &lt;li&gt;&lt;a href="#"&gt;是是是&lt;/a&gt;&lt;/li&gt;                 &lt;li&gt;&lt;a href="#"&gt;是是是&lt;/a&gt;&lt;/li&gt;                 &lt;li&gt;&lt;a href="#"&gt;试试是&lt;/a&gt;&lt;/li&gt;             &lt;/ul&gt;         &lt;/div&gt;     &lt;/div&gt; &lt;/div&gt; &lt;/body&gt; &lt;/html&gt;</code></pre> </p></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-23396.htm">宠物粮代理加价多少卖宠物店（宠物粮代理怎么拿）</a></p>
+                                        <p>下一个：<a href="/news/article-23865.htm">学宠物美容技术怎么样（学宠物美容技术怎么样啊）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2024-10-11-clash-node.htm" title="10月11日→22.6M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">10月11日→22.6M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-24-clash-node-daily-updates.htm" title="9月24日→18M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">9月24日→18M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-17-free-high-speed-nodes.htm" title="10月17日→21.9M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">10月17日→21.9M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-15-free-high-speed-nodes.htm" title="10月15日→20.2M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">10月15日→20.2M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-6-free-subscribe-node.htm" title="11月6日→19M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">11月6日→19M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-20203.htm" title="Java数据结构-栈的实现">Java数据结构-栈的实现</a></li>
+                        <li class="py-2"><a href="/news/article-19284.htm" title="养猫的人容易得什么（养猫的人容易得什么精神病）">养猫的人容易得什么（养猫的人容易得什么精神病）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-5-free-high-speed-nodes.htm" title="11月5日→21.5M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">11月5日→21.5M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-4-free-node-subscribe-links.htm" title="12月4日→19M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">12月4日→19M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-23-free-node-subscribe.htm" title="9月23日→19.1M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">9月23日→19.1M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">12</span> <a href="/date/2024-09/" title="2024-09 归档">2024-09</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+        <!--//w3l-faq-block-->
+    <section class="w3l-footer-29-main w3l-copyright">
+        <div class="container">
+            <div class="bottom-copies">
+                <p class="copy-footer-29 text-center">
+                    <a href="/">Free V2ray Clash免费机场订阅节点官网</a> 版权所有 Powered by WordPress
+                </p>
+            </div>
+        </div>
+        <!-- move top -->
+        <button onclick="topFunction()" id="movetop" title="Go to top">
+            <span class="fa fa-angle-up"></span>
+        </button>
+        <script>
+        // When the user scrolls down 20px from the top of the document, show the button
+        window.onscroll = function() {
+            scrollFunction()
+        };
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                document.getElementById("movetop").style.display = "block";
+            } else {
+                document.getElementById("movetop").style.display = "none";
+            }
+        }
+
+        // When the user clicks on the button, scroll to the top of the document
+        function topFunction() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }
+        </script>
+        <!-- /move top -->
+    </section>
+    <!-- Template JavaScript -->
+    <script src="/assets/website/js/frontend/freev2rayclash/jquery-3.3.1.min.js"></script>
+    <!-- script for testimonials -->
+    <script>
+    $(document).ready(function() {
+        $('.owl-testimonial').owlCarousel({
+            loop: true,
+            margin: 0,
+            nav: true,
+            responsiveClass: true,
+            autoplay: true,
+            autoplayTimeout: 5000,
+            autoplaySpeed: 1000,
+            autoplayHoverPause: false,
+            responsive: {
+                0: {
+                    items: 1,
+                    nav: false
+                },
+                480: {
+                    items: 1,
+                    nav: false
+                },
+                667: {
+                    items: 1,
+                    nav: true
+                },
+                1000: {
+                    items: 1,
+                    nav: true
+                }
+            }
+        })
+    })
+    </script>
+    <!-- //script for testimonials -->
+    <script src="/assets/website/js/frontend/freev2rayclash/theme-change.js"></script>
+    <!-- js for portfolio lightbox -->
+    <!-- libhtbox -->
+    <script src="/assets/website/js/frontend/freev2rayclash/lightbox-plus-jquery.min.js"></script>
+    <!-- libhtbox -->
+    <script src="/assets/website/js/frontend/freev2rayclash/owl.carousel.js"></script>
+    <!-- script for banner slider-->
+    <script>
+    $(document).ready(function() {
+        $('.owl-one').owlCarousel({
+            loop: true,
+            margin: 0,
+            nav: false,
+            responsiveClass: true,
+            autoplay: true,
+            autoplayTimeout: 5000,
+            autoplaySpeed: 1000,
+            autoplayHoverPause: false,
+            responsive: {
+                0: {
+                    items: 1,
+                    nav: false
+                },
+                480: {
+                    items: 1,
+                    nav: false
+                },
+                667: {
+                    items: 1,
+                    nav: true
+                },
+                1000: {
+                    items: 1,
+                    nav: true
+                }
+            }
+        })
+    })
+    </script>
+    <!-- //script -->
+    <!-- stats number counter-->
+    <script src="/assets/website/js/frontend/freev2rayclash/jquery.waypoints.min.js"></script>
+    <script src="/assets/website/js/frontend/freev2rayclash/jquery.countup.js"></script>
+    <script>
+    $('.counter').countUp();
+    </script>
+    <!-- //stats number counter -->
+    <!-- disable body scroll which navbar is in active -->
+    <script>
+    $(function() {
+        $('.navbar-toggler').click(function() {
+            $('body').toggleClass('noscroll');
+        })
+    });
+    </script>
+    <!-- disable body scroll which navbar is in active -->
+    <!--/MENU-JS-->
+    <script>
+    $(window).on("scroll", function() {
+        var scroll = $(window).scrollTop();
+
+        if (scroll >= 80) {
+            $("#site-header").addClass("nav-fixed");
+        } else {
+            $("#site-header").removeClass("nav-fixed");
+        }
+    });
+
+    //Main navigation Active Class Add Remove
+    $(".navbar-toggler").on("click", function() {
+        $("header").toggleClass("active");
+    });
+    $(document).on("ready", function() {
+        if ($(window).width() > 991) {
+            $("header").removeClass("active");
+        }
+        $(window).on("resize", function() {
+            if ($(window).width() > 991) {
+                $("header").removeClass("active");
+            }
+        });
+    });
+    </script>
+    <!--//MENU-JS-->
+    <script src="/assets/website/js/frontend/freev2rayclash/bootstrap.min.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
