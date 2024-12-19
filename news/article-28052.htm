@@ -1,0 +1,314 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://freev2rayclash.github.io/news/article-28052.htm" />
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>微信小程序，自定义导航栏组件</title>
+        <meta name="description" content="微信小程序，自定义导航栏组件，可兼容iPhone 11及以上留海屏显示，关于参数获取设置参照微信小程序-收藏_羽筠的博客-CSDN博客 可定义设置的内容如下： 文字及返回箭头颜色 背景图片（优先级高于" />
+        <link rel="icon" href="/assets/website/img/freev2rayclash/favicon.ico" type="image/x-icon"/>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,300;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- Template CSS -->
+    <link rel="stylesheet" href="/assets/website/css/freev2rayclash/style-starter.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SMY6EV424E"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-SMY6EV424E');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!--header-->
+    <header id="site-header" class="fixed-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-dark stroke">
+                                <a class="navbar-brand" href="/">
+                    <span>
+                        Free V2ray Clash
+                    </span>
+                </a>
+                                <!-- if logo is image enable this   
+      <a class="navbar-brand" href="#index.html">
+          <img src="image-path" alt="Your logo" title="Your logo" style="height:35px;" />
+      </a> -->
+                <button class="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon fa icon-expand fa-bars"></span>
+                    <span class="navbar-toggler-icon fa icon-close fa-times"></span>
+                    </span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                    <ul class="navbar-nav mx-lg-auto">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/free-nodes/">免费节点</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/paid-subscribe/">推荐机场</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/news/">新闻资讯</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="#">关于</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">联系</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <!--/header-->
+    <div class="inner-banner">
+    </div>
+    <section class="w3l-breadcrumb">
+        <div class="container">
+            <ul class="breadcrumbs-custom-path">
+                <li><a href="/">首页</a></li>
+                <li><a href="/news/"><span class="fa fa-arrow-right mx-2" aria-hidden="true"></span> 新闻资讯</a></li>
+                <li class="active"><span class="fa fa-arrow-right mx-2" aria-hidden="true"></span> 正文</li>
+            </ul>
+        </div>
+    </section>
+    <!--/about-->
+    <!--/w3l-faq-block-->
+    <div class="w3l-faq-block py-5" id="faq">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                    <h1 class="mb-5">微信小程序，自定义导航栏组件</h1>
+                    
+                                    <input type="hidden" id="share-website-info" data-name="Clash Meta免费节点订阅站" data-url="https://clash-meta.github.io">
+                  				  				  				<div id="content_views" class="htmledit_views"> <p>微信小程序，自定义导航栏组件，可兼容iPhone 11及以上留海屏显示，关于参数获取设置参照<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://blog.csdn.net/qq_16494241/article/details/103474646"  title="微信小程序-收藏_羽筠的博客-CSDN博客" rel="nofollow">微信小程序-收藏_羽筠的博客-CSDN博客</a></p> <p><span style="color:#4da8ee;">可定义设置的内容如下：</span><br /> 文字及返回箭头颜色<br /> 背景图片（优先级高于 背景色）<br /> 背景色<br /> 页面标题<br /> 页面标题显示图片（优先级高于 页面标题）<br /> 是否显示返回菜单<br /> 是否显示 页面主体顶部被自定义菜单挡住部分(false则主体内容会被导航栏遮盖)</p> <p><span style="color:#4da8ee;">组件相关代码：</span><br /> .wxss</p> <pre><code>page, view, scroll-view, swiper, swiper-item, button, input, textarea, label, navigator, image{ 	box-sizing: border-box; }  .nav-custom-bar{ width: 100%; font-size: 30rpx; position: fixed; left: 0; top: 0; z-index: 9999; transition: all linear .3s;} .nav-custom-bar-back{ width: 110rpx; padding-left: 25rpx; display: flex; justify-content: space-between; align-items: center;} .nav-custom-bar-back-arrow{ width: 22rpx; height: 22rpx; border-top: none !important; border-right: none !important; transform: rotate(45deg);} .nav-custom-bar-back-text{} .nav-custom-bar-title{ text-align: center; position: absolute; left: 50%; transform: translateX(-50%);} .nav-custom-bar-title view{ white-space: nowrap; overflow: hidden; text-overflow: ellipsis;} .nav-custom-bar-title image{ width: 100%;}  .nav-custom-bar-space{}</code></pre> <p>.wxml</p> <pre><code>&lt;!-- 自定义头部菜单 - 不显示返回文字 &lt;navigation-custom textColor="{<!-- -->{textColor值}}" bgImg="{<!-- -->{bgImg值}}" bgColor="{<!-- -->{bgColor值}}" title="{<!-- -->{pageTitle值}}" titleImg="{<!-- -->{pageTitleImg值}}" isShowBack="{<!-- -->{isShowBack值}}" isShowCustomBarSpace="{<!-- -->{isShowCustomBarSpace值}}"&gt;&lt;/navigation-custom&gt; 自定义头部菜单 - 显示返回文字 &lt;navigation-custom textColor="{<!-- -->{textColor值}}" bgImg="{<!-- -->{bgImg值}}" bgColor="{<!-- -->{bgColor值}}" title="{<!-- -->{pageTitle值}}" titleImg="{<!-- -->{pageTitleImg值}}" isShowBack="{<!-- -->{isShowBack值}}" isShowCustomBarSpace="{<!-- -->{isShowCustomBarSpace值}}"&gt; 	&lt;text slot="back"&gt;返回&lt;/text&gt; &lt;/navigation-custom&gt; 注： textColor : 文字及返回箭头颜色 bgImg : 背景图片（优先级高于 背景色） bgColor : 背景色 title : 页面标题 titleImg : 页面标题显示图片（优先级高于 页面标题） isShowBack : 是否显示返回菜单 isShowCustomBarSpace : 是否显示 页面主体顶部被自定义菜单挡住部分 --&gt;  &lt;!-- 自定义头部菜单 --&gt; &lt;view class="nav-custom-bar" style="color: {<!-- -->{textColor}}; background: url({<!-- -->{bgImg}}) no-repeat center top; background-size: 100%; background-color: {<!-- -->{bgColor}}; height: {<!-- -->{CustomBar}}px; padding-top: {<!-- -->{Custom.top}}px;"&gt; 	&lt;view bindtap="navigateBack" wx:if="{<!-- -->{isShowBack}}" class="nav-custom-bar-back" style="height: {<!-- -->{Custom.height}}px;"&gt; 		&lt;view class="nav-custom-bar-back-arrow" style=" border: {<!-- -->{textColor}} solid 2px;"&gt;&lt;/view&gt; 		&lt;!-- &lt;view class="nav-custom-bar-back-text"&gt;返回&lt;/view&gt; --&gt; 		&lt;view class="nav-custom-bar-back-text"&gt; 			&lt;slot name="back"&gt;&lt;/slot&gt; 		&lt;/view&gt; 	&lt;/view&gt; 	&lt;view class="nav-custom-bar-title" style="width: calc(100vw - {<!-- -->{Custom.width * 2}}px - 10px); height: {<!-- -->{Custom.height}}px; top: {<!-- -->{Custom.top}}px;"&gt; 		&lt;view wx:if="{<!-- -->{!titleImg}}" style="line-height: {<!-- -->{Custom.height}}px;"&gt;{<!-- -->{title}}&lt;/view&gt; 		&lt;image wx:if="{<!-- -->{titleImg}}" src="{<!-- -->{titleImg}}" mode="aspectFit" style="height: {<!-- -->{Custom.height}}px;"&gt;&lt;/image&gt; 	&lt;/view&gt; &lt;/view&gt; &lt;!-- 显示 页面主体顶部被自定义菜单挡住部分 --&gt; &lt;view wx:if="{<!-- -->{isShowCustomBarSpace}}" class="nav-custom-bar-space" style="height: {<!-- -->{CustomBar}}px;"&gt;&lt;/view&gt;</code></pre> <p>.json</p> <pre><code>{   "component": true }</code></pre> <p>.js</p> <pre><code>var App = getApp(); Component({ 	options: { 		multipleSlots: true // 在组件定义时的选项中启用多 slot 支持 	}, 	properties: { 		// 文字及返回箭头颜色 		textColor: { 			type: String, 			value: "#000", 		}, 		// 背景图片（优先级高于 背景色） 		bgImg: { 			type: String, 			value: "", 		}, 		// 背景色 		bgColor: { 			type: String, 			value: "", 		}, 		// 页面标题 		title: { 			type: String, 			value: "", 		}, 		// 页面标题显示图片（优先级高于 页面标题） 		titleImg: { 			type: String, 			value: "", 		}, 		//是否显示返回菜单 		isShowBack: { 			type: Boolean, 			value: true, 		}, 		//是否显示页面主体顶部被自定义菜单挡住部分 		isShowCustomBarSpace: { 			type: Boolean, 			value: true, 		}, 	}, 	data: { 		modelIsIphoneX: App.globalData.modelIsIphoneX, 		StatusBar: App.globalData.StatusBar, 		CustomBar: App.globalData.CustomBar, 		Custom: App.globalData.Custom 	}, 	ready: function() {  	}, 	methods: { 		navigateBack(){ 			App.doNavigateBack(); 		},  	} }) </code></pre> <p><span style="color:#4da8ee;">引用组件相关代码：</span></p> <p>app.json中全局中进行引用声明</p> <pre><code>"usingComponents": { 	"navigation-custom": "/components/navigation-custom/index" },</code></pre> <p><span style="color:#4da8ee;">引用组件页面相关代码：</span></p> <p>.wxml</p> <pre><code>&lt;image id="view" style="width: 100%;" src="https://avatar.csdnimg.cn/D/5/3/3_qq_16494241_1581835814.jpg" alt="微信小程序，自定义导航栏组件" mode="widthFix"&gt;&lt;/image&gt;  &lt;!-- 自定义头部菜单 --&gt; &lt;navigation-custom textColor="#fff" bgImg="{<!-- -->{bgImg}}" bgColor="{<!-- -->{bgColor}}" title="测试demo" titleImg="{<!-- -->{titleImg}}" isShowBack="{<!-- -->{false}}" isShowCustomBarSpace="{<!-- -->{false}}"&gt;&lt;/navigation-custom&gt;  &lt;view&gt;111111111111&lt;/view&gt; &lt;view&gt;222222222222&lt;/view&gt; &lt;view&gt;test test&lt;/view&gt;&lt;view&gt;test test&lt;/view&gt;&lt;view&gt;test test&lt;/view&gt;&lt;view&gt;test test&lt;/view&gt;&lt;view&gt;test test&lt;/view&gt;&lt;view&gt;test test&lt;/view&gt;&lt;view&gt;test test&lt;/view&gt;&lt;view&gt;test test&lt;/view&gt;&lt;view&gt;test test&lt;/view&gt;&lt;view&gt;test test&lt;/view&gt;&lt;view&gt;test test&lt;/view&gt;&lt;view&gt;test test&lt;/view&gt;&lt;view&gt;test test&lt;/view&gt;&lt;view&gt;test test&lt;/view&gt;&lt;view&gt;test test&lt;/view&gt;&lt;view&gt;test test&lt;/view&gt;&lt;view&gt;test test&lt;/view&gt;&lt;view&gt;test test&lt;/view&gt;&lt;view&gt;test test&lt;/view&gt;&lt;view&gt;test test&lt;/view&gt;&lt;view&gt;test test&lt;/view&gt;&lt;view&gt;test test&lt;/view&gt;&lt;view&gt;test test&lt;/view&gt;&lt;view&gt;test test&lt;/view&gt;&lt;view&gt;test test&lt;/view&gt;&lt;view&gt;test test&lt;/view&gt;&lt;view&gt;test test&lt;/view&gt;&lt;view&gt;test test&lt;/view&gt;&lt;view&gt;test test&lt;/view&gt;&lt;view&gt;test test&lt;/view&gt;&lt;view&gt;test test&lt;/view&gt;&lt;view&gt;test test&lt;/view&gt;&lt;view&gt;test test&lt;/view&gt;&lt;view&gt;test test&lt;/view&gt;&lt;view&gt;test test&lt;/view&gt;&lt;view&gt;test test&lt;/view&gt;&lt;view&gt;test test&lt;/view&gt;&lt;view&gt;test test&lt;/view&gt;&lt;view&gt;test test&lt;/view&gt;&lt;view&gt;test test&lt;/view&gt;&lt;view&gt;test test&lt;/view&gt;&lt;view&gt;test test&lt;/view&gt;&lt;view&gt;test test&lt;/view&gt;&lt;view&gt;test test&lt;/view&gt;&lt;view&gt;test test&lt;/view&gt;&lt;view&gt;test test&lt;/view&gt;&lt;view&gt;test test&lt;/view&gt;&lt;view&gt;test test&lt;/view&gt;&lt;view&gt;test test&lt;/view&gt;&lt;view&gt;test test&lt;/view&gt;&lt;view&gt;test test&lt;/view&gt;&lt;view&gt;test test&lt;/view&gt;&lt;view&gt;test test&lt;/view&gt;&lt;view&gt;test test&lt;/view&gt;&lt;view&gt;test test&lt;/view&gt;&lt;view&gt;test test&lt;/view&gt;&lt;view&gt;test test&lt;/view&gt;&lt;view&gt;test test&lt;/view&gt;&lt;view&gt;test test&lt;/view&gt;&lt;view&gt;test test&lt;/view&gt;&lt;view&gt;test test&lt;/view&gt;&lt;view&gt;test test&lt;/view&gt;&lt;view&gt;test test&lt;/view&gt;&lt;view&gt;test test&lt;/view&gt;&lt;view&gt;test test&lt;/view&gt;&lt;view&gt;test test&lt;/view&gt;&lt;view&gt;test test&lt;/view&gt;&lt;view&gt;test test&lt;/view&gt;</code></pre> <p>.json</p> <pre><code>{ 	"navigationStyle": "custom", }</code></pre> <p>.js</p> <pre><code>var App = getApp(); Page({  	data: { 		modelIsIphoneX: App.globalData.modelIsIphoneX, 		StatusBar: App.globalData.StatusBar, 		CustomBar: App.globalData.CustomBar, 		Custom: App.globalData.Custom 	}, 	/** 	 * 生命周期函数--监听页面初次渲染完成 	 */ 	onReady: function() { 		var query = wx.createSelectorQuery(); 		query.select('#view').boundingClientRect() 		query.exec((res) =&gt; { 			console.log(res[0].height); 			this.setData({ 				topImgH : res[0].height 			}) 		}) 	}, 	/** 	 * 监听页面滚动 	 */ 	onPageScroll (e) {  		console.log(e.scrollTop); 		// 解决苹果手机在当前页面滚动到一定位置后跳转至其他页面再返回导致的scrollTop负数引起的不能设置自定义菜单背景色BUG； 		if(e.scrollTop &lt; 0){ 			wx.pageScrollTo({ 				scrollTop: 0, 				duration: 10 			}) 		} 		if(e.scrollTop &gt; this.data.topImgH + 200){ 			this.setData({ 				bgColor:"#39b54a", 				bgImg:"https://img-blog.csdnimg.cn/20201014180756918.png", 				titleImg:"" 			}) 		}else if(e.scrollTop &gt; this.data.topImgH - App.globalData.CustomBar){ 			this.setData({ 				bgColor:"#1cbbb4", 				bgImg:"", 				titleImg:"https://csdnimg.cn/medal/chizhiyiheng@240.png" 			}) 		}else{ 			this.setData({ 				bgColor:"", 				bgImg:"", 				titleImg:"" 			}) 		} 	}, })</code></pre> </p></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-27584.htm">活体猫托运多少钱（活猫托运价格查询）</a></p>
+                                        <p>下一个：<a href="/news/article-28054.htm">领养宠物一般在哪领养（领养宠物应该去哪里）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2024-10-12-free-node-subscribe.htm" title="10月12日→20.7M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">10月12日→20.7M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-27123.htm" title="pymysql增删改查之insert操作">pymysql增删改查之insert操作</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-30-clash-node-daily-updates.htm" title="11月30日→19.2M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">11月30日→19.2M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-26212.htm" title="宠物美容师好学吗（宠物美容师前景好吗）">宠物美容师好学吗（宠物美容师前景好吗）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-22-free-clash.htm" title="11月22日→21.5M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">11月22日→21.5M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-13-free-node-subscribe.htm" title="11月13日→22.2M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">11月13日→22.2M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-22950.htm" title="动物疫苗销售需要什么手续（动物疫苗销售需要什么手续和条件）">动物疫苗销售需要什么手续（动物疫苗销售需要什么手续和条件）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-8-clash-node-daily-updates.htm" title="11月8日→18.6M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">11月8日→18.6M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-24798.htm" title="怎么考取兽医资格证（怎么考取兽医职业资格证）">怎么考取兽医资格证（怎么考取兽医职业资格证）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-17-free-high-speed-nodes.htm" title="10月17日→21.9M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">10月17日→21.9M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">57</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">12</span> <a href="/date/2024-09/" title="2024-09 归档">2024-09</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+        <!--//w3l-faq-block-->
+    <section class="w3l-footer-29-main w3l-copyright">
+        <div class="container">
+            <div class="bottom-copies">
+                <p class="copy-footer-29 text-center">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                    <a href="/">Free V2ray Clash免费机场订阅节点官网</a> 版权所有 Powered by WordPress
+                </p>
+            </div>
+        </div>
+        <!-- move top -->
+        <button onclick="topFunction()" id="movetop" title="Go to top">
+            <span class="fa fa-angle-up"></span>
+        </button>
+        <script>
+        // When the user scrolls down 20px from the top of the document, show the button
+        window.onscroll = function() {
+            scrollFunction()
+        };
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                document.getElementById("movetop").style.display = "block";
+            } else {
+                document.getElementById("movetop").style.display = "none";
+            }
+        }
+
+        // When the user clicks on the button, scroll to the top of the document
+        function topFunction() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }
+        </script>
+        <!-- /move top -->
+    </section>
+    <!-- Template JavaScript -->
+    <script src="/assets/website/js/frontend/freev2rayclash/jquery-3.3.1.min.js"></script>
+    <!-- script for testimonials -->
+    <script>
+    $(document).ready(function() {
+        $('.owl-testimonial').owlCarousel({
+            loop: true,
+            margin: 0,
+            nav: true,
+            responsiveClass: true,
+            autoplay: true,
+            autoplayTimeout: 5000,
+            autoplaySpeed: 1000,
+            autoplayHoverPause: false,
+            responsive: {
+                0: {
+                    items: 1,
+                    nav: false
+                },
+                480: {
+                    items: 1,
+                    nav: false
+                },
+                667: {
+                    items: 1,
+                    nav: true
+                },
+                1000: {
+                    items: 1,
+                    nav: true
+                }
+            }
+        })
+    })
+    </script>
+    <!-- //script for testimonials -->
+    <script src="/assets/website/js/frontend/freev2rayclash/theme-change.js"></script>
+    <!-- js for portfolio lightbox -->
+    <!-- libhtbox -->
+    <script src="/assets/website/js/frontend/freev2rayclash/lightbox-plus-jquery.min.js"></script>
+    <!-- libhtbox -->
+    <script src="/assets/website/js/frontend/freev2rayclash/owl.carousel.js"></script>
+    <!-- script for banner slider-->
+    <script>
+    $(document).ready(function() {
+        $('.owl-one').owlCarousel({
+            loop: true,
+            margin: 0,
+            nav: false,
+            responsiveClass: true,
+            autoplay: true,
+            autoplayTimeout: 5000,
+            autoplaySpeed: 1000,
+            autoplayHoverPause: false,
+            responsive: {
+                0: {
+                    items: 1,
+                    nav: false
+                },
+                480: {
+                    items: 1,
+                    nav: false
+                },
+                667: {
+                    items: 1,
+                    nav: true
+                },
+                1000: {
+                    items: 1,
+                    nav: true
+                }
+            }
+        })
+    })
+    </script>
+    <!-- //script -->
+    <!-- stats number counter-->
+    <script src="/assets/website/js/frontend/freev2rayclash/jquery.waypoints.min.js"></script>
+    <script src="/assets/website/js/frontend/freev2rayclash/jquery.countup.js"></script>
+    <script>
+    $('.counter').countUp();
+    </script>
+    <!-- //stats number counter -->
+    <!-- disable body scroll which navbar is in active -->
+    <script>
+    $(function() {
+        $('.navbar-toggler').click(function() {
+            $('body').toggleClass('noscroll');
+        })
+    });
+    </script>
+    <!-- disable body scroll which navbar is in active -->
+    <!--/MENU-JS-->
+    <script>
+    $(window).on("scroll", function() {
+        var scroll = $(window).scrollTop();
+
+        if (scroll >= 80) {
+            $("#site-header").addClass("nav-fixed");
+        } else {
+            $("#site-header").removeClass("nav-fixed");
+        }
+    });
+
+    //Main navigation Active Class Add Remove
+    $(".navbar-toggler").on("click", function() {
+        $("header").toggleClass("active");
+    });
+    $(document).on("ready", function() {
+        if ($(window).width() > 991) {
+            $("header").removeClass("active");
+        }
+        $(window).on("resize", function() {
+            if ($(window).width() > 991) {
+                $("header").removeClass("active");
+            }
+        });
+    });
+    </script>
+    <!--//MENU-JS-->
+    <script src="/assets/website/js/frontend/freev2rayclash/bootstrap.min.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
