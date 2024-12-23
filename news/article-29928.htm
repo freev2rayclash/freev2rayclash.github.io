@@ -1,0 +1,314 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://freev2rayclash.github.io/news/article-29928.htm" />
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>源码分析 Spring Security OAuth2 生成 token 的执行流程</title>
+        <meta name="description" content="说明   本文内容全部基于Spring Security OAuth2(2.3.5.RELEASE).   OAuth2.0 有四种授权模式, 本文会以密码模式 来举例讲解源码.   阅读前, 需要对" />
+        <link rel="icon" href="/assets/website/img/freev2rayclash/favicon.ico" type="image/x-icon"/>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,300;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- Template CSS -->
+    <link rel="stylesheet" href="/assets/website/css/freev2rayclash/style-starter.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SMY6EV424E"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-SMY6EV424E');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!--header-->
+    <header id="site-header" class="fixed-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-dark stroke">
+                                <a class="navbar-brand" href="/">
+                    <span>
+                        Free V2ray Clash
+                    </span>
+                </a>
+                                <!-- if logo is image enable this   
+      <a class="navbar-brand" href="#index.html">
+          <img src="image-path" alt="Your logo" title="Your logo" style="height:35px;" />
+      </a> -->
+                <button class="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon fa icon-expand fa-bars"></span>
+                    <span class="navbar-toggler-icon fa icon-close fa-times"></span>
+                    </span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                    <ul class="navbar-nav mx-lg-auto">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/free-nodes/">免费节点</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/paid-subscribe/">推荐机场</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/news/">新闻资讯</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="#">关于</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">联系</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <!--/header-->
+    <div class="inner-banner">
+    </div>
+    <section class="w3l-breadcrumb">
+        <div class="container">
+            <ul class="breadcrumbs-custom-path">
+                <li><a href="/">首页</a></li>
+                <li><a href="/news/"><span class="fa fa-arrow-right mx-2" aria-hidden="true"></span> 新闻资讯</a></li>
+                <li class="active"><span class="fa fa-arrow-right mx-2" aria-hidden="true"></span> 正文</li>
+            </ul>
+        </div>
+    </section>
+    <!--/about-->
+    <!--/w3l-faq-block-->
+    <div class="w3l-faq-block py-5" id="faq">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                    <h1 class="mb-5">源码分析 Spring Security OAuth2 生成 token 的执行流程</h1>
+                    
+                                    <input type="hidden" id="share-website-info" data-name="Clash Meta免费节点订阅站" data-url="https://clash-meta.github.io">
+                  				  				  				<div id="content_views" class="markdown_views prism-github-gist"> <h2><a id="_0" rel="nofollow"></a>说明</h2> <ol> <li> <p>本文内容全部基于<code>Spring Security OAuth2(2.3.5.RELEASE)</code>.</p> </li> <li> <p><code>OAuth2.0</code> 有四种授权模式, 本文会以<strong>密码模式</strong> 来举例讲解源码.</p> </li> <li> <p>阅读前, 需要对<code>OAuth2.0</code> 的相关概念有所了解.</p> </li> <li> <p>最好有<code>Spring Security OAuth</code> 框架的使用经验</p> </li> </ol> <p>下面是前面写的<code>OAuth2.0</code> 相关文章</p> <p><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://blog.csdn.net/cnm10050/article/details/106139315"  rel="nofollow"> 结合第三方登录案例理解 OAuth2.0 授权码方式</a></p> <p><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://blog.csdn.net/cnm10050/article/details/105923631"  rel="nofollow">spring security oauth2 实战（仿微博第三方登录） - 工程搭建及登陆流程</a></p> <h2><a id="_16" rel="nofollow"></a>正文</h2> <h3><a id="_18" rel="nofollow"></a>前置知识</h3> <pre><code class="prism language-Java">@RequestMapping(value = "/oauth/token", method=RequestMethod.POST) public ResponseEntity&lt;OAuth2AccessToken&gt; postAccessToken( Principal principal,  @RequestParam Map&lt;String, String&gt; parameters)  	throws HttpRequestMethodNotSupportedException { 	// TODO }</code></pre> <ol> <li>获取 token 的默认请求路径是<code>/oauth/token</code></li> <li>获取 token 的入口类是<code>TokenEndpoint</code></li> <li>获取 token 的接口需要接收两个参数 <ul> <li><code>Principal principal</code></li> <li><code>Map&lt;String, String&gt; parameters</code></li> </ul> </li> </ol> <h3><a id="_34" rel="nofollow"></a>执行流程</h3> <p><strong>第一步:</strong></p> <p>调用<code>ClientDetailsService</code> 类的<code>loadClientByClientId</code> 方法, 获取客户端信息装载到<code>ClientDetails</code> 对象中</p> <ul> <li><code>ClientDetailsService</code> 用来管理客户端信息 <ul> <li> <p>实现1:<code>InMemoryClientDetailsService</code> (把客户端信息放在内存中)</p> </li> <li> <p>实现2:<code>JdbcClientDetialsService</code> (把客户端信息放在数据库中)</p> </li> </ul> </li> </ul> <p><strong>第二步:</strong></p> <p>调用<code>OAuth2RequestFactory</code> 类生成<code>TokenRequest</code> 对象</p> <ul> <li> <p><code>DefaultOAuth2RequestFactory</code> 是<code>OAuth2RequestFactory</code> 的唯一实现</p> </li> <li> <p><code>TokenRequest</code> 是对请求参数<code>parameters</code> 和<code>ClientDetails</code> 属性的封装</p> </li> </ul> <p><strong>第三步:</strong></p> <p>调用<code>TokenGranter</code>, 利用<code>TokenRequest</code> 产生两个对象<code>OAuth2Request</code> 和<code>Authentication</code></p> <p><code>TokenGranter</code> 是对 4 种授权模式的一个封装。它会根据<code>grant_type</code> 参数去挑一个具体的实现来生成令牌</p> <p>部分实现类如下:</p> <pre><code>* ResourceOwnerPasswordTokenGranter  * AuthorizationCodeTokenGranter * ImplicitTokenGranter * ClientCredentialsTokenGranter</code></pre> <p><strong>第四步:</strong></p> <p>将<code>OAuth2Request</code> 和<code>Authorization</code> 两个对象组合起来形成一个<code>OAuth2Authorization</code> 对象，它的里面包含了:</p> <ul> <li>哪个第三方应用在请求 token</li> <li>哪个用户以哪种授权模式进行授权</li> </ul> <p><strong>第五步:</strong><br /> 将第 4 步 的对象会传递到<code>AuthorizationServerTokenServices</code> 的实现类<code>DefaultTokenServices</code> 中，最终会生成一个<code>OAuth2AccessToken</code>。</p> <h3><a id="_75" rel="nofollow"></a>源码分析</h3> <h4><a id="1_TokenEndpointpostAccessToken_77" rel="nofollow"></a>1. TokenEndpoint#postAccessToken()</h4> <pre><code class="prism language-Java">// 从请求参数中解析出 clientId String clientId = this.getClientId(principal);  // 第一步: 从 内存 or 数据库(根据 ClientDetailsService 的具体实现)中取出客户端的详细信息 ClientDetails authenticatedClient = this.getClientDetailsService().loadClientByClientId(clientId); // 第二步: 调用 `OAuth2RequestFactory` 类生成 `TokenRequest` 对象 TokenRequest tokenRequest = this.getOAuth2RequestFactory().createTokenRequest(parameters, authenticatedClient);  // 省略一堆判断  // 第3-5步: 根据不同的授权方式, 生成 token OAuth2AccessToken token = this.getTokenGranter().grant(tokenRequest.getGrantType(), tokenRequest); if (token == null) {     throw new UnsupportedGrantTypeException("Unsupported grant type: " + tokenRequest.getGrantType()); } else {     return this.getResponse(token); }</code></pre> <p>针对上述 第 3-5 步的源码接着分析:</p> <p><code>OAuth2AccessToken token = this.getTokenGranter().grant(tokenRequest.getGrantType(), tokenRequest);</code></p> <p>假设现在使用的是授权码模式-密码模式, 那么<code>this.getTokenGranter()</code><br /> 返回的结果就是<code>ResourceOwnerPasswordTokenGranter</code>.</p> <p>对应的<code>grant()</code>方法调用的是<code>CompositeTokenGranter的 grant()方法</code></p> <h4><a id="2_CompositeTokenGrantergrant_108" rel="nofollow"></a>2. CompositeTokenGranter#grant()</h4> <pre><code class="prism language-Java">    public OAuth2AccessToken grant(String grantType, TokenRequest tokenRequest) { 		for (TokenGranter granter : tokenGranters) { 			OAuth2AccessToken grant = granter.grant(grantType, tokenRequest); 			if (grant!=null) { 				return grant; 			} 		} 		return null; 	}</code></pre> <p><code>CompositeTokenGranter</code> 中有一个集合，这个集合里装的就是五个会产生令牌的操作。</p> <p>在遍历过程中, 通过<code>grant_type</code> 在五种情况中挑一种生成<code>accessToken</code> 对象。</p> <h4><a id="3_AbstractTokenGrantergrant_125" rel="nofollow"></a>3. AbstractTokenGranter#grant</h4> <pre><code class="prism language-Java">public OAuth2AccessToken grant(String grantType, TokenRequest tokenRequest) { 		// 判断参数传来的的授权类型和该类所支持的授权类型是否一致 59到第63行是 		if (!this.grantType.equals(grantType)) { 			return null; 		} 		//获取客户端信息跟授权类型再做一个校验 		String clientId = tokenRequest.getClientId(); 		ClientDetails client = clientDetailsService.loadClientByClientId(clientId); 		validateGrantType(grantType, client); 		return getAccessToken(client, tokenRequest);  	}</code></pre> <h4><a id="4_AbstractTokenGranter_getAccessToken_141" rel="nofollow"></a>4. AbstractTokenGranter #getAccessToken()</h4> <pre><code class="prism language-Java"> protected OAuth2AccessToken getAccessToken(ClientDetails  client, TokenRequest tokenRequest) { // 调用 ResourceOwnerPasswordTokenGrante的getOAuth2Authentication方法         return this.tokenServices.createAccessToken(this.getOAuth2Authentication(client, tokenRequest)); }</code></pre> <h4><a id="5_ResourceOwnerPasswordTokenGrantergetOAuth2Authentication_152" rel="nofollow"></a>5. ResourceOwnerPasswordTokenGranter#getOAuth2Authentication()</h4> <p>在密码模式中的策略:</p> <ol> <li>根据请求中携带的用户名和密码来获取当前用户的授权信息<code>Authentication</code></li> <li>将<code>OAuth2Request</code> 和<code>Authentication</code> 组合一个<code>OAuth2Authentication</code> 对象</li> </ol> <pre><code class="prism language-Java">protected OAuth2Authentication getOAuth2Authentication(ClientDetails client, TokenRequest tokenRequest) {          // 从 TokenRequest 中获取请求参数         Map&lt;String, String&gt; parameters = new LinkedHashMap(tokenRequest.getRequestParameters());         // 用户名和密码         String username = (String)parameters.get("username");         String password = (String)parameters.get("password");         parameters.remove("password");                  // 构造一个 Authentication 对象         Authentication userAuth = new UsernamePasswordAuthenticationToken(username, password);         ((AbstractAuthenticationToken)userAuth).setDetails(parameters);          Authentication userAuth;         try {         // 把 userAuth 传递给authenticationManager做认证         // 其实就是调用 自定义的UserDetailService 的 loadUserByUsername 方法去校验用户             userAuth = this.authenticationManager.authenticate(userAuth);         } catch (AccountStatusException var8) {             throw new InvalidGrantException(var8.getMessage());         } catch (BadCredentialsException var9) {             throw new InvalidGrantException(var9.getMessage());         }          if (userAuth != null &amp;&amp; userAuth.isAuthenticated()) {             OAuth2Request storedOAuth2Request = this.getRequestFactory().createOAuth2Request(client, tokenRequest);             // 通过 OAuth2Request 构造一个 OAuth2Authentication 对象             return new OAuth2Authentication(storedOAuth2Request, userAuth);         } else {             throw new InvalidGrantException("Could not authenticate user: " + username);         }     }</code></pre> <h4><a id="6_DefaultTokenServicescreateAccessToken_191" rel="nofollow"></a>6. DefaultTokenServices#createAccessToken</h4> <pre><code class="prism language-Java">// 从 tokenStore 取出 token OAuth2AccessToken existingAccessToken = tokenStore.getAccessToken(authentication); OAuth2RefreshToken refreshToken = null; 	 if (existingAccessToken != null) {     // 如果 token 过期     if (existingAccessToken.isExpired()) { 				 	    if (existingAccessToken.getRefreshToken() != null) { 	        // 移除 refresh token 		    refreshToken = existingAccessToken.getRefreshToken();			 			tokenStore.removeRefreshToken(refreshToken); 		} 		// // 移除 token 		tokenStore.removeAccessToken(existingAccessToken);    } else { 		// 如果token 没过期, 就刷新有效期, 返回 token 		tokenStore.storeAccessToken(existingAccessToken, authentication); 		return existingAccessToken; 	} }  	 if (refreshToken == null) { 	refreshToken = createRefreshToken(authentication); } else if (refreshToken instanceof ExpiringOAuth2RefreshToken) { 	ExpiringOAuth2RefreshToken expiring = (ExpiringOAuth2RefreshToken) refreshToken; 	if (System.currentTimeMillis() &gt; expiring.getExpiration().getTime()) { 		refreshToken = createRefreshToken(authentication); 	} } // 创建新的 token, 并返回 OAuth2AccessToken accessToken = createAccessToken(authentication, refreshToken); tokenStore.storeAccessToken(accessToken, authentication); // In case it was modified refreshToken = accessToken.getRefreshToken(); if (refreshToken != null) { 	tokenStore.storeRefreshToken(refreshToken, authentication); }  return accessToken;</code></pre> <h2><a id="_237" rel="nofollow"></a>总结</h2> <p>密码模式获取<code>token</code> 的流程就是把请求的参数 比如<code>clientId, secret, grant_type, username, password</code> 等信息, 通过<code>/oauth/token</code> 接口传到后端, 经过下图中的一系列转换得到一个<code>OAuth2AccessToken</code> 对象</p> <p>最终获得如下<code>json</code>串</p> <pre><code class="prism language-Json">{      "scope": "[all, read, write]",      "code": 0,      "access_token": "71561b3d-73d5-4a91-bf0f-456c9dc84d7d",      "token_type": "bearer",      "refresh_token": "b888d6d7-5ec2-47f9-82fe-eca5a0350770",      "expires_in": 7199 }</code></pre> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220722/41108afbe0b7b0f7739c282024f6452c.jpg" alt="源码分析 Spring Security OAuth2 生成 token 的执行流程"></p> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-29451.htm">Visual Studio App Center 中的 Bug 跟踪服务</a></p>
+                                        <p>下一个：<a href="/news/article-29929.htm">C#使用RestClient调用Web API_C#教程</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2024-10-23-free-high-speed-nodes.htm" title="10月23日→18.2M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">10月23日→18.2M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-4-clash-node.htm" title="11月4日→22.6M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">11月4日→22.6M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-18-free-subscribe-node.htm" title="10月18日→19.6M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">10月18日→19.6M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-1-free-high-speed-nodes.htm" title="12月1日→20.1M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">12月1日→20.1M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-17-free-high-speed-nodes.htm" title="10月17日→21.9M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">10月17日→21.9M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-23-free-node-subscribe.htm" title="9月23日→19.1M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">9月23日→19.1M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-1-node-share-links.htm" title="11月1日→22.8M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">11月1日→22.8M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-21584.htm" title="小众古镇推荐(小众古镇旅游景点大全)">小众古镇推荐(小众古镇旅游景点大全)</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-26-clash-node.htm" title="10月26日→18.3M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">10月26日→18.3M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-20-free-high-speed-nodes.htm" title="11月20日→22.6M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">11月20日→22.6M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">69</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">12</span> <a href="/date/2024-09/" title="2024-09 归档">2024-09</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+        <!--//w3l-faq-block-->
+    <section class="w3l-footer-29-main w3l-copyright">
+        <div class="container">
+            <div class="bottom-copies">
+                <p class="copy-footer-29 text-center">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                    <a href="/">Free V2ray Clash免费机场订阅节点官网</a> 版权所有 Powered by WordPress
+                </p>
+            </div>
+        </div>
+        <!-- move top -->
+        <button onclick="topFunction()" id="movetop" title="Go to top">
+            <span class="fa fa-angle-up"></span>
+        </button>
+        <script>
+        // When the user scrolls down 20px from the top of the document, show the button
+        window.onscroll = function() {
+            scrollFunction()
+        };
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                document.getElementById("movetop").style.display = "block";
+            } else {
+                document.getElementById("movetop").style.display = "none";
+            }
+        }
+
+        // When the user clicks on the button, scroll to the top of the document
+        function topFunction() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }
+        </script>
+        <!-- /move top -->
+    </section>
+    <!-- Template JavaScript -->
+    <script src="/assets/website/js/frontend/freev2rayclash/jquery-3.3.1.min.js"></script>
+    <!-- script for testimonials -->
+    <script>
+    $(document).ready(function() {
+        $('.owl-testimonial').owlCarousel({
+            loop: true,
+            margin: 0,
+            nav: true,
+            responsiveClass: true,
+            autoplay: true,
+            autoplayTimeout: 5000,
+            autoplaySpeed: 1000,
+            autoplayHoverPause: false,
+            responsive: {
+                0: {
+                    items: 1,
+                    nav: false
+                },
+                480: {
+                    items: 1,
+                    nav: false
+                },
+                667: {
+                    items: 1,
+                    nav: true
+                },
+                1000: {
+                    items: 1,
+                    nav: true
+                }
+            }
+        })
+    })
+    </script>
+    <!-- //script for testimonials -->
+    <script src="/assets/website/js/frontend/freev2rayclash/theme-change.js"></script>
+    <!-- js for portfolio lightbox -->
+    <!-- libhtbox -->
+    <script src="/assets/website/js/frontend/freev2rayclash/lightbox-plus-jquery.min.js"></script>
+    <!-- libhtbox -->
+    <script src="/assets/website/js/frontend/freev2rayclash/owl.carousel.js"></script>
+    <!-- script for banner slider-->
+    <script>
+    $(document).ready(function() {
+        $('.owl-one').owlCarousel({
+            loop: true,
+            margin: 0,
+            nav: false,
+            responsiveClass: true,
+            autoplay: true,
+            autoplayTimeout: 5000,
+            autoplaySpeed: 1000,
+            autoplayHoverPause: false,
+            responsive: {
+                0: {
+                    items: 1,
+                    nav: false
+                },
+                480: {
+                    items: 1,
+                    nav: false
+                },
+                667: {
+                    items: 1,
+                    nav: true
+                },
+                1000: {
+                    items: 1,
+                    nav: true
+                }
+            }
+        })
+    })
+    </script>
+    <!-- //script -->
+    <!-- stats number counter-->
+    <script src="/assets/website/js/frontend/freev2rayclash/jquery.waypoints.min.js"></script>
+    <script src="/assets/website/js/frontend/freev2rayclash/jquery.countup.js"></script>
+    <script>
+    $('.counter').countUp();
+    </script>
+    <!-- //stats number counter -->
+    <!-- disable body scroll which navbar is in active -->
+    <script>
+    $(function() {
+        $('.navbar-toggler').click(function() {
+            $('body').toggleClass('noscroll');
+        })
+    });
+    </script>
+    <!-- disable body scroll which navbar is in active -->
+    <!--/MENU-JS-->
+    <script>
+    $(window).on("scroll", function() {
+        var scroll = $(window).scrollTop();
+
+        if (scroll >= 80) {
+            $("#site-header").addClass("nav-fixed");
+        } else {
+            $("#site-header").removeClass("nav-fixed");
+        }
+    });
+
+    //Main navigation Active Class Add Remove
+    $(".navbar-toggler").on("click", function() {
+        $("header").toggleClass("active");
+    });
+    $(document).on("ready", function() {
+        if ($(window).width() > 991) {
+            $("header").removeClass("active");
+        }
+        $(window).on("resize", function() {
+            if ($(window).width() > 991) {
+                $("header").removeClass("active");
+            }
+        });
+    });
+    </script>
+    <!--//MENU-JS-->
+    <script src="/assets/website/js/frontend/freev2rayclash/bootstrap.min.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>

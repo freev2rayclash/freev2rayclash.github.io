@@ -2,12 +2,12 @@
 <html lang="zh-CN">
 
 <head>
-        <link rel="canonical" href="https://freev2rayclash.github.io/news/article-29451.htm" />
+        <link rel="canonical" href="https://freev2rayclash.github.io/news/article-29929.htm" />
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Visual Studio App Center 中的 Bug 跟踪服务</title>
-        <meta name="description" content="我在之前的一篇文章 《使用 Visual Studio App Center 持续监视应用使用情况和问题》 中介绍了 App Center 的基本功能及使用入门，其中诊断 可以自动手机用户的崩溃或异常" />
+    <title>C#使用RestClient调用Web API_C#教程</title>
+        <meta name="description" content="获取Token  		/// &lt;summary&gt;          /// 获取Token          /// &lt;/summary&gt;          /// &lt;r" />
         <link rel="icon" href="/assets/website/img/freev2rayclash/favicon.ico" type="image/x-icon"/>
     <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,300;0,600;0,700;1,400&display=swap" rel="stylesheet">
     <!-- Template CSS -->
@@ -87,13 +87,12 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-9">
-                    <h1 class="mb-5">Visual Studio App Center 中的 Bug 跟踪服务</h1>
+                    <h1 class="mb-5">C#使用RestClient调用Web API_C#教程</h1>
                     
                                     <input type="hidden" id="share-website-info" data-name="Clash Meta免费节点订阅站" data-url="https://clash-meta.github.io">
-                  				  				  				<p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/31247ea208c0ff9838733b0d86abcc22.jpg" alt="Visual Studio App Center 中的 Bug 跟踪服务"></p> <p>我在之前的一篇文章 《<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.cnblogs.com/dino623/p/use-visual-studio-app-center-to-continuously-monitor-application-usage-and-problems.html"  target="_blank" rel="nofollow">使用 Visual Studio App Center 持续监视应用使用情况和问题</a>》 中介绍了 App Center 的基本功能及使用入门，其中<strong>诊断</strong> 可以自动手机用户的崩溃或异常，并在 App Center 的网页显示详细的错误信息。</p> <p>但是日常工作中我并不会常常登录 App Center 去关心这些诊断数据。针对这种情况，App Center 提供了 Service、Webhook 和 Email 去跟踪诊断信息，它们可以帮用户创建 Bug 或 Issue，记录 App Center 收集到的 Crash 信息。这篇文章将介绍其中的 Service 功能怎么帮助我处理诊断信息。</p> <h2 id="github">Github</h2> <p>App Center 集成了 Github、Azure DevOps 和 Jira 三种服务，我日常只使用 Github 和 Azure DevOps，所以我只介绍这两种。</p> <p>如果想要将诊断信息通知到 Github，首先导航到<strong>Settings</strong>，选择<strong>Services</strong>，然后点击<strong>Github</strong>。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/9ae285fc36cc13aaf2432d9c8670a84e.jpg" alt="Visual Studio App Center 中的 Bug 跟踪服务"></p> <p>登录 Github，点击<strong>Authorize VSAppCenter</strong> 授权给 App Center。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/85dff6d4aebca65200247c823e2aa14d.jpg" alt="Visual Studio App Center 中的 Bug 跟踪服务"></p> <p>现在<strong>Bug tracker</strong> 列表里可以看到授权的 Github 账户，选中它并选中需要接受信息的 Github Repo，点击<strong>Next</strong>。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/651dcaabf436b797fa5024c35274c0c0.jpg" alt="Visual Studio App Center 中的 Bug 跟踪服务"></p> <p>在下一个页面打开<strong>Auto create ticket</strong>，点击<strong>Add</strong> 完成配置。</p> <p>之后，每当有新的 Crash，App Center 会在 Github 自动创建一个新的 Issue，并有一个导航到这个 Crash 的链接：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/a459ec9aa42fada30fada9fb4e94bd05.jpg" alt="Visual Studio App Center 中的 Bug 跟踪服务"></p> <h2 id="azure-devops-service">Azure DevOps Service</h2> <p>如果想要集成 Azure DevOps Service 服务，可以打开<strong>Services</strong> 页面，点击<strong>Add account or service</strong>，选择<strong>Azure DevOps</strong>。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/8fbe1961070a3a9d5f0ed1fcc65f657f.jpg" alt="Visual Studio App Center 中的 Bug 跟踪服务"></p> <p>登录 Azure DevOps Service，在应用授权页面点击<strong>接受</strong> 完成授权。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/8946936354e5566e277b03b22e913a05.jpg" alt="Visual Studio App Center 中的 Bug 跟踪服务"></p> <p>接下来的操作和 Github 的操作基本一样。之后如果有新的 Crash，Azure DevOps 会新建一个 Bug。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/0782550e581499cf66143fddef65d511.jpg" alt="Visual Studio App Center 中的 Bug 跟踪服务"></p> <h2 id="最后">最后</h2> <p>我想 Jira 的服务用起来应该也差不多，因为我没用到就部介绍了。关于 App Center Service 的更多内容请参考以下文档：</p> <p><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://docs.microsoft.com/zh-cn/appcenter/dashboard/bugtracker/?WT.mc_id=WD-MVP-5003763"  target="_blank" rel="nofollow">App Center bug 跟踪器集成</a></p> 			                <div class="clearfix"></div>
+                  				  				  				<p>获取Token</p> <div class="ay1code"> <pre class="brush:csharp;">		/// &lt;summary&gt;          /// 获取Token          /// &lt;/summary&gt;          /// &lt;returns&gt;&lt;/returns&gt;          public static async Task&lt;string&gt; GetToken()          {              var url = $"http://127.0.0.1/terminal-tenant/sys/login";              var client = new RestClient(url);              var request = new RestRequest(Method.POST);              request.RequestFormat = DataFormat.Json;              var body = new { username = "xxx", password = "xxx" };              request.AddParameter("application/json; charset=utf-8", JsonConvert.SerializeObject(body), ParameterType.RequestBody);              IRestResponse response = client.Execute(request);              var responseContent = response.Content;              return responseContent;          }</pre> </div> <p>保存数据</p> <div class="ay1code"> <pre class="brush:csharp;">		/// &lt;summary&gt;          /// 保存数据          /// &lt;/summary&gt;          /// &lt;returns&gt;&lt;/returns&gt;          public async Task&lt;string&gt; Save(Model model, string token)          {              var url = $"http://127.0.0.1/terminal-tenant/app/visitor/save";              var client = new RestClient(url);              var request = new RestRequest(Method.POST);              request.RequestFormat = DataFormat.Json;              request.AddHeader("token", token);              request.AddParameter("application/json; charset=utf-8", JsonConvert.SerializeObject(model), ParameterType.RequestBody);              IRestResponse response = client.Execute(request);              var responseContent = response.Content;              return responseContent;          }</pre> </div> <p>上传文件</p> <div class="ay1code"> <pre class="brush:csharp;">		/// &lt;summary&gt;          /// 上传文件          /// &lt;/summary&gt;          /// &lt;param name="bt"&gt;&lt;/param&gt;          /// &lt;param name="token"&gt;&lt;/param&gt;          /// &lt;returns&gt;&lt;/returns&gt;          public async Task&lt;string&gt; Upload(byte[] bt, string token)          {              var url = $"http://127.0.0.1/terminal-tenant/tenant/common/upload";              var client = new RestClient(url);              var request = new RestRequest(Method.POST);              request.RequestFormat = DataFormat.Json;              request.AddHeader("token", token);              request.AddFile("file", bt, "multipart/form-data");              IRestResponse response = client.Execute(request);              var responseContent = response.Content;              return responseContent;          }</pre> </div> 			                <div class="clearfix"></div>
                 <div class="col-md-12 mt-5">
-                                        <p>上一个：<a href="/news/article-29450.htm">PostMan传参给@RequestBody（接受前端参数）的方式</a></p>
-                                        <p>下一个：<a href="/news/article-29928.htm">源码分析 Spring Security OAuth2 生成 token 的执行流程</a></p>
+                                        <p>上一个：<a href="/news/article-29928.htm">源码分析 Spring Security OAuth2 生成 token 的执行流程</a></p>
                                     </div>
                                 </div>
                 <div class="col-md-3">
@@ -103,16 +102,16 @@
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/free-nodes/2024-11-21-node-share-links.htm" title="11月21日→19.1M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">11月21日→19.1M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-6-node-share.htm" title="10月6日→22.4M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">10月6日→22.4M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-17-free-high-speed-nodes.htm" title="10月17日→21.9M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">10月17日→21.9M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-9-free-clash.htm" title="10月9日→22.3M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">10月9日→22.3M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-28-node-share-links.htm" title="11月28日→19.3M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">11月28日→19.3M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-24324.htm" title="动物医院好评模板范文图片大全高清（动物医院好评模板范文图片大全高清下载）">动物医院好评模板范文图片大全高清（动物医院好评模板范文图片大全高清下载）</a></li>
+                        <li class="py-2"><a href="/news/article-18845.htm" title="附近美容院美容店在哪浮桥（附近美容门店）">附近美容院美容店在哪浮桥（附近美容门店）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-2-free-subscribe-node.htm" title="10月2日→21M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">10月2日→21M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</a></li>
                         <li class="py-2"><a href="/news/article-19744.htm" title="动物医院规章制度范本图片大全（动物医院规章制度范本图片大全集）">动物医院规章制度范本图片大全（动物医院规章制度范本图片大全集）</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-15-free-high-speed-nodes.htm" title="11月15日→20.2M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">11月15日→20.2M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</a></li>
-                        <li class="py-2"><a href="/news/article-26211.htm" title="动物诊所英语怎么读的（动物诊所的英文）">动物诊所英语怎么读的（动物诊所的英文）</a></li>
-                        <li class="py-2"><a href="/news/article-22494.htm" title="宠物美容师真实现状怎么写简历（宠物美容师的发展前景）">宠物美容师真实现状怎么写简历（宠物美容师的发展前景）</a></li>
-                        <li class="py-2"><a href="/news/article-28516.htm" title="宠爱宠物医院怎么样（宠爱宠物诊所怎么样）">宠爱宠物医院怎么样（宠爱宠物诊所怎么样）</a></li>
-                        <li class="py-2"><a href="/news/article-27584.htm" title="活体猫托运多少钱（活猫托运价格查询）">活体猫托运多少钱（活猫托运价格查询）</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-11-free-node-subscribe-links.htm" title="11月11日→22.8M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">11月11日→22.8M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-27-free-node-subscribe-links.htm" title="11月27日→21.8M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">11月27日→21.8M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-10-13-clash-node-daily-updates.htm" title="10月13日→19.5M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">10月13日→19.5M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-4-free-node-subscribe-links.htm" title="12月4日→19M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">12月4日→19M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-28513.htm" title="js  查找字符串中指定字符 模糊查询  不区分大小写">js  查找字符串中指定字符 模糊查询  不区分大小写</a></li>
                     </ul>
     </div>
 </div>
