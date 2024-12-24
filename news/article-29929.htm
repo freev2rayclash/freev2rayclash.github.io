@@ -93,6 +93,7 @@
                   				  				  				<p>获取Token</p> <div class="ay1code"> <pre class="brush:csharp;">		/// &lt;summary&gt;          /// 获取Token          /// &lt;/summary&gt;          /// &lt;returns&gt;&lt;/returns&gt;          public static async Task&lt;string&gt; GetToken()          {              var url = $"http://127.0.0.1/terminal-tenant/sys/login";              var client = new RestClient(url);              var request = new RestRequest(Method.POST);              request.RequestFormat = DataFormat.Json;              var body = new { username = "xxx", password = "xxx" };              request.AddParameter("application/json; charset=utf-8", JsonConvert.SerializeObject(body), ParameterType.RequestBody);              IRestResponse response = client.Execute(request);              var responseContent = response.Content;              return responseContent;          }</pre> </div> <p>保存数据</p> <div class="ay1code"> <pre class="brush:csharp;">		/// &lt;summary&gt;          /// 保存数据          /// &lt;/summary&gt;          /// &lt;returns&gt;&lt;/returns&gt;          public async Task&lt;string&gt; Save(Model model, string token)          {              var url = $"http://127.0.0.1/terminal-tenant/app/visitor/save";              var client = new RestClient(url);              var request = new RestRequest(Method.POST);              request.RequestFormat = DataFormat.Json;              request.AddHeader("token", token);              request.AddParameter("application/json; charset=utf-8", JsonConvert.SerializeObject(model), ParameterType.RequestBody);              IRestResponse response = client.Execute(request);              var responseContent = response.Content;              return responseContent;          }</pre> </div> <p>上传文件</p> <div class="ay1code"> <pre class="brush:csharp;">		/// &lt;summary&gt;          /// 上传文件          /// &lt;/summary&gt;          /// &lt;param name="bt"&gt;&lt;/param&gt;          /// &lt;param name="token"&gt;&lt;/param&gt;          /// &lt;returns&gt;&lt;/returns&gt;          public async Task&lt;string&gt; Upload(byte[] bt, string token)          {              var url = $"http://127.0.0.1/terminal-tenant/tenant/common/upload";              var client = new RestClient(url);              var request = new RestRequest(Method.POST);              request.RequestFormat = DataFormat.Json;              request.AddHeader("token", token);              request.AddFile("file", bt, "multipart/form-data");              IRestResponse response = client.Execute(request);              var responseContent = response.Content;              return responseContent;          }</pre> </div> 			                <div class="clearfix"></div>
                 <div class="col-md-12 mt-5">
                                         <p>上一个：<a href="/news/article-29928.htm">源码分析 Spring Security OAuth2 生成 token 的执行流程</a></p>
+                                        <p>下一个：<a href="/news/article-30402.htm">兽医资格考试报名条件（兽医资格证考试报名条件）</a></p>
                                     </div>
                                 </div>
                 <div class="col-md-3">
@@ -102,16 +103,16 @@
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/free-nodes/2024-10-6-node-share.htm" title="10月6日→22.4M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">10月6日→22.4M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-10-17-free-high-speed-nodes.htm" title="10月17日→21.9M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">10月17日→21.9M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-20203.htm" title="Java数据结构-栈的实现">Java数据结构-栈的实现</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-31-clash-node-daily-updates.htm" title="10月31日→19.4M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">10月31日→19.4M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-24325.htm" title="宠物领养软件下载（宠物领养的app）">宠物领养软件下载（宠物领养的app）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-24-node-share-links.htm" title="11月24日→21.1M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">11月24日→21.1M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-19-node-share-links.htm" title="11月19日→18.9M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">11月19日→18.9M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-24-clash-node-daily-updates.htm" title="9月24日→18M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">9月24日→18M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-27124.htm" title="Springboot @Order注解正确用法">Springboot @Order注解正确用法</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-26-node-share.htm" title="9月26日→19.4M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">9月26日→19.4M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</a></li>
                         <li class="py-2"><a href="/free-nodes/2024-10-9-free-clash.htm" title="10月9日→22.3M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">10月9日→22.3M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-28-node-share-links.htm" title="11月28日→19.3M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">11月28日→19.3M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</a></li>
-                        <li class="py-2"><a href="/news/article-24324.htm" title="动物医院好评模板范文图片大全高清（动物医院好评模板范文图片大全高清下载）">动物医院好评模板范文图片大全高清（动物医院好评模板范文图片大全高清下载）</a></li>
-                        <li class="py-2"><a href="/news/article-18845.htm" title="附近美容院美容店在哪浮桥（附近美容门店）">附近美容院美容店在哪浮桥（附近美容门店）</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-10-2-free-subscribe-node.htm" title="10月2日→21M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">10月2日→21M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</a></li>
-                        <li class="py-2"><a href="/news/article-19744.htm" title="动物医院规章制度范本图片大全（动物医院规章制度范本图片大全集）">动物医院规章制度范本图片大全（动物医院规章制度范本图片大全集）</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-12-4-free-node-subscribe-links.htm" title="12月4日→19M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">12月4日→19M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</a></li>
-                        <li class="py-2"><a href="/news/article-28513.htm" title="js  查找字符串中指定字符 模糊查询  不区分大小写">js  查找字符串中指定字符 模糊查询  不区分大小写</a></li>
+                        <li class="py-2"><a href="/news/article-25268.htm" title="昆明宠物医院24小时营业（昆明宠物医院电话）">昆明宠物医院24小时营业（昆明宠物医院电话）</a></li>
                     </ul>
     </div>
 </div>
@@ -123,7 +124,7 @@
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">69</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+                <h4><span class="badge" style="float: right;">72</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
