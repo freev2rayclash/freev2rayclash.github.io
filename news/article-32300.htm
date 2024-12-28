@@ -2,13 +2,12 @@
 <html lang="zh-CN">
 
 <head>
-        <link rel="canonical" href="https://freev2rayclash.github.io" />
+        <link rel="canonical" href="https://freev2rayclash.github.io/news/article-32300.htm" />
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>2024-10归档 - 第3页 - Free V2ray Clash免费机场订阅节点官网</title>
-        <meta name="keywords" content="2024-10归档Free V2ray Clash免费机场订阅节点官网" />
-        <meta name="description" content="2024-10归档，当前是第3页" />
+    <title>常用注解使用总结系列: @Order 注解</title>
+        <meta name="description" content="@Order 注解 @Order注解主要用来控制配置类的加载顺序 示例代码: package com.runlion.tms.admin.constant;publicclass AService {" />
         <link rel="icon" href="/assets/website/img/freev2rayclash/favicon.ico" type="image/x-icon"/>
     <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,300;0,600;0,700;1,400&display=swap" rel="stylesheet">
     <!-- Template CSS -->
@@ -26,7 +25,7 @@
      crossorigin="anonymous"></script>
 </head>
 
-<body data-page="category">
+<body data-page="detail">
         <!--header-->
     <header id="site-header" class="fixed-top">
         <div class="container">
@@ -77,7 +76,8 @@
         <div class="container">
             <ul class="breadcrumbs-custom-path">
                 <li><a href="/">首页</a></li>
-                <li class="active"><span class="fa fa-arrow-right mx-2" aria-hidden="true"></span> 2024-10 归档</li>
+                <li><a href="/news/"><span class="fa fa-arrow-right mx-2" aria-hidden="true"></span> 新闻资讯</a></li>
+                <li class="active"><span class="fa fa-arrow-right mx-2" aria-hidden="true"></span> 正文</li>
             </ul>
         </div>
     </section>
@@ -87,27 +87,15 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-9">
-                    <h1 class="mb-3">2024-10 归档</h1>
-                    <div class="xcblog-blog-list">
-                                                <div class="row item xcblog-blog-item" data-date="2024-10-01">
-                            <div class="col-md-3">
-                                <div class="faq-image">
-                                    <a href="/free-nodes/2024-10-1-node-share-links.htm" class="xcblog-blog-url">
-                                        <img src="/uploads/20240919-1/09bfe7d78913dfbe8bba943de288311d.webp" class="img-fluid" alt="10月1日→21.6M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">
-                                    </a>
+                    <h1 class="mb-5">常用注解使用总结系列: @Order 注解</h1>
+                    
+                                    <input type="hidden" id="share-website-info" data-name="Clash Meta免费节点订阅站" data-url="https://clash-meta.github.io">
+                  				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> <h2 id="order-注解">@Order 注解</h2> <p>@Order注解主要用来控制配置类的加载顺序<br /> 示例代码:</p> <pre class="prettyprint"><code class="hljs cs">package com.runlion.tms.admin.constant;<span class="hljs-keyword">public</span><span class="hljs-keyword">class</span> AService {  } package com.runlion.tms.admin.constant;<span class="hljs-keyword">public</span><span class="hljs-keyword">class</span> BService {  }</code></pre> <pre class="prettyprint"><code class="hljs avrasm">package<span class="hljs-keyword">com</span><span class="hljs-preprocessor">.runlion</span><span class="hljs-preprocessor">.tms</span><span class="hljs-preprocessor">.admin</span><span class="hljs-preprocessor">.constant</span><span class="hljs-comment">;</span>  import org<span class="hljs-preprocessor">.springframework</span><span class="hljs-preprocessor">.context</span><span class="hljs-preprocessor">.annotation</span><span class="hljs-preprocessor">.Bean</span><span class="hljs-comment">;</span> import org<span class="hljs-preprocessor">.springframework</span><span class="hljs-preprocessor">.context</span><span class="hljs-preprocessor">.annotation</span><span class="hljs-preprocessor">.Configuration</span><span class="hljs-comment">;</span> import org<span class="hljs-preprocessor">.springframework</span><span class="hljs-preprocessor">.core</span><span class="hljs-preprocessor">.annotation</span><span class="hljs-preprocessor">.Order</span><span class="hljs-comment">;</span>  @Configuration @Order(<span class="hljs-number">2</span>) public class AConfig {   @Bean   public AService AService() {     System<span class="hljs-preprocessor">.out</span><span class="hljs-preprocessor">.println</span>(<span class="hljs-string">"AService 加载了"</span>)<span class="hljs-comment">;</span>     return new AService()<span class="hljs-comment">;</span>   }  } package<span class="hljs-keyword">com</span><span class="hljs-preprocessor">.runlion</span><span class="hljs-preprocessor">.tms</span><span class="hljs-preprocessor">.admin</span><span class="hljs-preprocessor">.constant</span><span class="hljs-comment">;</span>  import org<span class="hljs-preprocessor">.springframework</span><span class="hljs-preprocessor">.context</span><span class="hljs-preprocessor">.annotation</span><span class="hljs-preprocessor">.Bean</span><span class="hljs-comment">;</span> import org<span class="hljs-preprocessor">.springframework</span><span class="hljs-preprocessor">.context</span><span class="hljs-preprocessor">.annotation</span><span class="hljs-preprocessor">.Configuration</span><span class="hljs-comment">;</span> import org<span class="hljs-preprocessor">.springframework</span><span class="hljs-preprocessor">.core</span><span class="hljs-preprocessor">.annotation</span><span class="hljs-preprocessor">.Order</span><span class="hljs-comment">;</span>  @Configuration @Order(<span class="hljs-number">1</span>) public class BConfig {   @Bean   public BService bService() {     System<span class="hljs-preprocessor">.out</span><span class="hljs-preprocessor">.println</span>(<span class="hljs-string">"BService 加载了"</span>)<span class="hljs-comment">;</span>     return new BService()<span class="hljs-comment">;</span>   } }</code></pre> <p>测试类:</p> <pre class="prettyprint"><code class="hljs java"><span class="hljs-keyword">package</span> com.runlion.tms.admin.constant;<span class="hljs-keyword">import</span> org.springframework.context.annotation.AnnotationConfigApplicationContext;<span class="hljs-keyword">public</span><span class="hljs-class"><span class="hljs-keyword">class</span><span class="hljs-title">OrderMain</span> {<!-- --></span><span class="hljs-keyword">public</span><span class="hljs-keyword">static</span><span class="hljs-keyword">void</span><span class="hljs-title">main</span>(String[] args) {     AnnotationConfigApplicationContext context =<span class="hljs-keyword">new</span> AnnotationConfigApplicationContext(<span class="hljs-string">"com.runlion.tms.admin.constant"</span>);   } }</code></pre> <p>输出结果:<br /> BService 加载了<br /> AService 加载了</p> <p>因为BService 的@Order(1),所以先打印出来</p> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-31829.htm">梦里抱着别的女人什么意思啊（梦到抱着别的女人睡觉什么意思）</a></p>
+                                        <p>下一个：<a href="/news/article-32301.htm">兽医医院在哪（兽医医院电话号码）</a></p>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-md-9">
-                                <a href="/free-nodes/2024-10-1-node-share-links.htm" class="xcblog-blog-url">
-                                    <h3 class="hny-title xcblog-blog-title">10月1日→21.6M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</h3>
-                                </a>
-                                <p class="my-3">
-                                    这一次的节点更新覆盖了新加坡、加拿大、欧洲、美国、香港、日本、韩国等地区,最高速度可达21.6 M/S。只需复制下方的Clash/v2ray订阅链接,在客户端添加后即可正常使用。                                </p>
-                            </div>
-                        </div>
-                        
-                        <ul class="pagination"><li><a href="/date/2024-10/page-3.htm">&laquo;</a></li> <li><a href="/date/2024-10/">1</a></li><li><a href="/date/2024-10/page-2.htm">2</a></li><li><a href="/date/2024-10/page-3.htm">3</a></li><li class="active"><span>4</span></li> <li class="disabled"><span>&raquo;</span></li></ul>                    </div>
-                </div>
                 <div class="col-md-3">
                     <div class="panel panel-default">
     <div class="panel-heading">
@@ -115,16 +103,16 @@
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/free-nodes/2024-11-29-free-clash.htm" title="11月29日→20.8M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">11月29日→20.8M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-13-free-node-subscribe.htm" title="11月13日→22.2M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">11月13日→22.2M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</a></li>
-                        <li class="py-2"><a href="/news/article-21583.htm" title="上海2020年宠物领养活动时间是多少号（上海2020年宠物领养活动时间是多少号啊）">上海2020年宠物领养活动时间是多少号（上海2020年宠物领养活动时间是多少号啊）</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-17-node-share-links.htm" title="11月17日→18.3M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">11月17日→18.3M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</a></li>
-                        <li class="py-2"><a href="/news/article-28513.htm" title="js  查找字符串中指定字符 模糊查询  不区分大小写">js  查找字符串中指定字符 模糊查询  不区分大小写</a></li>
-                        <li class="py-2"><a href="/news/article-21116.htm" title="我的树莓派 Raspberry Pi Zero 2W 折腾笔记，记录一些遇到的问题和解决办法">我的树莓派 Raspberry Pi Zero 2W 折腾笔记，记录一些遇到的问题和解决办法</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-12-22-clash-windows.htm" title="12月22日→20.1M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">12月22日→20.1M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-10-3-clash-windows.htm" title="10月3日→23M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">10月3日→23M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-10-16-free-node-subscribe.htm" title="10月16日→22.9M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">10月16日→22.9M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-9-29-clash-windows.htm" title="9月29日→18.1M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">9月29日→18.1M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-19-clash-windows.htm" title="12月19日→22.6M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">12月19日→22.6M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-21119.htm" title="为什么我建议需要定期重建数据量大但是性能关键的表_在线工具">为什么我建议需要定期重建数据量大但是性能关键的表_在线工具</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-9-free-clash.htm" title="10月9日→22.3M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">10月9日→22.3M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-20-free-node-subscribe.htm" title="10月20日→20.9M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">10月20日→20.9M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-21584.htm" title="小众古镇推荐(小众古镇旅游景点大全)">小众古镇推荐(小众古镇旅游景点大全)</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-22-node-share-links.htm" title="10月22日→22.8M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">10月22日→22.8M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-11-clash-node.htm" title="12月11日→21.8M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">12月11日→21.8M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-23-free-node-subscribe.htm" title="9月23日→19.1M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">9月23日→19.1M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-29929.htm" title="C#使用RestClient调用Web API_C#教程">C#使用RestClient调用Web API_C#教程</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-30-node-share-links.htm" title="9月30日→18.9M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">9月30日→18.9M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</a></li>
                     </ul>
     </div>
 </div>
