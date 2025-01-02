@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://freev2rayclash.github.io/news/article-34684.htm" />
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>GO语言学习——基本数据类型字符串</title>
+        <meta name="description" content="字符串 Go语言中的字符串以原生数据类型出现。 Go 语言里的字符串的内部实现使用UTF-8编码。 字符串的值为双引号(")中的内容，可以在Go语言的源码中直接添加非ASCII码字符 GO语言中字符串" />
+        <link rel="icon" href="/assets/website/img/freev2rayclash/favicon.ico" type="image/x-icon"/>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,300;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- Template CSS -->
+    <link rel="stylesheet" href="/assets/website/css/freev2rayclash/style-starter.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SMY6EV424E"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-SMY6EV424E');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!--header-->
+    <header id="site-header" class="fixed-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-dark stroke">
+                                <a class="navbar-brand" href="/">
+                    <span>
+                        Free V2ray Clash
+                    </span>
+                </a>
+                                <!-- if logo is image enable this   
+      <a class="navbar-brand" href="#index.html">
+          <img src="image-path" alt="Your logo" title="Your logo" style="height:35px;" />
+      </a> -->
+                <button class="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon fa icon-expand fa-bars"></span>
+                    <span class="navbar-toggler-icon fa icon-close fa-times"></span>
+                    </span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                    <ul class="navbar-nav mx-lg-auto">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/free-nodes/">免费节点</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/paid-subscribe/">推荐机场</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/news/">新闻资讯</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="#">关于</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">联系</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <!--/header-->
+    <div class="inner-banner">
+    </div>
+    <section class="w3l-breadcrumb">
+        <div class="container">
+            <ul class="breadcrumbs-custom-path">
+                <li><a href="/">首页</a></li>
+                <li><a href="/news/"><span class="fa fa-arrow-right mx-2" aria-hidden="true"></span> 新闻资讯</a></li>
+                <li class="active"><span class="fa fa-arrow-right mx-2" aria-hidden="true"></span> 正文</li>
+            </ul>
+        </div>
+    </section>
+    <!--/about-->
+    <!--/w3l-faq-block-->
+    <div class="w3l-faq-block py-5" id="faq">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                    <h1 class="mb-5">GO语言学习——基本数据类型字符串</h1>
+                    
+                                    <input type="hidden" id="share-website-info" data-name="Clash Meta免费节点订阅站" data-url="https://clash-meta.github.io">
+                  				  				  				<p>字符串</p> <p>Go语言中的字符串以原生数据类型出现。 Go 语言里的字符串的内部实现使用UTF-8编码。 字符串的值为双引号(")中的内容，可以在Go语言的源码中直接添加非ASCII码字符</p> <p>GO语言中字符串是用双引号包裹的</p> <p>GO语言中单引号包裹的是字符</p> <pre><code>// 字符串 s := "Hello 中国" // 单独的字母、汉字、符合表示一个字符 c1 := 'h' c2 := '1' c3 := '中' // 字节：1字节=8Bit(8个二进制位) // 1个字符'A'=1个字节 // 1个utf8编码的汉字'中'= 一般占3个字节</code></pre> <p>字符串转义符</p> <p>转义符 	       含义<br /> \r 	    回车符（返回行首）<br /> \n 	换行符（直接跳到下一行的同列位置）<br /> \t 	       制表符<br /> ' 	       单引号<br /> " 	       双引号<br /> \ 	       反斜杠</p> <p>字符串的常用操作</p> <pre><code>              方法                 	  介绍               len(str)              	  求长度            +或fmt.Sprintf           	 拼接字符串           strings.Split           	  分割           strings.contains          	判断是否包含</code></pre> <p>strings.HasPrefix,strings.HasSuffix	前缀/后缀判断<br /> strings.Index(),strings.LastIndex()	子串出现的位置<br /> strings.Join(a[]string, sep string)	join操作</p> <pre><code>package main  import ( 	"fmt" 	"strings" )  // 字符串  func main(){ 	// \ 本来是具有特殊含义的，告诉程序\就是一个单纯的\ 	path := "\"E:\\36期Python全栈开发资料\\Administrator(8E5370323193)\\预习(2)\"" 	path1 := "'E:\\36期Python全栈开发资料\\Administrator(8E5370323193)\\预习(2)'" 	fmt.Println(path) 	fmt.Println(path1)  	s := "I'm ok" 	fmt.Println(s)  	// 多行的字符串 	s2 := ` 	世情薄 	人情恶 	雨送黄昏花易落 	` 	fmt.Println(s2) 	s3 := `E:\36期Python全栈开发资料\Administrator(8E5370323193)\预习(2)` 	fmt.Println(s3)  	// 字符串相关操作 	fmt.Println(len(s3))  	// 字符串拼接 	name := "理想" 	world := "远大" 	ss := name + world 	fmt.Println(ss) 	ss1 := fmt.Sprintf("%s%s", name, world) 	// fmt.Printf("%s%s", name, world) 	fmt.Println(ss1) 	// 分割 	ret := strings.Split(s3, "\\") 	fmt.Println(ret)  	// 包含 	fmt.Println(strings.Contains(ss, "理想")) 	// 前缀 	fmt.Println(strings.HasPrefix(ss, "理想")) 	// 后缀 	fmt.Println(strings.HasSuffix(ss, "理想"))  	s4 := "abcded" 	fmt.Println(strings.Index(s4, "c")) 	fmt.Println(strings.LastIndex(s4, "c")) 	fmt.Println(strings.Index(s4, "d")) 	fmt.Println(strings.LastIndex(s4, "d")) 	// 拼接 	fmt.Println(strings.Join(ret, "+"))  }</code></pre> <p>byte和rune类型</p> <p>字符用单引号（’）包裹起来</p> <p>Go 语言的字符有以下两种：</p> <ol> <li>uint8类型，或者叫 byte 型，代表了ASCII码的一个字符。</li> <li>rune类型，代表一个 UTF-8字符。rune类型实际是一个int32</li> </ol> <p>字符串底层是一个byte数组，可以和[]byte类型相互转换。字符串是不能修改的 字符串是由byte字节组成，所以字符串的长度是byte字节的长度。 rune类型用来表示utf8字符，一个rune字符由一个或多个byte组成。</p> <p>修改字符串</p> <p>要修改字符串，需要先将其转换成[]rune或[]byte，完成后再转换为string。无论哪种转换，都会重新分配内存，并复制字节数组。</p> <p>类型转换</p> <p>强制类型转换的基本语法如下：</p> <pre><code>T(表达式)</code></pre> <p>其中，T表示要转换的类型。表达式包括变量、复杂算子和函数返回值等.</p> <pre><code>package main  import ( 	"fmt" )  func main() { 	s := "Hello 中国" 	// len()求的是byte字节的数量 	n := len(s) 	fmt.Println(n)  	// for i := 0; i &lt; len(s); i++ { 	// 	fmt.Println(s[i]) 	// 	fmt.Printf("%c\n", s[i]) // %c：字符 	// }  	// 字符串修改 	s2 := "白萝卜" // [白 萝 卜] 	s3 := []rune(s2) // 把字符串强制转换成了一个rune切片 	s3[0] = '红' // 单引号表示字符 	fmt.Println(string(s3)) // 把rune切片强制转换成字符串  	c1 := "红" 	c2 := '红' // rune(int32) 	fmt.Printf("c1:%T c2:%T\n", c1, c2) // c1:string c2:int32 	c3 := "H" 	c4 := 'H' 	c5 := byte('H') 	fmt.Printf("c3:%T c4:%T\n", c3, c4) // c3:string c4:int32 	fmt.Printf("c4:%d\n", c4) // c4:72 	fmt.Printf("c5:%T\n", c5) // c5:uint8  	// 类型转换 	n1 := 10 // int 	var f float64 	f = float64(n1) 	fmt.Println(f) 	fmt.Printf("%T\n", f) // float64   }</code></pre> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-34208.htm">猫三联到底是几针（猫三联是几针啊）</a></p>
+                                        <p>下一个：<a href="/news/article-34685.htm">C3P0反序列化链学习</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-22950.htm" title="动物疫苗销售需要什么手续（动物疫苗销售需要什么手续和条件）">动物疫苗销售需要什么手续（动物疫苗销售需要什么手续和条件）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-25-free-subscribe-node.htm" title="11月25日→20.2M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">11月25日→20.2M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-30-clash-node-daily-updates.htm" title="11月30日→19.2M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">11月30日→19.2M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-18-node-share-links.htm" title="11月18日→20.4M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">11月18日→20.4M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-3-node-share.htm" title="11月3日→18.1M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">11月3日→18.1M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-15-free-high-speed-nodes.htm" title="11月15日→20.2M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">11月15日→20.2M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-21116.htm" title="我的树莓派 Raspberry Pi Zero 2W 折腾笔记，记录一些遇到的问题和解决办法">我的树莓派 Raspberry Pi Zero 2W 折腾笔记，记录一些遇到的问题和解决办法</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-10-free-node-subscribe-links.htm" title="11月10日→18.4M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">11月10日→18.4M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-30-free-clash.htm" title="12月30日→18.5M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">12月30日→18.5M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-16-free-node-subscribe.htm" title="10月16日→22.9M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">10月16日→22.9M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">6</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">12</span> <a href="/date/2024-09/" title="2024-09 归档">2024-09</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+        <!--//w3l-faq-block-->
+    <section class="w3l-footer-29-main w3l-copyright">
+        <div class="container">
+            <div class="bottom-copies">
+                <p class="copy-footer-29 text-center">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                    <a href="/">Free V2ray Clash免费机场订阅节点官网</a> 版权所有 Powered by WordPress
+                </p>
+            </div>
+        </div>
+        <!-- move top -->
+        <button onclick="topFunction()" id="movetop" title="Go to top">
+            <span class="fa fa-angle-up"></span>
+        </button>
+        <script>
+        // When the user scrolls down 20px from the top of the document, show the button
+        window.onscroll = function() {
+            scrollFunction()
+        };
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                document.getElementById("movetop").style.display = "block";
+            } else {
+                document.getElementById("movetop").style.display = "none";
+            }
+        }
+
+        // When the user clicks on the button, scroll to the top of the document
+        function topFunction() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }
+        </script>
+        <!-- /move top -->
+    </section>
+    <!-- Template JavaScript -->
+    <script src="/assets/website/js/frontend/freev2rayclash/jquery-3.3.1.min.js"></script>
+    <!-- script for testimonials -->
+    <script>
+    $(document).ready(function() {
+        $('.owl-testimonial').owlCarousel({
+            loop: true,
+            margin: 0,
+            nav: true,
+            responsiveClass: true,
+            autoplay: true,
+            autoplayTimeout: 5000,
+            autoplaySpeed: 1000,
+            autoplayHoverPause: false,
+            responsive: {
+                0: {
+                    items: 1,
+                    nav: false
+                },
+                480: {
+                    items: 1,
+                    nav: false
+                },
+                667: {
+                    items: 1,
+                    nav: true
+                },
+                1000: {
+                    items: 1,
+                    nav: true
+                }
+            }
+        })
+    })
+    </script>
+    <!-- //script for testimonials -->
+    <script src="/assets/website/js/frontend/freev2rayclash/theme-change.js"></script>
+    <!-- js for portfolio lightbox -->
+    <!-- libhtbox -->
+    <script src="/assets/website/js/frontend/freev2rayclash/lightbox-plus-jquery.min.js"></script>
+    <!-- libhtbox -->
+    <script src="/assets/website/js/frontend/freev2rayclash/owl.carousel.js"></script>
+    <!-- script for banner slider-->
+    <script>
+    $(document).ready(function() {
+        $('.owl-one').owlCarousel({
+            loop: true,
+            margin: 0,
+            nav: false,
+            responsiveClass: true,
+            autoplay: true,
+            autoplayTimeout: 5000,
+            autoplaySpeed: 1000,
+            autoplayHoverPause: false,
+            responsive: {
+                0: {
+                    items: 1,
+                    nav: false
+                },
+                480: {
+                    items: 1,
+                    nav: false
+                },
+                667: {
+                    items: 1,
+                    nav: true
+                },
+                1000: {
+                    items: 1,
+                    nav: true
+                }
+            }
+        })
+    })
+    </script>
+    <!-- //script -->
+    <!-- stats number counter-->
+    <script src="/assets/website/js/frontend/freev2rayclash/jquery.waypoints.min.js"></script>
+    <script src="/assets/website/js/frontend/freev2rayclash/jquery.countup.js"></script>
+    <script>
+    $('.counter').countUp();
+    </script>
+    <!-- //stats number counter -->
+    <!-- disable body scroll which navbar is in active -->
+    <script>
+    $(function() {
+        $('.navbar-toggler').click(function() {
+            $('body').toggleClass('noscroll');
+        })
+    });
+    </script>
+    <!-- disable body scroll which navbar is in active -->
+    <!--/MENU-JS-->
+    <script>
+    $(window).on("scroll", function() {
+        var scroll = $(window).scrollTop();
+
+        if (scroll >= 80) {
+            $("#site-header").addClass("nav-fixed");
+        } else {
+            $("#site-header").removeClass("nav-fixed");
+        }
+    });
+
+    //Main navigation Active Class Add Remove
+    $(".navbar-toggler").on("click", function() {
+        $("header").toggleClass("active");
+    });
+    $(document).on("ready", function() {
+        if ($(window).width() > 991) {
+            $("header").removeClass("active");
+        }
+        $(window).on("resize", function() {
+            if ($(window).width() > 991) {
+                $("header").removeClass("active");
+            }
+        });
+    });
+    </script>
+    <!--//MENU-JS-->
+    <script src="/assets/website/js/frontend/freev2rayclash/bootstrap.min.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
