@@ -2,13 +2,12 @@
 <html lang="zh-CN">
 
 <head>
-        <link rel="canonical" href="https://freev2rayclash.github.io" />
+        <link rel="canonical" href="https://freev2rayclash.github.io/news/article-35721.htm" />
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>2024-11归档 - 第3页 - Free V2ray Clash免费机场订阅节点官网</title>
-        <meta name="keywords" content="2024-11归档Free V2ray Clash免费机场订阅节点官网" />
-        <meta name="description" content="2024-11归档，当前是第3页" />
+    <title>java中Date与LocalDate、LocalDate、LocalDateTime互相转化</title>
+        <meta name="description" content="一、Date转化为LocalDate、LocalDate、LocalDateTime 1.第一种转换方法，借助新增类ZoneId、Instant、ZonedDateTime     public st" />
         <link rel="icon" href="/assets/website/img/freev2rayclash/favicon.ico" type="image/x-icon"/>
     <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,300;0,600;0,700;1,400&display=swap" rel="stylesheet">
     <!-- Template CSS -->
@@ -26,7 +25,7 @@
      crossorigin="anonymous"></script>
 </head>
 
-<body data-page="category">
+<body data-page="detail">
         <!--header-->
     <header id="site-header" class="fixed-top">
         <div class="container">
@@ -77,7 +76,8 @@
         <div class="container">
             <ul class="breadcrumbs-custom-path">
                 <li><a href="/">首页</a></li>
-                <li class="active"><span class="fa fa-arrow-right mx-2" aria-hidden="true"></span> 2024-11 归档</li>
+                <li><a href="/news/"><span class="fa fa-arrow-right mx-2" aria-hidden="true"></span> 新闻资讯</a></li>
+                <li class="active"><span class="fa fa-arrow-right mx-2" aria-hidden="true"></span> 正文</li>
             </ul>
         </div>
     </section>
@@ -87,75 +87,15 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-9">
-                    <h1 class="mb-3">2024-11 归档</h1>
-                    <div class="xcblog-blog-list">
-                                                <div class="row item xcblog-blog-item" data-date="2024-11-04">
-                            <div class="col-md-3">
-                                <div class="faq-image">
-                                    <a href="/free-nodes/2024-11-4-clash-node.htm" class="xcblog-blog-url">
-                                        <img src="/uploads/20240919-1/c10d89321485ae556e31c95524a0290b.webp" class="img-fluid" alt="11月4日→22.6M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">
-                                    </a>
+                    <h1 class="mb-5">java中Date与LocalDate、LocalDate、LocalDateTime互相转化</h1>
+                    
+                                    <input type="hidden" id="share-website-info" data-name="Clash Meta免费节点订阅站" data-url="https://clash-meta.github.io">
+                  				  				  				<div id="content_views" class="htmledit_views"> <h2>一、Date转化为LocalDate、LocalDate、LocalDateTime</h2> <p>1.第一种转换方法，借助新增类ZoneId、Instant、ZonedDateTime</p> <pre><code class="language-java">    public static void date2Local() {         Date date = new Date();         //返回当前系统默认的时区         ZoneId zoneId = ZoneId.systemDefault();          //atZone()方法返回在指定时区,从该Instant生成的ZonedDateTime         ZonedDateTime zonedDateTime = date.toInstant().atZone(zoneId);         LocalDate localDate = zonedDateTime.toLocalDate();         LocalTime localTime = zonedDateTime.toLocalTime();         LocalDateTime localDateTime = zonedDateTime.toLocalDateTime();     }</code></pre> <p>2.第二种，同样使用ZoneId、Instant，但最后不同</p> <pre><code class="language-java">public static void date2Local() {         Date date = new Date();         ZoneId zoneId = ZoneId.systemDefault();         Instant instant = date.toInstant();          LocalDateTime localDateTime = LocalDateTime.ofInstant(instant, zoneId);         LocalDate localDate = localDateTime.toLocalDate();         LocalTime localTime = localDateTime.toLocalTime();     }</code></pre> <p>3.第三种拓展，java9中新增了LocalDate、LocalTime的ofInstan()方法，所以第二种也可以写成：</p> <pre><code class="language-java">    public static void date2Local() {         Date date = new Date();         ZoneId zoneId = ZoneId.systemDefault();         Instant instant = date.toInstant();          LocalDateTime localDateTime = LocalDateTime.ofInstant(instant, zoneId);         LocalDate localDate = LocalDate.ofInstant(instant, zoneId);         LocalTime localTime = LocalTime.ofInstant(instant, zoneId);     }</code></pre> <h2>二、LocalDate、LocalDate、LocalDateTime转化Date</h2> <p>1. java.time.LocalDateTime → java.util.Date</p> <pre><code class="language-java">    public void LocalDateTimeToDate() {         LocalDateTime localDateTime = LocalDateTime.now();         ZoneId zoneId = ZoneId.systemDefault();         Instant instant = localDateTime.atZone(zoneId).toInstant();         Date date = Date.from(instant);     }</code></pre> <p>2. java.time.LocalDate → java.util.Date</p> <pre><code class="language-java">    public void LocalDateToDate() {         LocalDate localDate = LocalDate.now();         ZoneId zone = ZoneId.systemDefault();         //将此日期与午夜时间组合在一起，以便在此日期开始时创建LocalDateTime，即生成2017-02-03T00:00         Instant instant = localDate.atStartOfDay().atZone(zone).toInstant();         Date date = Date.from(instant);     }</code></pre> <p>3. java.time.LocalTime →&nbsp;java.util.Date</p> <pre><code class="language-java">    public void LocalTimeToDate() {         LocalTime localTime = LocalTime.now();         LocalDate localDate = LocalDate.now();         LocalDateTime localDateTime = LocalDateTime.of(localDate, localTime);         ZoneId zone = ZoneId.systemDefault();         Instant instant = localDateTime.atZone(zone).toInstant();         Date date = Date.from(instant);     }</code></pre> <h2>三、LocalDate、LocalDate、LocalDateTime中还有很多对日期，时间的操作方法，可以精细到毫秒，在此就不一一介绍了，具体可参考以下文章：</h2> <p><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.cnblogs.com/qingyunfc/p/10236734.html"  title="https://www.cnblogs.com/qingyunfc/p/10236734.html" rel="nofollow">https://www.cnblogs.com/qingyunfc/p/10236734.html</a></p> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-35181.htm">宠物饲料加工企业 宠物饲料加工企业排名</a></p>
+                                        <p>下一个：<a href="/news/article-35722.htm">领养宠物渠道（领养宠物渠道分析）</a></p>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-md-9">
-                                <a href="/free-nodes/2024-11-4-clash-node.htm" class="xcblog-blog-url">
-                                    <h3 class="hny-title xcblog-blog-title">11月4日→22.6M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</h3>
-                                </a>
-                                <p class="my-3">
-                                    这一次的节点更新覆盖了新加坡、美国、香港、日本、加拿大、欧洲、韩国等地区,最高速度可达22.6 M/S。只需复制下方的Clash/v2ray订阅链接,在客户端添加后即可正常使用。                                </p>
-                            </div>
-                        </div>
-                                                <div class="row item xcblog-blog-item" data-date="2024-11-03">
-                            <div class="col-md-3">
-                                <div class="faq-image">
-                                    <a href="/free-nodes/2024-11-3-node-share.htm" class="xcblog-blog-url">
-                                        <img src="/uploads/20240919-1/b39dd78d67032f685039fe63aa00dfb7.webp" class="img-fluid" alt="11月3日→18.1M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="col-md-9">
-                                <a href="/free-nodes/2024-11-3-node-share.htm" class="xcblog-blog-url">
-                                    <h3 class="hny-title xcblog-blog-title">11月3日→18.1M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</h3>
-                                </a>
-                                <p class="my-3">
-                                    这一次的节点更新覆盖了日本、新加坡、美国、香港、欧洲、加拿大、韩国等地区,最高速度可达18.1 M/S。只需复制下方的Clash/v2ray订阅链接,在客户端添加后即可正常使用。                                </p>
-                            </div>
-                        </div>
-                                                <div class="row item xcblog-blog-item" data-date="2024-11-02">
-                            <div class="col-md-3">
-                                <div class="faq-image">
-                                    <a href="/free-nodes/2024-11-2-node-share.htm" class="xcblog-blog-url">
-                                        <img src="/uploads/20240919-1/506593d007106bd61f53bf7f465c176a.webp" class="img-fluid" alt="11月2日→19.8M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="col-md-9">
-                                <a href="/free-nodes/2024-11-2-node-share.htm" class="xcblog-blog-url">
-                                    <h3 class="hny-title xcblog-blog-title">11月2日→19.8M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</h3>
-                                </a>
-                                <p class="my-3">
-                                    这一次的节点更新覆盖了美国、新加坡、欧洲、日本、香港、韩国、加拿大等地区,最高速度可达19.8 M/S。只需复制下方的Clash/v2ray订阅链接,在客户端添加后即可正常使用。                                </p>
-                            </div>
-                        </div>
-                                                <div class="row item xcblog-blog-item" data-date="2024-11-01">
-                            <div class="col-md-3">
-                                <div class="faq-image">
-                                    <a href="/free-nodes/2024-11-1-node-share-links.htm" class="xcblog-blog-url">
-                                        <img src="/uploads/20240919-1/6b4ccc885eadeca89c33cc270581f6b9.webp" class="img-fluid" alt="11月1日→22.8M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="col-md-9">
-                                <a href="/free-nodes/2024-11-1-node-share-links.htm" class="xcblog-blog-url">
-                                    <h3 class="hny-title xcblog-blog-title">11月1日→22.8M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</h3>
-                                </a>
-                                <p class="my-3">
-                                    这一次的节点更新覆盖了欧洲、韩国、香港、加拿大、日本、新加坡、美国等地区,最高速度可达22.8 M/S。只需复制下方的Clash/v2ray订阅链接,在客户端添加后即可正常使用。                                </p>
-                            </div>
-                        </div>
-                        
-                        <ul class="pagination"><li><a href="/date/2024-11/page-3.htm">&laquo;</a></li> <li><a href="/date/2024-11/">1</a></li><li><a href="/date/2024-11/page-2.htm">2</a></li><li><a href="/date/2024-11/page-3.htm">3</a></li><li class="active"><span>4</span></li> <li class="disabled"><span>&raquo;</span></li></ul>                    </div>
-                </div>
                 <div class="col-md-3">
                     <div class="panel panel-default">
     <div class="panel-heading">
@@ -163,16 +103,16 @@
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/news/article-30402.htm" title="兽医资格考试报名条件（兽医资格证考试报名条件）">兽医资格考试报名条件（兽医资格证考试报名条件）</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-9-30-node-share-links.htm" title="9月30日→18.9M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">9月30日→18.9M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-12-3-free-node-subscribe-links.htm" title="12月3日→19.2M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">12月3日→19.2M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</a></li>
-                        <li class="py-2"><a href="/news/article-24798.htm" title="怎么考取兽医资格证（怎么考取兽医职业资格证）">怎么考取兽医资格证（怎么考取兽医职业资格证）</a></li>
+                        <li class="py-2"><a href="/news/article-34684.htm" title="GO语言学习——基本数据类型字符串">GO语言学习——基本数据类型字符串</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-6-free-subscribe-node.htm" title="11月6日→19M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">11月6日→19M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-19-free-node-subscribe-links.htm" title="10月19日→20.5M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">10月19日→20.5M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-19-node-share-links.htm" title="11月19日→18.9M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">11月19日→18.9M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-23394.htm" title="上海宠物领养网点有哪些地方（上海宠物领养地址）">上海宠物领养网点有哪些地方（上海宠物领养地址）</a></li>
                         <li class="py-2"><a href="/news/article-21116.htm" title="我的树莓派 Raspberry Pi Zero 2W 折腾笔记，记录一些遇到的问题和解决办法">我的树莓派 Raspberry Pi Zero 2W 折腾笔记，记录一些遇到的问题和解决办法</a></li>
-                        <li class="py-2"><a href="/news/article-33738.htm" title="狗粮机械设备厂家排名（狗粮生产机器设备排名）">狗粮机械设备厂家排名（狗粮生产机器设备排名）</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-24-node-share-links.htm" title="11月24日→21.1M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">11月24日→21.1M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-12-20-node-share.htm" title="12月20日→19.9M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">12月20日→19.9M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-20-free-high-speed-nodes.htm" title="11月20日→22.6M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">11月20日→22.6M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-28-node-share-links.htm" title="11月28日→19.3M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">11月28日→19.3M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-18-node-share.htm" title="12月18日→22.1M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">12月18日→22.1M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-26212.htm" title="宠物美容师好学吗（宠物美容师前景好吗）">宠物美容师好学吗（宠物美容师前景好吗）</a></li>
+                        <li class="py-2"><a href="/news/article-22026.htm" title="合肥宠物寄养价目表（合肥宠物寄养价目表查询）">合肥宠物寄养价目表（合肥宠物寄养价目表查询）</a></li>
+                        <li class="py-2"><a href="/news/article-32301.htm" title="兽医医院在哪（兽医医院电话号码）">兽医医院在哪（兽医医院电话号码）</a></li>
                     </ul>
     </div>
 </div>
