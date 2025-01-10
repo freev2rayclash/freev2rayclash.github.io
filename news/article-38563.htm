@@ -1,0 +1,314 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://freev2rayclash.github.io/news/article-38563.htm" />
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>iOS全埋点解决方案-应用退出和启动</title>
+        <meta name="description" content="前言 	通过应用程序退出事件，可以分析应用程序的平均使用时长；通过应用程序的启动事件，可以分析日活和新增。我们可以通过全埋点方式 SDK 实现应用程序的退出和启动事件。 一、全埋点的简介 	目前、全埋" />
+        <link rel="icon" href="/assets/website/img/freev2rayclash/favicon.ico" type="image/x-icon"/>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,300;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- Template CSS -->
+    <link rel="stylesheet" href="/assets/website/css/freev2rayclash/style-starter.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SMY6EV424E"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-SMY6EV424E');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!--header-->
+    <header id="site-header" class="fixed-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-dark stroke">
+                                <a class="navbar-brand" href="/">
+                    <span>
+                        Free V2ray Clash
+                    </span>
+                </a>
+                                <!-- if logo is image enable this   
+      <a class="navbar-brand" href="#index.html">
+          <img src="image-path" alt="Your logo" title="Your logo" style="height:35px;" />
+      </a> -->
+                <button class="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon fa icon-expand fa-bars"></span>
+                    <span class="navbar-toggler-icon fa icon-close fa-times"></span>
+                    </span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                    <ul class="navbar-nav mx-lg-auto">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/free-nodes/">免费节点</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/paid-subscribe/">推荐机场</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/news/">新闻资讯</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="#">关于</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">联系</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <!--/header-->
+    <div class="inner-banner">
+    </div>
+    <section class="w3l-breadcrumb">
+        <div class="container">
+            <ul class="breadcrumbs-custom-path">
+                <li><a href="/">首页</a></li>
+                <li><a href="/news/"><span class="fa fa-arrow-right mx-2" aria-hidden="true"></span> 新闻资讯</a></li>
+                <li class="active"><span class="fa fa-arrow-right mx-2" aria-hidden="true"></span> 正文</li>
+            </ul>
+        </div>
+    </section>
+    <!--/about-->
+    <!--/w3l-faq-block-->
+    <div class="w3l-faq-block py-5" id="faq">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                    <h1 class="mb-5">iOS全埋点解决方案-应用退出和启动</h1>
+                    
+                                    <input type="hidden" id="share-website-info" data-name="Clash Meta免费节点订阅站" data-url="https://clash-meta.github.io">
+                  				  				  				<h3 id="前言">前言</h3> <p>	通过应用程序退出事件，可以分析应用程序的平均使用时长；通过应用程序的启动事件，可以分析日活和新增。我们可以通过全埋点方式 SDK 实现应用程序的退出和启动事件。</p> <h3 id="一全埋点的简介">一、全埋点的简介</h3> <p>	目前、全埋点采集可以采集一下4个事件。</p> <p>1、$AppEnd 事件：应用程序退出事件</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/237fd17efe18013bc691c5452e9a4fc9.jpg" alt="iOS全埋点解决方案-应用退出和启动"></p> <p>2、$AppStart 事件：应用程序启动事件</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/f03bf691b71390d9266fef0ed889d5b0.jpg" alt="iOS全埋点解决方案-应用退出和启动"></p> <p>3、$AppViewScreen 事件:  应用程序内界面预览事件，对于 iOS 来说就是切换不同的 UIViewController。</p> <p>4、$AppClick 事件: 控件的点击事件，比如点击 UIButton 、UITableView 等。</p> <p>预置事件：在 SDK 中自动采集的事件称为预置事件。</p> <h3 id="二应用程序退出">二、应用程序退出</h3> <h4 id="21-应用程序状态">2.1 应用程序状态：</h4> <p>	一个标准的 iOS 程序在不同的时期会有不同的运行状态，在 iOS 程序中常见的状态有5中。如图所示：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/caefb059fd6d47858d0935c2b92b143a.jpg" alt="iOS全埋点解决方案-应用退出和启动"></p> <p>1、Not running：非运行状态，指应用程序还没有被启动，或者已经被系统终止。</p> <p>2、Inactive: 前台非活跃状态，指应用程序即将进入前台状态。</p> <p>3、Active: 前台活跃状态，指应用程序正在前台运行，可接受事件并进行处理。</p> <p>4、Background: 进入后台状态，指应用程序进入后台并可执行代码。</p> <p>5、Suspended: 挂起状态，指应用程序进入后台并没有执行代码，系统会自动将应用程序转移到该状态。挂起时，应用程序会保留在内存中，但不执行任何代码，当系统出现内存不足情况时，系统会清除被挂起的应用程序。</p> <p>	在应用程序的状态转换过程中，系统会调用实现 UIApplicationDelegate 协议类的一些方法，并发送相应的本地通知（先调用方法，待回调方法执行后，再发相应的通知），回调方法和本地通知的对应关系如下表</p> <table> <thead> <tr> <th style="text-align: center">回调方法</th> <th style="text-align: center">本地通知</th> </tr> </thead> <tbody> <tr> <td style="text-align: center">- application:didFinishI aunchingWithOptions:</td> <td style="text-align: center">UIApplicationDidFinishLaunchingNotification</td> </tr> <tr> <td style="text-align: center">- applicationDidBecomeActive:</td> <td style="text-align: center">UIApplicationDidBecomeActiveNotification</td> </tr> <tr> <td style="text-align: center">- applicationWillResignActive:</td> <td style="text-align: center">UIApplicationWillResignActiveNotification</td> </tr> <tr> <td style="text-align: center">- applicationDidEnterBack ground:·</td> <td style="text-align: center">UIApplicationDidEnterBackgroundNotification</td> </tr> <tr> <td style="text-align: center">- applicationWillEnterForeground:</td> <td style="text-align: center">UIApplicationWillEnterForegroundNotificatio</td> </tr> <tr> <td style="text-align: center">- applicationWillTerminate:</td> <td style="text-align: center">UIApplicationWillTerminateNotification</td> </tr> </tbody> </table> <h4 id="22-实现步骤">2.2 实现步骤</h4> <p>	通过上面介绍的内容可知，当一个 iOS 应用程序退出时，就意味着该应用程序进入了“后台”，即处于 Background 状态。因此，对于实现 $AppEnd 事件的全埋点，我们只需要注册监听 UIApplicationDidEnterBackgroundNotification 通知，然后在收到通知时触发 $AppEnd 事件，即可达到 $AppEnd 事件全埋点的效果。</p> <p>第一步：注册监听 UIApplicationDidEnterBackgroundNotification 本地通知。</p> <p>在 SensorsAnalyticsSDK.m 文件中实现 - setupListeners 方法，用来监听 UIApplicationDidEnterBackgroundNotification 本地通知，然后再相应的回调方法中触发 $AppEnd 事件。</p> <pre><code>- (void)setupListeners {     NSNotificationCenter *center = [NSNotificationCenter defaultCenter];     // 注册监听 UIApplicationDidEnterBackgroundNotification 本地通知     // 当应用程序进入后台，调用通知方法     [center addObserver:self                selector:@selector(applicationDidEnterBackground:)                    name:UIApplicationDidEnterBackgroundNotification                  object:nil]; }  - (void)applicationDidEnterBackground:(NSNotification *)notification {     NSLog(@"Application did enter background.");          // 触发 AppEnd 事件     [self track:@"$AppEnd" properties:nil]; }</code></pre> <p>第二步：在 SensorsAnalyticsSDK.m 文件中初始化 - init 方法中调用 - setupListeners，并在 - dealloc 方法中移除监听。</p> <pre><code>- (instancetype)init {     self = [super init];     if (self) {         _automaticProperties = [self collectAutomaticProperties];                  // 添加应用程序状态监听         [self setupListeners];     }     return self; }  - (void)dealloc {     [[NSNotificationCenter defaultCenter] removeObserver:self]; }</code></pre> <p>第三步：测试验证</p> <p>我们可以在 Xcode 中打印控制台中查看如下的打印信息。</p> <pre><code>{   "event" : "$AppEnd",   "time" : 1648520301691,   "propeerties" : {     "$model" : "x86_64",     "$manufacturer" : "Apple",     "$lib_version" : "1.0.0",     "$os" : "iOS",     "$app_version" : "1.0",     "$os_version" : "15.2",     "$lib" : "iOS"   } }</code></pre> <h3 id="三应用程序启动">三、应用程序启动</h3> <p>应用程序的启动，一般情况下，大致可以分为两类场景：</p> <p>• 冷启动</p> <p>• 热启动（从后台恢复）</p> <p>	不管是冷启动还是热启动，触发 $AppStart 事件的时机，都可以理解成是当“应用程序开始进入前台并处于活动状态”，也即前文介绍的 Active 状态。因此，为了实现 $AppStart 事件的全埋点，我们可以注册监听 UIApplicationDidBecomeActiveNotification 本地通知，然后在其相应的回调方法里触发 $AppStart 事件。</p> <h4 id="31-实现步骤">3.1 实现步骤</h4> <p>第一步：在 SensorsAnalyticsSDK.m 文件 - setupListeners 方法中，添加 UIApplicationDidBecomeActiveNotification 本地通知，然后再相应的回调方法中触发 $AppStart 事件。</p> <pre><code>- (void)setupListeners {     NSNotificationCenter *center = [NSNotificationCenter defaultCenter];     // 注册监听 UIApplicationDidBecomeActiveNotification 本地通知     // 当应用程序进入前台台，调用通知方法     [center addObserver:self                selector:@selector(applicationDidBecomeActive:)                    name:UIApplicationDidBecomeActiveNotification                  object:nil]; }  - (void)applicationDidBecomeActive:(NSNotification *)notification {     NSLog(@"Application did enter active.");          // 触发 AppEnd 事件     [self track:@"$AppStart" properties:nil]; }</code></pre> <p>第二步: 测试验证</p> <p>	可以在 Xcode 打印控制台中查看下面的打印信息。</p> <pre><code>{   "event" : "$AppStart",   "time" : 1648520708355,   "propeerties" : {     "$model" : "x86_64",     "$manufacturer" : "Apple",     "$lib_version" : "1.0.0",     "$os" : "iOS",     "$app_version" : "1.0",     "$os_version" : "15.2",     "$lib" : "iOS"   } }</code></pre> <h4 id="32-优化">3.2 优化</h4> <p>问题：</p> <p>通过测试可以发现，仍有以下几个特殊场景存在问题：</p> <p>• 下拉通知栏并上滑，会触发 $AppStart 事件</p> <p>• 上滑控制中心并下拉，会触发 $AppStart 事件</p> <p>• 双击 Home 键进入切换应用程序页面，最后又选择当前应用程序，会触发 $AppStart 事件</p> <p>以上几个场景均会触发 $AppStart 事件，明显与实际情况有所不符。</p> <p>那这些现象是什么原因导致的呢？</p> <p>我们继续分析可以发现以下几个现象：</p> <p>• 下拉通知栏时，系统会发送 UIApplicationWillResignActiveNotification 通知；上滑通知栏时，系统会发送 UIApplicationDidBecomeActiveNotification 通知</p> <p>• 上滑控制中心时，系统会发送 UIApplicationWillResignActiveNotification 通知；下拉控制中心时，系统会发送 UIApplicationDidBecomeActiveNotification 通知</p> <p>• 双击 Home 键进入切换应用程序页面时，系统会发送 UIApplicationWillResignActiveNotification 通知，然后选择当前应用程序，系统会再发送 UIApplicationDidBecomeActiveNotification 通知</p> <p>很容易总结出规律：在以上几个场景下，系统均是先发送UIApplicationWillResignActiveNotification 通知，然后再发送 UIApplicationDidBecomeActiveNotification 通知。而我们又是通过注册监听 UIApplicationDidBecomeActiveNotification 通知来实现 $AppStart 事件全埋点，因此均会触发 $AppStart 事件。</p> <p>那如何解决这个问题呢？</p> <p>在解决这个问题之前，我们先看另一个现象：不管是冷启动还是热启动，系统均没有发送 UIApplicationWillResignActiveNotification 通知。</p> <p>因此，只要在收到 UIApplicationDidBecomeActiveNotification 通知时，判断之前是否收到过 UIApplicationWillResignActiveNotification 通知，若没有收到，则触发 $AppStart 事件；若已收到，则不触发 $AppStart 事件。这样即可解决上面的问题。</p> <p>优化方案：</p> <p>第一步：在 SensorsAnalyticsSDK.m 文件中添加 applicationWillResignActive 标记位。</p> <pre><code>/// 标记应用程序是否收到 UIApplicationWillResignActiveNotification 本地通知 @property (nonatomic, assign) BOOL applicationWillResignActive;</code></pre> <p>第二步：在 - setupListeners 方法中新增注册监听 UIApplicationWillResignActiveNotification 的本地通知。</p> <pre><code>- (void)setupListeners {     NSNotificationCenter *center = [NSNotificationCenter defaultCenter];     // 注册监听 UIApplicationDidEnterBackgroundNotification 本地通知     // 当应用程序进入后台，调用通知方法     [center addObserver:self                selector:@selector(applicationDidEnterBackground:)                    name:UIApplicationDidEnterBackgroundNotification                  object:nil];          // 注册监听 UIApplicationDidBecomeActiveNotification 本地通知     // 当应用程序进入前台台，调用通知方法     [center addObserver:self                selector:@selector(applicationDidBecomeActive:)                    name:UIApplicationDidBecomeActiveNotification                  object:nil];          // 注册监听 UIApplicationWillResignActiveNotification 本地通知     // 当应用程序进入前台台，调用通知方法     [center addObserver:self                selector:@selector(applicationWillResignActive:)                    name:UIApplicationWillResignActiveNotification                  object:nil]; }  - (void)applicationWillResignActive:(NSNotification *)notification {          // 设置标记位     self.applicationWillResignActive = YES; }</code></pre> <p>第三步：在UIApplicationDidBecomeActiveNotification 的回调方法中还原 applicationWillResignActive 的标记位</p> <pre><code>- (void)applicationDidBecomeActive:(NSNotification *)notification {     NSLog(@"Application did enter active.");          // 还原标记位     if (self.applicationWillResignActive) {         self.applicationWillResignActive = NO;         return;     }          // 触发 AppStart 事件     [self track:@"$AppStart" properties:nil]; }</code></pre> <p>第四步：在 UIApplicationDidEnterBackgroundNotification 回调方法中还原 applicationWillResignActive 的标记位</p> <pre><code>- (void)applicationDidEnterBackground:(NSNotification *)notification {     NSLog(@"Application did enter background.");          // 还原标记位     self.applicationWillResignActive = NO;          // 触发 AppEnd 事件     [self track:@"$AppEnd" properties:nil]; }</code></pre> <p>第五步：测试验证</p> <pre><code>{   "event" : "$AppStart",   "time" : 1648533646735,   "propeerties" : {     "$model" : "x86_64",     "$manufacturer" : "Apple",     "$lib_version" : "1.0.0",     "$os" : "iOS",     "$app_version" : "1.0",     "$os_version" : "15.2",     "$lib" : "iOS"   } }</code></pre> <h3 id="四应用程序被动启动">四、应用程序被动启动</h3> <p>	被动启动：我们把由 iOS 系统触发的应用程序自动进入后台运行的启动称之为（应用程序的）被动启动，使用 $AppStartPassively 事件来表示。</p> <h4 id="41background-modes">4.1、Background modes</h4> <p>	使用 Xcode 创建新的应用程序，默认情况下后台刷新功能是关闭的，我们可以在 Capabilities 标签中开启 Background Modes，然后就可以勾选所需要的功能了，如下图所示：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/d061a77b0cf77f9e89c5ea01b681b70b.jpg" alt="iOS全埋点解决方案-应用退出和启动"></p> <p>通过上图可知，有如下几种后台运行模式，它们都会触发被动启动（$AppStartPassively 事件）。</p> <p>1、Audio，AirPlay，and Picture in Picture : 音频的播放，录音，AirPlay及画中画的视频播放</p> <p>2、Location updates：此模式下，会由于地理位置变化而触发应用程序启动</p> <p>3、Voice over IP : IP网络电话，通过对语音信号进行编码数字化，然后转换成IP数据包在TCP/IP网络上进行传输，从而达到在网络上进行语音通信的目的</p> <p>4、External Accessory communication：此模式下，一些 MFi 外设通过蓝牙或者 Lightning 接头等方式与 iOS 设备连接，从而可在外设给应用程序发送消息时，触发对应的应用程序启动</p> <p>5、Uses Bluetooth LE accessories：此模式与 External Accessory communication 类似，只是无需限制 MFi 外设，而需要的是 Bluetooth LE 设备</p> <p>6、Acts as a Bluetooth LE accessory：此模式下，iPhone 作为一个蓝牙外设连接，可以触发应用程序启动</p> <p>7、Background fetch：此模式下，iOS 系统会在一定的时间间隔内触发应用程序启动，去获取应用程序数据</p> <p>8、Remote notifications：此模式是支持静默推送，当应用程序收到这种推送后，不会有任何界面提示，但会触发应用程序启动</p> <p>9、Background processing: 后端处理</p> <h4 id="42-实现步骤">4.2 实现步骤</h4> <p>	后台用程序刷新拉起应用程序后，首先会回调 AppDelegate 中的 -application:didFinishLaunchingWithOptions: 方法。因此，我们可以通过注册监听 UIApplicationgDidFinishLaunchingNotification 本地通知来采集被动启动事件信息。</p> <p>第一步：在 - setupListeners 方法中添加 UIApplicationgDidFinishLaunchingNotification 本地通知，在回调方法中上报数据。</p> <pre><code>- (void)setupListeners {     NSNotificationCenter *center = [NSNotificationCenter defaultCenter];     // 注册监听 UIApplicationDidFinishLaunchingNotification 本地通知     // 当应用程序被动，调用通知方法     [center addObserver:self                selector:@selector(applicationDidFinishLaunching:)                    name:UIApplicationDidFinishLaunchingNotification                  object:nil]; } - (void)applicationDidFinishLaunching:(NSNotification *)notification {          // 触发 AppStartPassively 事件     [self track:@"$AppStartPassively" properties:nil]; }</code></pre> <p>第二步：新增一个私有属性 launchedPassively，标记应用程序是否处于被动启动</p> <pre><code>/// 标记应用程序是否是被动启动 @property (nonatomic, assign, getter=isLaunchedPassively) BOOL launchedPassively;</code></pre> <p>第三步：在 - init 初始化方法中，通过 backgroundTimeRemaining 属性是否等于 UIApplicationBackgroundFetchIntervalNever 来设置</p> <pre><code>- (instancetype)init {     self = [super init];     if (self) {         _automaticProperties = [self collectAutomaticProperties];          // 设置是否需是被动启动标记         _launchedPassively = UIApplication.sharedApplication.backgroundTimeRemaining != UIApplicationBackgroundFetchIntervalNever;                  // 添加应用程序状态监听         [self setupListeners];     }     return self; }</code></pre> <p>第四步：在 - applicationDidFinishLaunching 回调方法中，如果 isLaunchedPassively 为 YES，再触发 $AppStartPassively 事件</p> <pre><code>- (void)applicationDidFinishLaunching:(NSNotification *)notification {     NSLog(@"Application did finish launching.");     // 当应用程序后台运行时，触发被动启动事件     if (self.isLaunchedPassively) {         // 触发 AppStartPassively 事件         [self track:@"$AppStartPassively" properties:nil];     } }</code></pre> <p>第五步：测试验证</p> <p>1、开启 Background modes 中的 Background fetch 复选框</p> <p>2、选择 Demo Scheme , 一次单击 Xcode 菜单栏中的 Product -&gt; Scheme -&gt; Edit -&gt; Scheme -&gt; Run -&gt; Options</p> <p>3、勾选 Background Fetch 选项，然后点击 Close 按钮。运行 Demo</p> <pre><code>{   "event" : "$AppStartPassively",   "time" : 1648537321216,   "propeerties" : {     "$model" : "x86_64",     "$manufacturer" : "Apple",     "$lib_version" : "1.0.0",     "$os" : "iOS",     "$app_version" : "1.0",     "$os_version" : "15.2",     "$lib" : "iOS"   }</code></pre> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-38085.htm">动物疫苗能放冰箱吗多久（动物疫苗能放冰箱吗多久不能打）</a></p>
+                                        <p>下一个：<a href="/news/article-38566.htm">想开个宠物店需要什么（想开个宠物店需要什么条件）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-31271.htm" title="哪些属相不适合养狗狗（哪些属相不能养狗狗）">哪些属相不适合养狗狗（哪些属相不能养狗狗）</a></li>
+                        <li class="py-2"><a href="/news/article-25268.htm" title="昆明宠物医院24小时营业（昆明宠物医院电话）">昆明宠物医院24小时营业（昆明宠物医院电话）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-6-free-high-speed-nodes.htm" title="1月6日→20.2M/S|2025年最新免费节点Free V2ray Clash订阅链接地址">1月6日→20.2M/S|2025年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-18845.htm" title="附近美容院美容店在哪浮桥（附近美容门店）">附近美容院美容店在哪浮桥（附近美容门店）</a></li>
+                        <li class="py-2"><a href="/news/article-22494.htm" title="宠物美容师真实现状怎么写简历（宠物美容师的发展前景）">宠物美容师真实现状怎么写简历（宠物美容师的发展前景）</a></li>
+                        <li class="py-2"><a href="/news/article-35722.htm" title="领养宠物渠道（领养宠物渠道分析）">领养宠物渠道（领养宠物渠道分析）</a></li>
+                        <li class="py-2"><a href="/news/article-24800.htm" title="女生养猫影响生育吗（女生养猫对以后怀孕有影响吗）">女生养猫影响生育吗（女生养猫对以后怀孕有影响吗）</a></li>
+                        <li class="py-2"><a href="/news/article-26212.htm" title="宠物美容师好学吗（宠物美容师前景好吗）">宠物美容师好学吗（宠物美容师前景好吗）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-10-free-node-subscribe.htm" title="1月10日→22.8M/S|2025年最新免费节点Free V2ray Clash订阅链接地址">1月10日→22.8M/S|2025年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-33738.htm" title="狗粮机械设备厂家排名（狗粮生产机器设备排名）">狗粮机械设备厂家排名（狗粮生产机器设备排名）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">25</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+        <!--//w3l-faq-block-->
+    <section class="w3l-footer-29-main w3l-copyright">
+        <div class="container">
+            <div class="bottom-copies">
+                <p class="copy-footer-29 text-center">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                    <a href="/">Free V2ray Clash免费机场订阅节点官网</a> 版权所有 Powered by WordPress
+                </p>
+            </div>
+        </div>
+        <!-- move top -->
+        <button onclick="topFunction()" id="movetop" title="Go to top">
+            <span class="fa fa-angle-up"></span>
+        </button>
+        <script>
+        // When the user scrolls down 20px from the top of the document, show the button
+        window.onscroll = function() {
+            scrollFunction()
+        };
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                document.getElementById("movetop").style.display = "block";
+            } else {
+                document.getElementById("movetop").style.display = "none";
+            }
+        }
+
+        // When the user clicks on the button, scroll to the top of the document
+        function topFunction() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }
+        </script>
+        <!-- /move top -->
+    </section>
+    <!-- Template JavaScript -->
+    <script src="/assets/website/js/frontend/freev2rayclash/jquery-3.3.1.min.js"></script>
+    <!-- script for testimonials -->
+    <script>
+    $(document).ready(function() {
+        $('.owl-testimonial').owlCarousel({
+            loop: true,
+            margin: 0,
+            nav: true,
+            responsiveClass: true,
+            autoplay: true,
+            autoplayTimeout: 5000,
+            autoplaySpeed: 1000,
+            autoplayHoverPause: false,
+            responsive: {
+                0: {
+                    items: 1,
+                    nav: false
+                },
+                480: {
+                    items: 1,
+                    nav: false
+                },
+                667: {
+                    items: 1,
+                    nav: true
+                },
+                1000: {
+                    items: 1,
+                    nav: true
+                }
+            }
+        })
+    })
+    </script>
+    <!-- //script for testimonials -->
+    <script src="/assets/website/js/frontend/freev2rayclash/theme-change.js"></script>
+    <!-- js for portfolio lightbox -->
+    <!-- libhtbox -->
+    <script src="/assets/website/js/frontend/freev2rayclash/lightbox-plus-jquery.min.js"></script>
+    <!-- libhtbox -->
+    <script src="/assets/website/js/frontend/freev2rayclash/owl.carousel.js"></script>
+    <!-- script for banner slider-->
+    <script>
+    $(document).ready(function() {
+        $('.owl-one').owlCarousel({
+            loop: true,
+            margin: 0,
+            nav: false,
+            responsiveClass: true,
+            autoplay: true,
+            autoplayTimeout: 5000,
+            autoplaySpeed: 1000,
+            autoplayHoverPause: false,
+            responsive: {
+                0: {
+                    items: 1,
+                    nav: false
+                },
+                480: {
+                    items: 1,
+                    nav: false
+                },
+                667: {
+                    items: 1,
+                    nav: true
+                },
+                1000: {
+                    items: 1,
+                    nav: true
+                }
+            }
+        })
+    })
+    </script>
+    <!-- //script -->
+    <!-- stats number counter-->
+    <script src="/assets/website/js/frontend/freev2rayclash/jquery.waypoints.min.js"></script>
+    <script src="/assets/website/js/frontend/freev2rayclash/jquery.countup.js"></script>
+    <script>
+    $('.counter').countUp();
+    </script>
+    <!-- //stats number counter -->
+    <!-- disable body scroll which navbar is in active -->
+    <script>
+    $(function() {
+        $('.navbar-toggler').click(function() {
+            $('body').toggleClass('noscroll');
+        })
+    });
+    </script>
+    <!-- disable body scroll which navbar is in active -->
+    <!--/MENU-JS-->
+    <script>
+    $(window).on("scroll", function() {
+        var scroll = $(window).scrollTop();
+
+        if (scroll >= 80) {
+            $("#site-header").addClass("nav-fixed");
+        } else {
+            $("#site-header").removeClass("nav-fixed");
+        }
+    });
+
+    //Main navigation Active Class Add Remove
+    $(".navbar-toggler").on("click", function() {
+        $("header").toggleClass("active");
+    });
+    $(document).on("ready", function() {
+        if ($(window).width() > 991) {
+            $("header").removeClass("active");
+        }
+        $(window).on("resize", function() {
+            if ($(window).width() > 991) {
+                $("header").removeClass("active");
+            }
+        });
+    });
+    </script>
+    <!--//MENU-JS-->
+    <script src="/assets/website/js/frontend/freev2rayclash/bootstrap.min.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
