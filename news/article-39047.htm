@@ -1,0 +1,314 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://freev2rayclash.github.io/news/article-39047.htm" />
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>hibernate框架使用详解一</title>
+        <meta name="description" content="hibernate框架使用详解一  一、hibernate的介绍 二、hibernate的使用   2.1 hibernate框架的搭建   2.1.1 导包 2.1.2创建数据库表、实体对象 2.1" />
+        <link rel="icon" href="/assets/website/img/freev2rayclash/favicon.ico" type="image/x-icon"/>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,300;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- Template CSS -->
+    <link rel="stylesheet" href="/assets/website/css/freev2rayclash/style-starter.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SMY6EV424E"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-SMY6EV424E');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!--header-->
+    <header id="site-header" class="fixed-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-dark stroke">
+                                <a class="navbar-brand" href="/">
+                    <span>
+                        Free V2ray Clash
+                    </span>
+                </a>
+                                <!-- if logo is image enable this   
+      <a class="navbar-brand" href="#index.html">
+          <img src="image-path" alt="Your logo" title="Your logo" style="height:35px;" />
+      </a> -->
+                <button class="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon fa icon-expand fa-bars"></span>
+                    <span class="navbar-toggler-icon fa icon-close fa-times"></span>
+                    </span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                    <ul class="navbar-nav mx-lg-auto">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/free-nodes/">免费节点</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/paid-subscribe/">推荐机场</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/news/">新闻资讯</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="#">关于</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">联系</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <!--/header-->
+    <div class="inner-banner">
+    </div>
+    <section class="w3l-breadcrumb">
+        <div class="container">
+            <ul class="breadcrumbs-custom-path">
+                <li><a href="/">首页</a></li>
+                <li><a href="/news/"><span class="fa fa-arrow-right mx-2" aria-hidden="true"></span> 新闻资讯</a></li>
+                <li class="active"><span class="fa fa-arrow-right mx-2" aria-hidden="true"></span> 正文</li>
+            </ul>
+        </div>
+    </section>
+    <!--/about-->
+    <!--/w3l-faq-block-->
+    <div class="w3l-faq-block py-5" id="faq">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                    <h1 class="mb-5">hibernate框架使用详解一</h1>
+                    
+                                    <input type="hidden" id="share-website-info" data-name="Clash Meta免费节点订阅站" data-url="https://clash-meta.github.io">
+                  				  				  				<div id="content_views" class="markdown_views prism-atom-one-light"> <div class="toc"> <h3>hibernate框架使用详解一</h3> <ul> <li><a href="#hibernate_2" rel="nofollow">一、hibernate的介绍</a></li> <li><a href="#hibernate_5" rel="nofollow">二、hibernate的使用</a></li> <li> <ul> <li><a href="#21_hibernate_6" rel="nofollow">2.1 hibernate框架的搭建</a></li> <li> <ul> <li><a href="#211__7" rel="nofollow">2.1.1 导包</a></li> <li><a href="#212_11" rel="nofollow">2.1.2创建数据库表、实体对象</a></li> <li><a href="#213orm_13" rel="nofollow">2.1.3创建orm元数据（对象与表的映射配置文件）</a></li> <li><a href="#214__61" rel="nofollow">2.1.4 书写主配置文件</a></li> </ul> </li> <li><a href="#22_hibernate_114" rel="nofollow">2.2 hibernate框架的使用</a></li> <li> <ul> <li><a href="#221Configuration_115" rel="nofollow">2.2.1创建Configuration对象</a></li> <li><a href="#222SessionFactory_124" rel="nofollow">2.2.2创建SessionFactory对象</a></li> <li><a href="#223Session_134" rel="nofollow">2.2.3创建Session对象</a></li> <li><a href="#224Transaction_145" rel="nofollow">2.2.4创建事务Transaction</a></li> <li><a href="#225_154" rel="nofollow">2.2.5增删改查操作</a></li> <li><a href="#226_160" rel="nofollow">2.2.6提交事务和关闭资源</a></li> </ul> </li> <li><a href="#23hibernate_166" rel="nofollow">2.3hibernate框架通用代码的封装</a></li> </ul> </li> </ul> </div> </h1> <p>hibernate是完全面向对象操作数据库的框架，在操作数据库的时候，可以以面向对象的方式来完成，不需要书写SQL语句。</p> </h1> <h2> <a id="21_hibernate_6" rel="nofollow"></a>2.1 hibernate框架的搭建</h2> <h3> <a id="211__7" rel="nofollow"></a>2.1.1 导包</h3> <p>使用hibernate框架，首先需要导入hibernate框架使用的依赖包，导包过程主要包括hibernate包和操作数据库的驱动包<br /> hibernate包有：<img decoding="async" src="http://img.555519.xyz/uploads/20230108/691cd1c0092558a94366998b699be861.jpg" alt="hibernate框架使用详解一">数据库驱动包有：<br /><img decoding="async" src="http://img.555519.xyz/uploads/20230108/3df1a491d42a0892aab635d8f20909ae.jpg" alt="hibernate框架使用详解一"></p> <h3> <a id="212_11" rel="nofollow"></a>2.1.2创建数据库表、实体对象</h3> <p>hibernate是用来读写数据库的框架，因此需要搭建对应的数据库，创建相应的数据库表。<mark>hibernate提供创建数据库表的功能，因此创建表的步骤可以省略</mark></p> <h3> <a id="213orm_13" rel="nofollow"></a>2.1.3创建orm元数据（对象与表的映射配置文件）</h3> <p>hibernate是面向对象的框架，能够做到数据库无关性。因此需要建立对象与数据库表的映射配置文件。<br /> 映射配置文件的使用说明如下：</p> <pre><code>&lt;?xml version="1.0" encoding="UTF-8"?&gt; &lt;!DOCTYPE hibernate-mapping PUBLIC      "-//Hibernate/Hibernate Mapping DTD 3.0//EN"     "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"&gt; &lt;!-- 配置表与实体对象的关系 --&gt; &lt;!-- package属性:填写一个包名.在元素内部凡是需要书写完整类名的属性,可以直接写简答类名了. --&gt; &lt;hibernate-mapping package="cn.hibernate.domain"&gt; 	&lt;!--  		class元素: 配置实体与表的对应关系的 			name: 完整类名 			table:数据库表名 	 --&gt; 	&lt;class name="Customer" table="customer"&gt; 		&lt;!-- id元素:配置主键映射的属性 				name: 填写主键对应属性名 				column(可选): 填写表中的主键列名.默认值:列名会默认使用属性名 				type(可选):填写列(属性)的类型.hibernate会自动检测实体的属性类型. 						每个类型有三种填法: java类型|hibernate类型|数据库类型 				not-null(可选):配置该属性(列)是否不能为空. 默认值:false 				length(可选):配置数据库中列的长度. 默认值:使用数据库类型的最大长度 		 --&gt; 		&lt;id name="cust_id" column="cust_id"&gt; 			&lt;!-- generator:主键生成策略(详细见hibernate框架使用详解二) --&gt; 			&lt;generator class="native"&gt;&lt;/generator&gt; 		&lt;/id&gt; 		&lt;!-- property元素:除id之外的普通属性映射 				name: 填写属性名 				column(可选): 填写列名 				type(可选):填写列(属性)的类型.hibernate会自动检测实体的属性类型. 						每个类型有三种填法: java类型|hibernate类型|数据库类型 				not-null(可选):配置该属性(列)是否不能为空. 默认值:false 				length(可选):配置数据库中列的长度. 默认值:使用数据库类型的最大长度 		 --&gt; 		&lt;property name="cust_name" column="cust_name"&gt;&lt;/property&gt; 		&lt;property name="cust_source" column="cust_source"&gt;&lt;/property&gt; 		&lt;property name="cust_industry" column="cust_industry"&gt;&lt;/property&gt; 		&lt;property name="cust_level" column="cust_level"&gt;&lt;/property&gt; 		&lt;property name="cust_linkman" column="cust_linkman"&gt;&lt;/property&gt; 		&lt;property name="cust_phone" column="cust_phone"&gt;&lt;/property&gt; 		&lt;property name="cust_mobile" column="cust_mobile"&gt;&lt;/property&gt; 	&lt;/class&gt; &lt;/hibernate-mapping&gt; </code></pre> <h3> <a id="214__61" rel="nofollow"></a>2.1.4 书写主配置文件</h3> <p>主配置文件必须命名为：hibernate.cfg.xml，<mark>注意大小写</mark>，主配置文件放在src目录下。<br /> 主配置文件的内容与解释如下：</p> <pre><code>&lt;?xml version="1.0" encoding="UTF-8"?&gt; &lt;!DOCTYPE hibernate-configuration PUBLIC 	"-//Hibernate/Hibernate Configuration DTD 3.0//EN" 	"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd"&gt;  &lt;hibernate-configuration&gt; 	&lt;session-factory&gt; 		&lt;!-- 数据库驱动 --&gt; 		&lt;property name="hibernate.connection.driver_class"&gt;com.mysql.jdbc.Driver&lt;/property&gt; 		 &lt;!-- 数据库url --&gt; 		&lt;property name="hibernate.connection.url"&gt;jdbc:mysql:///hibernate&lt;/property&gt; 		 &lt;!-- 数据库连接用户名 --&gt; 		&lt;property name="hibernate.connection.username"&gt;root&lt;/property&gt; 		 &lt;!-- 数据库连接密码 --&gt; 		&lt;property name="hibernate.connection.password"&gt;123&lt;/property&gt; 		&lt;!-- 数据库方言 			不同的数据库中,sql语法略有区别. 指定方言可以让hibernate框架在生成sql语句时.针对数据库的方言生成. 			sql99标准: DDL 定义语言  库表的增删改查 					  DCL 控制语言  事务 权限 					  DML 操纵语言  增删改查 			注意: MYSQL在选择方言时,请选择最短的方言. 		 --&gt; 		&lt;property name="hibernate.dialect"&gt;org.hibernate.dialect.MySQLDialect&lt;/property&gt; 		 		 		&lt;!-- #hibernate.show_sql true  			 #hibernate.format_sql true 		--&gt; 		&lt;!-- 将hibernate生成的sql语句打印到控制台 --&gt; 		&lt;property name="hibernate.show_sql"&gt;true&lt;/property&gt; 		&lt;!-- 将hibernate生成的sql语句格式化(语法缩进) --&gt; 		&lt;property name="hibernate.format_sql"&gt;true&lt;/property&gt; 		&lt;!--  		## auto schema export  自动导出表结构. 自动建表 		#hibernate.hbm2ddl.auto create		自动建表.每次框架运行都会创建新的表.以前表将会被覆盖,表数据会丢失.(开发环境中测试使用) 		#hibernate.hbm2ddl.auto create-drop 自动建表.每次框架运行结束都会将所有表删除.(开发环境中测试使用) 		#hibernate.hbm2ddl.auto update(推荐使用) 自动生成表.如果已经存在不会再生成.如果表有变动.自动更新表(不会删除任何数据). 		#hibernate.hbm2ddl.auto validate	校验.不自动生成表.每次启动会校验数据库中表是否正确.校验失败. 		 --&gt; 		&lt;property name="hibernate.hbm2ddl.auto"&gt;update&lt;/property&gt; 		&lt;!-- 引入orm元数据 			路径书写: 填写src下的路径 		 --&gt; 		&lt;mapping resource="cn/hibernate/domain/Customer.hbm.xml" /&gt; 	&lt;/session-factory&gt; &lt;/hibernate-configuration&gt; </code></pre> <p>至此hibernate框架搭建完毕。</p> <h2> <a id="22_hibernate_114" rel="nofollow"></a>2.2 hibernate框架的使用</h2> <h3> <a id="221Configuration_115" rel="nofollow"></a>2.2.1创建Configuration对象</h3> <p>创建Configuration对象，读取配置的hibernate框架的配置文件。<br /> configuration功能：配置加载类，用于加载主配置，orm元数据加载</p> <pre><code>//1、创建，调用空参构造 Configuration configuration = new Configuration(); //2、读取指定配置文件  =&gt;  空参加载方法，默认加载src下的hibernate.cfg.xml文件 configuration.configure(); </code></pre> <h3> <a id="222SessionFactory_124" rel="nofollow"></a>2.2.2创建SessionFactory对象</h3> <p>SessionFactory功能：用于创建操作数据库核心对象session对象的工厂<br /><mark>简单说就是创建一个session对象</mark><br /> 注意：1、sessionFactory负责保存和使用所有配置信息，消耗内存资源非常大<br /> 2、sessionFactory属于线程安全的对象设计<br /> 结论：保证在web项目中，只创建一个sessionFactory.</p> <pre><code>//4、根据配置信息，创建sessionfactory SessionFactory sessionFactory = configuration.buildSessionFactory(); </code></pre> <h3> <a id="223Session_134" rel="nofollow"></a>2.2.3创建Session对象</h3> <p>Session功能：表达hibernate框架与数据库之间的连接（会话） session类似JDBC年代的connection对象<br /> 还可以完成对数据库中数据的增删改查 session是hibernate操作数据库的核心对象</p> <pre><code>// 5、获得session // 打开一个新的session对象 Session session = sessionFactory.openSession();  // 获得一个与线程绑定的session对象 // sessionFactory.getCurrentSession(); </code></pre> <h3> <a id="224Transaction_145" rel="nofollow"></a>2.2.4创建事务Transaction</h3> <p>开启事务对象有两种方式，用功能范围大的一种</p> <pre><code>// 6、session获得操作事务的transaction对象 // 获得操作事务的transaction对象 // Transaction transaction = session.getTransaction(); // 开启事务并获得操作事务的transaction对象（建议使用） Transaction transaction = session.beginTransaction(); </code></pre> <h3> <a id="225_154" rel="nofollow"></a>2.2.5增删改查操作</h3> <p>事务开启以后，便可以进行增删改查操作，调用的是hibernate框架提供的方法。<br /><mark>增加</mark>：<mark>session.save()</mark><br /><mark>删除</mark>：<mark>session.delete()</mark><br /><mark>修改</mark>：<mark>session.update()</mark><br /><mark>查询</mark>：<mark>session.get()</mark></p> <h3> <a id="226_160" rel="nofollow"></a>2.2.6提交事务和关闭资源</h3> <pre><code>transaction2.commit();// 提交事务 session.close();// 释放资源 sessionFactory.close();// 释放资源 </code></pre> <h2> <a id="23hibernate_166" rel="nofollow"></a>2.3hibernate框架通用代码的封装</h2> <p>对于获取Configuration对象，SessionFactory对象和Session对象的代码都是一样的，因此可以将其抽离出来。</p> <pre><code>import org.hibernate.Session; import org.hibernate.SessionFactory; import org.hibernate.cfg.Configuration; public class HibernateUtils { 	private static SessionFactory sf; 	static { 		// 1 创建,调用空参构造 		Configuration conf = new Configuration().configure(); 		// 2 根据配置信息,创建 SessionFactory对象 		sf = conf.buildSessionFactory(); 	} 	// 获得session =&gt; 获得全新session 	public static Session openSession() { 		// 3 获得session 		Session session = sf.openSession(); 		return session; 	} 	// 获得session =&gt; 获得与线程绑定的session 	public static Session getCurrentSession() { 		// 3 获得session 		Session session = sf.getCurrentSession(); 		return session; 	} } </code></pre> <p>使用时直接调用获取相应的session对象即可，使用完毕关闭对象，释放资源。</p> </p></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-38566.htm">想开个宠物店需要什么（想开个宠物店需要什么条件）</a></p>
+                                        <p>下一个：<a href="/news/article-39048.htm">宠物店需要办什么证件（宠物店需要的证件）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2024-12-30-free-clash.htm" title="12月30日→18.5M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">12月30日→18.5M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-28052.htm" title="微信小程序，自定义导航栏组件">微信小程序，自定义导航栏组件</a></li>
+                        <li class="py-2"><a href="/news/article-34207.htm" title="如何在 Java 中实现 Dijkstra 最短路算法">如何在 Java 中实现 Dijkstra 最短路算法</a></li>
+                        <li class="py-2"><a href="/news/article-31828.htm" title="动物防疫疫苗种类有哪些类型图片（动物防疫疫苗种类有哪些类型图片及名称）">动物防疫疫苗种类有哪些类型图片（动物防疫疫苗种类有哪些类型图片及名称）</a></li>
+                        <li class="py-2"><a href="/news/article-22952.htm" title="领养协议书范本 宠物 领养协议书范本 宠物简易">领养协议书范本 宠物 领养协议书范本 宠物简易</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-26-clash-node.htm" title="10月26日→18.3M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">10月26日→18.3M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-3-node-share.htm" title="11月3日→18.1M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">11月3日→18.1M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-2-node-share-links.htm" title="12月2日→21.3M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">12月2日→21.3M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-16-free-clash.htm" title="11月16日→19.5M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">11月16日→19.5M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-39047.htm" title="hibernate框架使用详解一">hibernate框架使用详解一</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">36</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">25</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+        <!--//w3l-faq-block-->
+    <section class="w3l-footer-29-main w3l-copyright">
+        <div class="container">
+            <div class="bottom-copies">
+                <p class="copy-footer-29 text-center">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                    <a href="/">Free V2ray Clash免费机场订阅节点官网</a> 版权所有 Powered by WordPress
+                </p>
+            </div>
+        </div>
+        <!-- move top -->
+        <button onclick="topFunction()" id="movetop" title="Go to top">
+            <span class="fa fa-angle-up"></span>
+        </button>
+        <script>
+        // When the user scrolls down 20px from the top of the document, show the button
+        window.onscroll = function() {
+            scrollFunction()
+        };
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                document.getElementById("movetop").style.display = "block";
+            } else {
+                document.getElementById("movetop").style.display = "none";
+            }
+        }
+
+        // When the user clicks on the button, scroll to the top of the document
+        function topFunction() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }
+        </script>
+        <!-- /move top -->
+    </section>
+    <!-- Template JavaScript -->
+    <script src="/assets/website/js/frontend/freev2rayclash/jquery-3.3.1.min.js"></script>
+    <!-- script for testimonials -->
+    <script>
+    $(document).ready(function() {
+        $('.owl-testimonial').owlCarousel({
+            loop: true,
+            margin: 0,
+            nav: true,
+            responsiveClass: true,
+            autoplay: true,
+            autoplayTimeout: 5000,
+            autoplaySpeed: 1000,
+            autoplayHoverPause: false,
+            responsive: {
+                0: {
+                    items: 1,
+                    nav: false
+                },
+                480: {
+                    items: 1,
+                    nav: false
+                },
+                667: {
+                    items: 1,
+                    nav: true
+                },
+                1000: {
+                    items: 1,
+                    nav: true
+                }
+            }
+        })
+    })
+    </script>
+    <!-- //script for testimonials -->
+    <script src="/assets/website/js/frontend/freev2rayclash/theme-change.js"></script>
+    <!-- js for portfolio lightbox -->
+    <!-- libhtbox -->
+    <script src="/assets/website/js/frontend/freev2rayclash/lightbox-plus-jquery.min.js"></script>
+    <!-- libhtbox -->
+    <script src="/assets/website/js/frontend/freev2rayclash/owl.carousel.js"></script>
+    <!-- script for banner slider-->
+    <script>
+    $(document).ready(function() {
+        $('.owl-one').owlCarousel({
+            loop: true,
+            margin: 0,
+            nav: false,
+            responsiveClass: true,
+            autoplay: true,
+            autoplayTimeout: 5000,
+            autoplaySpeed: 1000,
+            autoplayHoverPause: false,
+            responsive: {
+                0: {
+                    items: 1,
+                    nav: false
+                },
+                480: {
+                    items: 1,
+                    nav: false
+                },
+                667: {
+                    items: 1,
+                    nav: true
+                },
+                1000: {
+                    items: 1,
+                    nav: true
+                }
+            }
+        })
+    })
+    </script>
+    <!-- //script -->
+    <!-- stats number counter-->
+    <script src="/assets/website/js/frontend/freev2rayclash/jquery.waypoints.min.js"></script>
+    <script src="/assets/website/js/frontend/freev2rayclash/jquery.countup.js"></script>
+    <script>
+    $('.counter').countUp();
+    </script>
+    <!-- //stats number counter -->
+    <!-- disable body scroll which navbar is in active -->
+    <script>
+    $(function() {
+        $('.navbar-toggler').click(function() {
+            $('body').toggleClass('noscroll');
+        })
+    });
+    </script>
+    <!-- disable body scroll which navbar is in active -->
+    <!--/MENU-JS-->
+    <script>
+    $(window).on("scroll", function() {
+        var scroll = $(window).scrollTop();
+
+        if (scroll >= 80) {
+            $("#site-header").addClass("nav-fixed");
+        } else {
+            $("#site-header").removeClass("nav-fixed");
+        }
+    });
+
+    //Main navigation Active Class Add Remove
+    $(".navbar-toggler").on("click", function() {
+        $("header").toggleClass("active");
+    });
+    $(document).on("ready", function() {
+        if ($(window).width() > 991) {
+            $("header").removeClass("active");
+        }
+        $(window).on("resize", function() {
+            if ($(window).width() > 991) {
+                $("header").removeClass("active");
+            }
+        });
+    });
+    </script>
+    <!--//MENU-JS-->
+    <script src="/assets/website/js/frontend/freev2rayclash/bootstrap.min.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>

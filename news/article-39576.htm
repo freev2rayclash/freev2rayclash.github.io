@@ -1,0 +1,314 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://freev2rayclash.github.io/news/article-39576.htm" />
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>SpringBoot系列: url重定向和转发</title>
+        <meta name="description" content="Web UI项目中, 很多 Spring controller 视图函数直接返回 html 页面, 还有一些视图函数是要重定向或转发到其他的 url 上. redirect 和 forward的区别:" />
+        <link rel="icon" href="/assets/website/img/freev2rayclash/favicon.ico" type="image/x-icon"/>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,300;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- Template CSS -->
+    <link rel="stylesheet" href="/assets/website/css/freev2rayclash/style-starter.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SMY6EV424E"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-SMY6EV424E');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!--header-->
+    <header id="site-header" class="fixed-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-dark stroke">
+                                <a class="navbar-brand" href="/">
+                    <span>
+                        Free V2ray Clash
+                    </span>
+                </a>
+                                <!-- if logo is image enable this   
+      <a class="navbar-brand" href="#index.html">
+          <img src="image-path" alt="Your logo" title="Your logo" style="height:35px;" />
+      </a> -->
+                <button class="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon fa icon-expand fa-bars"></span>
+                    <span class="navbar-toggler-icon fa icon-close fa-times"></span>
+                    </span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                    <ul class="navbar-nav mx-lg-auto">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/free-nodes/">免费节点</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/paid-subscribe/">推荐机场</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/news/">新闻资讯</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="#">关于</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">联系</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <!--/header-->
+    <div class="inner-banner">
+    </div>
+    <section class="w3l-breadcrumb">
+        <div class="container">
+            <ul class="breadcrumbs-custom-path">
+                <li><a href="/">首页</a></li>
+                <li><a href="/news/"><span class="fa fa-arrow-right mx-2" aria-hidden="true"></span> 新闻资讯</a></li>
+                <li class="active"><span class="fa fa-arrow-right mx-2" aria-hidden="true"></span> 正文</li>
+            </ul>
+        </div>
+    </section>
+    <!--/about-->
+    <!--/w3l-faq-block-->
+    <div class="w3l-faq-block py-5" id="faq">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                    <h1 class="mb-5">SpringBoot系列: url重定向和转发</h1>
+                    
+                                    <input type="hidden" id="share-website-info" data-name="Clash Meta免费节点订阅站" data-url="https://clash-meta.github.io">
+                  				  				  				<div id="content_views" class="htmledit_views"> <div id="cnblogs_post_body" class="blogpost-body"> <p>Web UI项目中, 很多 Spring controller 视图函数直接返回 html 页面, 还有一些视图函数是要重定向或转发到其他的 url 上.</p> <p>redirect 和 forward的区别:</p> <p>重定向 redirect: 完整的重定向包含两次request-response过程, 第一次是访问原始url, 第二次是服务器通知客户端访问重定向后的url. 重定向完成后, 浏览器的地址是重定向后的url, 而不是原始的url.<br />&nbsp; &nbsp; 重定向的使用场景: 因为重定向会修改浏览器地址, 所以 form 提交应该使用重定向, 以免用户刷新页面导致form重复提交.</p> <p>转发 forward: 完整的转发仅包含一次 request-response 过程, 用户发出request后, 服务器端视图函数先处理自己的逻辑, 然后在服务器端有调用另一个视图函数, 最后将response返回给浏览器.</p> <p>==============================<br />转发 forward<br />==============================<br />在Spring MVC 中, 构建forward 目标有两种方式:<br />1. 以字符串的形式构建目标url, url 需要加上 forward: 前缀<br />2. 使用 ModelAndView 对象来设置转发的forward目标, viewName 可以省略 forward: 前缀, viewName 应该是目标url, 而不是目标视图的函数名.<br />传参方式:<br />1. 以字符串的形式构建目标url, 可以使用 query variable的格式拼url<br />2. 使用 ModelAndView 对象来增加 attribute Object, 其结果也是在拼接url.<br />取参的方式: 可以使用&nbsp;@RequestParam&nbsp;来取参.</p> <p>==============================<br />重定向 redirect<br />==============================<br />redirect 目标有三种构建方式<br />1. 使用 redirect: 前缀url方式构建目标url<br />2. 使用 RedirectView 类型指定目标, 推荐使用这个,<br />3. 使用 ModelAndView 类型指定目标, ModelAndView 视图名默认是forward, 所以对于redirect, 需要加上 redirect: 前缀</p> <p>传参和取参方式:<br />1. 传参: 以字符串的形式构建目标url, 可以使用 query variable的格式拼url. 取参: @RequestParam()来fetch<br />2. 传参: redirectAttributes.addAttribute() 加的attr. 取参: @RequestParam()来fetch<br />3. 传参: redirectAttributes.addFlashAttribute() 加的attr. 取参: @ModelAttribute()来fetch</p> <p>Flash attribute的特点:<br />1. addFlashAttribute() 可以是任意类型的数据(不局限在String等基本类型), addAttribute()只能加基本类型的参数.<br />2. addFlashAttribute() 加的 attr, 不会出现在url 地址栏上.<br />3. addFlashAttribute() 加的 attr, 一旦fetch后, 就会自动清空, 非常适合 form 提交后 feedback Message.</p> <p>==============================<br />示例代码<br />==============================<br />-----------------------------<br />pom.xml 和 application.properties<br />-----------------------------</p> <div class="cnblogs_code"> <pre><span style="color:#0000ff;">&lt;</span><span style="color:#800000;">dependency</span><span style="color:#0000ff;">&gt;</span><span style="color:#0000ff;">&lt;</span><span style="color:#800000;">groupId</span><span style="color:#0000ff;">&gt;</span>io.pebbletemplates<span style="color:#0000ff;">&lt;/</span><span style="color:#800000;">groupId</span><span style="color:#0000ff;">&gt;</span><span style="color:#0000ff;">&lt;</span><span style="color:#800000;">artifactId</span><span style="color:#0000ff;">&gt;</span>pebble-spring-boot-2-starter<span style="color:#0000ff;">&lt;/</span><span style="color:#800000;">artifactId</span><span style="color:#0000ff;">&gt;</span><span style="color:#0000ff;">&lt;</span><span style="color:#800000;">version</span><span style="color:#0000ff;">&gt;</span>3.0.5<span style="color:#0000ff;">&lt;/</span><span style="color:#800000;">version</span><span style="color:#0000ff;">&gt;</span><span style="color:#0000ff;">&lt;/</span><span style="color:#800000;">dependency</span><span style="color:#0000ff;">&gt;</span></pre> </div> <div class="cnblogs_code"> <pre># application.properties<span style="color:#0000ff;">file</span><span style="color:#000000;"> pebble.prefix</span>=/templates/<span style="color:#000000;"> pebble.suffix</span>=<span style="color:#000000;">.html pebble.content</span>-type=text/<span style="color:#000000;">html pebble.cache</span>=<span style="color:#0000ff;">false</span><span style="color:#000000;"> pebble.encoding</span>=UTF-<span style="color:#800080;">8</span><span style="color:#000000;"> pebble.defaultLocale</span>=<span style="color:#0000ff;">null</span><span style="color:#000000;"> pebble.strictVariables</span>=<span style="color:#0000ff;">false</span></pre> </div> <p>-----------------------------<br />java 代码<br />-----------------------------</p> <div class="cnblogs_code"> <pre><span style="color:#000000;">@Controller @RequestMapping(</span>"/"<span style="color:#000000;">)</span><span style="color:#0000ff;">public</span><span style="color:#0000ff;">class</span><span style="color:#000000;"> DemoController {</span><span style="color:#008000;">/*</span><span style="color:#008000;">      * forward 示例: 以字符串的形式构建目标url, url 需要加上 forward: 前缀      *</span><span style="color:#008000;">*/</span><span style="color:#000000;">     @RequestMapping(</span>"/forwardTest1"<span style="color:#000000;">)</span><span style="color:#0000ff;">public</span><span style="color:#000000;"> String forwardTest1() {</span><span style="color:#0000ff;">return</span> "forward:/forwardTarget?param1=v1&amp;param2=v2"<span style="color:#000000;">;     }</span><span style="color:#008000;">/*</span><span style="color:#008000;">      * forward 示例: 使用 ModelAndView() 设置转发的目标url      *</span><span style="color:#008000;">*/</span><span style="color:#000000;">     @RequestMapping(</span>"/forwardTest2"<span style="color:#000000;">)</span><span style="color:#0000ff;">public</span><span style="color:#000000;"> ModelAndView forwardTest2() {         ModelAndView mav</span>=<span style="color:#0000ff;">new</span> ModelAndView("/forwardTarget");<span style="color:#008000;">//</span><span style="color:#008000;"> 绝对路径OK</span><span style="color:#008000;">//</span><span style="color:#008000;">ModelAndView mav=new ModelAndView("forwardTarget");</span><span style="color:#008000;">//</span><span style="color:#008000;"> 相对路径也OK</span>         mav.addObject("param1", "value1"<span style="color:#000000;">);         mav.addObject(</span>"param2", "value2"<span style="color:#000000;">);</span><span style="color:#0000ff;">return</span><span style="color:#000000;"> mav ;     }      @RequestMapping(</span>"/forwardTarget"<span style="color:#000000;">)</span><span style="color:#0000ff;">public</span> String forwardTargetView(Model model, @RequestParam("param1"<span style="color:#000000;">) String param1,             @RequestParam(</span>"param2"<span style="color:#000000;">) String param2) {         model.addAttribute(</span>"param1"<span style="color:#000000;">, param1);         model.addAttribute(</span>"param2"<span style="color:#000000;">, param2);</span><span style="color:#0000ff;">return</span> "forwardTarget"<span style="color:#000000;">;     }</span><span style="color:#008000;">/*</span><span style="color:#008000;">      * redirect 目标有三种构建方式      * 1. 使用 redirect: 前缀url方式构建目标url      * 2. 使用 RedirectView 类型指定目标      * 3. 使用 ModelAndView 类型指定目标, ModelAndView 视图名默认是forward, 所以对于redirect, 需要加上 redirect: 前缀      *</span><span style="color:#008000;">*/</span><span style="color:#000000;">     @RequestMapping(</span>"/noParamRedirect"<span style="color:#000000;">)</span><span style="color:#0000ff;">public</span><span style="color:#000000;"> RedirectView noParamTest() {         RedirectView redirectTarget</span>=<span style="color:#0000ff;">new</span><span style="color:#000000;"> RedirectView();         redirectTarget.setContextRelative(</span><span style="color:#0000ff;">true</span><span style="color:#000000;">);         redirectTarget.setUrl(</span>"noParamTarget"<span style="color:#000000;">);</span><span style="color:#0000ff;">return</span><span style="color:#000000;"> redirectTarget;     }      @RequestMapping(</span>"/noParamTarget"<span style="color:#000000;">)</span><span style="color:#0000ff;">public</span><span style="color:#000000;"> String redirectTarget() {</span><span style="color:#0000ff;">return</span> "noParamTarget"<span style="color:#000000;">;     }      @RequestMapping(</span>"/withParamRedirect"<span style="color:#000000;">)</span><span style="color:#0000ff;">public</span><span style="color:#000000;"> RedirectView withParamRedirect(RedirectAttributes redirectAttributes) {         RedirectView redirectTarget</span>=<span style="color:#0000ff;">new</span><span style="color:#000000;"> RedirectView();         redirectTarget.setContextRelative(</span><span style="color:#0000ff;">true</span><span style="color:#000000;">);         redirectTarget.setUrl(</span>"withParamTarget"<span style="color:#000000;">);          redirectAttributes.addAttribute(</span>"param1", "value1"<span style="color:#000000;">);         redirectAttributes.addAttribute(</span>"param2", "value2"<span style="color:#000000;">);</span><span style="color:#0000ff;">return</span><span style="color:#000000;"> redirectTarget;     }      @RequestMapping(</span>"/withParamTarget"<span style="color:#000000;">)</span><span style="color:#0000ff;">public</span> String withParamTarget(Model model, @RequestParam("param1"<span style="color:#000000;">) String param1,             @RequestParam(</span>"param2"<span style="color:#000000;">) String param2) {         model.addAttribute(</span>"param1"<span style="color:#000000;">, param1);         model.addAttribute(</span>"param2"<span style="color:#000000;">, param2);</span><span style="color:#0000ff;">return</span> "withParamTarget"<span style="color:#000000;">;     }      @RequestMapping(</span>"/withFlashRedirect"<span style="color:#000000;">)</span><span style="color:#0000ff;">public</span><span style="color:#000000;"> RedirectView withFlashTest(RedirectAttributes redirectAttributes) {         RedirectView redirectTarget</span>=<span style="color:#0000ff;">new</span><span style="color:#000000;"> RedirectView();         redirectTarget.setContextRelative(</span><span style="color:#0000ff;">true</span><span style="color:#000000;">);         redirectTarget.setUrl(</span>"withFlashTarget"<span style="color:#000000;">);          redirectAttributes.addAttribute(</span>"param", "value"<span style="color:#000000;">);         redirectAttributes.addFlashAttribute(</span>"flashParam", "flashValue"<span style="color:#000000;">);</span><span style="color:#0000ff;">return</span><span style="color:#000000;"> redirectTarget;     }</span><span style="color:#008000;">/*</span><span style="color:#008000;">      * redirectAttributes.addAttribute加的attr, 使用 @RequestParam()来fetch      * redirectAttributes.addFlashAttribute()加的attr, 使用 @ModelAttribute()来fetch      *</span><span style="color:#008000;">*/</span><span style="color:#000000;">     @RequestMapping(</span>"/withFlashTarget"<span style="color:#000000;">)</span><span style="color:#0000ff;">public</span> String withFlashTarget(Model model, @RequestParam("param"<span style="color:#000000;">) String param,             @ModelAttribute(</span>"flashParam"<span style="color:#000000;">) String flashParam) {         model.addAttribute(</span>"param"<span style="color:#000000;">, param);         model.addAttribute(</span>"flashParam"<span style="color:#000000;">, flashParam);</span><span style="color:#0000ff;">return</span> "withFlashTarget"<span style="color:#000000;">;     }        @GetMapping(</span>"/input"<span style="color:#000000;">)</span><span style="color:#0000ff;">public</span><span style="color:#000000;"> String input() {</span><span style="color:#0000ff;">return</span> "input"<span style="color:#000000;">;     }</span><span style="color:#008000;">/*</span><span style="color:#008000;">      * form 提交后, 如果form数据有问题, 使用redirectAttributes.addFlashAttribute()加上 flash message.      * addFlashAttribute()可以是任意类型的数据(不局限在String等基本类型)      * addFlashAttribute() 加的 attr, 不会出现在url 地址栏上.      * addFlashAttribute() 加的 attr, 一旦fetch后, 就会自动清空, 非常适合 form 提交后 feedback Message.      *</span><span style="color:#008000;">*/</span><span style="color:#000000;">     @PostMapping(</span>"/submit"<span style="color:#000000;">)</span><span style="color:#0000ff;">public</span><span style="color:#000000;"> RedirectView submit(RedirectAttributes redirectAttributes) {</span><span style="color:#0000ff;">boolean</span> passed =<span style="color:#0000ff;">false</span><span style="color:#000000;">;</span><span style="color:#0000ff;">if</span> (passed==<span style="color:#0000ff;">false</span><span style="color:#000000;">) {             RedirectView redirectTarget</span>=<span style="color:#0000ff;">new</span><span style="color:#000000;"> RedirectView();             redirectTarget.setContextRelative(</span><span style="color:#0000ff;">true</span><span style="color:#000000;">);             redirectTarget.setUrl(</span>"input"<span style="color:#000000;">);             redirectAttributes.addFlashAttribute(</span>"errorMessage", "some error information here"<span style="color:#000000;">);</span><span style="color:#0000ff;">return</span><span style="color:#000000;"> redirectTarget;         }</span><span style="color:#0000ff;">else</span><span style="color:#000000;"> {             RedirectView redirectTarget</span>=<span style="color:#0000ff;">new</span><span style="color:#000000;"> RedirectView();             redirectTarget.setContextRelative(</span><span style="color:#0000ff;">true</span><span style="color:#000000;">);             redirectTarget.setUrl(</span>"inputOK"<span style="color:#000000;">);</span><span style="color:#0000ff;">return</span><span style="color:#000000;"> redirectTarget;         }     } }</span></pre> </div> <p>==============================<br />Html 代码<br />==============================</p> <p>-------------------------------<br />input.html<br />-------------------------------</p> <div class="cnblogs_code"> <pre><span style="color:#0000ff;">&lt;!</span><span style="color:#ff00ff;">DOCTYPE html</span><span style="color:#0000ff;">&gt;</span><span style="color:#0000ff;">&lt;</span><span style="color:#800000;">html</span><span style="color:#ff0000;">lang</span><span style="color:#0000ff;">="en"</span><span style="color:#0000ff;">&gt;</span><span style="color:#0000ff;">&lt;</span><span style="color:#800000;">head</span><span style="color:#0000ff;">&gt;</span><span style="color:#0000ff;">&lt;</span><span style="color:#800000;">meta</span><span style="color:#ff0000;">charset</span><span style="color:#0000ff;">="utf-8"</span><span style="color:#0000ff;">&gt;</span><span style="color:#0000ff;">&lt;</span><span style="color:#800000;">meta</span><span style="color:#ff0000;">name</span><span style="color:#0000ff;">="viewport"</span><span style="color:#ff0000;"> content</span><span style="color:#0000ff;">="width=device-width, initial-scale=1, shrink-to-fit=no"</span><span style="color:#0000ff;">&gt;</span><span style="color:#0000ff;">&lt;</span><span style="color:#800000;">meta</span><span style="color:#ff0000;">name</span><span style="color:#0000ff;">="description"</span><span style="color:#ff0000;"> content</span><span style="color:#0000ff;">=""</span><span style="color:#0000ff;">&gt;</span><span style="color:#0000ff;">&lt;</span><span style="color:#800000;">meta</span><span style="color:#ff0000;">name</span><span style="color:#0000ff;">="author"</span><span style="color:#ff0000;"> content</span><span style="color:#0000ff;">=""</span><span style="color:#0000ff;">&gt;</span><span style="color:#0000ff;">&lt;</span><span style="color:#800000;">title</span><span style="color:#0000ff;">&gt;</span><span style="color:#0000ff;">&lt;/</span><span style="color:#800000;">title</span><span style="color:#0000ff;">&gt;</span><span style="color:#0000ff;">&lt;</span><span style="color:#800000;">link</span><span style="color:#ff0000;">href</span><span style="color:#0000ff;">="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"</span><span style="color:#ff0000;"> rel</span><span style="color:#0000ff;">="stylesheet"</span><span style="color:#ff0000;"> integrity</span><span style="color:#0000ff;">="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"</span><span style="color:#ff0000;"> crossorigin</span><span style="color:#0000ff;">="anonymous"</span><span style="color:#0000ff;">&gt;</span><span style="color:#0000ff;">&lt;</span><span style="color:#800000;">link</span><span style="color:#ff0000;">href</span><span style="color:#0000ff;">="https://getbootstrap.com/docs/4.0/examples/signin/signin.css"</span><span style="color:#ff0000;"> rel</span><span style="color:#0000ff;">="stylesheet"</span><span style="color:#ff0000;"> crossorigin</span><span style="color:#0000ff;">="anonymous"</span><span style="color:#0000ff;">/&gt;</span><span style="color:#0000ff;">&lt;/</span><span style="color:#800000;">head</span><span style="color:#0000ff;">&gt;</span><span style="color:#0000ff;">&lt;</span><span style="color:#800000;">body</span><span style="color:#0000ff;">&gt;</span><span style="color:#0000ff;">&lt;</span><span style="color:#800000;">div</span><span style="color:#ff0000;">class</span><span style="color:#0000ff;">="container"</span><span style="color:#0000ff;">&gt;</span><span style="color:#0000ff;">&lt;</span><span style="color:#800000;">form</span><span style="color:#ff0000;">class</span><span style="color:#0000ff;">="form-signin"</span><span style="color:#ff0000;"> method</span><span style="color:#0000ff;">="post"</span><span style="color:#ff0000;"> action</span><span style="color:#0000ff;">="/submit"</span><span style="color:#0000ff;">&gt;</span><span style="color:#0000ff;">&lt;</span><span style="color:#800000;">h2</span><span style="color:#ff0000;">class</span><span style="color:#0000ff;">="form-signin-heading"</span><span style="color:#0000ff;">&gt;</span>Please input<span style="color:#0000ff;">&lt;/</span><span style="color:#800000;">h2</span><span style="color:#0000ff;">&gt;</span><span style="color:#000000;">         {% if errorMessage is not empty %}</span><span style="color:#0000ff;">&lt;</span><span style="color:#800000;">div</span><span style="color:#ff0000;">class</span><span style="color:#0000ff;">="alert alert-danger"</span><span style="color:#ff0000;"> role</span><span style="color:#0000ff;">="alert"</span><span style="color:#0000ff;">&gt;</span>{<!-- -->{errorMessage}}<span style="color:#0000ff;">&lt;/</span><span style="color:#800000;">div</span><span style="color:#0000ff;">&gt;</span><span style="color:#000000;">                  {% endif %}</span><span style="color:#0000ff;">&lt;</span><span style="color:#800000;">p</span><span style="color:#0000ff;">&gt;</span><span style="color:#0000ff;">&lt;</span><span style="color:#800000;">label</span><span style="color:#ff0000;">for</span><span style="color:#0000ff;">="username"</span><span style="color:#ff0000;"> class</span><span style="color:#0000ff;">="sr-only"</span><span style="color:#0000ff;">&gt;</span>Username<span style="color:#0000ff;">&lt;/</span><span style="color:#800000;">label</span><span style="color:#0000ff;">&gt;</span><span style="color:#0000ff;">&lt;</span><span style="color:#800000;">input</span><span style="color:#ff0000;">type</span><span style="color:#0000ff;">="text"</span><span style="color:#ff0000;"> id</span><span style="color:#0000ff;">="username"</span><span style="color:#ff0000;"> name</span><span style="color:#0000ff;">="username"</span><span style="color:#ff0000;"> class</span><span style="color:#0000ff;">="form-control"</span><span style="color:#ff0000;"> placeholder</span><span style="color:#0000ff;">="Username"</span><span style="color:#ff0000;"> required autofocus</span><span style="color:#0000ff;">&gt;</span><span style="color:#0000ff;">&lt;/</span><span style="color:#800000;">p</span><span style="color:#0000ff;">&gt;</span><span style="color:#0000ff;">&lt;</span><span style="color:#800000;">button</span><span style="color:#ff0000;">class</span><span style="color:#0000ff;">="btn btn-lg btn-primary btn-block"</span><span style="color:#ff0000;"> type</span><span style="color:#0000ff;">="submit"</span><span style="color:#0000ff;">&gt;</span>submit<span style="color:#0000ff;">&lt;/</span><span style="color:#800000;">button</span><span style="color:#0000ff;">&gt;</span><span style="color:#0000ff;">&lt;/</span><span style="color:#800000;">form</span><span style="color:#0000ff;">&gt;</span><span style="color:#0000ff;">&lt;/</span><span style="color:#800000;">div</span><span style="color:#0000ff;">&gt;</span><span style="color:#0000ff;">&lt;/</span><span style="color:#800000;">body</span><span style="color:#0000ff;">&gt;</span><span style="color:#0000ff;">&lt;/</span><span style="color:#800000;">html</span><span style="color:#0000ff;">&gt;</span></pre> </div> <p>-------------------------------<br />inputOK.html<br />-------------------------------</p> <div class="cnblogs_code"> <pre><span style="color:#0000ff;">&lt;!</span><span style="color:#ff00ff;">DOCTYPE html</span><span style="color:#0000ff;">&gt;</span><span style="color:#0000ff;">&lt;</span><span style="color:#800000;">html</span><span style="color:#ff0000;">lang</span><span style="color:#0000ff;">="en"</span><span style="color:#0000ff;">&gt;</span><span style="color:#0000ff;">&lt;</span><span style="color:#800000;">head</span><span style="color:#0000ff;">&gt;</span><span style="color:#0000ff;">&lt;</span><span style="color:#800000;">title</span><span style="color:#0000ff;">&gt;</span><span style="color:#0000ff;">&lt;/</span><span style="color:#800000;">title</span><span style="color:#0000ff;">&gt;</span><span style="color:#0000ff;">&lt;/</span><span style="color:#800000;">head</span><span style="color:#0000ff;">&gt;</span><span style="color:#0000ff;">&lt;</span><span style="color:#800000;">body</span><span style="color:#0000ff;">&gt;</span><span style="color:#0000ff;">&lt;</span><span style="color:#800000;">div</span><span style="color:#ff0000;">class</span><span style="color:#0000ff;">="container"</span><span style="color:#0000ff;">&gt;</span><span style="color:#0000ff;">&lt;</span><span style="color:#800000;">h1</span><span style="color:#0000ff;">&gt;</span>inputOK<span style="color:#0000ff;">&lt;/</span><span style="color:#800000;">h1</span><span style="color:#0000ff;">&gt;</span><span style="color:#0000ff;">&lt;/</span><span style="color:#800000;">div</span><span style="color:#0000ff;">&gt;</span><span style="color:#0000ff;">&lt;/</span><span style="color:#800000;">body</span><span style="color:#0000ff;">&gt;</span><span style="color:#0000ff;">&lt;/</span><span style="color:#800000;">html</span><span style="color:#0000ff;">&gt;</span></pre> </div> <p>-------------------------------<br />forwardTarget.html<br />-------------------------------</p> <div class="cnblogs_code"> <pre><span style="color:#0000ff;">&lt;!</span><span style="color:#ff00ff;">DOCTYPE html</span><span style="color:#0000ff;">&gt;</span><span style="color:#0000ff;">&lt;</span><span style="color:#800000;">html</span><span style="color:#ff0000;">lang</span><span style="color:#0000ff;">="en"</span><span style="color:#0000ff;">&gt;</span><span style="color:#0000ff;">&lt;</span><span style="color:#800000;">head</span><span style="color:#0000ff;">&gt;</span><span style="color:#0000ff;">&lt;</span><span style="color:#800000;">title</span><span style="color:#0000ff;">&gt;</span>{<!-- -->{param1}}<span style="color:#ff0000;">&amp;nbsp;</span> {<!-- -->{param2}}<span style="color:#0000ff;">&lt;/</span><span style="color:#800000;">title</span><span style="color:#0000ff;">&gt;</span><span style="color:#0000ff;">&lt;/</span><span style="color:#800000;">head</span><span style="color:#0000ff;">&gt;</span><span style="color:#0000ff;">&lt;</span><span style="color:#800000;">body</span><span style="color:#0000ff;">&gt;</span><span style="color:#0000ff;">&lt;</span><span style="color:#800000;">h1</span><span style="color:#0000ff;">&gt;</span>forwardTarget<span style="color:#0000ff;">&lt;/</span><span style="color:#800000;">h1</span><span style="color:#0000ff;">&gt;</span><span style="color:#0000ff;">&lt;/</span><span style="color:#800000;">body</span><span style="color:#0000ff;">&gt;</span><span style="color:#0000ff;">&lt;/</span><span style="color:#800000;">html</span><span style="color:#0000ff;">&gt;</span></pre> </div> <p>-------------------------------<br />withParamTarget.html<br />-------------------------------</p> <div class="cnblogs_code"> <pre><span style="color:#0000ff;">&lt;!</span><span style="color:#ff00ff;">DOCTYPE html</span><span style="color:#0000ff;">&gt;</span><span style="color:#0000ff;">&lt;</span><span style="color:#800000;">html</span><span style="color:#ff0000;">lang</span><span style="color:#0000ff;">="en"</span><span style="color:#0000ff;">&gt;</span><span style="color:#0000ff;">&lt;</span><span style="color:#800000;">head</span><span style="color:#0000ff;">&gt;</span><span style="color:#0000ff;">&lt;</span><span style="color:#800000;">title</span><span style="color:#0000ff;">&gt;</span>{<!-- -->{param1}}<span style="color:#ff0000;">&amp;nbsp;</span> {<!-- -->{param2}}<span style="color:#0000ff;">&lt;/</span><span style="color:#800000;">title</span><span style="color:#0000ff;">&gt;</span><span style="color:#0000ff;">&lt;/</span><span style="color:#800000;">head</span><span style="color:#0000ff;">&gt;</span><span style="color:#0000ff;">&lt;</span><span style="color:#800000;">body</span><span style="color:#0000ff;">&gt;</span><span style="color:#0000ff;">&lt;</span><span style="color:#800000;">h1</span><span style="color:#0000ff;">&gt;</span>withParamTarget<span style="color:#0000ff;">&lt;/</span><span style="color:#800000;">h1</span><span style="color:#0000ff;">&gt;</span><span style="color:#0000ff;">&lt;/</span><span style="color:#800000;">body</span><span style="color:#0000ff;">&gt;</span><span style="color:#0000ff;">&lt;/</span><span style="color:#800000;">html</span><span style="color:#0000ff;">&gt;</span></pre> </div> <p>-------------------------------<br />noParamTarget.html<br />-------------------------------</p> <div class="cnblogs_code"> <pre><span style="color:#0000ff;">&lt;!</span><span style="color:#ff00ff;">DOCTYPE html</span><span style="color:#0000ff;">&gt;</span><span style="color:#0000ff;">&lt;</span><span style="color:#800000;">html</span><span style="color:#ff0000;">lang</span><span style="color:#0000ff;">="en"</span><span style="color:#0000ff;">&gt;</span><span style="color:#0000ff;">&lt;</span><span style="color:#800000;">head</span><span style="color:#0000ff;">&gt;</span><span style="color:#0000ff;">&lt;</span><span style="color:#800000;">title</span><span style="color:#0000ff;">&gt;</span>{<!-- -->{systemName}}<span style="color:#ff0000;">&amp;nbsp;</span> {<!-- -->{version}}<span style="color:#0000ff;">&lt;/</span><span style="color:#800000;">title</span><span style="color:#0000ff;">&gt;</span><span style="color:#0000ff;">&lt;/</span><span style="color:#800000;">head</span><span style="color:#0000ff;">&gt;</span><span style="color:#0000ff;">&lt;</span><span style="color:#800000;">body</span><span style="color:#0000ff;">&gt;</span><span style="color:#0000ff;">&lt;</span><span style="color:#800000;">h1</span><span style="color:#0000ff;">&gt;</span>noParamTarget<span style="color:#0000ff;">&lt;/</span><span style="color:#800000;">h1</span><span style="color:#0000ff;">&gt;</span><span style="color:#0000ff;">&lt;/</span><span style="color:#800000;">body</span><span style="color:#0000ff;">&gt;</span><span style="color:#0000ff;">&lt;/</span><span style="color:#800000;">html</span><span style="color:#0000ff;">&gt;</span></pre> </div> <p>-------------------------------<br />withFlashTarget.html<br />-------------------------------</p> <div class="cnblogs_code"> <pre><span style="color:#0000ff;">&lt;!</span><span style="color:#ff00ff;">DOCTYPE html</span><span style="color:#0000ff;">&gt;</span><span style="color:#0000ff;">&lt;</span><span style="color:#800000;">html</span><span style="color:#ff0000;">lang</span><span style="color:#0000ff;">="en"</span><span style="color:#0000ff;">&gt;</span><span style="color:#0000ff;">&lt;</span><span style="color:#800000;">head</span><span style="color:#0000ff;">&gt;</span><span style="color:#0000ff;">&lt;</span><span style="color:#800000;">title</span><span style="color:#0000ff;">&gt;</span>{<!-- -->{param}}<span style="color:#ff0000;">&amp;nbsp;</span> {<!-- -->{flashParam}}<span style="color:#0000ff;">&lt;/</span><span style="color:#800000;">title</span><span style="color:#0000ff;">&gt;</span><span style="color:#0000ff;">&lt;/</span><span style="color:#800000;">head</span><span style="color:#0000ff;">&gt;</span><span style="color:#0000ff;">&lt;</span><span style="color:#800000;">body</span><span style="color:#0000ff;">&gt;</span><span style="color:#0000ff;">&lt;</span><span style="color:#800000;">h1</span><span style="color:#0000ff;">&gt;</span>withFlashTarget<span style="color:#0000ff;">&lt;/</span><span style="color:#800000;">h1</span><span style="color:#0000ff;">&gt;</span><span style="color:#0000ff;">&lt;/</span><span style="color:#800000;">body</span><span style="color:#0000ff;">&gt;</span><span style="color:#0000ff;">&lt;/</span><span style="color:#800000;">html</span><span style="color:#0000ff;">&gt;</span></pre> </div> <p>==============================<br />效果截图<br />==============================</p> <p>转发后的url还是原始请求url,&nbsp; http://www.localhost:8080/forwardTest1</p> <p><img decoding="async" src="http://img.555519.xyz/uploads/20221117/de02eeb16bd238446d33d81b415f932b.jpg" alt="SpringBoot系列: url重定向和转发"></p> <p>重定向的地址会发生改变, 请求地址&nbsp; http://localhost:8080/withParamRedirect , 结果地址:</p> <p><img decoding="async" src="http://img.555519.xyz/uploads/20221117/5c645b371034f40f7df49cef0c1ca246.jpg" alt="SpringBoot系列: url重定向和转发"></p> <p>form提交验证的示例:&nbsp; http://localhost:8080/input</p> <p>开始时的GET 请求截图:</p> <p><img decoding="async" src="http://img.555519.xyz/uploads/20221117/ab8454a69d3e8a0da253aa15d4c18b10.jpg" alt="SpringBoot系列: url重定向和转发"></p> <p>form 提交后的截图:</p> <p><img decoding="async" src="http://img.555519.xyz/uploads/20221117/10765dc2b2c0f58006c274c62b720d46.jpg" alt="SpringBoot系列: url重定向和转发"></p> </div> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-39048.htm">宠物店需要办什么证件（宠物店需要的证件）</a></p>
+                                        <p>下一个：<a href="/news/article-39577.htm">北京观赏宠物医院电话多少啊（北京观赏动物医院怎么样）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-21584.htm" title="小众古镇推荐(小众古镇旅游景点大全)">小众古镇推荐(小众古镇旅游景点大全)</a></li>
+                        <li class="py-2"><a href="/news/article-26658.htm" title="济南宠物领养日（济南宠物领养微信群）">济南宠物领养日（济南宠物领养微信群）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-3-free-node-subscribe-links.htm" title="12月3日→19.2M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">12月3日→19.2M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-18-free-subscribe-node.htm" title="10月18日→19.6M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">10月18日→19.6M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-14-free-node-subscribe-links.htm" title="10月14日→20.4M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">10月14日→20.4M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-17-free-high-speed-nodes.htm" title="10月17日→21.9M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">10月17日→21.9M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-7-free-node-subscribe.htm" title="10月7日→22.2M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">10月7日→22.2M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-30-free-node-subscribe.htm" title="10月30日→22.2M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">10月30日→22.2M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-28513.htm" title="js  查找字符串中指定字符 模糊查询  不区分大小写">js  查找字符串中指定字符 模糊查询  不区分大小写</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-29-node-share-links.htm" title="10月29日→20.9M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">10月29日→20.9M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">36</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">25</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+        <!--//w3l-faq-block-->
+    <section class="w3l-footer-29-main w3l-copyright">
+        <div class="container">
+            <div class="bottom-copies">
+                <p class="copy-footer-29 text-center">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                    <a href="/">Free V2ray Clash免费机场订阅节点官网</a> 版权所有 Powered by WordPress
+                </p>
+            </div>
+        </div>
+        <!-- move top -->
+        <button onclick="topFunction()" id="movetop" title="Go to top">
+            <span class="fa fa-angle-up"></span>
+        </button>
+        <script>
+        // When the user scrolls down 20px from the top of the document, show the button
+        window.onscroll = function() {
+            scrollFunction()
+        };
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                document.getElementById("movetop").style.display = "block";
+            } else {
+                document.getElementById("movetop").style.display = "none";
+            }
+        }
+
+        // When the user clicks on the button, scroll to the top of the document
+        function topFunction() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }
+        </script>
+        <!-- /move top -->
+    </section>
+    <!-- Template JavaScript -->
+    <script src="/assets/website/js/frontend/freev2rayclash/jquery-3.3.1.min.js"></script>
+    <!-- script for testimonials -->
+    <script>
+    $(document).ready(function() {
+        $('.owl-testimonial').owlCarousel({
+            loop: true,
+            margin: 0,
+            nav: true,
+            responsiveClass: true,
+            autoplay: true,
+            autoplayTimeout: 5000,
+            autoplaySpeed: 1000,
+            autoplayHoverPause: false,
+            responsive: {
+                0: {
+                    items: 1,
+                    nav: false
+                },
+                480: {
+                    items: 1,
+                    nav: false
+                },
+                667: {
+                    items: 1,
+                    nav: true
+                },
+                1000: {
+                    items: 1,
+                    nav: true
+                }
+            }
+        })
+    })
+    </script>
+    <!-- //script for testimonials -->
+    <script src="/assets/website/js/frontend/freev2rayclash/theme-change.js"></script>
+    <!-- js for portfolio lightbox -->
+    <!-- libhtbox -->
+    <script src="/assets/website/js/frontend/freev2rayclash/lightbox-plus-jquery.min.js"></script>
+    <!-- libhtbox -->
+    <script src="/assets/website/js/frontend/freev2rayclash/owl.carousel.js"></script>
+    <!-- script for banner slider-->
+    <script>
+    $(document).ready(function() {
+        $('.owl-one').owlCarousel({
+            loop: true,
+            margin: 0,
+            nav: false,
+            responsiveClass: true,
+            autoplay: true,
+            autoplayTimeout: 5000,
+            autoplaySpeed: 1000,
+            autoplayHoverPause: false,
+            responsive: {
+                0: {
+                    items: 1,
+                    nav: false
+                },
+                480: {
+                    items: 1,
+                    nav: false
+                },
+                667: {
+                    items: 1,
+                    nav: true
+                },
+                1000: {
+                    items: 1,
+                    nav: true
+                }
+            }
+        })
+    })
+    </script>
+    <!-- //script -->
+    <!-- stats number counter-->
+    <script src="/assets/website/js/frontend/freev2rayclash/jquery.waypoints.min.js"></script>
+    <script src="/assets/website/js/frontend/freev2rayclash/jquery.countup.js"></script>
+    <script>
+    $('.counter').countUp();
+    </script>
+    <!-- //stats number counter -->
+    <!-- disable body scroll which navbar is in active -->
+    <script>
+    $(function() {
+        $('.navbar-toggler').click(function() {
+            $('body').toggleClass('noscroll');
+        })
+    });
+    </script>
+    <!-- disable body scroll which navbar is in active -->
+    <!--/MENU-JS-->
+    <script>
+    $(window).on("scroll", function() {
+        var scroll = $(window).scrollTop();
+
+        if (scroll >= 80) {
+            $("#site-header").addClass("nav-fixed");
+        } else {
+            $("#site-header").removeClass("nav-fixed");
+        }
+    });
+
+    //Main navigation Active Class Add Remove
+    $(".navbar-toggler").on("click", function() {
+        $("header").toggleClass("active");
+    });
+    $(document).on("ready", function() {
+        if ($(window).width() > 991) {
+            $("header").removeClass("active");
+        }
+        $(window).on("resize", function() {
+            if ($(window).width() > 991) {
+                $("header").removeClass("active");
+            }
+        });
+    });
+    </script>
+    <!--//MENU-JS-->
+    <script src="/assets/website/js/frontend/freev2rayclash/bootstrap.min.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
