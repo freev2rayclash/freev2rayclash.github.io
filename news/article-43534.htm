@@ -1,0 +1,342 @@
+<!doctype html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://freev2rayclash.github.io/news/article-43534.htm" />
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Spring Framework源码解析-BeanPostProcessor讲解</title>
+        <meta name="description" content="BeanPostProcessor接口作用是：如果我们需要在Spring容器完成Bean的实例化、配置和其他的初始化前后添加一些自己的逻辑处理，我们就可以定义一个或者多个BeanPostProcess" />
+        <link rel="icon" href="/assets/website/img/freev2rayclash/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Free V2ray Clash免费机场订阅节点官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://freev2rayclash.github.io/news/article-43534.htm" />
+    <meta property="og:site_name" content="Free V2ray Clash免费机场订阅节点官网" />
+    <meta property="og:title" content="Spring Framework源码解析-BeanPostProcessor讲解" />
+    <meta property="og:image" content="https://freev2rayclash.github.io/uploads/20240919-1/7647ff78ddca095a83882d00d84a703b.webp" />
+        <meta property="og:release_date" content="2025-01-20T07:12:29" />
+    <meta property="og:updated_time" content="2025-01-20T07:12:29" />
+        <meta property="og:description" content="BeanPostProcessor接口作用是：如果我们需要在Spring容器完成Bean的实例化、配置和其他的初始化前后添加一些自己的逻辑处理，我们就可以定义一个或者多个BeanPostProcess" />
+    
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Spring Framework源码解析-BeanPostProcessor讲解">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,300;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- Template CSS -->
+    <link rel="stylesheet" href="/assets/website/css/freev2rayclash/style-starter.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SMY6EV424E"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-SMY6EV424E');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!--header-->
+    <header id="site-header" class="fixed-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-dark stroke">
+                                <a class="navbar-brand" href="/">
+                    <span>
+                        Free V2ray Clash
+                    </span>
+                </a>
+                                <!-- if logo is image enable this   
+      <a class="navbar-brand" href="#index.html">
+          <img src="image-path" alt="Your logo" title="Your logo" style="height:35px;" />
+      </a> -->
+                <button class="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon fa icon-expand fa-bars"></span>
+                    <span class="navbar-toggler-icon fa icon-close fa-times"></span>
+                    </span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                    <ul class="navbar-nav mx-lg-auto">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/free-nodes/">免费节点</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/paid-subscribe/">推荐机场</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/news/">新闻资讯</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="#">关于</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">联系</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <!--/header-->
+    <div class="inner-banner">
+    </div>
+    <section class="w3l-breadcrumb">
+        <div class="container">
+            <ul class="breadcrumbs-custom-path">
+                <li><a href="/">首页</a></li>
+                <li><a href="/news/"><span class="fa fa-arrow-right mx-2" aria-hidden="true"></span> 新闻资讯</a></li>
+                <li class="active"><span class="fa fa-arrow-right mx-2" aria-hidden="true"></span> 正文</li>
+            </ul>
+        </div>
+    </section>
+    <!--/about-->
+    <!--/w3l-faq-block-->
+    <div class="w3l-faq-block py-5" id="faq">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                    <h1 class="mb-5">Spring Framework源码解析-BeanPostProcessor讲解</h1>
+                    
+                                    <input type="hidden" id="share-website-info" data-name="Clash Meta免费节点订阅站" data-url="https://clash-meta.github.io">
+                  				  				  				<div id="content_views" class="htmledit_views"> </h1> <p>BeanPostProcessor接口作用是：如果我们需要在Spring容器完成Bean的实例化、配置和其他的初始化前后添加一些自己的逻辑处理，我们就可以定义一个或者多个BeanPostProcessor接口的实现，然后注册到容器中。(类似于拦截器和过滤器)。 BeanPostProcessor分为三大类如下图：</p> <p class="img-center"><img decoding="async" alt="" src="http://img.555519.xyz/uploads/20230205/14edfd9eb5dd4dc30deb69c005c79fff.jpg"></p> <ul> <li>实例化</li> <li>初始化</li> <li>销毁</li> </ul> <blockquote> <p>Bean实例化会执行<br /><strong>InstantiationAwareBeanPostProcessor</strong>&nbsp;、<br /><strong>SmartInstantiationAwareBeanPostProcessor</strong>&nbsp;这两类处理器，Bean实例化后每个bean就会通过&nbsp;<strong>BeanPostProcessor</strong>&nbsp;、<br /><strong>MergedBeanDefinitionPostProcessor</strong>&nbsp;实现的类的处理。Bean销毁会通过<br /><strong>DestructionAwareBeanPostProcessor</strong>&nbsp;处理器。</p> </blockquote> <p>Spring Bean的实例化图解：</p> <p class="img-center"><img decoding="async" alt="" src="http://img.555519.xyz/uploads/20230205/030e1dcc6ebcaad96a2f914645e776b5.jpg"></p> <p>在检查完&nbsp;<strong>Aware</strong>&nbsp;接口后，就开始调用&nbsp;<strong>BeanPostProcessor</strong>&nbsp;进行前置处理后置处理。下面来看一下Spring中的几类继承：</p> <ul> <li>AOP相关的</li> </ul> <p class="img-center"><img decoding="async" alt="" src="http://img.555519.xyz/uploads/20230205/2c64eed935288bf4a4811b5e6c807bd8.jpg"></p> <ul> <li>bean 和 context相关的</li> </ul> <ul> <li>Spring Boot相关的实现</li> </ul> <p class="img-center"><img decoding="async" alt="" src="http://img.555519.xyz/uploads/20230205/a0c7fa9cb79b58aafaf97a1cc1688c7d.jpg"></p> <p>BeanPostProcessor是在Bean实例化后，在自定义初始化方法前后执行。</p> </h1> <p>处理器定义了Bean&nbsp;<strong>初始化</strong>&nbsp;前后执行的方法。</p> <pre><code>public interface BeanPostProcessor {      //自定义初始化方法之前执行     @Nullable     default Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {         return bean;     }      //自定义初始化方法之后执行     @Nullable     default Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {         return bean;     }  } </code></pre> <blockquote> <p>代码示例地址：github.com/mxsm/spring…</p> </blockquote> <p>代码演示：</p> <pre><code>public class MyBeanPostProcessor implements BeanPostProcessor {     @Override     public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {          System.out.println( " ----before----- " + beanName);          return bean;     }       @Override     public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {          System.out.println( " ----after----- " + beanName);          return bean;     } } </code></pre> <pre><code>public class TestBean {      private String name;      public void init(){         System.out.println("TestBean---init()");         this.name = "test";     }      public String getName() {         return name;     }      public void setName(String name) {         this.name = name;     } } </code></pre> <pre><code>&lt;?xml version="1.0" encoding="UTF-8"?&gt; &lt;beans xmlns="http://www.springframework.org/schema/beans"        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"        xmlns:context="http://www.springframework.org/schema/context"        xsi:schemaLocation="http://www.springframework.org/schema/beans         https://www.springframework.org/schema/beans/spring-beans.xsd         http://www.springframework.org/schema/context         https://www.springframework.org/schema/context/spring-context.xsd"&gt;      &lt;bean id="testBean" class="com.github.mxsm.bean.TestBean" init-method="init"/&gt;      &lt;bean class="com.github.mxsm.processor.MyBeanPostProcessor" id="myBeanPostProcessor"/&gt;  &lt;/beans&gt; </code></pre> <pre><code>public class ApplicationBoot{     public static void main( String[] args ) {          ApplicationContext applicationContext = new ClassPathXmlApplicationContext("application.xml");         TestBean testBean = applicationContext.getBean(TestBean.class);         System.out.println(testBean.getName());      } } </code></pre> <p class="img-center"><img decoding="async" alt="" src="http://img.555519.xyz/uploads/20230205/52f26746fed8279851e0cc0f930c313c.jpg"></p> <p>通过代码可以看出来执行的结果。</p> </h1> <p>该处理器定义了Bean&nbsp;<strong>实例化</strong>&nbsp;前后执行的方法。</p> <pre><code>public interface InstantiationAwareBeanPostProcessor extends BeanPostProcessor {     //实例化之前     @Nullable     default Object postProcessBeforeInstantiation(Class&lt;?&gt; beanClass, String beanName) throws BeansException {          //这里可以自定义代理类         return null;     }      //实例化后-但是执行在初始化之前     default boolean postProcessAfterInstantiation(Object bean, String beanName) throws BeansException {         return true;     }      //处理bean的Properties值     @Nullable     default PropertyValues postProcessProperties(PropertyValues pvs, Object bean, String beanName)             throws BeansException {          return null;     }  } </code></pre> </h1> <p>该处理器了销毁Bean之前的操作。</p> <pre><code>public interface DestructionAwareBeanPostProcessor extends BeanPostProcessor {      //bean销毁之前     void postProcessBeforeDestruction(Object bean, String beanName) throws BeansException;      //bean是否需要销毁     default boolean requiresDestruction(Object bean) {         return true;     }  }  </code></pre> </h1> <pre><code>class ApplicationContextAwareProcessor implements BeanPostProcessor {      private final ConfigurableApplicationContext applicationContext;      private final StringValueResolver embeddedValueResolver;       /**      * Create a new ApplicationContextAwareProcessor for the given context.      */     public ApplicationContextAwareProcessor(ConfigurableApplicationContext applicationContext) {         this.applicationContext = applicationContext;         this.embeddedValueResolver = new EmbeddedValueResolver(applicationContext.getBeanFactory());     }       @Override     @Nullable     public Object postProcessBeforeInitialization(final Object bean, String beanName) throws BeansException {         AccessControlContext acc = null;          if (System.getSecurityManager() != null &amp;&amp;                 (bean instanceof EnvironmentAware || bean instanceof EmbeddedValueResolverAware ||                         bean instanceof ResourceLoaderAware || bean instanceof ApplicationEventPublisherAware ||                         bean instanceof MessageSourceAware || bean instanceof ApplicationContextAware)) {             acc = this.applicationContext.getBeanFactory().getAccessControlContext();         }          if (acc != null) {             AccessController.doPrivileged((PrivilegedAction&lt;Object&gt;) () -&gt; {                 invokeAwareInterfaces(bean);                 return null;             }, acc);         }         else {             invokeAwareInterfaces(bean);         }          return bean;     }      private void invokeAwareInterfaces(Object bean) {         if (bean instanceof Aware) {             if (bean instanceof EnvironmentAware) {                 ((EnvironmentAware) bean).setEnvironment(this.applicationContext.getEnvironment());             }             if (bean instanceof EmbeddedValueResolverAware) {                 ((EmbeddedValueResolverAware) bean).setEmbeddedValueResolver(this.embeddedValueResolver);             }             if (bean instanceof ResourceLoaderAware) {                 ((ResourceLoaderAware) bean).setResourceLoader(this.applicationContext);             }             if (bean instanceof ApplicationEventPublisherAware) {                 ((ApplicationEventPublisherAware) bean).setApplicationEventPublisher(this.applicationContext);             }             if (bean instanceof MessageSourceAware) {                 ((MessageSourceAware) bean).setMessageSource(this.applicationContext);             }             if (bean instanceof ApplicationContextAware) {                 ((ApplicationContextAware) bean).setApplicationContext(this.applicationContext);             }         }     }      @Override     public Object postProcessAfterInitialization(Object bean, String beanName) {         return bean;     }  } </code></pre> <p>当前主要用来处理继承人了&nbsp;<strong>Aware</strong>&nbsp;接口类。然后根据&nbsp;<strong>Aware</strong>&nbsp;接口的不同实现设置对应的接口对象</p> </h1> <p>首先明确一点&nbsp;<strong>BeanPostProcessor</strong>&nbsp;实现的类都是Spring容器中的一个Bean。在<br /><strong>AbstractApplicationContext#refresh</strong>&nbsp;是最重要的一个方法：</p> <pre><code>public void refresh() throws BeansException, IllegalStateException {         synchronized (this.startupShutdownMonitor) {                 //省了部分代码              try {                                  //省了部分代码                 // Register bean processors that intercept bean creation.                 registerBeanPostProcessors(beanFactory);                //省了部分代码             }              catch (BeansException ex) {                              }              finally {                 //省了部分代码             }         } } protected void registerBeanPostProcessors(ConfigurableListableBeanFactory beanFactory) {     //通过PostProcessorRegistrationDelegate类的静态方法处理     PostProcessorRegistrationDelegate.registerBeanPostProcessors(beanFactory, this); } </code></pre> <p>下面看一下<br /><strong>PostProcessorRegistrationDelegate.registerBeanPostProcessors(beanFactory, this);</strong>&nbsp;方法</p> <pre><code>    public static void registerBeanPostProcessors(             ConfigurableListableBeanFactory beanFactory, AbstractApplicationContext applicationContext) {          String[] postProcessorNames = beanFactory.getBeanNamesForType(BeanPostProcessor.class, true, false);          // Register BeanPostProcessorChecker that logs an info message when         // a bean is created during BeanPostProcessor instantiation, i.e. when         // a bean is not eligible for getting processed by all BeanPostProcessors.         int beanProcessorTargetCount = beanFactory.getBeanPostProcessorCount() + 1 + postProcessorNames.length;         beanFactory.addBeanPostProcessor(new BeanPostProcessorChecker(beanFactory, beanProcessorTargetCount));          //处理分为三类：1 PriorityOrdered实现 2 Ordered 第三类就是普通的         List&lt;BeanPostProcessor&gt; priorityOrderedPostProcessors = new ArrayList&lt;&gt;();         List&lt;BeanPostProcessor&gt; internalPostProcessors = new ArrayList&lt;&gt;();         List&lt;String&gt; orderedPostProcessorNames = new ArrayList&lt;&gt;();         List&lt;String&gt; nonOrderedPostProcessorNames = new ArrayList&lt;&gt;();         for (String ppName : postProcessorNames) {             if (beanFactory.isTypeMatch(ppName, PriorityOrdered.class)) {                 BeanPostProcessor pp = beanFactory.getBean(ppName, BeanPostProcessor.class);                 priorityOrderedPostProcessors.add(pp);                 if (pp instanceof MergedBeanDefinitionPostProcessor) {                     internalPostProcessors.add(pp);                 }             }             else if (beanFactory.isTypeMatch(ppName, Ordered.class)) {                 orderedPostProcessorNames.add(ppName);             }             else {                 nonOrderedPostProcessorNames.add(ppName);             }         }          // 处理PriorityOrdered实现         sortPostProcessors(priorityOrderedPostProcessors, beanFactory);         registerBeanPostProcessors(beanFactory, priorityOrderedPostProcessors);          // 处理 Ordered实现.         List&lt;BeanPostProcessor&gt; orderedPostProcessors = new ArrayList&lt;&gt;();         for (String ppName : orderedPostProcessorNames) {             BeanPostProcessor pp = beanFactory.getBean(ppName, BeanPostProcessor.class);             orderedPostProcessors.add(pp);             if (pp instanceof MergedBeanDefinitionPostProcessor) {                 internalPostProcessors.add(pp);             }         }         sortPostProcessors(orderedPostProcessors, beanFactory);         registerBeanPostProcessors(beanFactory, orderedPostProcessors);          // 处理正常的         List&lt;BeanPostProcessor&gt; nonOrderedPostProcessors = new ArrayList&lt;&gt;();         for (String ppName : nonOrderedPostProcessorNames) {             BeanPostProcessor pp = beanFactory.getBean(ppName, BeanPostProcessor.class);             nonOrderedPostProcessors.add(pp);             if (pp instanceof MergedBeanDefinitionPostProcessor) {                 internalPostProcessors.add(pp);             }         }         registerBeanPostProcessors(beanFactory, nonOrderedPostProcessors);          //注册MergedBeanDefinitionPostProcessor         sortPostProcessors(internalPostProcessors, beanFactory);         registerBeanPostProcessors(beanFactory, internalPostProcessors);          // Re-register post-processor for detecting inner beans as ApplicationListeners,         // moving it to the end of the processor chain (for picking up proxies etc).         beanFactory.addBeanPostProcessor(new ApplicationListenerDetector(applicationContext));     } </code></pre> <p>通过该方法将&nbsp;<strong>BeanPostProcessor</strong>&nbsp;的以上几种实现类都注册到Spring中。</p> <p>然后在生成Bean的时候去执行，<br /><strong>AbstractAutowireCapableBeanFactory.createBean</strong>&nbsp;创建Bean</p> <pre><code>    protected Object createBean(String beanName, RootBeanDefinition mbd, @Nullable Object[] args)             throws BeanCreationException {                          //省略代码                      try {             // 执行实例化之前方法.             Object bean = resolveBeforeInstantiation(beanName, mbdToUse);             if (bean != null) {                 return bean;             }                       //省略代码             }     }     protected Object resolveBeforeInstantiation(String beanName, RootBeanDefinition mbd) {         Object bean = null;         if (!Boolean.FALSE.equals(mbd.beforeInstantiationResolved)) {                          if (!mbd.isSynthetic() &amp;&amp; hasInstantiationAwareBeanPostProcessors()) {                 Class&lt;?&gt; targetType = determineTargetType(beanName, mbd);                 if (targetType != null) {                     //执行InstantiationAwareBeanPostProcessor#postProcessBeforeInstantiation(实例化之前方法)                     bean = applyBeanPostProcessorsBeforeInstantiation(targetType, beanName);                     if (bean != null) {                         //执行InstantiationAwareBeanPostProcessor#postProcessAfterInitialization(初始化后的方法)                         bean = applyBeanPostProcessorsAfterInitialization(bean, beanName);                     }                 }             }             mbd.beforeInstantiationResolved = (bean != null);         }         return bean;     } </code></pre> <p>通过代码可以知道<br /><strong>resolveBeforeInstantiation</strong>&nbsp;方法是执行实例化之前的方法。如果实例化之前的方法返回了对应Bean那么直接执行初始化后的方法。实例化<br /><strong>InstantiationAwareBeanPostProcessor#postProcessBeforeInstantiation</strong>&nbsp;方法执行返回Bean为空就调用<br /><strong>AbstractAutowireCapableBeanFactory#doCreateBean</strong>&nbsp;方法。在这个方法里面有如下几个重要的方法：</p> <ul> <li> <strong>AbstractAutowireCapableBeanFactory#applyMergedBeanDefinitionPostProcessors</strong>&nbsp;方法</li> <li>执行&nbsp;<strong>MergedBeanDefinitionPostProcessor#postProcessMergedBeanDefinition</strong>&nbsp;方法</li> <li> <strong>AbstractAutowireCapableBeanFactory#populateBean</strong>&nbsp;方法</li> <li>执行&nbsp;<strong>InstantiationAwareBeanPostProcessor#postProcessAfterInstantiation</strong>&nbsp;方法，如果前面方法返回true，执行方法&nbsp;<strong>InstantiationAwareBeanPostProcessor#postProcessProperties</strong>&nbsp;方法</li> <li> <strong>AbstractAutowireCapableBeanFactory#initializeBean</strong>&nbsp;方法</li> <li>执行&nbsp;<strong>BeanPostProcessor#postProcessBeforeInitialization</strong>&nbsp;方法，然后执行&nbsp;<strong>AbstractAutowireCapableBeanFactory#invokeInitMethods</strong>&nbsp;方法(包括实现了InitializingBean接口的方法或者有注解@PostConstruct的方法)，然后执行&nbsp;<strong>BeanPostProcessor#postProcessAfterInitialization</strong> </li> </ul> <p class="img-center"><img decoding="async" alt="" src="http://img.555519.xyz/uploads/20230205/81da63bffef046441f584b77e2b79eda.jpg"></p> </h1> <p><strong>BeanPostProcessor 主要用来处理Bean内部的注解。比如Spring自己实现的@Autowired、@Value， @EJB，@WebServiceRef，@PostConstruct，@PreDestroy等</strong></p> <blockquote> <p>自定义类似于@Value，@Autowired的注解，主要用于Java类变量或者方法上的注解 主要用于处理Bean内部的注解实现，主要是变量或者方法上面的注解</p> </blockquote> <p><strong>如果本文对你有帮助，别忘记给我个3连 ，点赞，转发，评论，，咱们下期见。</strong></p> <p><strong>收藏 等于白嫖，点赞才是真情。</strong></p> <p>作者：蚂蚁背大象<br /> 链接：<br /> https://juejin.cn/post/7107985736992833567</p> </p></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-43026.htm">南昌市猫咪领养（南昌宠物狗领养）</a></p>
+                                        <p>下一个：<a href="/news/article-43535.htm">动物防疫站可以给猫打三联么（动物防疫站可以给宠物猫打疫苗么）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2024-10-13-clash-node-daily-updates.htm" title="10月13日→19.5M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">10月13日→19.5M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-25725.htm" title="promise 和 async/await的区别">promise 和 async/await的区别</a></li>
+                        <li class="py-2"><a href="/news/article-30402.htm" title="兽医资格考试报名条件（兽医资格证考试报名条件）">兽医资格考试报名条件（兽医资格证考试报名条件）</a></li>
+                        <li class="py-2"><a href="/news/article-32300.htm" title="常用注解使用总结系列: @Order 注解">常用注解使用总结系列: @Order 注解</a></li>
+                        <li class="py-2"><a href="/news/article-29928.htm" title="源码分析 Spring Security OAuth2 生成 token 的执行流程">源码分析 Spring Security OAuth2 生成 token 的执行流程</a></li>
+                        <li class="py-2"><a href="/news/article-24800.htm" title="女生养猫影响生育吗（女生养猫对以后怀孕有影响吗）">女生养猫影响生育吗（女生养猫对以后怀孕有影响吗）</a></li>
+                        <li class="py-2"><a href="/news/article-31270.htm" title="猫咬几天后安全（猫咬了多长时间会犯病）">猫咬几天后安全（猫咬了多长时间会犯病）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-29-node-share-links.htm" title="10月29日→20.9M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">10月29日→20.9M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-14-free-high-speed-nodes.htm" title="11月14日→21.6M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">11月14日→21.6M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-28-node-share.htm" title="10月28日→20.2M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">10月28日→20.2M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">63</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">25</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+        <!--//w3l-faq-block-->
+    <section class="w3l-footer-29-main w3l-copyright">
+        <div class="container">
+            <div class="bottom-copies">
+                <p class="copy-footer-29 text-center">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                    <a href="/">Free V2ray Clash免费机场订阅节点官网</a> 版权所有 Powered by WordPress
+                </p>
+            </div>
+        </div>
+        <!-- move top -->
+        <button onclick="topFunction()" id="movetop" title="Go to top">
+            <span class="fa fa-angle-up"></span>
+        </button>
+        <script>
+        // When the user scrolls down 20px from the top of the document, show the button
+        window.onscroll = function() {
+            scrollFunction()
+        };
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                document.getElementById("movetop").style.display = "block";
+            } else {
+                document.getElementById("movetop").style.display = "none";
+            }
+        }
+
+        // When the user clicks on the button, scroll to the top of the document
+        function topFunction() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }
+        </script>
+        <!-- /move top -->
+    </section>
+    <!-- Template JavaScript -->
+    <script src="/assets/website/js/frontend/freev2rayclash/jquery-3.3.1.min.js"></script>
+    <!-- script for testimonials -->
+    <script>
+    $(document).ready(function() {
+        $('.owl-testimonial').owlCarousel({
+            loop: true,
+            margin: 0,
+            nav: true,
+            responsiveClass: true,
+            autoplay: true,
+            autoplayTimeout: 5000,
+            autoplaySpeed: 1000,
+            autoplayHoverPause: false,
+            responsive: {
+                0: {
+                    items: 1,
+                    nav: false
+                },
+                480: {
+                    items: 1,
+                    nav: false
+                },
+                667: {
+                    items: 1,
+                    nav: true
+                },
+                1000: {
+                    items: 1,
+                    nav: true
+                }
+            }
+        })
+    })
+    </script>
+    <!-- //script for testimonials -->
+    <script src="/assets/website/js/frontend/freev2rayclash/theme-change.js"></script>
+    <!-- js for portfolio lightbox -->
+    <!-- libhtbox -->
+    <script src="/assets/website/js/frontend/freev2rayclash/lightbox-plus-jquery.min.js"></script>
+    <!-- libhtbox -->
+    <script src="/assets/website/js/frontend/freev2rayclash/owl.carousel.js"></script>
+    <!-- script for banner slider-->
+    <script>
+    $(document).ready(function() {
+        $('.owl-one').owlCarousel({
+            loop: true,
+            margin: 0,
+            nav: false,
+            responsiveClass: true,
+            autoplay: true,
+            autoplayTimeout: 5000,
+            autoplaySpeed: 1000,
+            autoplayHoverPause: false,
+            responsive: {
+                0: {
+                    items: 1,
+                    nav: false
+                },
+                480: {
+                    items: 1,
+                    nav: false
+                },
+                667: {
+                    items: 1,
+                    nav: true
+                },
+                1000: {
+                    items: 1,
+                    nav: true
+                }
+            }
+        })
+    })
+    </script>
+    <!-- //script -->
+    <!-- stats number counter-->
+    <script src="/assets/website/js/frontend/freev2rayclash/jquery.waypoints.min.js"></script>
+    <script src="/assets/website/js/frontend/freev2rayclash/jquery.countup.js"></script>
+    <script>
+    $('.counter').countUp();
+    </script>
+    <!-- //stats number counter -->
+    <!-- disable body scroll which navbar is in active -->
+    <script>
+    $(function() {
+        $('.navbar-toggler').click(function() {
+            $('body').toggleClass('noscroll');
+        })
+    });
+    </script>
+    <!-- disable body scroll which navbar is in active -->
+    <!--/MENU-JS-->
+    <script>
+    $(window).on("scroll", function() {
+        var scroll = $(window).scrollTop();
+
+        if (scroll >= 80) {
+            $("#site-header").addClass("nav-fixed");
+        } else {
+            $("#site-header").removeClass("nav-fixed");
+        }
+    });
+
+    //Main navigation Active Class Add Remove
+    $(".navbar-toggler").on("click", function() {
+        $("header").toggleClass("active");
+    });
+    $(document).on("ready", function() {
+        if ($(window).width() > 991) {
+            $("header").removeClass("active");
+        }
+        $(window).on("resize", function() {
+            if ($(window).width() > 991) {
+                $("header").removeClass("active");
+            }
+        });
+    });
+    </script>
+    <!--//MENU-JS-->
+    <script src="/assets/website/js/frontend/freev2rayclash/bootstrap.min.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
