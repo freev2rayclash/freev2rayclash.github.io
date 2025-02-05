@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="zh-CN">
+<html xml:lang="zh-CN" lang="zh-CN">
 
 <head>
         <link rel="canonical" href="https://freev2rayclash.github.io/news/article-27124.htm" />
@@ -9,6 +9,34 @@
     <title>Springboot @Order注解正确用法</title>
         <meta name="description" content="@Order注解不能指定 bean 的加载顺序，它适用于 AOP 的优先级，以及将多个 Bean 注入到集合时，这些 bean 在集合中的顺序。  注意：组件类必须实现接口 package com.w" />
         <link rel="icon" href="/assets/website/img/freev2rayclash/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Free V2ray Clash免费机场订阅节点官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://freev2rayclash.github.io/news/article-27124.htm" />
+    <meta property="og:site_name" content="Free V2ray Clash免费机场订阅节点官网" />
+    <meta property="og:title" content="Springboot @Order注解正确用法" />
+    <meta property="og:image" content="https://freev2rayclash.github.io/uploads/20240919-1/25ff635bc8263c483928114702aae1bd.webp" />
+        <meta property="og:release_date" content="2024-12-17T10:14:24" />
+    <meta property="og:updated_time" content="2024-12-17T10:14:24" />
+        <meta property="og:description" content="@Order注解不能指定 bean 的加载顺序，它适用于 AOP 的优先级，以及将多个 Bean 注入到集合时，这些 bean 在集合中的顺序。  注意：组件类必须实现接口 package com.w" />
+    
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Springboot @Order注解正确用法">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
     <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,300;0,600;0,700;1,400&display=swap" rel="stylesheet">
     <!-- Template CSS -->
     <link rel="stylesheet" href="/assets/website/css/freev2rayclash/style-starter.css">
@@ -103,16 +131,16 @@
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/free-nodes/2024-12-17-node-share-links.htm" title="12月17日→21.6M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">12月17日→21.6M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</a></li>
-                        <li class="py-2"><a href="/news/article-24324.htm" title="动物医院好评模板范文图片大全高清（动物医院好评模板范文图片大全高清下载）">动物医院好评模板范文图片大全高清（动物医院好评模板范文图片大全高清下载）</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-10-27-free-clash.htm" title="10月27日→20.8M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">10月27日→20.8M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-17-node-share-links.htm" title="11月17日→18.3M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">11月17日→18.3M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</a></li>
-                        <li class="py-2"><a href="/news/article-18845.htm" title="附近美容院美容店在哪浮桥（附近美容门店）">附近美容院美容店在哪浮桥（附近美容门店）</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-12-20-node-share.htm" title="12月20日→19.9M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">12月20日→19.9M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-9-28-clash-node.htm" title="9月28日→21M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">9月28日→21M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-26-node-share-links.htm" title="11月26日→21.2M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">11月26日→21.2M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-10-28-node-share.htm" title="10月28日→20.2M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">10月28日→20.2M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</a></li>
-                        <li class="py-2"><a href="/news/article-21584.htm" title="小众古镇推荐(小众古镇旅游景点大全)">小众古镇推荐(小众古镇旅游景点大全)</a></li>
+                        <li class="py-2"><a href="/news/article-23862.htm" title="js的二级菜单">js的二级菜单</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-28-node-share.htm" title="1月28日→18.1M/S|2025年最新免费节点Free V2ray Clash订阅链接地址">1月28日→18.1M/S|2025年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-12-node-share.htm" title="12月12日→22.3M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">12月12日→22.3M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-6-free-high-speed-nodes.htm" title="12月6日→22M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">12月6日→22M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-17-clash-node-daily-updates.htm" title="1月17日→21M/S|2025年最新免费节点Free V2ray Clash订阅链接地址">1月17日→21M/S|2025年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-3-free-node-subscribe-links.htm" title="12月3日→19.2M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">12月3日→19.2M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-6-free-high-speed-nodes.htm" title="1月6日→20.2M/S|2025年最新免费节点Free V2ray Clash订阅链接地址">1月6日→20.2M/S|2025年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-27124.htm" title="Springboot @Order注解正确用法">Springboot @Order注解正确用法</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-15-free-high-speed-nodes.htm" title="11月15日→20.2M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">11月15日→20.2M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-34684.htm" title="GO语言学习——基本数据类型字符串">GO语言学习——基本数据类型字符串</a></li>
                     </ul>
     </div>
 </div>
@@ -124,19 +152,16 @@
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">3</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+                <h4><span class="badge" style="float: right;">6</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
             </li>
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
-            </li>
-                        <li class="py-2">
-                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
-            </li>
-                        <li class="py-2">
-                <h4><span class="badge" style="float: right;">12</span> <a href="/date/2024-09/" title="2024-09 归档">2024-09</a></h4>
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
             </li>
                     </ul>
     </div>
@@ -311,7 +336,8 @@
     </script>
     <!--//MENU-JS-->
     <script src="/assets/website/js/frontend/freev2rayclash/bootstrap.min.js"></script>
-    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
 </body>
 
 </html>
