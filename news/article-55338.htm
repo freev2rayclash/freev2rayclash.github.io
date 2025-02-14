@@ -1,0 +1,339 @@
+<!doctype html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://freev2rayclash.github.io/news/article-55338.htm" />
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>netty系列之:在netty中使用native传输协议</title>
+        <meta name="description" content="对于IO来说，除了传统的block IO,使用最多的就是NIO了，通常我们在netty程序中最常用到的就是NIO,比如NioEventLoopGroup,NioServerSocketChannel等" />
+        <link rel="icon" href="/assets/website/img/freev2rayclash/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Free V2ray Clash免费机场订阅节点官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://freev2rayclash.github.io/news/article-55338.htm" />
+    <meta property="og:site_name" content="Free V2ray Clash免费机场订阅节点官网" />
+    <meta property="og:title" content="netty系列之:在netty中使用native传输协议" />
+    <meta property="og:image" content="https://freev2rayclash.github.io/uploads/20240919-1/cdb35de2f4f6a535eb6dcf9004858164.webp" />
+        <meta property="og:release_date" content="2025-02-12T09:08:09" />
+    <meta property="og:updated_time" content="2025-02-12T09:08:09" />
+        <meta property="og:description" content="对于IO来说，除了传统的block IO,使用最多的就是NIO了，通常我们在netty程序中最常用到的就是NIO,比如NioEventLoopGroup,NioServerSocketChannel等" />
+    
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="netty系列之:在netty中使用native传输协议">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,300;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- Template CSS -->
+    <link rel="stylesheet" href="/assets/website/css/freev2rayclash/style-starter.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SMY6EV424E"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-SMY6EV424E');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!--header-->
+    <header id="site-header" class="fixed-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-dark stroke">
+                <a class="navbar-brand" href="/">
+                                    <span>
+                        Free V2ray Clash                    </span>
+                                </a>
+                <!-- if logo is image enable this   
+      <a class="navbar-brand" href="#index.html">
+          <img src="image-path" alt="Your logo" title="Your logo" style="height:35px;" />
+      </a> -->
+                <button class="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon fa icon-expand fa-bars"></span>
+                    <span class="navbar-toggler-icon fa icon-close fa-times"></span>
+                    </span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                    <ul class="navbar-nav mx-lg-auto">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/free-nodes/">免费节点</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/paid-subscribe/">推荐机场</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/client.htm">客户端</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/news/">新闻资讯</a>
+                        </li>
+                                            </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <!--/header-->
+    <div class="inner-banner">
+    </div>
+    <section class="w3l-breadcrumb">
+        <div class="container">
+            <ul class="breadcrumbs-custom-path">
+                <li><a href="/">首页</a></li>
+                <li><a href="/news/"><span class="fa fa-arrow-right mx-2" aria-hidden="true"></span> 新闻资讯</a></li>
+                <li class="active"><span class="fa fa-arrow-right mx-2" aria-hidden="true"></span> 正文</li>
+            </ul>
+        </div>
+    </section>
+    <!--/about-->
+    <!--/w3l-faq-block-->
+    <div class="w3l-faq-block py-5" id="faq">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                    <h1 class="mb-5">netty系列之:在netty中使用native传输协议</h1>
+                    
+                                    <input type="hidden" id="share-website-info" data-name="Clash Meta免费节点订阅站" data-url="https://clash-meta.github.io">
+                  				  				  				<div id="content_views" class="htmledit_views"> <p>对于IO来说，除了传统的block IO,使用最多的就是NIO了，通常我们在netty程序中最常用到的就是NIO,比如NioEventLoopGroup,NioServerSocketChannel等。</p> <p>我们也知道在IO中有比NIO更快的IO方式，比如kqueue和epoll，但是这两种方式需要native方法的支持，也就是说需要在操作系统层面提供服务。</p> <p>如果我们在支持Kqueue或者epoll的服务器上，netty是否可以提供对这些优秀IO的支持呢？</p> <p>答案是肯定的。但是首先kqueue和epoll需要JNI支持，也就是说JAVA程序需要调用本地的native方法。</p> <h2>native传输协议的依赖</h2> <p>要想使用kequeue和epoll这种native的传输方式，我们需要额外添加项目的依赖,如果是linux环境，则可以添加如下的maven依赖环境：</p> <pre>&lt;dependencies&gt;     &lt;dependency&gt;       &lt;groupId&gt;io.netty&lt;/groupId&gt;       &lt;artifactId&gt;netty-transport-native-epoll&lt;/artifactId&gt;       &lt;version&gt;${project.version}&lt;/version&gt;       &lt;classifier&gt;linux-x86_64&lt;/classifier&gt;     &lt;/dependency&gt;     ...   &lt;/dependencies&gt;</pre> <p>其中version需要匹配你所使用的netty版本号，否则可能出现调用异常的情况。</p> <p>classifier表示的是系统架构，它的值可以是linux-x86_64，也可以是linux-aarch_64.</p> <p>如果你使用的mac系统，那么可以这样引入：</p> <pre>&lt;dependencies&gt;     &lt;dependency&gt;       &lt;groupId&gt;io.netty&lt;/groupId&gt;       &lt;artifactId&gt;netty-transport-native-kqueue&lt;/artifactId&gt;       &lt;version&gt;${project.version}&lt;/version&gt;       &lt;classifier&gt;osx-x86_64&lt;/classifier&gt;     &lt;/dependency&gt;     ...   &lt;/dependencies&gt;</pre> <p>netty除了单独的个体包之外，还有一个all in one的netty-all包，如果你使用了这个all in one的包，那么不需要额外添加native的依赖。</p> <p>如果netty提供的系统架构并没有你正在使用的，那么你需要手动进行编译，以下是编译所依赖的程序包, 如果是在RHEL/CentOS/Fedora系统中，则使用：</p> <pre>sudo yum install autoconf automake libtool make tar \                  glibc-devel \                  libgcc.i686 glibc-devel.i686</pre> <p>如果是在Debian/Ubuntu系统中，则使用：</p> <pre>sudo apt-get install autoconf automake libtool make tar \                      gcc</pre> <p>如果是在MacOS/BSD系统中，则使用：</p> <pre>brew install autoconf automake libtool</pre> <h2>netty本地传输协议的使用</h2> <p>安装好依赖包之后，我们就可以在netty中使用这些native传输协议了。</p> <p>native传输协议的使用和NIO的使用基本一致，我们只需要进行下面的替换即可。</p> <p>如果是在liunx系统中，则进行下面的替换：</p> <pre>NioEventLoopGroup → EpollEventLoopGroup     NioEventLoop → EpollEventLoop     NioServerSocketChannel → EpollServerSocketChannel     NioSocketChannel → EpollSocketChannel</pre> <p>如果是在mac系统中，则进行下面的替换：</p> <pre>NioEventLoopGroup → KQueueEventLoopGroup     NioEventLoop → KQueueEventLoop     NioServerSocketChannel → KQueueServerSocketChannel     NioSocketChannel → KQueueSocketChannel</pre> <p>这里还是使用我们熟悉的聊天服务为例，首先看下基于Kqueue的netty服务器端应该怎么写：</p> <pre>EventLoopGroup bossGroup = new KQueueEventLoopGroup(1);         EventLoopGroup workerGroup = new KQueueEventLoopGroup();         try {             ServerBootstrap b = new ServerBootstrap();             b.group(bossGroup, workerGroup)              .channel(KQueueServerSocketChannel.class)              .handler(new LoggingHandler(LogLevel.INFO))              .childHandler(new NativeChatServerInitializer());              Channel channel = b.bind(PORT).sync().channel();             log.info("server channel:{}", channel);             channel.closeFuture().sync();</pre> <p>和NIO一样，在服务器端我们需要使用KQueueEventLoopGroup创建两个EventLoopGroup，一个是bossGroup, 一个是workerGroup。</p> <p>然后将这两个group传入到ServerBootstrap中，并且添加KQueueServerSocketChannel作为channel。</p> <p>其他的内容和NIO server的内容是一样的。</p> <p>接下来我们看下基于Kqueue的netty客户端改如何跟server端建立连接：</p> <pre>EventLoopGroup group = new KQueueEventLoopGroup();         try {             Bootstrap b = new Bootstrap();             b.group(group)              .channel(KQueueSocketChannel.class)              .handler(new NativeChatClientInitializer());              // 建立连接             Channel ch = b.connect(HOST, PORT).sync().channel();             log.info("client channel: {}", ch);</pre> <p>这里使用的是KQueueEventLoopGroup，并将KQueueEventLoopGroup放到Bootstrap中，并且为Bootstrap提供了和server端一致的KQueueSocketChannel。</p> <p>然后就是客户端向channel中写消息，这里我们直接从命令行输入：</p> <pre>// 从命令行输入             ChannelFuture lastWriteFuture = null;             BufferedReader in = new BufferedReader(new InputStreamReader(System.in));             for (;;) {                 String line = in.readLine();                 if (line == null) {                     break;                 }                 // 将从命令行输入的一行字符写到channel中                 lastWriteFuture = ch.writeAndFlush(line + "\r\n");                 // 如果输入'再见'，则等待server端关闭channel                 if ("再见".equalsIgnoreCase(line)) {                     ch.closeFuture().sync();                     break;                 }             }</pre> <p>上面代码的意思是将命令行收到的消息写入到channel中，如果输入的是’再见’，则关闭channel。</p> <p>为了能够处理字符串，这里用到了三个编码解码器：</p> <pre>// 添加行分割器         pipeline.addLast(new DelimiterBasedFrameDecoder(8192, Delimiters.lineDelimiter()));         // 添加String Decoder和String Encoder,用来进行字符串的转换         pipeline.addLast(new StringEncoder());         pipeline.addLast(new StringDecoder());</pre> <p>分别是行分割器，字符编码器和字符解码器。</p> <p>运行一下看，程序运行没问题，客户端和服务器端可以进行通讯。</p> <p>这里我们只以Kqueue为例介绍了netty中native传输协议的使用，具体的代码，大家可以参考：</p> <p><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://github.com/ddean2009/learn-netty4"  title="learn-netty4" rel="nofollow">learn-netty4</a></p> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-55337.htm">numpy 中判断某字符串 array 是否含有子字符串</a></p>
+                                        <p>下一个：<a href="/news/article-55874.htm">Kubernetes部署单元-Pod</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2025-2-1-free-subscribe-node.htm" title="2月1日→20.3M/S|2025年最新免费节点Free V2ray Clash订阅链接地址">2月1日→20.3M/S|2025年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-18-node-share-links.htm" title="11月18日→20.4M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">11月18日→20.4M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-13-free-node-subscribe.htm" title="11月13日→22.2M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">11月13日→22.2M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-21-free-subscribe-node.htm" title="12月21日→20.2M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">12月21日→20.2M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-29929.htm" title="C#使用RestClient调用Web API_C#教程">C#使用RestClient调用Web API_C#教程</a></li>
+                        <li class="py-2"><a href="/news/article-27124.htm" title="Springboot @Order注解正确用法">Springboot @Order注解正确用法</a></li>
+                        <li class="py-2"><a href="/news/article-32301.htm" title="兽医医院在哪（兽医医院电话号码）">兽医医院在哪（兽医医院电话号码）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-2-node-share-links.htm" title="2月2日→19.6M/S|2025年最新免费节点Free V2ray Clash订阅链接地址">2月2日→19.6M/S|2025年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-19-clash-windows.htm" title="12月19日→22.6M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">12月19日→22.6M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-25-free-subscribe-node.htm" title="11月25日→20.2M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">11月25日→20.2M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">42</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+        <!--//w3l-faq-block-->
+    <section class="w3l-footer-29-main w3l-copyright">
+        <div class="container">
+            <div class="bottom-copies">
+                <p class="copy-footer-29 text-center">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                    <a href="/">Free V2ray Clash免费机场订阅节点官网</a> 版权所有 Powered by WordPress
+                </p>
+            </div>
+        </div>
+        <!-- move top -->
+        <button onclick="topFunction()" id="movetop" title="Go to top">
+            <span class="fa fa-angle-up"></span>
+        </button>
+        <script>
+        // When the user scrolls down 20px from the top of the document, show the button
+        window.onscroll = function() {
+            scrollFunction()
+        };
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                document.getElementById("movetop").style.display = "block";
+            } else {
+                document.getElementById("movetop").style.display = "none";
+            }
+        }
+
+        // When the user clicks on the button, scroll to the top of the document
+        function topFunction() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }
+        </script>
+        <!-- /move top -->
+    </section>
+    <!-- Template JavaScript -->
+    <script src="/assets/website/js/frontend/freev2rayclash/jquery-3.3.1.min.js"></script>
+    <!-- script for testimonials -->
+    <script>
+    $(document).ready(function() {
+        $('.owl-testimonial').owlCarousel({
+            loop: true,
+            margin: 0,
+            nav: true,
+            responsiveClass: true,
+            autoplay: true,
+            autoplayTimeout: 5000,
+            autoplaySpeed: 1000,
+            autoplayHoverPause: false,
+            responsive: {
+                0: {
+                    items: 1,
+                    nav: false
+                },
+                480: {
+                    items: 1,
+                    nav: false
+                },
+                667: {
+                    items: 1,
+                    nav: true
+                },
+                1000: {
+                    items: 1,
+                    nav: true
+                }
+            }
+        })
+    })
+    </script>
+    <!-- //script for testimonials -->
+    <script src="/assets/website/js/frontend/freev2rayclash/theme-change.js"></script>
+    <!-- js for portfolio lightbox -->
+    <!-- libhtbox -->
+    <script src="/assets/website/js/frontend/freev2rayclash/lightbox-plus-jquery.min.js"></script>
+    <!-- libhtbox -->
+    <script src="/assets/website/js/frontend/freev2rayclash/owl.carousel.js"></script>
+    <!-- script for banner slider-->
+    <script>
+    $(document).ready(function() {
+        $('.owl-one').owlCarousel({
+            loop: true,
+            margin: 0,
+            nav: false,
+            responsiveClass: true,
+            autoplay: true,
+            autoplayTimeout: 5000,
+            autoplaySpeed: 1000,
+            autoplayHoverPause: false,
+            responsive: {
+                0: {
+                    items: 1,
+                    nav: false
+                },
+                480: {
+                    items: 1,
+                    nav: false
+                },
+                667: {
+                    items: 1,
+                    nav: true
+                },
+                1000: {
+                    items: 1,
+                    nav: true
+                }
+            }
+        })
+    })
+    </script>
+    <!-- //script -->
+    <!-- stats number counter-->
+    <script src="/assets/website/js/frontend/freev2rayclash/jquery.waypoints.min.js"></script>
+    <script src="/assets/website/js/frontend/freev2rayclash/jquery.countup.js"></script>
+    <script>
+    $('.counter').countUp();
+    </script>
+    <!-- //stats number counter -->
+    <!-- disable body scroll which navbar is in active -->
+    <script>
+    $(function() {
+        $('.navbar-toggler').click(function() {
+            $('body').toggleClass('noscroll');
+        })
+    });
+    </script>
+    <!-- disable body scroll which navbar is in active -->
+    <!--/MENU-JS-->
+    <script>
+    $(window).on("scroll", function() {
+        var scroll = $(window).scrollTop();
+
+        if (scroll >= 80) {
+            $("#site-header").addClass("nav-fixed");
+        } else {
+            $("#site-header").removeClass("nav-fixed");
+        }
+    });
+
+    //Main navigation Active Class Add Remove
+    $(".navbar-toggler").on("click", function() {
+        $("header").toggleClass("active");
+    });
+    $(document).on("ready", function() {
+        if ($(window).width() > 991) {
+            $("header").removeClass("active");
+        }
+        $(window).on("resize", function() {
+            if ($(window).width() > 991) {
+                $("header").removeClass("active");
+            }
+        });
+    });
+    </script>
+    <!--//MENU-JS-->
+    <script src="/assets/website/js/frontend/freev2rayclash/bootstrap.min.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>

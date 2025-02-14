@@ -1,0 +1,339 @@
+<!doctype html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://freev2rayclash.github.io/news/article-55874.htm" />
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Kubernetes部署单元-Pod</title>
+        <meta name="description" content="在 k8s 搞出 pod 概念的时候，其实 docker 官方就已经推出自己的容器编排应用 swarm。这一套服务可以帮助在不同节点上的容器，进行统一的管理，主要针对容器的启停，运维，还有部署，注意我" />
+        <link rel="icon" href="/assets/website/img/freev2rayclash/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Free V2ray Clash免费机场订阅节点官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://freev2rayclash.github.io/news/article-55874.htm" />
+    <meta property="og:site_name" content="Free V2ray Clash免费机场订阅节点官网" />
+    <meta property="og:title" content="Kubernetes部署单元-Pod" />
+    <meta property="og:image" content="https://freev2rayclash.github.io/uploads/20240919-1/cdb35de2f4f6a535eb6dcf9004858164.webp" />
+        <meta property="og:release_date" content="2025-02-13T03:10:08" />
+    <meta property="og:updated_time" content="2025-02-13T03:10:08" />
+        <meta property="og:description" content="在 k8s 搞出 pod 概念的时候，其实 docker 官方就已经推出自己的容器编排应用 swarm。这一套服务可以帮助在不同节点上的容器，进行统一的管理，主要针对容器的启停，运维，还有部署，注意我" />
+    
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Kubernetes部署单元-Pod">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,300;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- Template CSS -->
+    <link rel="stylesheet" href="/assets/website/css/freev2rayclash/style-starter.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SMY6EV424E"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-SMY6EV424E');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!--header-->
+    <header id="site-header" class="fixed-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-dark stroke">
+                <a class="navbar-brand" href="/">
+                                    <span>
+                        Free V2ray Clash                    </span>
+                                </a>
+                <!-- if logo is image enable this   
+      <a class="navbar-brand" href="#index.html">
+          <img src="image-path" alt="Your logo" title="Your logo" style="height:35px;" />
+      </a> -->
+                <button class="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon fa icon-expand fa-bars"></span>
+                    <span class="navbar-toggler-icon fa icon-close fa-times"></span>
+                    </span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                    <ul class="navbar-nav mx-lg-auto">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/free-nodes/">免费节点</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/paid-subscribe/">推荐机场</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/client.htm">客户端</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/news/">新闻资讯</a>
+                        </li>
+                                            </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <!--/header-->
+    <div class="inner-banner">
+    </div>
+    <section class="w3l-breadcrumb">
+        <div class="container">
+            <ul class="breadcrumbs-custom-path">
+                <li><a href="/">首页</a></li>
+                <li><a href="/news/"><span class="fa fa-arrow-right mx-2" aria-hidden="true"></span> 新闻资讯</a></li>
+                <li class="active"><span class="fa fa-arrow-right mx-2" aria-hidden="true"></span> 正文</li>
+            </ul>
+        </div>
+    </section>
+    <!--/about-->
+    <!--/w3l-faq-block-->
+    <div class="w3l-faq-block py-5" id="faq">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                    <h1 class="mb-5">Kubernetes部署单元-Pod</h1>
+                    
+                                    <input type="hidden" id="share-website-info" data-name="Clash Meta免费节点订阅站" data-url="https://clash-meta.github.io">
+                  				  				  				<p>在 k8s 搞出 pod 概念的时候，其实 docker 官方就已经推出自己的容器编排应用 swarm。这一套服务可以帮助在不同节点上的容器，进行统一的管理，主要针对容器的启停，运维，还有部署，注意我这里没有提到“编排”，个人觉得确实在 swarm 中并没有容器编排这一概念（ps：相对于 k8s 的编排，swarm 确实显得有一丢丢稚嫩），其中关于容器中应用的部署流程，运维监控，还有日志收集这些基本都要自己动手实现。在 swarm 中主要有两个角色，一个是 manage，另一个是 worker，不同于 k8s 那么多眼花缭乱的概念对象，swarm 就显得朴实无华。但是技术的进步都是从简入繁的，搞明白了容器编排的发展历程，也许你对 k8s 为什么有 pod 这一概念，并且后续产生了这么多的抽象对象就有一定理解了。</p> <p>我们先来看一下 Swarm 中的两种角色：</p> <ul> <li>manager - 发布配置和管理节点</li> <li>worker - 每台容器主机节点，承载了容器应用</li> </ul> <div class="cnblogs_code"> <pre><span style="color: rgba(0, 0, 0, 1)">Manager 为了避免单点故障，一般会在集群中使用多个节点，一般当配置发布和修改的时候，他们直接进行状态的同步，并且上线后会选出一个主要的 leader，选举使用的协议是 Raft ，有点类似于 zk, 使得 manager 避免脑裂  Worker 主要的工作是负责从 manager 那里，获取操作的 docker 命令，获取到的关于 build ，network 和 volume之类的配置然后同步到当前节点，他们是通过内部协议来进行通信的</span></pre> </div> <p>以下是命令在 manager 和 worker 之间进行的示意图：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/e47a8649c667fbeecc85824dd6851b04.jpg" alt="Kubernetes部署单元-Pod"></p> <p>&nbsp;如果需要你自己亲自设计一套容器编排的应用架构，估计你的架构设计也和 swarm 差不多。下面一一解释一下图中的各个阶段流程是什么意思：</p> <p>swarm manager：</p> <p>1. API：接收命令。创建一个 service 应用（通过API调用输入）</p> <p>2. orchestrator：对 service 对象创建的 task 进行调度工作（编排）</p> <p>3. allocater：为各个 task 分配IP地址（分配IP）</p> <p>4. dispatcher：将 task分发到 nodes (分发任务)</p> <p>5. scheduler：安排一个 worker 运行 task（运行任务）</p> <p>worker node：</p> <p>1. 链接到分发器接收指定的调度任务 task</p> <p>2. 将被指派到的 task 在本节点上执行</p> <p>在 swarm 中调度的最小单位是 service。其实这个 service 可以看成是一个容器，类似于 docker- compose 内 service 的描述，也就是一个容器内，会启动不同的进程，这也就意味着 service 会比较“重”，以业务维度要组成，共同组成一个容器应用，来统一调度。</p> <p>不同于 swarm 中的 service 设计，我们来看看 k8s 的 pod。</p> <p>pod 是一组并置的容器，代表了 k8s 中基本构建模块。在实际应用中我们并不会单独部署容器，更多的是针对一组 pod 的容器进行部署和操作。然而这并不意味着一个 pod 总是要包含多个容器--实际上只包含单独容器的 pod 也是很常见的。一个 pod 的所有容器都运行在同一节点上，所以说 pod 是 k8s 的最小调度单元。那为什么 k8s 中会将编排单元抽象成 pod 呢？在学习 k8s 之前我一直有这疑问，因为我觉得 k8s 的对象实在是太“抽象”了，一但你将其从真实的业务场景中脱离出来，你会觉得这些人就是在专门搞一些让人费解的概念，提高了初级小白的入门门槛。对于这点疑问，在看了张磊老师的《深入剖析Kubernetes》中关于为什么我们需要 pod 的描述，我才回过味来，pod 其实可以看成一“进程组”，组内各个进程是“超亲密的关系”，容器之间进行紧密协作。这些具有“超亲密关系”容器的典型特征包括但不限于：互相之间会发生直接的文件交换、使用 localhost 或者 Socket 文件进行本地通信、会发生非常频繁的远程调用、需要共享某些 Linux Namespace（比如，一个容器要加入另一个容器的 Network Namespace）等等。</p> <p><strong>关于 Pod 网络</strong></p> <p>如上所述，由于一个 pod 中的容器运行于相同的 Network 命名空间中，因此他们共享相同的 IP 地址和端口空间， 这意味着同一个 pod 中的网络运行的多个进程需要注意不能绑定相同的端口号，否则会引起端口冲突，同一 pod 中的所有容器都可以通过 localhost 与同一个 pod 中的其他容器进行通信。kubernetes 集群中所有的 pod 都在同一个共享网络地址空间中，<span style="color: rgba(255, 204, 0, 1)">这意味着每个 pod 都可以通过其他 pod 的 IP 地址来实现相互访问，所以这也表示他们之间没有 NAT （网络地址转换）网关</span>。当两个 pod 彼此之间发送网络数据的时候，他们都会把对方的实际 ip 地址看做数据包中的源 ip。所以你知道为什么在节点内网不联通的情况下， k8s 并不能通过分配 pod 的 ip 进行调度访问了吗？</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/1fefab83c5473dc0af6ba54a7c20a49e.jpg" alt="Kubernetes部署单元-Pod"></p> <p>&nbsp;因为，pod 之间的通信其实是非常简单的，无论是将两个 pod 安排单一的还是不同的工作节点上，这些 pod 不管实际节点间的网络拖布结构如何，这些 pod 内的容器能够像在无 NAT 的平坦网络中一样相互通信，就像局域网（LAN）上的计算机一样。每个 pod 都有自己的 IP 地址，并且可以通过这个专门的网络实现 pod 之间互相访问。这个专门的网络通常是由额外的的软件基于真实链路实现的，所以说 k8s 有很多网络插件实现，以应对不同的网络链路情况。</p> <p><strong>关于合理的 pod 安排</strong></p> <p>pod 应该比较轻量，我们应该将应用程序组织到多个 pod 中，而每个 pod 只包含紧密相关的组件或者进程。也就是说要不要分配容器到同一个 pod 中，主要看他们是不是紧密耦合的关系。比如它们需要一起运行，还是可以在不同的主机上运行？它们代表的是一个整体还是相互独立的组件？它们必须一起扩缩容还是可以分别进行？一般情况下，一个 pod 应用可能由一个主进程和多个辅助进程组成。辅助进程其实就是类似 sidecar 容器，包括日志轮转器和收集器，数据处理器，通信适配器等等。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/08a3ad067990ed4a962d9a84a9730c93.jpg" alt="Kubernetes部署单元-Pod"></p> <p><strong>&nbsp;关于 Pod 的 Yaml 描述文件</strong></p> <p>pod 定义由几个部分组成：</p> <ul> <li>metadata 包括名称、命名空间、标签和关于该容器的其他信息。</li> <li>spec 包含 pod 内容的实现说明，例如 pod 的容器、卷和其他数据。</li> <li>status 包含运行中的 pod 的当前信息，例如 pod 所处的条件，每个容器的描述和状态，以及内部 IP 和其他基本信息</li> </ul> <div class="cnblogs_code"> <pre><span style="color: rgba(0, 0, 0, 1)">apiVersion: v1                         ## 描述文件遵循 v1 版的 kubernetes API kind: Pod                                ## 描述类型 pod   metadata:     name: kubia-manual            ## pod 名称 spec:     containers:                          ## 包含的容器     - image: luksa/kubia            ## 创建容器所用的镜像       name:kubia       ports:       - containerPort: 8080         ## 应用监听的端口          protocol: TCP</span></pre> </div> <p>关于 pod 相关的api操作</p> <div class="cnblogs_code"> <pre><span style="color: rgba(0, 0, 0, 1)">## 创建 pod $ kubectl create -f kubia-manual.yaml  ## 得到 pod 声明的完整定义 $ kubectl get po kubia-manual -0 yaml  ## 查看新创建的 pod $ kubectl get pods  ## 查看 pod 的详情信息，这个非常有用，可以排查调试 pod 创建调度的问题 $ kubectl describe pod {pod名称} --namespace={命名空间}  ## 获取 pod 运行日志，注意 k8s 在日志文件达到 10 MB的时候会自动轮替，logs 命令仅显示最后一次轮替后的日志条目 $ kubectl logs {pod名字}  ## 如果是多容器 pod 需要查看某个特定容器的日志时，需要添加 -c 参数 $ kubectl logs {pod名字} -c {容器名称}</span></pre> </div> <p>在 pod 调试中你可以使用 kubectl expose 命令创建一个 service，以便在外部访问到这个pod。但是在实际开发调试中，你如果不想创建一个service来与某个特定的 pod 通信，还可以通过本地转发的方式来进行访问。比如在本机 kubectl 中，可以不登录 k8s 集群的情况下，本地进行调试 pod</p> <div class="cnblogs_code"> <pre><span style="color: rgba(0, 0, 0, 1)">## 可以将本机器的本地端口转发到指定 pod 的端口 $ kubectl port-forward {pod名称} {本地端口}:{pod端口}<br/><br/>## 可以使用 curl 命令来访问连接到 pod<br/>$ curl localhost:{本地端口}</span></pre> </div> <p>这样可以在管理机上访问 k8s 集群，当然如果管理机是在外网的情况下，这样会比较危险，如果机器和k8s集群同属一个内网，并且外网访问不到k8s集，这样的调试方式，比一个个pod登录上去手动敲 curl 要来的方便一些。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/b025e55a8f08c929005a12f738b5b6ad.jpg" alt="Kubernetes部署单元-Pod"></p> <p><strong>&nbsp;关于 pod 的标签和命名空间</strong></p> <p>k8s 里有大量的通过标签来组织 pod 和所有其他 kubernetes 对象的例子，这里简单的汇总一下 api，方便以后查阅。</p> <div class="cnblogs_code"> <pre><span style="color: rgba(0, 0, 0, 1)">## 创建标签，在描述文件 yaml 中添加 metadata:     labels:         app: appname         env: pod  ## 根据标签获取pod $ kubectl get po -L 标签名1,标签名2  ## 更换标签 $ kubectl label po {pod名字} {标签名}={标签更改值} --overwrite  ## 多条件的标签过滤 $ kubectl get po -l {标签名}!={标签值} $ kubectl get po -l {标签名} in ({标签值1},{标签值2}) $ kubectl get po -l {标签名} notin ({标签值1},{标签值2})<br/><br/>## 删除 pod<br/>$ kubectl delete po {pod名字}</span></pre> </div> <p>在删除 pod 的时候，kubernetes 会向 pod 发送一个 SIGTERM 信号并等待一段秒数，如果没有响应则通过 SIGKILL 信号进行终止。所以为了确保程序正常关闭，进程需要正确处理 SIGTERM 信号。</p> <p>除了标签，pod还有命名空间的概念。首先，由于每个对象都可以有多个标签，因此这些对象组可以重叠。而命名空间是用来将对象分割成完全独立且不重叠的组。比如这些命名空间组成的不同组，可以在多租户环境中分配资源，将资源分配为生产、开发和测试环境等等。我觉得命名空间提供的隔离更趋向于运维，调度层面的，而标签则趋向于业务层面的区分隔离。</p> <div class="cnblogs_code"> <pre><span style="color: rgba(0, 0, 0, 1)">## 创建一个命名空间 apiversion: v1 kind: Namespace metadata:     name: {命名空间名字}  ## 在命名空间中创建对象，可以在 metadata 字段中添加 namespace: 命名空间名字 属性 $ kubectl create -f ... -n {命名空间}</span></pre> </div> <p>这里需要注意的是，命名空间的隔离并不意味着网络也是隔断的，命名空间之间是否提供网络隔离取决于 k8s 自己所使用的网络解决方案，也就是说只要知道某个 pod 的 IP，不管命名空间如何，都能将流量发送到这个 pod。所以如果在命名空间中做网络隔离时，还是需要去配置调度 node 节点的分配，还有网络的物理隔离。</p> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-55338.htm">netty系列之:在netty中使用native传输协议</a></p>
+                                        <p>下一个：<a href="/news/article-55875.htm">新手怎么开宠物店需要多少钱（想开一个宠物店怎么做才能赚钱）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2025-1-24-clash-node-daily-updates.htm" title="1月24日→22.4M/S|2025年最新免费节点Free V2ray Clash订阅链接地址">1月24日→22.4M/S|2025年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-3-free-node-subscribe-links.htm" title="12月3日→19.2M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">12月3日→19.2M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-29929.htm" title="C#使用RestClient调用Web API_C#教程">C#使用RestClient调用Web API_C#教程</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-10-free-node-subscribe.htm" title="1月10日→22.8M/S|2025年最新免费节点Free V2ray Clash订阅链接地址">1月10日→22.8M/S|2025年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-47972.htm" title="宠康动物医院地址 宠康动物医院地址在哪里">宠康动物医院地址 宠康动物医院地址在哪里</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-28-node-share.htm" title="1月28日→18.1M/S|2025年最新免费节点Free V2ray Clash订阅链接地址">1月28日→18.1M/S|2025年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-21116.htm" title="我的树莓派 Raspberry Pi Zero 2W 折腾笔记，记录一些遇到的问题和解决办法">我的树莓派 Raspberry Pi Zero 2W 折腾笔记，记录一些遇到的问题和解决办法</a></li>
+                        <li class="py-2"><a href="/news/article-22492.htm" title="动物医院前台工作有哪些岗位（动物医院前台工作总结）">动物医院前台工作有哪些岗位（动物医院前台工作总结）</a></li>
+                        <li class="py-2"><a href="/news/article-28516.htm" title="宠爱宠物医院怎么样（宠爱宠物诊所怎么样）">宠爱宠物医院怎么样（宠爱宠物诊所怎么样）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-8-node-share.htm" title="12月8日→18.3M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">12月8日→18.3M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">42</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+        <!--//w3l-faq-block-->
+    <section class="w3l-footer-29-main w3l-copyright">
+        <div class="container">
+            <div class="bottom-copies">
+                <p class="copy-footer-29 text-center">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                    <a href="/">Free V2ray Clash免费机场订阅节点官网</a> 版权所有 Powered by WordPress
+                </p>
+            </div>
+        </div>
+        <!-- move top -->
+        <button onclick="topFunction()" id="movetop" title="Go to top">
+            <span class="fa fa-angle-up"></span>
+        </button>
+        <script>
+        // When the user scrolls down 20px from the top of the document, show the button
+        window.onscroll = function() {
+            scrollFunction()
+        };
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                document.getElementById("movetop").style.display = "block";
+            } else {
+                document.getElementById("movetop").style.display = "none";
+            }
+        }
+
+        // When the user clicks on the button, scroll to the top of the document
+        function topFunction() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }
+        </script>
+        <!-- /move top -->
+    </section>
+    <!-- Template JavaScript -->
+    <script src="/assets/website/js/frontend/freev2rayclash/jquery-3.3.1.min.js"></script>
+    <!-- script for testimonials -->
+    <script>
+    $(document).ready(function() {
+        $('.owl-testimonial').owlCarousel({
+            loop: true,
+            margin: 0,
+            nav: true,
+            responsiveClass: true,
+            autoplay: true,
+            autoplayTimeout: 5000,
+            autoplaySpeed: 1000,
+            autoplayHoverPause: false,
+            responsive: {
+                0: {
+                    items: 1,
+                    nav: false
+                },
+                480: {
+                    items: 1,
+                    nav: false
+                },
+                667: {
+                    items: 1,
+                    nav: true
+                },
+                1000: {
+                    items: 1,
+                    nav: true
+                }
+            }
+        })
+    })
+    </script>
+    <!-- //script for testimonials -->
+    <script src="/assets/website/js/frontend/freev2rayclash/theme-change.js"></script>
+    <!-- js for portfolio lightbox -->
+    <!-- libhtbox -->
+    <script src="/assets/website/js/frontend/freev2rayclash/lightbox-plus-jquery.min.js"></script>
+    <!-- libhtbox -->
+    <script src="/assets/website/js/frontend/freev2rayclash/owl.carousel.js"></script>
+    <!-- script for banner slider-->
+    <script>
+    $(document).ready(function() {
+        $('.owl-one').owlCarousel({
+            loop: true,
+            margin: 0,
+            nav: false,
+            responsiveClass: true,
+            autoplay: true,
+            autoplayTimeout: 5000,
+            autoplaySpeed: 1000,
+            autoplayHoverPause: false,
+            responsive: {
+                0: {
+                    items: 1,
+                    nav: false
+                },
+                480: {
+                    items: 1,
+                    nav: false
+                },
+                667: {
+                    items: 1,
+                    nav: true
+                },
+                1000: {
+                    items: 1,
+                    nav: true
+                }
+            }
+        })
+    })
+    </script>
+    <!-- //script -->
+    <!-- stats number counter-->
+    <script src="/assets/website/js/frontend/freev2rayclash/jquery.waypoints.min.js"></script>
+    <script src="/assets/website/js/frontend/freev2rayclash/jquery.countup.js"></script>
+    <script>
+    $('.counter').countUp();
+    </script>
+    <!-- //stats number counter -->
+    <!-- disable body scroll which navbar is in active -->
+    <script>
+    $(function() {
+        $('.navbar-toggler').click(function() {
+            $('body').toggleClass('noscroll');
+        })
+    });
+    </script>
+    <!-- disable body scroll which navbar is in active -->
+    <!--/MENU-JS-->
+    <script>
+    $(window).on("scroll", function() {
+        var scroll = $(window).scrollTop();
+
+        if (scroll >= 80) {
+            $("#site-header").addClass("nav-fixed");
+        } else {
+            $("#site-header").removeClass("nav-fixed");
+        }
+    });
+
+    //Main navigation Active Class Add Remove
+    $(".navbar-toggler").on("click", function() {
+        $("header").toggleClass("active");
+    });
+    $(document).on("ready", function() {
+        if ($(window).width() > 991) {
+            $("header").removeClass("active");
+        }
+        $(window).on("resize", function() {
+            if ($(window).width() > 991) {
+                $("header").removeClass("active");
+            }
+        });
+    });
+    </script>
+    <!--//MENU-JS-->
+    <script src="/assets/website/js/frontend/freev2rayclash/bootstrap.min.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
