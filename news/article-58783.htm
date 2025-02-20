@@ -1,0 +1,339 @@
+<!doctype html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://freev2rayclash.github.io/news/article-58783.htm" />
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>JS/JQ动态创建（添加）optgroup和option属性</title>
+        <meta name="description" content="相信在前端设计中必然不会少的了表单，因为经常会使用到下拉框选项，又或是把数据动态回显到下拉框中。因为之前牵扯到optgroup标签时遇到了问题，没查到太过详细的解决方案，自己动手操作记录一下。 首先就" />
+        <link rel="icon" href="/assets/website/img/freev2rayclash/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Free V2ray Clash免费机场订阅节点官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://freev2rayclash.github.io/news/article-58783.htm" />
+    <meta property="og:site_name" content="Free V2ray Clash免费机场订阅节点官网" />
+    <meta property="og:title" content="JS/JQ动态创建（添加）optgroup和option属性" />
+    <meta property="og:image" content="https://freev2rayclash.github.io/uploads/20240919-1/77903effddd0f00079b8837274d892eb.webp" />
+        <meta property="og:release_date" content="2025-02-18T09:45:59" />
+    <meta property="og:updated_time" content="2025-02-18T09:45:59" />
+        <meta property="og:description" content="相信在前端设计中必然不会少的了表单，因为经常会使用到下拉框选项，又或是把数据动态回显到下拉框中。因为之前牵扯到optgroup标签时遇到了问题，没查到太过详细的解决方案，自己动手操作记录一下。 首先就" />
+    
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="JS/JQ动态创建（添加）optgroup和option属性">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,300;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- Template CSS -->
+    <link rel="stylesheet" href="/assets/website/css/freev2rayclash/style-starter.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SMY6EV424E"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-SMY6EV424E');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!--header-->
+    <header id="site-header" class="fixed-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-dark stroke">
+                <a class="navbar-brand" href="/">
+                                    <span>
+                        Free V2ray Clash                    </span>
+                                </a>
+                <!-- if logo is image enable this   
+      <a class="navbar-brand" href="#index.html">
+          <img src="image-path" alt="Your logo" title="Your logo" style="height:35px;" />
+      </a> -->
+                <button class="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon fa icon-expand fa-bars"></span>
+                    <span class="navbar-toggler-icon fa icon-close fa-times"></span>
+                    </span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                    <ul class="navbar-nav mx-lg-auto">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/free-nodes/">免费节点</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/paid-subscribe/">推荐机场</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/client.htm">客户端</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/news/">新闻资讯</a>
+                        </li>
+                                            </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <!--/header-->
+    <div class="inner-banner">
+    </div>
+    <section class="w3l-breadcrumb">
+        <div class="container">
+            <ul class="breadcrumbs-custom-path">
+                <li><a href="/">首页</a></li>
+                <li><a href="/news/"><span class="fa fa-arrow-right mx-2" aria-hidden="true"></span> 新闻资讯</a></li>
+                <li class="active"><span class="fa fa-arrow-right mx-2" aria-hidden="true"></span> 正文</li>
+            </ul>
+        </div>
+    </section>
+    <!--/about-->
+    <!--/w3l-faq-block-->
+    <div class="w3l-faq-block py-5" id="faq">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                    <h1 class="mb-5">JS/JQ动态创建（添加）optgroup和option属性</h1>
+                    
+                                    <input type="hidden" id="share-website-info" data-name="Clash Meta免费节点订阅站" data-url="https://clash-meta.github.io">
+                  				  				  				</h1> <p><em>相信在前端设计中必然不会少的了表单，因为经常会使用到下拉框选项，又或是把数据动态回显到下拉框中。因为之前牵扯到optgroup标签时遇到了问题，没查到太过详细的解决方案，自己动手操作记录一下。</em></p> <h3 id="首先就是咱们的老朋友select标签因为需要jsjq两种操作所以就定义两个select标签">首先就是咱们的老朋友<em>"select"</em>标签，因为需要js、jq两种操作，所以就定义两个select标签。</h3> <blockquote> <p>HTML代码：</p> </blockquote> <pre><code>&lt;div style="width: 200px;height: 100px;margin: auto;margin-top: 100px;padding: 20px;background-color: pink;"&gt; 	&lt;select id="mySelect1" style="width: 120px;"&gt;&lt;/select&gt; 	&lt;select id="mySelect2" style="width: 160px;"&gt;&lt;/select&gt; 	&lt;button id="addSelect2"&gt;添加&lt;/button&gt; &lt;!-- 此处用于点击动态添加到mySelect2 --&gt; &lt;/div&gt;</code></pre> <h3 id="之后就是引用jq定义jsjq操作代码我都贴下面了">之后就是引用jq，定义js、jq操作，代码我都贴下面了。</h3> <blockquote> <p>JS代码：</p> </blockquote> <pre><code>&lt;script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"&gt;&lt;/script&gt; &lt;script type="text/javascript"&gt;         //1.动态操作 - JS方式         //这里先定义一个json对象，用于获取并新增到select标签         let language={ 	        "languageList":[ 	        { 		    "groupName":"前端", 		    "optionName":[ 			    {"languageName":"html"}, 			    {"languageName":"CSS"}, 			    {"languageName":"javascript"} 				], 	        }, 	        { 		    "groupName":"后端", 		    "optionName":[ 			    {"languageName":"java"}, 			    {"languageName":"JSP"} 				] 	        } 	      ] 	    };         //language.languageList - 数据位置         let index=0;         for (obj of language.languageList) { 	        //js创建optgroup标签 	        let optgroup=document.createElement("optgroup"); 	        //设置optgroup标签的label和id值 	        optgroup.label=obj.groupName; 	        optgroup.id="optgroupId"+index;                 //把创建optgroup新增到select下 	        document.getElementById("mySelect1").add(optgroup); 	        //针对optgroup标签，添加它的option标签 	        for (var i = 0; i &lt; obj.optionName.length; i++) { 		        //js创建option标签 		        let option=document.createElement("option"); 		        option.value=obj.optionName[i].languageName; 		        option.innerHTML=obj.optionName[i].languageName; 		        document.getElementById("optgroupId"+index).appendChild(option); 	        } 	        index+=1; //自定义下标放在最后新增，防止添加option时id增加         } 		         //2.动态新增 - JQ方式         let item=0;         $("#addSelect2").click(function(){ 	        item=item+1; 	        //jq点击按钮后向下拉框新增optgroup标签 	        $("#mySelect2").append("&lt;optgroup id='optgroup"+item+"' label='生成的optgroup标签"+item+"'&gt;&lt;/optgroup&gt;"); 	        let r=Math.floor((Math.random()*5)+1); //生成随机数1-5                 //把随机数个数个的option添加到当前新增的optgroup下 	        for (var i = 1; i &lt;= r; i++) { 		        $("#optgroup"+item).append(`&lt;option value="`+i+`"&gt;随机生成的option`+i+`&lt;/option&gt;`); 	        }         }); &lt;/script&gt;</code></pre> <p><strong>需要注意的是：</strong>尽管用的id是递增产生的，但前面的名字也不要一样，我在测试按钮功能的时候，没注意就把两种optgroup的id定义成一样的，结果按钮随机生成的option都加到了相应id的mySelect1的optgroup里面了。????</p> <h3 id="最后再贴一下运行效果">最后再贴一下运行效果</h3> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/255a62426ca91bf40fde27e4510f4137.jpg" alt="JS/JQ动态创建（添加）optgroup和option属性"></p> <p>首先就是mySelect1回显json中的数据</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/07c62b5086550bea2173f67bb38df9a8.jpg" alt="JS/JQ动态创建（添加）optgroup和option属性"></p> <p>点击添加按钮，新增到mySelect2</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/f7f3c17c58602280a337af469efbe88d.jpg" alt="JS/JQ动态创建（添加）optgroup和option属性"></p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/6853b957b0106a99bf97d0581b55d388.jpg" alt="JS/JQ动态创建（添加）optgroup和option属性"></p> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-58129.htm">动物疫苗打到人身上有事吗有影响吗知乎（动物疫苗打到人身上会怎么样）</a></p>
+                                        <p>下一个：<a href="/news/article-58784.htm">动物疫苗种类和特点图片高清大图（动物疫苗的种类和制备原理）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-38566.htm" title="想开个宠物店需要什么（想开个宠物店需要什么条件）">想开个宠物店需要什么（想开个宠物店需要什么条件）</a></li>
+                        <li class="py-2"><a href="/news/article-53150.htm" title="宠物粮网店的利润怎么样啊（宠物粮网店的利润怎么样啊多少）">宠物粮网店的利润怎么样啊（宠物粮网店的利润怎么样啊多少）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-22-free-clash.htm" title="11月22日→21.5M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">11月22日→21.5M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-52086.htm" title="小动物打疫苗视频（动物打疫苗有什么作用）">小动物打疫苗视频（动物打疫苗有什么作用）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-10-free-clash.htm" title="12月10日→18.8M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">12月10日→18.8M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-42033.htm" title="瑞鹏宠物医疗集团地址（瑞鹏宠物医疗集团电话）">瑞鹏宠物医疗集团地址（瑞鹏宠物医疗集团电话）</a></li>
+                        <li class="py-2"><a href="/news/article-40051.htm" title="动物疫苗打几次有效啊 动物疫苗打几次有效啊多少钱">动物疫苗打几次有效啊 动物疫苗打几次有效啊多少钱</a></li>
+                        <li class="py-2"><a href="/news/article-33738.htm" title="狗粮机械设备厂家排名（狗粮生产机器设备排名）">狗粮机械设备厂家排名（狗粮生产机器设备排名）</a></li>
+                        <li class="py-2"><a href="/news/article-30402.htm" title="兽医资格考试报名条件（兽医资格证考试报名条件）">兽医资格考试报名条件（兽医资格证考试报名条件）</a></li>
+                        <li class="py-2"><a href="/news/article-21584.htm" title="小众古镇推荐(小众古镇旅游景点大全)">小众古镇推荐(小众古镇旅游景点大全)</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+        <!--//w3l-faq-block-->
+    <section class="w3l-footer-29-main w3l-copyright">
+        <div class="container">
+            <div class="bottom-copies">
+                <p class="copy-footer-29 text-center">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                    <a href="/">Free V2ray Clash免费机场订阅节点官网</a> 版权所有 Powered by WordPress
+                </p>
+            </div>
+        </div>
+        <!-- move top -->
+        <button onclick="topFunction()" id="movetop" title="Go to top">
+            <span class="fa fa-angle-up"></span>
+        </button>
+        <script>
+        // When the user scrolls down 20px from the top of the document, show the button
+        window.onscroll = function() {
+            scrollFunction()
+        };
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                document.getElementById("movetop").style.display = "block";
+            } else {
+                document.getElementById("movetop").style.display = "none";
+            }
+        }
+
+        // When the user clicks on the button, scroll to the top of the document
+        function topFunction() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }
+        </script>
+        <!-- /move top -->
+    </section>
+    <!-- Template JavaScript -->
+    <script src="/assets/website/js/frontend/freev2rayclash/jquery-3.3.1.min.js"></script>
+    <!-- script for testimonials -->
+    <script>
+    $(document).ready(function() {
+        $('.owl-testimonial').owlCarousel({
+            loop: true,
+            margin: 0,
+            nav: true,
+            responsiveClass: true,
+            autoplay: true,
+            autoplayTimeout: 5000,
+            autoplaySpeed: 1000,
+            autoplayHoverPause: false,
+            responsive: {
+                0: {
+                    items: 1,
+                    nav: false
+                },
+                480: {
+                    items: 1,
+                    nav: false
+                },
+                667: {
+                    items: 1,
+                    nav: true
+                },
+                1000: {
+                    items: 1,
+                    nav: true
+                }
+            }
+        })
+    })
+    </script>
+    <!-- //script for testimonials -->
+    <script src="/assets/website/js/frontend/freev2rayclash/theme-change.js"></script>
+    <!-- js for portfolio lightbox -->
+    <!-- libhtbox -->
+    <script src="/assets/website/js/frontend/freev2rayclash/lightbox-plus-jquery.min.js"></script>
+    <!-- libhtbox -->
+    <script src="/assets/website/js/frontend/freev2rayclash/owl.carousel.js"></script>
+    <!-- script for banner slider-->
+    <script>
+    $(document).ready(function() {
+        $('.owl-one').owlCarousel({
+            loop: true,
+            margin: 0,
+            nav: false,
+            responsiveClass: true,
+            autoplay: true,
+            autoplayTimeout: 5000,
+            autoplaySpeed: 1000,
+            autoplayHoverPause: false,
+            responsive: {
+                0: {
+                    items: 1,
+                    nav: false
+                },
+                480: {
+                    items: 1,
+                    nav: false
+                },
+                667: {
+                    items: 1,
+                    nav: true
+                },
+                1000: {
+                    items: 1,
+                    nav: true
+                }
+            }
+        })
+    })
+    </script>
+    <!-- //script -->
+    <!-- stats number counter-->
+    <script src="/assets/website/js/frontend/freev2rayclash/jquery.waypoints.min.js"></script>
+    <script src="/assets/website/js/frontend/freev2rayclash/jquery.countup.js"></script>
+    <script>
+    $('.counter').countUp();
+    </script>
+    <!-- //stats number counter -->
+    <!-- disable body scroll which navbar is in active -->
+    <script>
+    $(function() {
+        $('.navbar-toggler').click(function() {
+            $('body').toggleClass('noscroll');
+        })
+    });
+    </script>
+    <!-- disable body scroll which navbar is in active -->
+    <!--/MENU-JS-->
+    <script>
+    $(window).on("scroll", function() {
+        var scroll = $(window).scrollTop();
+
+        if (scroll >= 80) {
+            $("#site-header").addClass("nav-fixed");
+        } else {
+            $("#site-header").removeClass("nav-fixed");
+        }
+    });
+
+    //Main navigation Active Class Add Remove
+    $(".navbar-toggler").on("click", function() {
+        $("header").toggleClass("active");
+    });
+    $(document).on("ready", function() {
+        if ($(window).width() > 991) {
+            $("header").removeClass("active");
+        }
+        $(window).on("resize", function() {
+            if ($(window).width() > 991) {
+                $("header").removeClass("active");
+            }
+        });
+    });
+    </script>
+    <!--//MENU-JS-->
+    <script src="/assets/website/js/frontend/freev2rayclash/bootstrap.min.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>

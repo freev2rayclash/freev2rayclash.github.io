@@ -1,0 +1,339 @@
+<!doctype html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://freev2rayclash.github.io/news/article-59274.htm" />
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Spring学习笔记（二）后处理器与AOP</title>
+        <meta name="description" content="后处理器是对IOC容器功能的扩展。按我的理解，扩展的原理是在某动作结束后再次调用指定的方法进行扩展处理。有点类似于AOP。 后处理器分两种：Bean后处理器和容器后处理器。 1.1 Bean后处理器 " />
+        <link rel="icon" href="/assets/website/img/freev2rayclash/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Free V2ray Clash免费机场订阅节点官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://freev2rayclash.github.io/news/article-59274.htm" />
+    <meta property="og:site_name" content="Free V2ray Clash免费机场订阅节点官网" />
+    <meta property="og:title" content="Spring学习笔记（二）后处理器与AOP" />
+    <meta property="og:image" content="https://freev2rayclash.github.io/uploads/20240919-1/b39dd78d67032f685039fe63aa00dfb7.webp" />
+        <meta property="og:release_date" content="2025-02-19T06:36:55" />
+    <meta property="og:updated_time" content="2025-02-19T06:36:55" />
+        <meta property="og:description" content="后处理器是对IOC容器功能的扩展。按我的理解，扩展的原理是在某动作结束后再次调用指定的方法进行扩展处理。有点类似于AOP。 后处理器分两种：Bean后处理器和容器后处理器。 1.1 Bean后处理器 " />
+    
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Spring学习笔记（二）后处理器与AOP">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,300;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- Template CSS -->
+    <link rel="stylesheet" href="/assets/website/css/freev2rayclash/style-starter.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SMY6EV424E"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-SMY6EV424E');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!--header-->
+    <header id="site-header" class="fixed-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-dark stroke">
+                <a class="navbar-brand" href="/">
+                                    <span>
+                        Free V2ray Clash                    </span>
+                                </a>
+                <!-- if logo is image enable this   
+      <a class="navbar-brand" href="#index.html">
+          <img src="image-path" alt="Your logo" title="Your logo" style="height:35px;" />
+      </a> -->
+                <button class="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon fa icon-expand fa-bars"></span>
+                    <span class="navbar-toggler-icon fa icon-close fa-times"></span>
+                    </span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                    <ul class="navbar-nav mx-lg-auto">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/free-nodes/">免费节点</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/paid-subscribe/">推荐机场</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/client.htm">客户端</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/news/">新闻资讯</a>
+                        </li>
+                                            </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <!--/header-->
+    <div class="inner-banner">
+    </div>
+    <section class="w3l-breadcrumb">
+        <div class="container">
+            <ul class="breadcrumbs-custom-path">
+                <li><a href="/">首页</a></li>
+                <li><a href="/news/"><span class="fa fa-arrow-right mx-2" aria-hidden="true"></span> 新闻资讯</a></li>
+                <li class="active"><span class="fa fa-arrow-right mx-2" aria-hidden="true"></span> 正文</li>
+            </ul>
+        </div>
+    </section>
+    <!--/about-->
+    <!--/w3l-faq-block-->
+    <div class="w3l-faq-block py-5" id="faq">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                    <h1 class="mb-5">Spring学习笔记（二）后处理器与AOP</h1>
+                    
+                                    <input type="hidden" id="share-website-info" data-name="Clash Meta免费节点订阅站" data-url="https://clash-meta.github.io">
+                  				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> </h1> <p>后处理器是对IOC容器功能的扩展。按我的理解，扩展的原理是在某动作结束后再次调用指定的方法进行扩展处理。有点类似于AOP。</p> <p>后处理器分两种：<strong>Bean后处理器</strong>和<strong>容器后处理器</strong>。</p> <h2 id="11-bean后处理器">1.1 <strong>Bean后处理器</strong><br /> </h2> <p>Bean后处理器会在<strong>Bean实例化结束后</strong>（注意，该实例化是指Bean类的实例化，还没有进行Spring中的注入等操作，并不是Spring最终返回的Bean），对其进行近一步的增强处理，例如返回一个Bean的代理类。</p> <p>Bean后处理器需要实现<code>BeanPostProcessor</code>接口，该接口包含的<code>postProcessBeforeInitialization</code>，<code>postProcessAfterInitialization</code>分别在Bean初始化之前和之后回调。 <br /><img decoding="async" src="http://img.555519.xyz/uploads/20230118/e02f92644cbbfa9acd6b65ce24ffe177.jpg" alt="Spring学习笔记（二）后处理器与AOP"></p> <p>如上图，增强处理与<code>init-method</code>，<code>InitializingBean</code>，<code>destory-method</code>，<code>DisposableBean</code>的执行顺序，增强处理永远在<strong>最外围的</strong>。</p> <p>实现<code>InitializingBean</code>接口的<code>afterPropertiesSet</code>方法、配置<code>&lt;bean init-method="method"&gt;</code>都是在Bean的全部属性设置成功后执行的方法。而Bean后处理器是在属性注入之前和之后执行的方法。</p> <p>下面给出Bean后处理器的Demo：</p> <ul> <li>首先实现创建一个实现<code>BeanPostProcessor</code>的后处理器类</li> </ul> <pre class="prettyprint"><code class="hljs java"><span class="hljs-javadoc">/**  * Bean后处理器Demo类,该处理类会对容器里面的所有Bean进行后处理  *<span class="hljs-javadoctag"> @author</span> wangsz  */</span> <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">BeanPostProc</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">BeanPostProcessor</span>{<!-- --></span>     <span class="hljs-javadoc">/**      * 在Bean初始化后，对容器中的bean进行后处理，返回处理后的bean      */</span>     <span class="hljs-keyword">public</span> Object <span class="hljs-title">postProcessAfterInitialization</span>(Object bean, String beanName) <span class="hljs-keyword">throws</span> BeansException {         System.out.println(<span class="hljs-string">"bean后处理器在["</span>+beanName+<span class="hljs-string">"]初始化后对其进行增强处理"</span>);         <span class="hljs-keyword">if</span>(bean <span class="hljs-keyword">instanceof</span> Person){             ((Person) bean).setName(<span class="hljs-string">"akq"</span>);         }         <span class="hljs-comment">//该bean可以与旧bean截然不同,如返回一个该Bean的代理类</span>         <span class="hljs-keyword">return</span> bean;     }     <span class="hljs-javadoc">/**      * 在Bean初始化前，对容器中的bean进行后处理，返回处理后的bean      */</span>     <span class="hljs-keyword">public</span> Object <span class="hljs-title">postProcessBeforeInitialization</span>(Object bean, String beanName) <span class="hljs-keyword">throws</span> BeansException {         System.out.println(<span class="hljs-string">"bean后处理器在["</span>+beanName+<span class="hljs-string">"]初始化前对其进行增强处理"</span>);         <span class="hljs-comment">//该bean可以与旧bean截然不同</span>         <span class="hljs-keyword">return</span> bean;     }  }</code></pre> <ul> <li>然后在Spring配置文件中加上这个Bean。这样，该后处理类就会对容器里面的所有Bean进行后处理。</li> </ul> <pre class="prettyprint"><code class="hljs xml"><span class="hljs-comment">&lt;!--bean后处理器--&gt;</span>     <span class="hljs-tag">&lt;<span class="hljs-title">bean</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"beanproc"</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"test.wsz.spring.postprocessor.BeanPostProc"</span>  /&gt;</span></code></pre> <h2 id="12-容器后处理器">1.2 <strong>容器后处理器</strong><br /> </h2> <p>Bean后处理器是对Bean实例化后进行后处理的，而容器后处理器，顾名思义，就是对Spring容器进行后处理，通常用于Spring容器实例化Bean之前，读取配置文件元数据，对其进行修改。</p> <p>容器后处理器需要实现<code>BeanFactoryPostProcessor</code>接口，重写该接口包含的<code>postProcessBeanFactory</code>方法。</p> <p>Spring中已提供了几个常用的容器后处理器：</p> <ul> <li>PropertyPlaceholderConfigurer：属性占位符配置器</li> <li>PropertyOverrideConfigurer：重写占位符配置器</li> <li>CustomAutowireConfigurer：自定义自动装配的配置器</li> <li>CustomScopeConfigurer：自定义作用域的配置器</li> </ul> <p>下面给出容器后处理器的Demo：</p> <ul> <li>首先实现创建一个实现BeanFactoryPostProcessor的容器后处理器类</li> </ul> <pre class="prettyprint"><code class="hljs java"><span class="hljs-javadoc">/**  * 容器后处理器Demo类，在容器实例化bean之前，读取配置文件的元数据，并修改  *<span class="hljs-javadoctag"> @author</span> wangsz  */</span> <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">BeanFactoryProc</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">BeanFactoryPostProcessor</span>{<!-- --></span>      <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">postProcessBeanFactory</span>(ConfigurableListableBeanFactory beanFactory) <span class="hljs-keyword">throws</span> BeansException {         System.out.println(<span class="hljs-string">"Spring的容器是："</span>+beanFactory);         System.out.println(<span class="hljs-string">"容器后处理器并没有对BeanFactory的初始化做修改"</span>);     }  }</code></pre> <ul> <li>然后在Spring配置文件中加上这个Bean。</li> </ul> <pre class="prettyprint"><code class="hljs xml"><span class="hljs-comment">&lt;!--容器后处理器--&gt;</span>     <span class="hljs-tag">&lt;<span class="hljs-title">bean</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"beanfactoryproc"</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"test.wsz.spring.postprocessor.BeanFactoryProc"</span>  /&gt;</span></code></pre> </h1> <p>Aspect Orient Pragramming：面向切面编程。</p> <h2 id="21-aop的概念">2.1 <strong>AOP的概念</strong><br /> </h2> <p>这个术语不太好理解，下面我们用图来一步步阐述它演变的过程。</p> <p>现在有三个方法，我要在里面添加同一段代码，比较low的方式，是将同一段代码复制粘贴三遍： <br /><img decoding="async" src="http://img.555519.xyz/uploads/20230118/7408e293e07ee5b98dcbd2ed010e17c1.jpg" alt="Spring学习笔记（二）后处理器与AOP"></p> <p>改进的方式是，我把这段代码抽离到一个方法中，然后在三个方法中手动调用这个抽离方法： <br /><img decoding="async" src="http://img.555519.xyz/uploads/20230118/ad312e9b6d489c873a3b0e446caf6238.jpg" alt="Spring学习笔记（二）后处理器与AOP"></p> <p>但是上面的方法仍然有些不方便。如果不是三个方法，是十个，二十个，那一个个的在里面写方法的调用很麻烦。而且，如果增加需求，例如再次为方法一、二、三增加日志打印，再次为方法一、二、三增加参数检验，那么每次都得加个抽离方法，然后在方法一二三里面加调用。</p> <p>AOP就是针对这些不便的进一步优化。我们将方法一二三看成一个切面，然后在这个切面上进行增强处理。不需要方法一二三手动调用抽离方法，抽离方法“自动”进行了调用： <br /><img decoding="async" src="http://img.555519.xyz/uploads/20230118/a9df604b8df364677f8f2876ee7631f9.jpg" alt="Spring学习笔记（二）后处理器与AOP"></p> <p>通过上面的图我们可以进行一个总结：<strong>AOP其实就是代理模式的一种体现，将程序运行过程看成一个切面，在切面上进行公共的处理。</strong></p> <h2 id="22-aop的应用">2.2 <strong>AOP的应用</strong><br /> </h2> <p>现在版本的Spring的AOP一般都是整合的<strong>AspectJ</strong>实现的。AspectJ框架是最早，功能比较强大的AOP实现之一，Spring中只是用到了它部分的功能，有兴趣的朋友可以百度了解一下。</p> <p>值得注意的是，AspectJ和Spring的实现方式的不同，AspectJ是编译时对目标类进行增强（反编译目标类可发现多了内容），而Spring是生成一个代理类进行增强。</p> <h3 id="221-aop的几种注解配置"><strong>2.2.1 AOP的几种注解配置</strong></h3> <p>下面我们开始在Spring中配置AOP <br /> - 首先在Maven中增加AspectJ的支持jar包，注意版本要和jdk符合，我之前用的jar包过老，导致aop测试时莫名出现一系列找不到包的异常。</p> <pre class="prettyprint"><code class="hljs xml"><span class="hljs-comment">&lt;!--aop支持jar包 --&gt;</span>         <span class="hljs-tag">&lt;<span class="hljs-title">dependency</span>&gt;</span>             <span class="hljs-tag">&lt;<span class="hljs-title">groupId</span>&gt;</span>org.aspectj<span class="hljs-tag">&lt;/<span class="hljs-title">groupId</span>&gt;</span>             <span class="hljs-tag">&lt;<span class="hljs-title">artifactId</span>&gt;</span>aspectjrt<span class="hljs-tag">&lt;/<span class="hljs-title">artifactId</span>&gt;</span>             <span class="hljs-tag">&lt;<span class="hljs-title">version</span>&gt;</span>1.8.9<span class="hljs-tag">&lt;/<span class="hljs-title">version</span>&gt;</span>         <span class="hljs-tag">&lt;/<span class="hljs-title">dependency</span>&gt;</span>          <span class="hljs-tag">&lt;<span class="hljs-title">dependency</span>&gt;</span>             <span class="hljs-tag">&lt;<span class="hljs-title">groupId</span>&gt;</span>org.aspectj<span class="hljs-tag">&lt;/<span class="hljs-title">groupId</span>&gt;</span>             <span class="hljs-tag">&lt;<span class="hljs-title">artifactId</span>&gt;</span>aspectjweaver<span class="hljs-tag">&lt;/<span class="hljs-title">artifactId</span>&gt;</span>             <span class="hljs-tag">&lt;<span class="hljs-title">version</span>&gt;</span>1.8.9<span class="hljs-tag">&lt;/<span class="hljs-title">version</span>&gt;</span>         <span class="hljs-tag">&lt;/<span class="hljs-title">dependency</span>&gt;</span></code></pre> <ul> <li>在Spring的配置文件中增加内容：</li> </ul> <pre class="prettyprint"><code class="hljs xml"><span class="hljs-comment">&lt;!--beans中增加如下三个配置--&gt;</span> <span class="hljs-tag">&lt;<span class="hljs-title">beans</span>  <span class="hljs-attribute">xmlns:aop</span>=<span class="hljs-value">"http://www.springframework.org/schema/aop"</span>     <span class="hljs-attribute">xsi:schemaLocation</span>=<span class="hljs-value">"http://www.springframework.org/schema/aop      http://www.springframework.org/schema/aop/spring-aop-2.5.xsd"</span>&gt;</span>      <span class="hljs-comment">&lt;!--aspect配置     如果proxy-target-class 属性值被设置为true，那么基于类的代理将起作用（这时需要cglib库）。     如果proxy-target-class属值被设置为false或者这个属性被省略，那么标准的JDK 基于接口的代理将起作用--&gt;</span>     <span class="hljs-tag">&lt;<span class="hljs-title">aop:aspectj-autoproxy</span> <span class="hljs-attribute">proxy-target-class</span>=<span class="hljs-value">"true"</span>/&gt;</span>      <span class="hljs-comment">&lt;!--Aspect Demo类--&gt;</span>     <span class="hljs-tag">&lt;<span class="hljs-title">bean</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"test.wsz.spring.aop.AspectDemo"</span>  /&gt;</span>  <span class="hljs-tag">&lt;/<span class="hljs-title">beans</span>&gt;</span></code></pre> <p>如果不采用Spring的XML Schema的方法，也可以去除<code>&lt;beans ……&gt;</code>对应配置，增加：</p> <pre class="prettyprint"><code class="hljs xml"><span class="hljs-comment">&lt;!--启动AspectJ支持--&gt;</span>     <span class="hljs-tag">&lt;<span class="hljs-title">bean</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"org.springframework.aop.aspectj.annotation.AnnotationAwareAspectJAutoProxyCreator"</span>  /&gt;</span></code></pre> <ul> <li>然后我们创建一个Aspect的测试Demo类：</li> </ul> <pre class="prettyprint"><code class="hljs java"><span class="hljs-annotation">@Aspect</span> <span class="hljs-comment">//声明该类为切面类，在spring配置中加入该类的bean，ApplicationContext会自动加载，将该Bean作为切面处理</span> <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AspectDemo</span> {<!-- --></span>     <span class="hljs-javadoc">/**      * 在方法执行前进行调用,value指定切入点      */</span>     <span class="hljs-annotation">@Before</span>(value = <span class="hljs-string">"execution(* test.wsz.spring.bean..StoneAxe.useAxe(..))"</span>)     <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">beforeTest</span>() {         System.out.println(<span class="hljs-string">"-----before stoneAxe.useAxe()-----"</span>);     }      <span class="hljs-javadoc">/**      * 在方法正常执行完成后进行调用,value指定切入点，也可用pointcut。returning指定返回形参      */</span>     <span class="hljs-annotation">@AfterReturning</span>(returning = <span class="hljs-string">"returnValue"</span>, pointcut = <span class="hljs-string">"execution(* test.wsz.spring.bean..StoneAxe.useAxeTest(..))"</span>)     <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">afterReturnTest</span>(Object returnValue) {         System.out.println(<span class="hljs-string">"-----after stoneAxe.useAxe()-----"</span>);         System.out.println(<span class="hljs-string">"返回值是："</span> + returnValue);     }      <span class="hljs-javadoc">/**      * 无论方法是否正常结束，只要完成后调用该方法      */</span>     <span class="hljs-annotation">@After</span>(value = <span class="hljs-string">"execution(* test.wsz.spring.bean..StoneAxe.useAxeTest(..))"</span>)     <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">afterTest</span>() {         System.out.println(<span class="hljs-string">"方法执行完成，无论是正常完成还是异常终止执行"</span>);     }      <span class="hljs-javadoc">/**      * 在方法异常后调用，但并不能像catch一样捕获异常，异常仍然会抛给上级进行处理      *       *<span class="hljs-javadoctag"> @param</span> e      *            方法中抛出的异常      */</span>     <span class="hljs-annotation">@AfterThrowing</span>(throwing = <span class="hljs-string">"e"</span>, pointcut = <span class="hljs-string">"execution(* test.wsz.spring.bean..StoneAxe.useAxeTest(..))"</span>)     <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">afterThrowingTest</span>(Throwable e) {         System.out.println(<span class="hljs-string">"方法抛出异常："</span> + e.getMessage());     }      <span class="hljs-javadoc">/**      * 功能较强的增强方法，类似before和afterReturning的集合      *<span class="hljs-javadoctag"> @param</span> pjp 方法信息对象      *<span class="hljs-javadoctag"> @return</span>      *<span class="hljs-javadoctag"> @throws</span> Throwable      */</span>     <span class="hljs-annotation">@Around</span>(<span class="hljs-string">"execution(* test.wsz.spring.bean..StoneAxe.useAxeTest(..))"</span>)     <span class="hljs-keyword">public</span> Object <span class="hljs-title">aroundTest</span>(ProceedingJoinPoint pjp) <span class="hljs-keyword">throws</span> Throwable {         System.out.println(<span class="hljs-string">"-----around-------"</span>);         System.out.println(<span class="hljs-string">"方法执行前"</span>);         Object object = pjp.proceed();         System.out.println(<span class="hljs-string">"方法执行后"</span>);         <span class="hljs-keyword">return</span> object;     } }</code></pre> <p>这个Demo类中演示了几种切面的注解方法。xml的配置方法就不贴出来了，可自行百度。</p> <p>为了方便，我们还可设定一个切点，然后进行引用：</p> <pre class="prettyprint"><code class="hljs java"><span class="hljs-comment">// 定义一个切入点，该切入点方法体中的代码无效</span>     <span class="hljs-annotation">@Pointcut</span>(<span class="hljs-string">"execution(* test.wsz.spring.bean..IronAxe.useAxe(..))"</span>) <span class="hljs-comment">// 方法体中的代码无效</span>     <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">mypointcut</span>() {         System.out.println(<span class="hljs-string">"-----pointcout-----"</span>);     }      <span class="hljs-javadoc">/**      * 在方法执行前进行调用      */</span>     <span class="hljs-annotation">@Before</span>(value = <span class="hljs-string">"mypointcut()"</span>)     <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">before</span>() {         System.out.println(<span class="hljs-string">"-----before-----"</span>);     }</code></pre> <p>注意，几种切面方法的执行顺序如下：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads/20230118/8fb35ed3fffec7d5faabdc282557c6cd.jpg" alt="Spring学习笔记（二）后处理器与AOP"></p> <h3 id="222-execution的规则"><strong>2.2.2 <code>execution</code>的规则</strong></h3> <p>补充下切面<code>execution</code>的规则：</p> <blockquote> <p><code>execution(&lt;修饰符模式&gt;?&lt;返回类型模式&gt;&lt;方法名模式&gt;(&lt;参数模式&gt;)&lt;异常模式&gt;?)</code></p> </blockquote> <p>举一个例子说明： <br /><img decoding="async" src="http://img.555519.xyz/uploads/20230118/5a35b9d73e3ff836ab5a5c4f1766c7ca.jpg" alt="Spring学习笔记（二）后处理器与AOP"></p> <h3 id="223-aop要注意的问题"><strong>2.2.3 AOP要注意的问题</strong></h3> <p>使用Spring AOP拦截时要注意：<strong>内部方法调用是无法被拦截的</strong>。 <br /> 例如，方法A中调用了方法B，此时方法B就算加了拦截配置也是无法被拦截的。</p> <p>原理跟Spring的代理类有关。Spring拦截类的方法时，其实都是拦截的Spring经过增强后处理的代理类的方法。：</p> <pre class="prettyprint"><code class="hljs livecodeserver">proxybean:  <span class="hljs-keyword">before</span>  invoke(bean,A)  <span class="hljs-keyword">after</span></code></pre> <p>在<code>invoke(bean,A)</code>中调用方法B时，此时是原类进行的调用，Spring无法拦截。</p> <p>查了资料，目前解决方案有三：</p> <p><strong>1.修改代码，手动调用代理类运行方法B</strong>：</p> <pre class="prettyprint"><code class="hljs r"><span class="hljs-keyword">if</span> (null != AopContext.currentProxy()) {             rs=((Bean)AopContext.currentProxy()).method(<span class="hljs-keyword">...</span>);         } <span class="hljs-keyword">else</span> {             rs=method(<span class="hljs-keyword">...</span>);         }</code></pre> <p>在配置文件加入如下配置，使代理类暴露给线程。注意该配置要spring3.0以上：</p> <pre class="prettyprint"><code class="hljs lasso"><span class="hljs-subst">&lt;</span>aop:aspectj<span class="hljs-attribute">-autoproxy</span> expose<span class="hljs-attribute">-proxy</span><span class="hljs-subst">=</span><span class="hljs-string">"true"</span><span class="hljs-subst">/</span><span class="hljs-subst">&gt;</span></code></pre> <p><strong>2. 将内部调用的方法放入其他类</strong></p> <p><strong>3. 使用aspectj拦截 </strong></p> <hr/> <p>本文总结于 <br /> 《疯狂JavaEE》的第八章《深入使用Spring》</p> </p></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-58784.htm">动物疫苗种类和特点图片高清大图（动物疫苗的种类和制备原理）</a></p>
+                                        <p>下一个：<a href="/news/article-59275.htm">宠物猫大概多少钱一只幼崽（宠物猫大概多少钱一只幼崽图片）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2025-2-9-clash-node.htm" title="2月9日→22.8M/S|2025年最新免费节点Free V2ray Clash订阅链接地址">2月9日→22.8M/S|2025年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-54772.htm" title="狗粮批发市场进货渠道太原店电话（狗粮批发市场进货渠道太原店电话多少）">狗粮批发市场进货渠道太原店电话（狗粮批发市场进货渠道太原店电话多少）</a></li>
+                        <li class="py-2"><a href="/news/article-28513.htm" title="js  查找字符串中指定字符 模糊查询  不区分大小写">js  查找字符串中指定字符 模糊查询  不区分大小写</a></li>
+                        <li class="py-2"><a href="/news/article-33737.htm" title="@ControllerAdvice,ResponseBodyAdvice 统一处理返回值/响应体">@ControllerAdvice,ResponseBodyAdvice 统一处理返回值/响应体</a></li>
+                        <li class="py-2"><a href="/news/article-33253.htm" title="动物疫苗接种时间表最新版图片 动物疫苗接种时间表最新版图片大全">动物疫苗接种时间表最新版图片 动物疫苗接种时间表最新版图片大全</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-5-free-node-subscribe-links.htm" title="2月5日→22.4M/S|2025年最新免费节点Free V2ray Clash订阅链接地址">2月5日→22.4M/S|2025年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-25-free-subscribe-node.htm" title="1月25日→22.5M/S|2025年最新免费节点Free V2ray Clash订阅链接地址">1月25日→22.5M/S|2025年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-9-free-clash.htm" title="12月9日→21.3M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">12月9日→21.3M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-38085.htm" title="动物疫苗能放冰箱吗多久（动物疫苗能放冰箱吗多久不能打）">动物疫苗能放冰箱吗多久（动物疫苗能放冰箱吗多久不能打）</a></li>
+                        <li class="py-2"><a href="/news/article-32789.htm" title="小猫养多久才知道自己的名字好不好（小猫养多久才知道自己的名字好不好呢）">小猫养多久才知道自己的名字好不好（小猫养多久才知道自己的名字好不好呢）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+        <!--//w3l-faq-block-->
+    <section class="w3l-footer-29-main w3l-copyright">
+        <div class="container">
+            <div class="bottom-copies">
+                <p class="copy-footer-29 text-center">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                    <a href="/">Free V2ray Clash免费机场订阅节点官网</a> 版权所有 Powered by WordPress
+                </p>
+            </div>
+        </div>
+        <!-- move top -->
+        <button onclick="topFunction()" id="movetop" title="Go to top">
+            <span class="fa fa-angle-up"></span>
+        </button>
+        <script>
+        // When the user scrolls down 20px from the top of the document, show the button
+        window.onscroll = function() {
+            scrollFunction()
+        };
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                document.getElementById("movetop").style.display = "block";
+            } else {
+                document.getElementById("movetop").style.display = "none";
+            }
+        }
+
+        // When the user clicks on the button, scroll to the top of the document
+        function topFunction() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }
+        </script>
+        <!-- /move top -->
+    </section>
+    <!-- Template JavaScript -->
+    <script src="/assets/website/js/frontend/freev2rayclash/jquery-3.3.1.min.js"></script>
+    <!-- script for testimonials -->
+    <script>
+    $(document).ready(function() {
+        $('.owl-testimonial').owlCarousel({
+            loop: true,
+            margin: 0,
+            nav: true,
+            responsiveClass: true,
+            autoplay: true,
+            autoplayTimeout: 5000,
+            autoplaySpeed: 1000,
+            autoplayHoverPause: false,
+            responsive: {
+                0: {
+                    items: 1,
+                    nav: false
+                },
+                480: {
+                    items: 1,
+                    nav: false
+                },
+                667: {
+                    items: 1,
+                    nav: true
+                },
+                1000: {
+                    items: 1,
+                    nav: true
+                }
+            }
+        })
+    })
+    </script>
+    <!-- //script for testimonials -->
+    <script src="/assets/website/js/frontend/freev2rayclash/theme-change.js"></script>
+    <!-- js for portfolio lightbox -->
+    <!-- libhtbox -->
+    <script src="/assets/website/js/frontend/freev2rayclash/lightbox-plus-jquery.min.js"></script>
+    <!-- libhtbox -->
+    <script src="/assets/website/js/frontend/freev2rayclash/owl.carousel.js"></script>
+    <!-- script for banner slider-->
+    <script>
+    $(document).ready(function() {
+        $('.owl-one').owlCarousel({
+            loop: true,
+            margin: 0,
+            nav: false,
+            responsiveClass: true,
+            autoplay: true,
+            autoplayTimeout: 5000,
+            autoplaySpeed: 1000,
+            autoplayHoverPause: false,
+            responsive: {
+                0: {
+                    items: 1,
+                    nav: false
+                },
+                480: {
+                    items: 1,
+                    nav: false
+                },
+                667: {
+                    items: 1,
+                    nav: true
+                },
+                1000: {
+                    items: 1,
+                    nav: true
+                }
+            }
+        })
+    })
+    </script>
+    <!-- //script -->
+    <!-- stats number counter-->
+    <script src="/assets/website/js/frontend/freev2rayclash/jquery.waypoints.min.js"></script>
+    <script src="/assets/website/js/frontend/freev2rayclash/jquery.countup.js"></script>
+    <script>
+    $('.counter').countUp();
+    </script>
+    <!-- //stats number counter -->
+    <!-- disable body scroll which navbar is in active -->
+    <script>
+    $(function() {
+        $('.navbar-toggler').click(function() {
+            $('body').toggleClass('noscroll');
+        })
+    });
+    </script>
+    <!-- disable body scroll which navbar is in active -->
+    <!--/MENU-JS-->
+    <script>
+    $(window).on("scroll", function() {
+        var scroll = $(window).scrollTop();
+
+        if (scroll >= 80) {
+            $("#site-header").addClass("nav-fixed");
+        } else {
+            $("#site-header").removeClass("nav-fixed");
+        }
+    });
+
+    //Main navigation Active Class Add Remove
+    $(".navbar-toggler").on("click", function() {
+        $("header").toggleClass("active");
+    });
+    $(document).on("ready", function() {
+        if ($(window).width() > 991) {
+            $("header").removeClass("active");
+        }
+        $(window).on("resize", function() {
+            if ($(window).width() > 991) {
+                $("header").removeClass("active");
+            }
+        });
+    });
+    </script>
+    <!--//MENU-JS-->
+    <script src="/assets/website/js/frontend/freev2rayclash/bootstrap.min.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
