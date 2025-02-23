@@ -117,6 +117,7 @@
                   				  				  				</h1> <p>Pipeline 即流水线，是 jenkins2.X 的新特性，是 jenkins 官方推荐使用的持续集成方案。与传统的自由风格项目不同，它是通过 jenkins DSL 编写代码来实现。相比于之前用户只能通过 Web 界面进行配置的方式来定义 Jenkins 任务，现在通过使用 jenkins DSL 和 Groovy 语言编写程序，用户可以定义流水线并执行各种任务。</p> <p>Jenkins pipeline包含两类元素，分别是stages和steps。如图：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/bf23610618b513a2b1f824d7262d38e7.jpg" alt="企业DevOps之路：Jenkins 流水线"></p> <ul> <li> <p>step 代表单一的操作；告诉 Jenkins 做什么。比如，代码从仓库检出代码，执行脚本</p> </li> <li> <p>stage 等于一系列 step 的组合，通常来表示 Jenkins pipeline 进程的可示化。例如，Build、Test、Deploy等</p> </li> </ul> <p>更详细的资料请查看官网</p> <pre><code>https://www.jenkins.io/doc/book/pipeline/</code></pre> <p>Pipeline 有两种语法，分别是声明式和脚本式</p> <p>声明式语法</p> <pre><code>pipeline {   agent any   stages {       stage('Build') {           steps {               // TODO           }       }       stage('Test') {           steps {               // TODO           }       }       stage('Deploy') {           steps {               // TODO           }       }   } }</code></pre> <p>agent any：表示任意一个可用代理节点上执行该Pipeline</p> <p>stage('Build')：定义阶段</p> <p>steps {}：阶段执行的步骤</p> <p>脚本式语法</p> <pre><code>node {   stage('Build') {       // TODO   }   stage('Test') {       // TODO   }   stage('Deploy') {       // TODO   } }</code></pre> <p>node：表示任意一个可用代理节点上执行该Pipeline</p> <p>stage('Build') {}：定义阶段。在脚本式语法中 stage 代码块是可选的；不过明确写上的话可以让每个阶段的任务更清晰</p> </h1> <p>安装 Pipeline 和 Pipeline Maven Integration 插件</p> <p>Manage Jenkins -&gt; Manage Plugins</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/b9d3aae5e9c89f74ab018e56a5aa2735.jpg" alt="企业DevOps之路：Jenkins 流水线"></p> <p>安装后，重启 Tomcat。</p> </h1> <p>创建流水线任务</p> <p>新建Item</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/865544e9e4b85cae8f433ba9d0b48df9.jpg" alt="企业DevOps之路：Jenkins 流水线"></p> <p>配置流水线任务</p> <p>初学者对于 Pipeline 的脚本肯定无从入手的；但是 Pipeline 提供了一个非常有用的帮助文档。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/bd0858c9997d325b0d0dff39a91f6274.jpg" alt="企业DevOps之路：Jenkins 流水线"></p> <pre><code>http://127.0.0.1:8080/jenkins/job/Pipeline_maven/pipeline-syntax/</code></pre> <p>Pipeline 脚本有两种编写模式</p> <ul> <li> <p>Pipeline 脚本</p> </li> <li> <p>Jenkinsfile 文件</p> </li> </ul> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/03074cd7c4b1ddd40a3aa578770d9545.jpg" alt="企业DevOps之路：Jenkins 流水线"></p> <p>这里选择 Pipeline script</p> <h2 id="31-克隆代码">3.1 克隆代码</h2> <pre><code>git credentialsId: 'c8eea0cc-24e7-4eb1-a2dd-42fc1066f35a', url: 'https://gitee.com/hjj520/ruoyi-patrol.git'</code></pre> <h2 id="32-编译">3.2 编译</h2> <pre><code>bat 'mvn clean install'</code></pre> <p>在 Windows 操作系统 Jenkins Pipeline 中要使用bat来运行 Windows 命令；而 Linux 操作系统则需要使用sh来运行 Shell 命令。</p> <h2 id="33--上传-jar包">3.3  上传 jar包</h2> <pre><code>bat 'C:/jenkins/pscp.exe -r -l root -pw root %WORKSPACE%/ruoyi-admin/target/ruoyi-admin.jar 192.168.10.8:/home/huangjinjin/software/springdocker'</code></pre> <p>图片</p> <p>完整 Pipeline 脚本</p> <pre><code>pipeline {   agent any    stages {       stage('git clone') {           steps {               git credentialsId: 'c8eea0cc-24e7-4eb1-a2dd-42fc1066f35a', url: 'https://gitee.com/hjj520/ruoyi-patrol.git'           }       }               stage('complie') {           steps {                 bat 'mvn clean install'           }       }               stage('upload') {           steps {                 bat 'C:/jenkins/pscp.exe -r -l root -pw root %WORKSPACE%/ruoyi-admin/target/ruoyi-admin.jar 192.168.10.8:/home/huangjinjin/software/springdocker'           }       }           }     }</code></pre> <p>其他步骤可以自行添加，例如，测试、部署等。</p> 			                <div class="clearfix"></div>
                 <div class="col-md-12 mt-5">
                                         <p>上一个：<a href="/news/article-59841.htm">通过concat()方法进行字符串连接。</a></p>
+                                        <p>下一个：<a href="/news/article-60442.htm">正则表达式验证合法的IP地址</a></p>
                                     </div>
                                 </div>
                 <div class="col-md-3">
@@ -126,16 +127,16 @@
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/news/article-28516.htm" title="宠爱宠物医院怎么样（宠爱宠物诊所怎么样）">宠爱宠物医院怎么样（宠爱宠物诊所怎么样）</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-1-4-free-node-subscribe.htm" title="1月4日→22.7M/S|2025年最新免费节点Free V2ray Clash订阅链接地址">1月4日→22.7M/S|2025年最新免费节点Free V2ray Clash订阅链接地址</a></li>
-                        <li class="py-2"><a href="/news/article-42541.htm" title="同安狗狗领养中心地址 同安狗狗领养中心地址在哪里">同安狗狗领养中心地址 同安狗狗领养中心地址在哪里</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-8-clash-node-daily-updates.htm" title="11月8日→18.6M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">11月8日→18.6M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</a></li>
-                        <li class="py-2"><a href="/news/article-54228.htm" title="js 小案例 跑马灯效果">js 小案例 跑马灯效果</a></li>
-                        <li class="py-2"><a href="/news/article-44519.htm" title="狗粮颗粒机器价格多少（狗粮颗粒机器价格多少钱）">狗粮颗粒机器价格多少（狗粮颗粒机器价格多少钱）</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-12-3-free-node-subscribe-links.htm" title="12月3日→19.2M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">12月3日→19.2M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</a></li>
-                        <li class="py-2"><a href="/news/article-21583.htm" title="上海2020年宠物领养活动时间是多少号（上海2020年宠物领养活动时间是多少号啊）">上海2020年宠物领养活动时间是多少号（上海2020年宠物领养活动时间是多少号啊）</a></li>
-                        <li class="py-2"><a href="/news/article-39576.htm" title="SpringBoot系列: url重定向和转发">SpringBoot系列: url重定向和转发</a></li>
-                        <li class="py-2"><a href="/news/article-45012.htm" title="成都宠物收容机构排名（成都收宠物的宠物店）">成都宠物收容机构排名（成都收宠物的宠物店）</a></li>
+                        <li class="py-2"><a href="/news/article-59841.htm" title="通过concat()方法进行字符串连接。">通过concat()方法进行字符串连接。</a></li>
+                        <li class="py-2"><a href="/news/article-53148.htm" title="教你如何获取Harbor的带tag的镜像清单_docker">教你如何获取Harbor的带tag的镜像清单_docker</a></li>
+                        <li class="py-2"><a href="/news/article-18846.htm" title="工厂养猫聚财还是破财（厂里养猫会带来好运吗）">工厂养猫聚财还是破财（厂里养猫会带来好运吗）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-24-clash-node-daily-updates.htm" title="12月24日→18.4M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">12月24日→18.4M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-8-clash-node-daily-updates.htm" title="1月8日→18.1M/S|2025年最新免费节点Free V2ray Clash订阅链接地址">1月8日→18.1M/S|2025年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-26-free-high-speed-nodes.htm" title="1月26日→21.2M/S|2025年最新免费节点Free V2ray Clash订阅链接地址">1月26日→21.2M/S|2025年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-43025.htm" title="vue项目如何刷新当前页面">vue项目如何刷新当前页面</a></li>
+                        <li class="py-2"><a href="/news/article-20662.htm" title="宠物店开业活动文案（宠物店开业活动文案范文）">宠物店开业活动文案（宠物店开业活动文案范文）</a></li>
+                        <li class="py-2"><a href="/news/article-25725.htm" title="promise 和 async/await的区别">promise 和 async/await的区别</a></li>
+                        <li class="py-2"><a href="/news/article-56449.htm" title="宠物医院大众点评评语 宠物医院大众点评评语怎么写">宠物医院大众点评评语 宠物医院大众点评评语怎么写</a></li>
                     </ul>
     </div>
 </div>
@@ -147,7 +148,7 @@
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">60</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+                <h4><span class="badge" style="float: right;">69</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">93</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
