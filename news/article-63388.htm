@@ -1,0 +1,339 @@
+<!doctype html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://freev2rayclash.github.io/news/article-63388.htm" />
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Java中的多态</title>
+        <meta name="description" content="多态： 从字面意思理解就是多种形态。而在Java中多态是同一个行为具有多个不同表现形式或形态的能力。 多态分为: 方法多态：方法的重写和重载就是方法的多态的体现形式 对象多态： 1.一个对象 的编译类" />
+        <link rel="icon" href="/assets/website/img/freev2rayclash/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Free V2ray Clash免费机场订阅节点官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://freev2rayclash.github.io/news/article-63388.htm" />
+    <meta property="og:site_name" content="Free V2ray Clash免费机场订阅节点官网" />
+    <meta property="og:title" content="Java中的多态" />
+    <meta property="og:image" content="https://freev2rayclash.github.io/uploads/20240919-1/e433ff424b810a2c05f1824d3ccc3471.webp" />
+        <meta property="og:release_date" content="2025-02-26T08:34:50" />
+    <meta property="og:updated_time" content="2025-02-26T08:34:50" />
+        <meta property="og:description" content="多态： 从字面意思理解就是多种形态。而在Java中多态是同一个行为具有多个不同表现形式或形态的能力。 多态分为: 方法多态：方法的重写和重载就是方法的多态的体现形式 对象多态： 1.一个对象 的编译类" />
+    
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Java中的多态">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,300;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- Template CSS -->
+    <link rel="stylesheet" href="/assets/website/css/freev2rayclash/style-starter.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SMY6EV424E"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-SMY6EV424E');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!--header-->
+    <header id="site-header" class="fixed-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-dark stroke">
+                <a class="navbar-brand" href="/">
+                                    <span>
+                        Free V2ray Clash                    </span>
+                                </a>
+                <!-- if logo is image enable this   
+      <a class="navbar-brand" href="#index.html">
+          <img src="image-path" alt="Your logo" title="Your logo" style="height:35px;" />
+      </a> -->
+                <button class="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon fa icon-expand fa-bars"></span>
+                    <span class="navbar-toggler-icon fa icon-close fa-times"></span>
+                    </span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                    <ul class="navbar-nav mx-lg-auto">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/free-nodes/">免费节点</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/paid-subscribe/">推荐机场</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/client.htm">客户端</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/news/">新闻资讯</a>
+                        </li>
+                                            </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <!--/header-->
+    <div class="inner-banner">
+    </div>
+    <section class="w3l-breadcrumb">
+        <div class="container">
+            <ul class="breadcrumbs-custom-path">
+                <li><a href="/">首页</a></li>
+                <li><a href="/news/"><span class="fa fa-arrow-right mx-2" aria-hidden="true"></span> 新闻资讯</a></li>
+                <li class="active"><span class="fa fa-arrow-right mx-2" aria-hidden="true"></span> 正文</li>
+            </ul>
+        </div>
+    </section>
+    <!--/about-->
+    <!--/w3l-faq-block-->
+    <div class="w3l-faq-block py-5" id="faq">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                    <h1 class="mb-5">Java中的多态</h1>
+                    
+                                    <input type="hidden" id="share-website-info" data-name="Clash Meta免费节点订阅站" data-url="https://clash-meta.github.io">
+                  				  				  				<div id="content_views" class="htmledit_views"> <h3><strong>多态：</strong></h3> <p>从字面意思理解就是多种形态。而在Java中多态是同一个行为具有多个不同表现形式或形态的能力。</p> <p><strong>多态分为:</strong></p> <p><strong>方法多态：方法的重写和重载就是方法的多态的体现形式</strong></p> <p><strong>对象多态：</strong></p> <p>1.一个对象 的编译类型和运行类型是不一样</p> <p>2.编译类型是在定义对象的时候，就已经确定好的</p> <p>3.运行类型是可以改变的</p> <p>4.编译类型看=的左边 运行类型看 =的右边</p> <p>例：<strong>Person person = new Person();</strong></p> <p><strong>注意：</strong></p> <p>1.必须有继承</p> <p>2.必须有重写</p> <p>3.等号左边是父类的引用，等号右边是子类的对象。</p> <p><strong>多态的转型：【向上转型和向下转型】</strong></p> <h3><strong>1.向上转型</strong></h3> <p>本质就是：父类的引用指向子类对象。</p> <p>语法格式：</p> <p> 父类 父类引用 = new 子类（）；</p> <pre><code class="language-java">示例：package com.qfedu.d_duotai;  class Person { 	public void eat () { 		 	} } class Student extends Person { 	@Override 	public void eat() { 		System.out.println("学生吃饭，吃披萨"); 	} 	public void sleep () { 		System.out.println("中午不谁下午崩溃！！！"); 	} } public class Demo1 { 	public static void main(String[] args) { 		Person person = new Student();//向上转型 		person.eat(); 		//person.sleep(); 	}  } </code></pre> <p>将子类的对象赋值给了父类的引用。小范围（子类） 转为大范围（父类）自动转</p> <p>父类的引用可以调用父类的所有成员方法，可以调用子类的重写父类的方法，但是不能调用子类独有的方法。</p> <h3><strong>2.向下转型</strong></h3> <p>语法格式：</p> <p>父类 父类引用 = new 子类（）；</p> <p>子类 子类引用 = （子类）父类的引用；</p> <pre><code class="language-java">实例：package com.qfedu.d_duotai;  class TestA { 	//Object 是所有类的父类 	public void test (Object obj ) { 		//必须给我打印一个String类型的狗蛋，我不要Object类型的狗蛋 //		String str = (String) obj;  //		System.out.println(str); 		int i1 = (int)obj; 		System.out.println(i1); 		 	} } public class Demo4 { 	public static void main(String[] args) { 		TestA testA = new TestA(); 		//testA.test("狗蛋"); 		Object object = "狗蛋"; 		testA.test(98); 		testA.test('狗'); 	}  } </code></pre> <h3><strong>instenceof 关键字</strong></h3> <p>是比较操作符，返回值是布尔&nbsp;<strong>Boolean</strong>类型数据</p> <p>语法格式：</p> <p>对象引用&nbsp;<strong>instenceof</strong>&nbsp;类（运行类型）</p> <p>用来判断对象的运行类型（=右边）， 是否是xx类型或者xx类型的子类</p> <p><strong>目的：是为了在强转的时候不出现问题</strong></p> </p></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-62790.htm">动物打预防针多少钱一次啊（动物疫苗贵吗）</a></p>
+                                        <p>下一个：<a href="/news/article-63389.htm">北京动物咬伤去哪打疫苗（北京动物园咬伤）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-49999.htm" title="宠物粮食品牌大全排名图片 宠物粮食品牌大全排名图片及名字">宠物粮食品牌大全排名图片 宠物粮食品牌大全排名图片及名字</a></li>
+                        <li class="py-2"><a href="/news/article-19284.htm" title="养猫的人容易得什么（养猫的人容易得什么精神病）">养猫的人容易得什么（养猫的人容易得什么精神病）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-2-node-share-links.htm" title="2月2日→19.6M/S|2025年最新免费节点Free V2ray Clash订阅链接地址">2月2日→19.6M/S|2025年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-56993.htm" title="济南美联众合动物医院领秀城电话（美联众合动物医院地址）">济南美联众合动物医院领秀城电话（美联众合动物医院地址）</a></li>
+                        <li class="py-2"><a href="/news/article-52616.htm" title="宠物领养平台app推荐哪个软件好用（宠物领养 app）">宠物领养平台app推荐哪个软件好用（宠物领养 app）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-2-node-share-links.htm" title="12月2日→21.3M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">12月2日→21.3M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-63388.htm" title="Java中的多态">Java中的多态</a></li>
+                        <li class="py-2"><a href="/news/article-38563.htm" title="iOS全埋点解决方案-应用退出和启动">iOS全埋点解决方案-应用退出和启动</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-6-free-high-speed-nodes.htm" title="12月6日→22M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">12月6日→22M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-13-clash-windows.htm" title="12月13日→22.1M/S|2024年最新免费节点Free V2ray Clash订阅链接地址">12月13日→22.1M/S|2024年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+        <!--//w3l-faq-block-->
+    <section class="w3l-footer-29-main w3l-copyright">
+        <div class="container">
+            <div class="bottom-copies">
+                <p class="copy-footer-29 text-center">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                    <a href="/">Free V2ray Clash免费机场订阅节点官网</a> 版权所有 Powered by WordPress
+                </p>
+            </div>
+        </div>
+        <!-- move top -->
+        <button onclick="topFunction()" id="movetop" title="Go to top">
+            <span class="fa fa-angle-up"></span>
+        </button>
+        <script>
+        // When the user scrolls down 20px from the top of the document, show the button
+        window.onscroll = function() {
+            scrollFunction()
+        };
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                document.getElementById("movetop").style.display = "block";
+            } else {
+                document.getElementById("movetop").style.display = "none";
+            }
+        }
+
+        // When the user clicks on the button, scroll to the top of the document
+        function topFunction() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }
+        </script>
+        <!-- /move top -->
+    </section>
+    <!-- Template JavaScript -->
+    <script src="/assets/website/js/frontend/freev2rayclash/jquery-3.3.1.min.js"></script>
+    <!-- script for testimonials -->
+    <script>
+    $(document).ready(function() {
+        $('.owl-testimonial').owlCarousel({
+            loop: true,
+            margin: 0,
+            nav: true,
+            responsiveClass: true,
+            autoplay: true,
+            autoplayTimeout: 5000,
+            autoplaySpeed: 1000,
+            autoplayHoverPause: false,
+            responsive: {
+                0: {
+                    items: 1,
+                    nav: false
+                },
+                480: {
+                    items: 1,
+                    nav: false
+                },
+                667: {
+                    items: 1,
+                    nav: true
+                },
+                1000: {
+                    items: 1,
+                    nav: true
+                }
+            }
+        })
+    })
+    </script>
+    <!-- //script for testimonials -->
+    <script src="/assets/website/js/frontend/freev2rayclash/theme-change.js"></script>
+    <!-- js for portfolio lightbox -->
+    <!-- libhtbox -->
+    <script src="/assets/website/js/frontend/freev2rayclash/lightbox-plus-jquery.min.js"></script>
+    <!-- libhtbox -->
+    <script src="/assets/website/js/frontend/freev2rayclash/owl.carousel.js"></script>
+    <!-- script for banner slider-->
+    <script>
+    $(document).ready(function() {
+        $('.owl-one').owlCarousel({
+            loop: true,
+            margin: 0,
+            nav: false,
+            responsiveClass: true,
+            autoplay: true,
+            autoplayTimeout: 5000,
+            autoplaySpeed: 1000,
+            autoplayHoverPause: false,
+            responsive: {
+                0: {
+                    items: 1,
+                    nav: false
+                },
+                480: {
+                    items: 1,
+                    nav: false
+                },
+                667: {
+                    items: 1,
+                    nav: true
+                },
+                1000: {
+                    items: 1,
+                    nav: true
+                }
+            }
+        })
+    })
+    </script>
+    <!-- //script -->
+    <!-- stats number counter-->
+    <script src="/assets/website/js/frontend/freev2rayclash/jquery.waypoints.min.js"></script>
+    <script src="/assets/website/js/frontend/freev2rayclash/jquery.countup.js"></script>
+    <script>
+    $('.counter').countUp();
+    </script>
+    <!-- //stats number counter -->
+    <!-- disable body scroll which navbar is in active -->
+    <script>
+    $(function() {
+        $('.navbar-toggler').click(function() {
+            $('body').toggleClass('noscroll');
+        })
+    });
+    </script>
+    <!-- disable body scroll which navbar is in active -->
+    <!--/MENU-JS-->
+    <script>
+    $(window).on("scroll", function() {
+        var scroll = $(window).scrollTop();
+
+        if (scroll >= 80) {
+            $("#site-header").addClass("nav-fixed");
+        } else {
+            $("#site-header").removeClass("nav-fixed");
+        }
+    });
+
+    //Main navigation Active Class Add Remove
+    $(".navbar-toggler").on("click", function() {
+        $("header").toggleClass("active");
+    });
+    $(document).on("ready", function() {
+        if ($(window).width() > 991) {
+            $("header").removeClass("active");
+        }
+        $(window).on("resize", function() {
+            if ($(window).width() > 991) {
+                $("header").removeClass("active");
+            }
+        });
+    });
+    </script>
+    <!--//MENU-JS-->
+    <script src="/assets/website/js/frontend/freev2rayclash/bootstrap.min.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
