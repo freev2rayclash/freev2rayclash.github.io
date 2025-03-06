@@ -1,0 +1,336 @@
+<!doctype html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://freev2rayclash.github.io/news/article-67114.htm" />
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>MQTT物联网通讯协议入门及Demo实现</title>
+        <meta name="description" content="一、MQTT协议概念  MQTT（Message Queuing Telemetry Transport，消息队列遥测传输协议），它是一个极其轻量级的发布/订阅消息传输协议，轻量级指的是较少的代码和带" />
+        <link rel="icon" href="/assets/website/img/freev2rayclash/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Free V2ray Clash免费机场订阅节点官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://freev2rayclash.github.io/news/article-67114.htm" />
+    <meta property="og:site_name" content="Free V2ray Clash免费机场订阅节点官网" />
+    <meta property="og:title" content="MQTT物联网通讯协议入门及Demo实现" />
+    <meta property="og:image" content="https://freev2rayclash.github.io/uploads/20240919-1/cdb35de2f4f6a535eb6dcf9004858164.webp" />
+        <meta property="og:release_date" content="2025-03-04T10:14:34" />
+    <meta property="og:updated_time" content="2025-03-04T10:14:34" />
+        <meta property="og:description" content="一、MQTT协议概念  MQTT（Message Queuing Telemetry Transport，消息队列遥测传输协议），它是一个极其轻量级的发布/订阅消息传输协议，轻量级指的是较少的代码和带" />
+    
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="MQTT物联网通讯协议入门及Demo实现">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,300;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- Template CSS -->
+    <link rel="stylesheet" href="/assets/website/css/freev2rayclash/style-starter.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SMY6EV424E"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-SMY6EV424E');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!--header-->
+    <header id="site-header" class="fixed-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-dark stroke">
+                <a class="navbar-brand" href="/">
+                                    <span>
+                        Free V2ray Clash                    </span>
+                                </a>
+                <!-- if logo is image enable this   
+      <a class="navbar-brand" href="#index.html">
+          <img src="image-path" alt="Your logo" title="Your logo" style="height:35px;" />
+      </a> -->
+                <button class="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon fa icon-expand fa-bars"></span>
+                    <span class="navbar-toggler-icon fa icon-close fa-times"></span>
+                    </span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                    <ul class="navbar-nav mx-lg-auto">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/free-nodes/">免费节点</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/paid-subscribe/">推荐机场</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/client.htm">客户端</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/news/">新闻资讯</a>
+                        </li>
+                                            </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <!--/header-->
+    <div class="inner-banner">
+    </div>
+    <section class="w3l-breadcrumb">
+        <div class="container">
+            <ul class="breadcrumbs-custom-path">
+                <li><a href="/">首页</a></li>
+                <li><a href="/news/"><span class="fa fa-arrow-right mx-2" aria-hidden="true"></span> 新闻资讯</a></li>
+                <li class="active"><span class="fa fa-arrow-right mx-2" aria-hidden="true"></span> 正文</li>
+            </ul>
+        </div>
+    </section>
+    <!--/about-->
+    <!--/w3l-faq-block-->
+    <div class="w3l-faq-block py-5" id="faq">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                    <h1 class="mb-5">MQTT物联网通讯协议入门及Demo实现</h1>
+                    
+                                    <input type="hidden" id="share-website-info" data-name="Clash Meta免费节点订阅站" data-url="https://clash-meta.github.io">
+                  				  				  				<div class="toc"> <div class="toc-container-header"><span style="font-size: 1.5em;">一、MQTT协议概念</span></div> </div> <p>MQTT（Message Queuing Telemetry Transport，消息队列遥测传输协议），它是一个极其<strong>轻量级</strong>的<code>发布/订阅</code>消息传输协议，轻量级指的是较少的代码和带宽。因为在物联网行业有类似充电桩、娃娃机、遥控飞行器等等这样的设备，它们的网络可能存在不稳定的情况并且只需要传输少量的数据，MQTT就应运而生专为受限设备和低带宽、高延迟或不可靠的网络而设计。</p> <h4 id="发布订阅机制">发布/订阅机制</h4> <p>发布/订阅模型<strong>将发送消息的客户端（发布者）与接收消息的客户端（订阅者）分离</strong>。发布者和订阅者从不直接联系。他们甚至不知道对方的存在，它们之间由一个第三方组件（<strong>代理</strong>）处理帮助筛选所有传入消息，并将其正确分发给订阅者。<strong>消息的发布者和订阅者都是客户端，消息代理是服务器，消息发布者可以同时是订阅者</strong></p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/08a53f2ee2239f2b8229ebba7cc710ca.jpg" alt="MQTT物联网通讯协议入门及Demo实现"></p> <p>这个机制最重要的是将发布者和订阅者进行解耦</p> <ol> <li>发布者、订阅者不需要交换端口知道对方的主机，只需要知道代理的主机和端口</li> <li>发布者、订阅者不需要同时都运行，哪怕一方下线</li> <li>发布或接收期间，这两个组件上的操作都不需要中断</li> </ol> <h4 id="mqtt客户端">MQTT客户端</h4> <p>发布者和订阅者都是客户端，可以是设备也可以是服务器，简单来说就是<strong>网络连接到MQTT代理的任何设备</strong>。</p> <h4 id="broker代理服务器">Broker代理（服务器）</h4> <p><strong>代理负责接收所有消息、过滤消息、确定谁订阅了每条消息，并将消息发送到这些订阅的客户端。</strong>代理还保存具有持久会话的所有客户端的会话数据，包括订阅和丢失的消息。代理的另一个职责是客户端的身份验证和授权。通常，代理是可扩展的，这有助于自定义身份验证、授权和集成到后端系统中。</p> <h4 id="mqtt消息结构">MQTT消息结构</h4> <p>MQTT消息包含三个部分：</p> <ul> <li> <p>固定头（Fixed header）</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/fd83780622996498da06dcfaa64eaea8.jpg" alt="MQTT物联网通讯协议入门及Demo实现"></p> </li> <li> <p>可变头（Variable header）</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/c2971a9ee77ae4f7d1f3884284cf8cb8.jpg" alt="MQTT物联网通讯协议入门及Demo实现"></p> </li> <li> <p>消息体（payload）</p> </li> </ul> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/3728cffb597e5562f105384f920e501f.jpg" alt="MQTT物联网通讯协议入门及Demo实现"></p> <h2 id="二mqtt协议实现原理">二、MQTT协议实现原理</h2> <p>MQTT 客户端需要连接到代理后立即发布消息，然后订阅者从里面订阅数据，这里涉及到六个部分：<code>CONNECT</code>、<code>Publish</code>、<code>Subscribe</code>、<code>Unsubscribe</code>、<code>SUBACK</code>、<code>Unsuback</code></p> <h4 id="mqtt连接">MQTT连接</h4> <p>客户端向代理发送CONNECT消息。代理响应一个CONNACK消息和一个状态码。连接建立后，代理将保持连接打开，直到客户端发送断开连接命令或连接断开</p> <p><strong>CONNECT</strong>消息主要包含以下内容：</p> <ul> <li> <p>ClientId：代理使用ClientId来标识客户端和客户端当前状态，对于每个客户端和代理ClientId是唯一的</p> </li> <li> <p>Clean Session：标志告诉代理客户端是否想要建立一个持久会话。如果为false代理会存储客户端的所有订阅以及使用服务质量(QoS)级别1或2进行订阅的客户端的所有错过的消息。如果为true代理不为客户端存储任何内容，并清除以前任何持久会话中的所有信息</p> </li> <li> <p>Username/Password：用户名和密码用于客户端身份验证和授权。强烈建议用户名和密码与安全传输使用SSL证书验证客户端，因此不需要用户名和密码</p> </li> <li> <p>Will Message：遗嘱，当客户端断开连接时，此消息通知其他客户端</p> </li> <li> <p>KeepAlive：客户端指定并在连接建立时与代理通信。这个间隔定义了代理和客户端在不发送消息的情况下可以忍受的最长时间</p> </li> <li> <p>LWT字段：包含lastWillTopic、lastWillMessage、lastWillRetain、lastWillQos</p> <p>这个字段可以帮助了解客户端是正常断开连接（使用 MQTT<em>断开连接</em>消息）还是不正常断开连接（没有断开连接消息），检测到客户端已不正常地断开连接。为了响应不正常的断开连接，代理将最后一个将消息发送到最后一个将消息主题的所有订阅客户端。如果客户端使用正确的断开连接消息正常断开连接，那么代理将丢弃存储的 LWT 消息</p> </li> </ul> <p>代理收到 CONNECT 消息时，返回连接确认标志</p> <h4 id="mqtt消息发布">MQTT消息发布</h4> <p><strong>每条消息都必须包含一个主题，代理可以使用该主题将消息转发给感兴趣的客户端</strong></p> <p><strong>Publish</strong>消息包含以下内容：</p> <ul> <li> <p>packetID：数据包标识符在消息在客户端和代理之间流动时唯一标识消息。数据包标识符仅与大于零的 QoS 级别相关</p> </li> <li> <p>topicName：主题名称，<strong>主题区分大小写</strong></p> <p>主题格式就像URL：deviceName/1638791867</p> <ol> <li><strong>+</strong>：表示任意匹配某一级主题，例如<code>deviceName/+/weaved</code>可以匹配<code>deviceName/1638791867/weaved</code>，但是无法匹配<code>deviceName/1638791867/weaving</code></li> <li><strong>#：</strong>表示匹配多级，例如<code>deviceName/#</code>可以匹配<code>deviceName/1638791867/weaved</code></li> <li><strong>$：</strong>是为 MQTT 代理的内部统计信息保留的，客户端无法向这些主题发布消息</li> </ol> </li> <li> <p>QOS：服务级别质量，有3 个 QoS 级别</p> <ol> <li> <p>最多一次 （0）</p> <p>只会传输一次，不能保证对方一定会收到</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/1cdb3dc0e91aef56cd5af5877b6efb6e.jpg" alt="MQTT物联网通讯协议入门及Demo实现"></p> </li> <li> <p>至少一次 （1）<strong>常用</strong></p> <p>至少保证对方能够收到一次消息，获得接收方发来的 PUBACK数据包，如果发送方在合理的时间内未收到 PUBACK 数据包，则发送方将重新发送 PUBLISH 数据包</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/9be23c3e2418a3d20e342f80e5984d5e.jpg" alt="MQTT物联网通讯协议入门及Demo实现"></p> </li> <li> <p>正好一次 （2）</p> <p>QoS 2 是最安全、最慢的服务质量级别，由发送方和接收方之间的至少两个请求/响应流（四部分握手）提供。</p> <p>（1）、当接收方从发送方获取 QoS 2 PUBLISH 数据包时，它会相应地处理发布消息，并使用确认 PUBLISH 数据包的PUBREC 数据包回复发送方。如果发送方未从接收方获取 PUBREC 数据包，它将再次发送带有重复 （DUP） 标志的 PUBLISH 数据包，直到收到确认。</p> <p>（2）、接收方收到<code>PUBREC</code> 数据包，发送方就可以安全地丢弃初始<code>PUBLISH</code> 数据包。</p> <p>（3）、发送方存储来自接收方的<code>PUBREC</code> 数据包，并使用<code>PUBREL</code>数据包进行响应</p> <p>（4）、接收方获得<code>PUBREL</code> 数据包后，它可以丢弃所有存储的状态并使用<code>PUBCOMP</code>数据包进行应答</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/9ac0e5dabc33f2bea7a2f27bffd64b73.jpg" alt="MQTT物联网通讯协议入门及Demo实现"></p> </li> </ol> <p>如果数据包在此过程中丢失，发件人负责在合理的时间内重新传输消息</p> </li> <li> <p>retainFlag：消息是否由代理保存为指定主题的最后一个已知正确值。当新客户端订阅某个主题时，它们会收到保留在该主题上的最后一条消息</p> <p><strong>保留的消息可帮助新订阅的客户端在订阅主题后立即获取状态更新，而不需要等到客户端下一次推送消息。保留的消息消除了等待发布客户端发送下一个更新的时间</strong></p> </li> <li> <p>payload：消息的实际内容包含图像，任何编码的文本，加密数据以及二进制的数据</p> </li> <li> <p>dupFlag：标志指示邮件是重复的，这个重复发送跟QoS大于0的时候有关</p> </li> </ul> <p>客户端将消息发送到 MQTT代理进行发布时，<strong>代理将读取消息，确认消息（根据 QoS 级别），并处理消息</strong>。代理的处理包括确定哪些客户端订阅了主题并向它们发送消息</p> <h4 id="mqtt订阅机制">MQTT订阅机制</h4> <p>MQTT客户端发送了消息。如果没人接收消息将毫无意义，所以也会有客户端来订阅消息，客户端会向 MQTT 代理发送一条 SUBSCRIBE消息</p> <p><strong>Subscribe</strong>消息包含以下内容：</p> <ul> <li> <p>packetID：数据包标识符在消息在客户端和代理之间流动时唯一标识消息。数据包标识符仅与大于零的 QoS 级别相关</p> </li> <li> <p>订阅列表：一个 SUBSCRIBE 消息可以包含一个客户端的多个订阅，每个订阅都由一个主题和一个 QoS 级别组成</p> </li> </ul> <h4 id="mqtt订阅确认">MQTT订阅确认</h4> <p>为了确认每个订阅，代理向客户端发送 SUBACK确认消息</p> <p><strong>SUBACK</strong>消息包含以下内容：</p> <ul> <li>packetID：数据包标识符在消息在客户端和代理之间流动时唯一标识消息</li> <li>rerurnCode：每订阅一个主题发送一个返回代码</li> </ul> <table> <thead> <tr> <th>返回代码</th> <th>返回代码响应</th> </tr> </thead> <tbody> <tr> <td>0</td> <td>成功 - 最大 QoS 0</td> </tr> <tr> <td>1</td> <td>成功 - 最大 QoS 1</td> </tr> <tr> <td>2</td> <td>成功 - 最大 QoS 2</td> </tr> <tr> <td>128</td> <td>失败</td> </tr> </tbody> </table> <p>客户端成功发送 SUBSCRIBE 消息并接收 SUBACK 消息后，它将获取与 SUBSCRIBE 消息包含的订阅中的主题匹配的每个已发布消息</p> <h4 id="mqtt取消订阅">MQTT取消订阅</h4> <p>消息可以订阅那么也可以取消订阅，会删除代理上客户端的现有预订</p> <p><strong>Unsubscribe</strong>消息包含以下内容：</p> <ul> <li>packetID：数据包标识符在消息在客户端和代理之间流动时唯一标识消息</li> <li>List of Topic（主题列表）：主题列表可以包含多个客户要取消订阅的主题。只需发送主题</li> </ul> <h4 id="mqtt确认取消订阅">MQTT确认取消订阅</h4> <p>要确认取消订阅，代理会向客户端发送 Unsuback确认消息</p> <p><strong>Unsuback</strong>消息包含以下内容：</p> <ul> <li>packetID：数据包标识符在消息在客户端和代理之间流动时唯一标识消息，这与取消订阅消息中的数据包标识符相同</li> </ul> <h2 id="三mqtt基本功能">三、MQTT基本功能</h2> <h4 id="持久会话">持久会话</h4> <p>客户端需要连接到代理并且订阅主题，但是客户端和代理之间如果连接在非持久会话中中断，那么主题会丢失，需要在重新连接时再次订阅。为了避免这个问题可以使用持久会话功能，它主要是在代理中存储了：</p> <ul> <li>客户端的会话以及订阅</li> <li>QOS为1和2中没有确认的消息</li> <li>客户端在断联时候错过的消息</li> <li>客户端接收到的所有尚未完全确认的 QoS 2 消息</li> </ul> <p>为了开启代理上的持久会话，在MQTT客户端连接到代理服务器的时候有个<code>cleanSession</code>字段设置为false表示开启持久会话，所有信息和消息都将保留，<strong>代理存储会话，直到客户端重新联机并收到消息</strong>，如果长时间不联机，那么会消耗内存</p> <p>客户端上的持久会话，当客户端请求服务器保存会话数据时，客户端负责存储以下信息：</p> <ul> <li>QoS 1 或 2 流中尚未由代理确认的所有消息</li> <li>从代理接收到的所有尚未完全确认的 QoS 2 消息</li> </ul> <h2 id="四mqtt-demo">四、MQTT Demo</h2> <h4 id="搭建mqtt服务器">搭建MQTT服务器</h4> <p>官方文档：<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.emqx.io/docs/zh/v4.3/"  target="_blank" rel="nofollow">产品概览 | EMQX 文档</a></p> <p><em>EMQX</em> (Erlang/Enterprise/Elastic MQTT Broker) 是基于 Erlang/OTP 平台开发的开源物联网 MQTT 消息服务器。</p> <p>Erlang/OTP是出色的软实时 (Soft-Realtime)、低延时 (Low-Latency)、分布式 (Distributed)的语言平台。</p> <p>MQTT 是轻量的 (Lightweight)、发布订阅模式 (PubSub) 的物联网消息协议。</p> <p>EMQX 设计目标是实现高可靠，并支持承载海量物联网终端的 MQTT 连接，支持在海量物联网设备间低延时消息路由:</p> <ol> <li>稳定承载大规模的 MQTT 客户端连接，单服务器节点支持 200 万连接。</li> <li>分布式节点集群，快速低延时的消息路由。</li> <li>消息服务器内扩展，支持定制多种认证方式、高效存储消息到后端数据库。</li> <li>完整物联网协议支持，MQTT、MQTT-SN、CoAP、LwM2M、WebSocket 或私有协议支持</li> </ol> <p><strong>使用Docker安装EMQX</strong></p> <p>1、获取Docker镜像</p> <pre><code class="language-shell">docker pull emqx/emqx:4.4.3</code></pre> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/29e6224c7d2dc3a8c71d27231ef405b6.jpg" alt="MQTT物联网通讯协议入门及Demo实现"></p> <p>2、启动Docker</p> <pre><code>docker run -d --name emqx -p 1883:1883 -p 8081:8081 -p 8083:8083 -p 8084:8084 -p 8883:8883 -p 18083:18083 emqx/emqx:4.4.3</code></pre> <p>3、访问Web管理控制台</p> <p>控制台地址:<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=http://XXXXXX:18083"  target="_blank" rel="nofollow">http://XXXXXX:18083</a>，默认用户: admin，密码：public</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/00e0cd75dd389534ded0c3c3143cdc3b.jpg" alt="MQTT物联网通讯协议入门及Demo实现"></p> <blockquote> <p>各个服务端口说明：<br /> 1883：MQTT 协议端口<br /> 8883：MQTT/<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://so.csdn.net/so/search?q=SSL&amp;spm=1001.2101.3001.7020"  target="_blank" rel="nofollow">SSL</a> 端口<br /> 8083：MQTT/WebSocket 端口<br /> 8080：HTTP<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://so.csdn.net/so/search?q=API&amp;spm=1001.2101.3001.7020"  target="_blank" rel="nofollow">API</a> 端口<br /> 18083：Dashboard 管理控制台端口</p> </blockquote> <h4 id="搭建mqtt消息推送客户端">搭建MQTT消息推送客户端</h4> <p>引入相关依赖包</p> <pre><code class="language-xml">  &lt;dependencies&gt;         &lt;dependency&gt;             &lt;groupId&gt;org.eclipse.paho&lt;/groupId&gt;             &lt;artifactId&gt;org.eclipse.paho.client.mqttv3&lt;/artifactId&gt;             &lt;version&gt;1.2.5&lt;/version&gt;         &lt;/dependency&gt;         &lt;dependency&gt;             &lt;groupId&gt;org.projectlombok&lt;/groupId&gt;             &lt;artifactId&gt;lombok&lt;/artifactId&gt;             &lt;version&gt;1.18.22&lt;/version&gt;             &lt;optional&gt;true&lt;/optional&gt;         &lt;/dependency&gt;     &lt;/dependencies&gt;</code></pre> <p><strong>MQTT客户端</strong></p> <pre><code class="language-java">import lombok.extern.slf4j.Slf4j; import lombok.val; import org.eclipse.paho.client.mqttv3.*; import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence; import org.springframework.stereotype.Component;  /**  * 消息推送客户端  *  * @author yanglingcong  */ @Slf4j @Component public class MyMqttClient {      private final static int QOS_1 = 1;      private final static String USER_NAME = "ylc";      private final static int PASSWORLD = 123456;      private final static int KEEP_ALIVE = 60;      /**      * 连接地址      * */     public static final String HOST = "tcp://XXXXX:1883";      /**     * 订阅主题     * */     public static final String TOPIC = "deviceName/";      //客户端唯一ID     private static final String clientid = "pubClient";       public static void main(String[] args) {         MqttClient mqtt = createMqtt();         publishMessage("Hello", TOPIC, mqtt);     }      public static MqttClient createMqtt() {         MqttClient client = null;          MqttConnectOptions connectOptions = new MqttConnectOptions();         //断开之后自动重联         connectOptions.setAutomaticReconnect(true);         //设置会话心跳时间 代理和客户端在不发送消息的情况下可以忍受的最长时间         connectOptions.setKeepAliveInterval(KEEP_ALIVE);         //不建立持久会话         connectOptions.setCleanSession(true);         //用户名         connectOptions.setUserName(USER_NAME);         //密码         connectOptions.setPassword(String.valueOf(PASSWORLD).toCharArray());         try {             client = new MqttClient(HOST, clientid, new MemoryPersistence());             //MQTT连接             client.connect(connectOptions);             //消息回调             client.setCallback(new MqttCallBackHandle(client));         } catch (MqttException e) {             log.warn("MQTT消息异常{}", e);          }         return client;      }      /**      * 消息推送      *      * @param message 消息内容      * @param topic   发送的主题      * @author yanglingcong      * @date 2022/4/18 21:25      */     public static void publishMessage(String message, String topic, MqttClient mqttClient) {         MqttMessage mqttMessage = new MqttMessage();         mqttMessage.setQos(QOS_1);         //保留在该主题上的最后一条消息         //mqttMessage.setRetained(true);         mqttMessage.setPayload(message.getBytes());         try {             mqttClient.publish(topic, mqttMessage);             log.info("MQTT消息发送成功:{}", message);         } catch (MqttException e) {             log.warn("MQTT消息推送失败");             e.printStackTrace();         }     }  }</code></pre> <p><strong>MQTT回调接口</strong></p> <pre><code class="language-Java">import lombok.extern.slf4j.Slf4j; import org.eclipse.paho.client.mqttv3.*; import org.eclipse.paho.client.mqttv3.MqttClient;  /**  * MQTT消息回调方法  */ @Slf4j public class MqttCallBackHandle implements MqttCallbackExtended {       private MqttClient client;      public  MqttCallBackHandle(MqttClient client){         this.client=client;     }      //订阅主题     private final static String CMD_TOP_FORMAT = "deviceName/";      /**      * 连接成功后调用该方法      * @param reconnect      * @param serverURI      */     @Override     public void connectComplete(boolean reconnect, String serverURI) {         try {             //重新订阅主题             client.subscribe(CMD_TOP_FORMAT);             log.info("=====MQTT重联成功=====");         } catch (MqttException e) {             e.printStackTrace();         }     }      /**       * 断开连接后回调方法      * @param throwable      */     @Override     public void connectionLost(Throwable throwable) {         log.info("=====MQTT连接断开=====");     }      /**      * 接收订阅到的消息      * @param topic      * @param message      * @throws Exception      */     @Override     public void messageArrived(String topic, MqttMessage message) throws Exception {         log.info("=====MQTT消息订阅成功=====");         log.info("主题：{}，内容：{}",topic,message);     }      /**      * 发送完成      * @param iMqttDeliveryToken      */     @Override     public void deliveryComplete(IMqttDeliveryToken iMqttDeliveryToken) {         log.info("=====MQTT消息发送完毕=====");     } }</code></pre> <h4 id="搭建mqtt消息订阅客户端">搭建MQTT消息订阅客户端</h4> <pre><code class="language-java">import lombok.extern.slf4j.Slf4j; import org.eclipse.paho.client.mqttv3.MqttClient; import org.eclipse.paho.client.mqttv3.MqttConnectOptions; import org.eclipse.paho.client.mqttv3.MqttException; import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence; import org.springframework.stereotype.Component;  /**  * 消息订阅客户端  *  * @author yanglingcong*/ @Component @Slf4j public class MyMqttSubClient {      private final static int QOS_1 = 1;      private final static String USER_NAME = "ylc";      private final static int PASSWORLD = 123456;      private final static int KEEP_ALIVE = 60;      //连接地址     public static final String HOST = "tcp://xxxx:1883";      // 订阅主题     public static final String TOPIC = "deviceName/";      //客户端唯一ID     private static final String clientid = "subClient";       public static void main(String[] args) {         subscribe();     }      public MyMqttSubClient() throws MqttException {         //订阅         subscribe();     }      public  static void subscribe()  {         MqttClient client=null;          MqttConnectOptions connectOptions=new MqttConnectOptions();         //断开之后自动重联         connectOptions.setAutomaticReconnect(true);         //设置会话心跳时间 代理和客户端在不发送消息的情况下可以忍受的最长时间         connectOptions.setKeepAliveInterval(KEEP_ALIVE);         //不建立持久会话         connectOptions.setCleanSession(true);         //用户名         connectOptions.setUserName(USER_NAME);         //密码         connectOptions.setPassword(String.valueOf(PASSWORLD).toCharArray());          try {             client=new MqttClient(HOST,clientid, new MemoryPersistence());             //MQTT连接             client.connect(connectOptions);          } catch (MqttException e) {             e.printStackTrace();         }         //消息回调         client.setCallback(new MqttCallBackHandle(client));           try {             client.subscribe(TOPIC,QOS_1);         } catch (MqttException e) {             log.warn("MQTT消息订阅异常{}",e);             e.printStackTrace();         }     } }</code></pre> <h4 id="环境测试">环境测试</h4> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/27d3b946eface1efff28382c6ed44595.jpg" alt="MQTT物联网通讯协议入门及Demo实现"></p> <p>1、MQTT客户端<code>pubClient</code>向服务器推送消息</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/0c70cf7c9ab29497247094013e9e3e79.jpg" alt="MQTT物联网通讯协议入门及Demo实现"></p> <p>2、MQTT客户端<code>subClient</code>从服务器订阅消息</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/dc6b359d2e6b8581b1a340510590b812.jpg" alt="MQTT物联网通讯协议入门及Demo实现"></p> <p>3、踢除客户端，会自动重联，因为设置了MQTT断开自动重联</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/27184a9dc0bc0241adb62ca5b01b17ed.jpg" alt="MQTT物联网通讯协议入门及Demo实现"></p> <h2 id="五mqtt常见问题">五、MQTT常见问题</h2> <h4 id="mqtt消息持久化">MQTT消息持久化</h4> <p>如果 cleanSession 设为true，一旦掉线客户端不会存储任何内容，并清除以前任何持久会话中的所有信息</p> <p>如果 cleanSession 设为false，重连后可以接收之前订阅主题的消息，还有离线时期未接收的消息</p> <h4 id="mqtt订阅恢复机制">MQTT订阅恢复机制</h4> <p>MQTT掉线设置自动重联之后，无法再进行订阅。MqttCallbackExtended接口有一个connectComplete方法用于重新订阅主题</p> <h4 id="mqtt和消息队列的区别">MQTT和消息队列的区别</h4> <ul> <li> <p>消息队列可以存储消息，直到被消费为止</p> </li> <li> <p>消息队列只能被消费处理一次，不像MQTT订阅的人都可以收到消息</p> </li> <li> <p>消息队列需要先创建队列，MQTT可以使用时候创建</p> </li> <li> <p>MQTT是一种通信协议，MQ是消息通道</p> </li> <li> <p>MQTT面向海量设备连接、MQ是面向海量数据</p> </li> </ul> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-66481.htm">重庆维斯特汽油发电机质量怎么样啊(重庆维斯特汽油发电机质量怎么样呀)</a></p>
+                                        <p>下一个：<a href="/news/article-67115.htm">Visual Studio快捷键汇总_实用技巧_</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-37092.htm" title="中国宠物用品市场（中国宠物用品市场在哪里）">中国宠物用品市场（中国宠物用品市场在哪里）</a></li>
+                        <li class="py-2"><a href="/news/article-62192.htm" title="小孩被猫爪子划破出血需要***吗（小孩被猫爪子划破出血需要***吗大概多少钱）">小孩被猫爪子划破出血需要***吗（小孩被猫爪子划破出血需要***吗大概多少钱）</a></li>
+                        <li class="py-2"><a href="/news/article-43025.htm" title="vue项目如何刷新当前页面">vue项目如何刷新当前页面</a></li>
+                        <li class="py-2"><a href="/news/article-63996.htm" title="宠物店赔钱吗多少钱（宠物店赔偿）">宠物店赔钱吗多少钱（宠物店赔偿）</a></li>
+                        <li class="py-2"><a href="/news/article-45526.htm" title="太原哪里批发狗粮（太原哪里有批发狗粮的地方?）">太原哪里批发狗粮（太原哪里有批发狗粮的地方?）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-12-clash-node.htm" title="2月12日→19.7M/S|2025年最新免费节点Free V2ray Clash订阅链接地址">2月12日→19.7M/S|2025年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-62790.htm" title="动物打预防针多少钱一次啊（动物疫苗贵吗）">动物打预防针多少钱一次啊（动物疫苗贵吗）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-2-free-subscribe-node.htm" title="3月2日→19.6M/S|2025年最新免费节点Free V2ray Clash订阅链接地址">3月2日→19.6M/S|2025年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-11-clash-node-daily-updates.htm" title="2月11日→21.5M/S|2025年最新免费节点Free V2ray Clash订阅链接地址">2月11日→21.5M/S|2025年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-14-free-high-speed-nodes.htm" title="1月14日→21M/S|2025年最新免费节点Free V2ray Clash订阅链接地址">1月14日→21M/S|2025年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">18</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+        <!--//w3l-faq-block-->
+    <section class="w3l-footer-29-main w3l-copyright">
+        <div class="container">
+            <div class="bottom-copies">
+                <p class="copy-footer-29 text-center">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                    <a href="/">Free V2ray Clash免费机场订阅节点官网</a> 版权所有 Powered by WordPress
+                </p>
+            </div>
+        </div>
+        <!-- move top -->
+        <button onclick="topFunction()" id="movetop" title="Go to top">
+            <span class="fa fa-angle-up"></span>
+        </button>
+        <script>
+        // When the user scrolls down 20px from the top of the document, show the button
+        window.onscroll = function() {
+            scrollFunction()
+        };
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                document.getElementById("movetop").style.display = "block";
+            } else {
+                document.getElementById("movetop").style.display = "none";
+            }
+        }
+
+        // When the user clicks on the button, scroll to the top of the document
+        function topFunction() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }
+        </script>
+        <!-- /move top -->
+    </section>
+    <!-- Template JavaScript -->
+    <script src="/assets/website/js/frontend/freev2rayclash/jquery-3.3.1.min.js"></script>
+    <!-- script for testimonials -->
+    <script>
+    $(document).ready(function() {
+        $('.owl-testimonial').owlCarousel({
+            loop: true,
+            margin: 0,
+            nav: true,
+            responsiveClass: true,
+            autoplay: true,
+            autoplayTimeout: 5000,
+            autoplaySpeed: 1000,
+            autoplayHoverPause: false,
+            responsive: {
+                0: {
+                    items: 1,
+                    nav: false
+                },
+                480: {
+                    items: 1,
+                    nav: false
+                },
+                667: {
+                    items: 1,
+                    nav: true
+                },
+                1000: {
+                    items: 1,
+                    nav: true
+                }
+            }
+        })
+    })
+    </script>
+    <!-- //script for testimonials -->
+    <script src="/assets/website/js/frontend/freev2rayclash/theme-change.js"></script>
+    <!-- js for portfolio lightbox -->
+    <!-- libhtbox -->
+    <script src="/assets/website/js/frontend/freev2rayclash/lightbox-plus-jquery.min.js"></script>
+    <!-- libhtbox -->
+    <script src="/assets/website/js/frontend/freev2rayclash/owl.carousel.js"></script>
+    <!-- script for banner slider-->
+    <script>
+    $(document).ready(function() {
+        $('.owl-one').owlCarousel({
+            loop: true,
+            margin: 0,
+            nav: false,
+            responsiveClass: true,
+            autoplay: true,
+            autoplayTimeout: 5000,
+            autoplaySpeed: 1000,
+            autoplayHoverPause: false,
+            responsive: {
+                0: {
+                    items: 1,
+                    nav: false
+                },
+                480: {
+                    items: 1,
+                    nav: false
+                },
+                667: {
+                    items: 1,
+                    nav: true
+                },
+                1000: {
+                    items: 1,
+                    nav: true
+                }
+            }
+        })
+    })
+    </script>
+    <!-- //script -->
+    <!-- stats number counter-->
+    <script src="/assets/website/js/frontend/freev2rayclash/jquery.waypoints.min.js"></script>
+    <script src="/assets/website/js/frontend/freev2rayclash/jquery.countup.js"></script>
+    <script>
+    $('.counter').countUp();
+    </script>
+    <!-- //stats number counter -->
+    <!-- disable body scroll which navbar is in active -->
+    <script>
+    $(function() {
+        $('.navbar-toggler').click(function() {
+            $('body').toggleClass('noscroll');
+        })
+    });
+    </script>
+    <!-- disable body scroll which navbar is in active -->
+    <!--/MENU-JS-->
+    <script>
+    $(window).on("scroll", function() {
+        var scroll = $(window).scrollTop();
+
+        if (scroll >= 80) {
+            $("#site-header").addClass("nav-fixed");
+        } else {
+            $("#site-header").removeClass("nav-fixed");
+        }
+    });
+
+    //Main navigation Active Class Add Remove
+    $(".navbar-toggler").on("click", function() {
+        $("header").toggleClass("active");
+    });
+    $(document).on("ready", function() {
+        if ($(window).width() > 991) {
+            $("header").removeClass("active");
+        }
+        $(window).on("resize", function() {
+            if ($(window).width() > 991) {
+                $("header").removeClass("active");
+            }
+        });
+    });
+    </script>
+    <!--//MENU-JS-->
+    <script src="/assets/website/js/frontend/freev2rayclash/bootstrap.min.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
