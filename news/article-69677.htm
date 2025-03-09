@@ -1,0 +1,336 @@
+<!doctype html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://freev2rayclash.github.io/news/article-69677.htm" />
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>PHP类抽象</title>
+        <meta name="description" content="介绍 在面向对象的程序设计中，抽象类是可以实例化的类，即不可能声明此类的对象。自版本5.0起PHP支持abstarct类的概念 用abstract关键字定义的类将成为抽象类。此外，包含至少一个抽象方法" />
+        <link rel="icon" href="/assets/website/img/freev2rayclash/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Free V2ray Clash免费机场订阅节点官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://freev2rayclash.github.io/news/article-69677.htm" />
+    <meta property="og:site_name" content="Free V2ray Clash免费机场订阅节点官网" />
+    <meta property="og:title" content="PHP类抽象" />
+    <meta property="og:image" content="https://freev2rayclash.github.io/uploads/20240919-1/157894a4f280b8008f48f56bd740a949.webp" />
+        <meta property="og:release_date" content="2025-03-08T05:06:21" />
+    <meta property="og:updated_time" content="2025-03-08T05:06:21" />
+        <meta property="og:description" content="介绍 在面向对象的程序设计中，抽象类是可以实例化的类，即不可能声明此类的对象。自版本5.0起PHP支持abstarct类的概念 用abstract关键字定义的类将成为抽象类。此外，包含至少一个抽象方法" />
+    
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="PHP类抽象">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,300;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- Template CSS -->
+    <link rel="stylesheet" href="/assets/website/css/freev2rayclash/style-starter.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SMY6EV424E"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-SMY6EV424E');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!--header-->
+    <header id="site-header" class="fixed-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-dark stroke">
+                <a class="navbar-brand" href="/">
+                                    <span>
+                        Free V2ray Clash                    </span>
+                                </a>
+                <!-- if logo is image enable this   
+      <a class="navbar-brand" href="#index.html">
+          <img src="image-path" alt="Your logo" title="Your logo" style="height:35px;" />
+      </a> -->
+                <button class="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon fa icon-expand fa-bars"></span>
+                    <span class="navbar-toggler-icon fa icon-close fa-times"></span>
+                    </span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                    <ul class="navbar-nav mx-lg-auto">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/free-nodes/">免费节点</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/paid-subscribe/">推荐机场</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/client.htm">客户端</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/news/">新闻资讯</a>
+                        </li>
+                                            </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <!--/header-->
+    <div class="inner-banner">
+    </div>
+    <section class="w3l-breadcrumb">
+        <div class="container">
+            <ul class="breadcrumbs-custom-path">
+                <li><a href="/">首页</a></li>
+                <li><a href="/news/"><span class="fa fa-arrow-right mx-2" aria-hidden="true"></span> 新闻资讯</a></li>
+                <li class="active"><span class="fa fa-arrow-right mx-2" aria-hidden="true"></span> 正文</li>
+            </ul>
+        </div>
+    </section>
+    <!--/about-->
+    <!--/w3l-faq-block-->
+    <div class="w3l-faq-block py-5" id="faq">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                    <h1 class="mb-5">PHP类抽象</h1>
+                    
+                                    <input type="hidden" id="share-website-info" data-name="Clash Meta免费节点订阅站" data-url="https://clash-meta.github.io">
+                  				  				  				<h2>介绍</h2> <p>在面向对象的程序设计中，抽象类是可以实例化的类，即不可能声明此类的对象。自版本5.0起PHP支持abstarct类的概念</p> <p>用abstract关键字定义的类将成为抽象类。此外，包含至少一个抽象方法的任何类也被视为抽象。</p> <h2>语法</h2> <pre>&lt;?php class&nbsp;testclass{ &nbsp;&nbsp;&nbsp;// } ?&gt;</pre> <p>如果我们尝试创建此类的对象，PHP解析器将引发如下错误：</p> <pre>$a=new&nbsp;testclass(); PHP&nbsp;Fatal&nbsp;error:&nbsp;Uncaught&nbsp;Error:&nbsp;Cannot&nbsp;instantiate&nbsp;abstract&nbsp;class&nbsp;testclass</pre> <h2>抽象方法</h2> <p>抽象方法仅声明其签名，即其可见性，参数和带有类型提示的返回类型，并且不具有任何功能。继承此类抽象类的类必须重写（提供定义）所有抽象方法。子类中的对应方法必须带有与父类中相同的签名。如果子类不满足此条件，则PHP解析器将引发异常。现在可以实例化扩展抽象类的类，因此称为具体类</p> <p>在下面的示例中，父类具有两个抽象方法，其中只有一个在子类中被重新定义。这导致错误如下-</p> <h2>示例</h2> <pre>&lt;?php abstract&nbsp;class&nbsp;testclass{ &nbsp;&nbsp;&nbsp;abstract&nbsp;function&nbsp;test1(); &nbsp;&nbsp;&nbsp;abstract&nbsp;function&nbsp;hello(); } class&nbsp;myclass&nbsp;extends&nbsp;testclass{ &nbsp;&nbsp;&nbsp;function&nbsp;test1(){ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;"Overrides&nbsp;parent&nbsp;test&nbsp;method"; &nbsp;&nbsp;&nbsp;} } $a=new&nbsp;myclass(); ?&gt;</pre> <p>输出结果</p> <p>以下是错误消息</p> <pre>PHP&nbsp;Fatal&nbsp;error:&nbsp;Class&nbsp;myclass&nbsp;contains&nbsp;1&nbsp;abstract&nbsp;method&nbsp;and&nbsp;must&nbsp;therefore&nbsp;be&nbsp;declared&nbsp;abstract&nbsp;or&nbsp;implement&nbsp;the&nbsp;remaining&nbsp;methods&nbsp;(testclass::hello)</pre> <h2>带参数的抽象方法</h2> <p>用参数定义抽象方法时，必须在子类中使用相同数量的参数覆盖抽象方法</p> <p>在下面的示例中，父类中的抽象方法具有两个参数。子类也使用两个参数定义相同的功能</p> <h2>示例</h2> <pre>&lt;?php abstract&nbsp;class&nbsp;testclass{ &nbsp;&nbsp;&nbsp;abstract&nbsp;function&nbsp;hello($name,&nbsp;$age); } class&nbsp;myclass&nbsp;extends&nbsp;testclass{ &nbsp;&nbsp;&nbsp;function&nbsp;hello($name,&nbsp;$age){ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;"My&nbsp;name&nbsp;is&nbsp;$name&nbsp;and&nbsp;my&nbsp;age&nbsp;is&nbsp;$age"; &nbsp;&nbsp;&nbsp;} } $a=new&nbsp;myclass(); $a-&gt;hello("Ravi",20); ?&gt;</pre> <p>输出结果</p> <p>这将产生以下输出-</p> <pre>My&nbsp;name&nbsp;is&nbsp;Ravi&nbsp;and&nbsp;my&nbsp;age&nbsp;is&nbsp;20</pre> <div></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-69041.htm">猫咪养多久认主（猫多长时间认主）</a></p>
+                                        <p>下一个：<a href="/news/article-69678.htm">猫咪领养网广州（广州猫咪领养公众号）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-65850.htm" title="动物预防针在哪打 动物预防针在哪打的">动物预防针在哪打 动物预防针在哪打的</a></li>
+                        <li class="py-2"><a href="/news/article-46499.htm" title="哈尔滨农大宠物医院电话号码（哈尔滨农大兽医院）">哈尔滨农大宠物医院电话号码（哈尔滨农大兽医院）</a></li>
+                        <li class="py-2"><a href="/news/article-67114.htm" title="MQTT物联网通讯协议入门及Demo实现">MQTT物联网通讯协议入门及Demo实现</a></li>
+                        <li class="py-2"><a href="/news/article-42033.htm" title="瑞鹏宠物医疗集团地址（瑞鹏宠物医疗集团电话）">瑞鹏宠物医疗集团地址（瑞鹏宠物医疗集团电话）</a></li>
+                        <li class="py-2"><a href="/news/article-58784.htm" title="动物疫苗种类和特点图片高清大图（动物疫苗的种类和制备原理）">动物疫苗种类和特点图片高清大图（动物疫苗的种类和制备原理）</a></li>
+                        <li class="py-2"><a href="/news/article-66480.htm" title="动物生物疫苗 动物生物疫苗工资">动物生物疫苗 动物生物疫苗工资</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-18-free-high-speed-nodes.htm" title="2月18日→19.3M/S|2025年最新免费节点Free V2ray Clash订阅链接地址">2月18日→19.3M/S|2025年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-15-free-clash.htm" title="1月15日→19.7M/S|2025年最新免费节点Free V2ray Clash订阅链接地址">1月15日→19.7M/S|2025年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-44022.htm" title="生产狗粮利润多少正常（狗粮的成本和利润）">生产狗粮利润多少正常（狗粮的成本和利润）</a></li>
+                        <li class="py-2"><a href="/news/article-50519.htm" title="龙泉动物救助站（龙泉动物救助站在哪里）">龙泉动物救助站（龙泉动物救助站在哪里）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">27</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+        <!--//w3l-faq-block-->
+    <section class="w3l-footer-29-main w3l-copyright">
+        <div class="container">
+            <div class="bottom-copies">
+                <p class="copy-footer-29 text-center">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                    <a href="/">Free V2ray Clash免费机场订阅节点官网</a> 版权所有 Powered by WordPress
+                </p>
+            </div>
+        </div>
+        <!-- move top -->
+        <button onclick="topFunction()" id="movetop" title="Go to top">
+            <span class="fa fa-angle-up"></span>
+        </button>
+        <script>
+        // When the user scrolls down 20px from the top of the document, show the button
+        window.onscroll = function() {
+            scrollFunction()
+        };
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                document.getElementById("movetop").style.display = "block";
+            } else {
+                document.getElementById("movetop").style.display = "none";
+            }
+        }
+
+        // When the user clicks on the button, scroll to the top of the document
+        function topFunction() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }
+        </script>
+        <!-- /move top -->
+    </section>
+    <!-- Template JavaScript -->
+    <script src="/assets/website/js/frontend/freev2rayclash/jquery-3.3.1.min.js"></script>
+    <!-- script for testimonials -->
+    <script>
+    $(document).ready(function() {
+        $('.owl-testimonial').owlCarousel({
+            loop: true,
+            margin: 0,
+            nav: true,
+            responsiveClass: true,
+            autoplay: true,
+            autoplayTimeout: 5000,
+            autoplaySpeed: 1000,
+            autoplayHoverPause: false,
+            responsive: {
+                0: {
+                    items: 1,
+                    nav: false
+                },
+                480: {
+                    items: 1,
+                    nav: false
+                },
+                667: {
+                    items: 1,
+                    nav: true
+                },
+                1000: {
+                    items: 1,
+                    nav: true
+                }
+            }
+        })
+    })
+    </script>
+    <!-- //script for testimonials -->
+    <script src="/assets/website/js/frontend/freev2rayclash/theme-change.js"></script>
+    <!-- js for portfolio lightbox -->
+    <!-- libhtbox -->
+    <script src="/assets/website/js/frontend/freev2rayclash/lightbox-plus-jquery.min.js"></script>
+    <!-- libhtbox -->
+    <script src="/assets/website/js/frontend/freev2rayclash/owl.carousel.js"></script>
+    <!-- script for banner slider-->
+    <script>
+    $(document).ready(function() {
+        $('.owl-one').owlCarousel({
+            loop: true,
+            margin: 0,
+            nav: false,
+            responsiveClass: true,
+            autoplay: true,
+            autoplayTimeout: 5000,
+            autoplaySpeed: 1000,
+            autoplayHoverPause: false,
+            responsive: {
+                0: {
+                    items: 1,
+                    nav: false
+                },
+                480: {
+                    items: 1,
+                    nav: false
+                },
+                667: {
+                    items: 1,
+                    nav: true
+                },
+                1000: {
+                    items: 1,
+                    nav: true
+                }
+            }
+        })
+    })
+    </script>
+    <!-- //script -->
+    <!-- stats number counter-->
+    <script src="/assets/website/js/frontend/freev2rayclash/jquery.waypoints.min.js"></script>
+    <script src="/assets/website/js/frontend/freev2rayclash/jquery.countup.js"></script>
+    <script>
+    $('.counter').countUp();
+    </script>
+    <!-- //stats number counter -->
+    <!-- disable body scroll which navbar is in active -->
+    <script>
+    $(function() {
+        $('.navbar-toggler').click(function() {
+            $('body').toggleClass('noscroll');
+        })
+    });
+    </script>
+    <!-- disable body scroll which navbar is in active -->
+    <!--/MENU-JS-->
+    <script>
+    $(window).on("scroll", function() {
+        var scroll = $(window).scrollTop();
+
+        if (scroll >= 80) {
+            $("#site-header").addClass("nav-fixed");
+        } else {
+            $("#site-header").removeClass("nav-fixed");
+        }
+    });
+
+    //Main navigation Active Class Add Remove
+    $(".navbar-toggler").on("click", function() {
+        $("header").toggleClass("active");
+    });
+    $(document).on("ready", function() {
+        if ($(window).width() > 991) {
+            $("header").removeClass("active");
+        }
+        $(window).on("resize", function() {
+            if ($(window).width() > 991) {
+                $("header").removeClass("active");
+            }
+        });
+    });
+    </script>
+    <!--//MENU-JS-->
+    <script src="/assets/website/js/frontend/freev2rayclash/bootstrap.min.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
