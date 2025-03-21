@@ -1,0 +1,336 @@
+<!doctype html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://freev2rayclash.github.io/news/article-77016.htm" />
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Kafka 认证三：添加 Kerberos 认证详细流程</title>
+        <meta name="description" content="背景 上一章节介绍了 Kerberos 服务端和客户端的部署过程，本章节继续介绍 Kafka 添加 Kerberos 认证的部署流程，及 Java API 操作的注意事项。  sasl.kerbero" />
+        <link rel="icon" href="/assets/website/img/freev2rayclash/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Free V2ray Clash免费机场订阅节点官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://freev2rayclash.github.io/news/article-77016.htm" />
+    <meta property="og:site_name" content="Free V2ray Clash免费机场订阅节点官网" />
+    <meta property="og:title" content="Kafka 认证三：添加 Kerberos 认证详细流程" />
+    <meta property="og:image" content="https://freev2rayclash.github.io/uploads/20240919-1/4b1bc153662a591e599b157a1287a14f.webp" />
+        <meta property="og:release_date" content="2025-03-19T09:10:19" />
+    <meta property="og:updated_time" content="2025-03-19T09:10:19" />
+        <meta property="og:description" content="背景 上一章节介绍了 Kerberos 服务端和客户端的部署过程，本章节继续介绍 Kafka 添加 Kerberos 认证的部署流程，及 Java API 操作的注意事项。  sasl.kerbero" />
+    
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Kafka 认证三：添加 Kerberos 认证详细流程">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,300;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- Template CSS -->
+    <link rel="stylesheet" href="/assets/website/css/freev2rayclash/style-starter.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SMY6EV424E"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-SMY6EV424E');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!--header-->
+    <header id="site-header" class="fixed-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-dark stroke">
+                <a class="navbar-brand" href="/">
+                                    <span>
+                        Free V2ray Clash                    </span>
+                                </a>
+                <!-- if logo is image enable this   
+      <a class="navbar-brand" href="#index.html">
+          <img src="image-path" alt="Your logo" title="Your logo" style="height:35px;" />
+      </a> -->
+                <button class="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon fa icon-expand fa-bars"></span>
+                    <span class="navbar-toggler-icon fa icon-close fa-times"></span>
+                    </span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                    <ul class="navbar-nav mx-lg-auto">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/free-nodes/">免费节点</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/paid-subscribe/">推荐机场</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/client.htm">客户端</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/news/">新闻资讯</a>
+                        </li>
+                                            </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <!--/header-->
+    <div class="inner-banner">
+    </div>
+    <section class="w3l-breadcrumb">
+        <div class="container">
+            <ul class="breadcrumbs-custom-path">
+                <li><a href="/">首页</a></li>
+                <li><a href="/news/"><span class="fa fa-arrow-right mx-2" aria-hidden="true"></span> 新闻资讯</a></li>
+                <li class="active"><span class="fa fa-arrow-right mx-2" aria-hidden="true"></span> 正文</li>
+            </ul>
+        </div>
+    </section>
+    <!--/about-->
+    <!--/w3l-faq-block-->
+    <div class="w3l-faq-block py-5" id="faq">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                    <h1 class="mb-5">Kafka 认证三：添加 Kerberos 认证详细流程</h1>
+                    
+                                    <input type="hidden" id="share-website-info" data-name="Clash Meta免费节点订阅站" data-url="https://clash-meta.github.io">
+                  				  				  				<div id="content_views" class="markdown_views prism-atom-one-light"> <h3> <a id="_0" rel="nofollow"></a>背景</h3> <p>上一章节介绍了 Kerberos 服务端和客户端的部署过程，本章节继续介绍 Kafka 添加 Kerberos 认证的部署流程，及 Java API 操作的注意事项。</p> <h3> <a id="saslkerberosservicename__3" rel="nofollow"></a>sasl.kerberos.service.name 配置的含义</h3> <p>Kafka 添加 Kerberos 部署的核心是 Kafka 服务端的 Principal 配置，它的 primary 部分必须配置在 properties 文件的 <code>sasl.kerberos.service.name</code> 属性中，而主机名部分必须保证 Kafka IP 的域名在 <code>/etc/hosts</code> 文件中存在。</p> <p>对 Kafka 客户端来说，合起来就是，<strong><code>sasl.kerberos.service.name</code> 的值/Kafka IP 或者 Kafka IP 对应的主机名称<code>@Realm</code></strong> 这三项拼接的成目标服务的 Principal，必须保证它在 KDC 数据库中。</p> <p>搜了好久都没有看到这个配置项的解释，反复操作后终于理解了这个属性的含义。</p> <p>例如，请求目标 Kafka IP 是 192.168.xx.1 ，Kafka 客户端发起 Kerberos 认证时，向 KDC 发送 AS_REQ，目标服务的 Principal 的计算过程如下：</p> <p>1）如果 <code>/etc/hosts</code> 文件中存在目标主机的域名，那么请求服务的 Principal 就是<br /><code>sasl.kerberos.service.name/主机名称@Realm</code> 。</p> <p>2） 如果 <code>/etc/hosts</code> 文件中不存在目标主机的域名，那么请求服务的 Principal 就是<br /><code>sasl.kerberos.service.name/目标IP@Realm</code> 。</p> <p>从 KDC 的日志看到这个结果：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads/20221230/ff48a65d6a5050b85648f536b36e5fdd.jpg" alt="Kafka 认证三：添加 Kerberos 认证详细流程"></p> <p>例如，我这个请求过程，Client 端主机配置了目标 Kafka IP 的的域名为 oracle ，这里Kerberos 票据认证过程就是这个。</p> <p><strong>结论就是，</strong> 针对客户端和服务端，这两个配置的含义分别是：</p> <p>1、Kafka 客户端最重要的 <code>sasl.kerberos.service.name + 目标 IP 的域名必须存在 KDC</code> 认证数据库中。</p> <p>2、Kafka 服务端 <code>sasl.kerberos.service.name + 本机域名</code>，必须是 jaas.config 文件中的 KafkaServer 的 principal 的值。</p> <h3> <a id="_30" rel="nofollow"></a>主机域名准备</h3> <p>Kerberos 的 Principals 组成规则是：</p> <blockquote> <p>username/fully.qualified.domain.name@YOUR_REALM.COM</p> </blockquote> <p>作为服务端一般都是需要配置域名的，最好是客户端和服务端都配置服务器 IP 的域名，且必须统一，才能保证 Kerberos 认证流程正确，否则很容易出现 <code>Not found in Kerberos database</code> 的问题。</p> <p>对于Kafka 集群来说，集群主机的 Principal 的 username 相同，但是主机域名不同，客户端维护集群节点的域名，<code>sasl.kerberos.service.name</code> 配置就是各节点的 <code>username</code> 。</p> <p>Kafka Kerberos 认证环境搭建之前，必须先在客户端和服务器端的 <code>/etc/hosts</code> 文件中配置 Kafka Server IP 的域名。网上很多搭建教程，都是 Kafka 客户端和 Kafka 服务同主机，所以不会出现域名配置导致的问题。</p> <table> <thead> <tr> <th>角色</th> <th>IP</th> <th>Principal</th> </tr> </thead> <tbody> <tr> <td>Client</td> <td>192.168.10.101</td> <td>hello-kafka-client@MY_KDC.COM</td> </tr> <tr> <td>Server</td> <td>192.168.10.102</td> <td>hello-kafka-server/oracle@MY_KDC.COM</td> </tr> </tbody> </table> <p>这里 IP 随便写的，Kafka Client 的 IP 不需要配置域名，在 192.168.10.101 上维护目标服务器的域名，添加在 <code>/etc/hosts</code> 文件中，参考如下：</p> <pre><code class="prism language-typescript"><span class="token number">192.168</span><span class="token number">.10</span><span class="token number">.102</span> oracle </code></pre> <p>在 Kafka 客户端主机上部署一份 kafka ，用于启动消费者应用；服务端正常部署 Kafka ，且在 kafka 主目录下创建一个 kerberos 文件夹，放 Kerberos 认证相关的配置文件。</p> <h3> <a id="KDC__53" rel="nofollow"></a>KDC 注册客户端和服务端</h3> <p><strong>第零步，拷贝 krb5.conf。</strong></p> <p>拷贝 KDC 认证中心的 krb5.conf 文件到全部的 Kerberos 客户端，客户端最重要的系统环境变量就是 krb5.conf 文件的路径。所以，每个 KDC 的客户端都需要维护与 KDC 服务器端一致的 krb5.conf 文件，拷贝命令为：</p> <pre><code class="prism language-typescript">scp <span class="token operator">/</span>etc<span class="token operator">/</span>krb5<span class="token punctuation">.</span>conf root<span class="token decorator"><span class="token at operator">@</span><span class="token function">192</span></span><span class="token number">.168</span><span class="token number">.10</span><span class="token number">.101</span><span class="token operator">:</span><span class="token operator">/</span>opt<span class="token operator">/</span>kafka<span class="token operator">-</span><span class="token number">1.0</span><span class="token number">.2</span><span class="token operator">/</span>kerberos<span class="token operator">/</span>krb5<span class="token punctuation">.</span>conf  scp <span class="token operator">/</span>etc<span class="token operator">/</span>krb5<span class="token punctuation">.</span>conf root<span class="token decorator"><span class="token at operator">@</span><span class="token function">192</span></span><span class="token number">.168</span><span class="token number">.10</span><span class="token number">.102</span><span class="token operator">:</span><span class="token operator">/</span>opt<span class="token operator">/</span>kafka<span class="token operator">-</span><span class="token number">1.0</span><span class="token number">.2</span><span class="token operator">/</span>kerberos<span class="token operator">/</span>krb5<span class="token punctuation">.</span>conf </code></pre> <p>Java API 添加 Kerberos 认证的代码为：</p> <pre><code class="prism language-typescript">System<span class="token punctuation">.</span><span class="token function">setProperty</span><span class="token punctuation">(</span><span class="token string">"java.security.krb5.conf"</span><span class="token punctuation">,</span> krb5Conf<span class="token punctuation">)</span><span class="token punctuation">;</span> </code></pre> <p><strong>第一步，注册 Kerberos 帐号。</strong></p> <p>需要到 Kerberos 数据库中注册 Kafka 的客户端和服务端，按刚刚表里面的 Principal 注册到默认域名 <code>MY_KDC.COM</code> 中。</p> <p>在 Kerberos 服务器上，执行 <code>kadmin.local</code> 命令，输入下面操作，注册帐号：</p> <pre><code class="prism language-typescript">addprinc hello<span class="token operator">-</span>kafka<span class="token operator">-</span>client addprinc hello<span class="token operator">-</span>kafka<span class="token operator">-</span>server<span class="token operator">/</span>oracle </code></pre> <p>操作结果如下：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads/20221230/5dba956f50a5317b4400a15c141936b9.jpg" alt="Kafka 认证三：添加 Kerberos 认证详细流程"></p> <p><strong>第二步，生成帐号的 keytab 文件。</strong> 对上面添加的两个 Kerberos 帐号，导出 keytab 文件：</p> <pre><code class="prism language-typescript">kadmin<span class="token punctuation">.</span>local <span class="token operator">-</span>q <span class="token string">"xst -norandkey -k  /root/hello-kafka-client.keytab hello-kafka-client@MY_KDC.COM"</span>  kadmin<span class="token punctuation">.</span>local <span class="token operator">-</span>q <span class="token string">"xst -norandkey -k  /root/hello-kafka-server.keytab hello-kafka-server/oracle@MY_KDC.COM"</span> </code></pre> <p>利用控制台命令 kadmin.local 导出 keytab 文件，客户端 keytab ：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads/20221230/6e0ded2b5feb20bcd637b0397caed21c.jpg" alt="Kafka 认证三：添加 Kerberos 认证详细流程"><br /> 服务端 keytab 如下：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads/20221230/e633ef20523ad84e9b9a78a8f0c432b5.jpg" alt="Kafka 认证三：添加 Kerberos 认证详细流程"></p> <p><strong>第三步，传输 keytab 文件。</strong> 将帐号的 keytab 文件远程传输到 Kafka 客户端和服务端，就是前面的 101 和 102 两台主机上。</p> <pre><code class="prism language-typescript">scp <span class="token operator">/</span>root<span class="token operator">/</span>hello<span class="token operator">-</span>kafka<span class="token operator">-</span>client<span class="token punctuation">.</span>keytab root<span class="token decorator"><span class="token at operator">@</span><span class="token function">192</span></span><span class="token number">.168</span><span class="token number">.10</span><span class="token number">.101</span><span class="token operator">:</span><span class="token operator">/</span>opt<span class="token operator">/</span>kafka<span class="token operator">-</span><span class="token number">1.0</span><span class="token number">.2</span><span class="token operator">/</span>kerberos<span class="token operator">/</span>hello<span class="token operator">-</span>kafka<span class="token operator">-</span>client<span class="token punctuation">.</span>keytab  scp <span class="token operator">/</span>root<span class="token operator">/</span>hello<span class="token operator">-</span>kafka<span class="token operator">-</span>server<span class="token punctuation">.</span>keytab root<span class="token decorator"><span class="token at operator">@</span><span class="token function">192</span></span><span class="token number">.168</span><span class="token number">.10</span><span class="token number">.102</span><span class="token operator">:</span><span class="token operator">/</span>opt<span class="token operator">/</span>kafka<span class="token operator">-</span><span class="token number">1.0</span><span class="token number">.2</span><span class="token operator">/</span>kerberos<span class="token operator">/</span>hello<span class="token operator">-</span>kafka<span class="token operator">-</span>server<span class="token punctuation">.</span>keytab </code></pre> <h3> <a id="Kafka__Kerberos_105" rel="nofollow"></a>Kafka 服务器部署 Kerberos</h3> <p><strong>第一步，准备 server-kerberos.properties 文件。</strong> 拷贝 Kafka config 目录下的 <code>server.properties</code> 文件，命名为 <code>kerberos-server.properties</code> ，编辑认证配置相关的内容：</p> <pre><code class="prism language-typescript">listeners<span class="token operator">=</span><span class="token constant">SASL_PLAINTEXT</span><span class="token operator">:</span><span class="token operator">/</span><span class="token operator">/</span><span class="token number">192.168</span><span class="token number">.10</span><span class="token number">.102</span><span class="token operator">:</span><span class="token number">9092</span> advertised<span class="token punctuation">.</span>listeners<span class="token operator">=</span><span class="token constant">SASL_PLAINTEXT</span><span class="token operator">:</span><span class="token operator">/</span><span class="token operator">/</span><span class="token number">192.168</span><span class="token number">.10</span><span class="token number">.102</span><span class="token operator">:</span><span class="token number">9092</span>  security<span class="token punctuation">.</span>inter<span class="token punctuation">.</span>broker<span class="token punctuation">.</span>protocol<span class="token operator">=</span><span class="token constant">SASL_PLAINTEXT</span> sasl<span class="token punctuation">.</span>mechanism<span class="token punctuation">.</span>inter<span class="token punctuation">.</span>broker<span class="token punctuation">.</span>protocol<span class="token operator">=</span><span class="token constant">GSSAPI</span> sasl<span class="token punctuation">.</span>enabled<span class="token punctuation">.</span>mechanisms<span class="token operator">=</span><span class="token constant">GSSAPI</span> sasl<span class="token punctuation">.</span>kerberos<span class="token punctuation">.</span>service<span class="token punctuation">.</span>name<span class="token operator">=</span>hello<span class="token operator">-</span>kafka<span class="token operator">-</span>server </code></pre> <p>主要就是上面的几项配置， <code>sasl.kerberos.service.name=hello-kafka-server</code> 就是当前 Kafka 的 keytab 文件中的 Principal 的 username 部分。</p> <p><strong>第二步，准备 server-jaas.conf 配置文件。</strong> kerberos 目录下，创建文件 <code>kafka-server-jaas.conf</code>，编辑内容如下：</p> <pre><code class="prism language-typescript">KafkaServer <span class="token punctuation">{<!-- --></span>    com<span class="token punctuation">.</span>sun<span class="token punctuation">.</span>security<span class="token punctuation">.</span>auth<span class="token punctuation">.</span>module<span class="token punctuation">.</span>Krb5LoginModule required    useKeyTab<span class="token operator">=</span><span class="token boolean">true</span>    <span class="token comment">//不同的主机，需修改成不同的keytab文件</span>    keyTab<span class="token operator">=</span><span class="token string">"/opt/kafka-1.0.2/kerberos/hello-kafka-server.keytab"</span>    storeKey<span class="token operator">=</span><span class="token boolean">true</span>    useTicketCache<span class="token operator">=</span><span class="token boolean">false</span>    <span class="token comment">// Kafka Server 在 KDC 中的用户名全称</span>    principal<span class="token operator">=</span><span class="token string">"hello-kafka-server/oracle@MY_KDC.COM"</span><span class="token punctuation">;</span> <span class="token punctuation">}</span><span class="token punctuation">;</span> </code></pre> <p><strong>第三步，准备 kafka-server-kerberos-start.sh 文件，添加 Kerberos 认证配置。</strong> 拷贝 <code>bin/kafka-server-start.sh</code> 脚本，命名为 <code>kafka-server-kerberos-start.sh</code>，编辑最后一行，在最后一行代码之前，添加 Krb5 环境变量和 jaas.conf 配置信息：</p> <pre><code class="prism language-typescript"><span class="token keyword">export</span> <span class="token constant">KAFKA_OPTS</span><span class="token operator">=</span>"<span class="token operator">-</span>Dzookeeper<span class="token punctuation">.</span>sasl<span class="token punctuation">.</span>client<span class="token operator">=</span><span class="token boolean">false</span> <span class="token operator">-</span>Dzookeeper<span class="token punctuation">.</span>sasl<span class="token punctuation">.</span>client<span class="token punctuation">.</span>username<span class="token operator">=</span>zk<span class="token operator">-</span>server  <span class="token operator">-</span>Djava<span class="token punctuation">.</span>security<span class="token punctuation">.</span>krb5<span class="token punctuation">.</span>conf<span class="token operator">=</span><span class="token operator">/</span>opt<span class="token operator">/</span>kafka<span class="token operator">-</span><span class="token number">1.0</span><span class="token number">.2</span><span class="token operator">/</span>kerberos<span class="token operator">/</span>krb5<span class="token punctuation">.</span>conf  <span class="token operator">-</span>Djava<span class="token punctuation">.</span>security<span class="token punctuation">.</span>auth<span class="token punctuation">.</span>login<span class="token punctuation">.</span>config<span class="token operator">=</span><span class="token operator">/</span>opt<span class="token operator">/</span>kafka<span class="token operator">-</span><span class="token number">1.0</span><span class="token number">.2</span><span class="token operator">/</span>kerberos<span class="token operator">/</span>kafka<span class="token operator">-</span>server<span class="token operator">-</span>jaas<span class="token punctuation">.</span>conf" </code></pre> <p><img decoding="async" src="http://img.555519.xyz/uploads/20221230/fd8274b3ede541bf32db160e3bd3d9e8.jpg" alt="Kafka 认证三：添加 Kerberos 认证详细流程"></p> <p><strong>第四步，启动 Kafka 服务。</strong> 用新建的脚本 <code>kafka-server-kerberos-start.sh</code> 和 配置 <code>kerberos-server.properties</code> 启动 Kafka ：</p> <pre><code class="prism language-typescript">bin<span class="token operator">/</span>kafka<span class="token operator">-</span>server<span class="token operator">-</span>start<span class="token operator">-</span>kerberos<span class="token punctuation">.</span>sh <span class="token operator">-</span>daemon kerberos<span class="token operator">/</span>kerberos<span class="token operator">-</span>server<span class="token punctuation">.</span>properties </code></pre> <h3> <a id="Kafka__Kerberos_147" rel="nofollow"></a>Kafka 客户端部署 Kerberos</h3> <p><strong>第一步，准备 client-kerberos.properties 文件。</strong> 拷贝 Kafka config 目录下的 <code>consumer.properties</code> 文件，命名为 <code>client-kerberos.properties</code> ，编辑认证配置相关的内容：</p> <pre><code class="prism language-typescript">bootstrap<span class="token punctuation">.</span>servers<span class="token operator">=</span><span class="token number">192.168</span><span class="token number">.10</span><span class="token number">.102</span><span class="token operator">:</span><span class="token number">9092</span> group<span class="token punctuation">.</span>id<span class="token operator">=</span>test<span class="token operator">-</span>consumer<span class="token operator">-</span>group001 curity<span class="token punctuation">.</span>protocol<span class="token operator">=</span><span class="token constant">SASL_PLAINTEXT</span> sasl<span class="token punctuation">.</span>mechanism<span class="token operator">=</span><span class="token constant">GSSAPI</span> sasl<span class="token punctuation">.</span>kerberos<span class="token punctuation">.</span>service<span class="token punctuation">.</span>name<span class="token operator">=</span>hello<span class="token operator">-</span>kafka<span class="token operator">-</span>server </code></pre> <p><strong>第二步，准备 client-jaas.conf 配置文件。</strong> kerberos 目录下，创建文件 <code>kafka-client-jaas.conf</code>，编辑内容如下：</p> <pre><code class="prism language-typescript">KafkaClient <span class="token punctuation">{<!-- --></span>    com<span class="token punctuation">.</span>sun<span class="token punctuation">.</span>security<span class="token punctuation">.</span>auth<span class="token punctuation">.</span>module<span class="token punctuation">.</span>Krb5LoginModule required    useKeyTab<span class="token operator">=</span><span class="token boolean">true</span>    <span class="token comment">//不同的主机，需修改成不同的keytab文件</span>    keyTab<span class="token operator">=</span><span class="token string">"/opt/kafka-1.0.2/kerberos/hello-kafka-client.keytab"</span>    storeKey<span class="token operator">=</span><span class="token boolean">true</span>    useTicketCache<span class="token operator">=</span><span class="token boolean">false</span>    <span class="token comment">// Client 在KDC中的帐号</span>    principal<span class="token operator">=</span><span class="token string">"hello-kafka-client@MY_KDC.COM"</span><span class="token punctuation">;</span> <span class="token punctuation">}</span><span class="token punctuation">;</span> </code></pre> <p><strong>第三步，准备 kafka-server-kerberos-start.sh 文件，添加 Kerberos 认证配置。</strong> 拷贝 <code>bin/kafka-console-consumer.sh</code> 脚本，命名为 <code>kerberos-kafka-console-consumer.sh</code>，编辑最后一行，在最后一行代码之前，添加 Krb5 环境变量和 jaas.conf 配置信息：</p> <pre><code class="prism language-typescript"><span class="token keyword">export</span> <span class="token constant">KAFKA_OPTS</span><span class="token operator">=</span>"<span class="token operator">-</span>Djava<span class="token punctuation">.</span>security<span class="token punctuation">.</span>krb5<span class="token punctuation">.</span>conf<span class="token operator">=</span><span class="token operator">/</span>opt<span class="token operator">/</span>kafka<span class="token operator">-</span><span class="token number">1.0</span><span class="token number">.2</span><span class="token operator">/</span>kerberos<span class="token operator">/</span>krb5<span class="token punctuation">.</span>conf  <span class="token operator">-</span>Djava<span class="token punctuation">.</span>security<span class="token punctuation">.</span>auth<span class="token punctuation">.</span>login<span class="token punctuation">.</span>config<span class="token operator">=</span><span class="token operator">/</span>opt<span class="token operator">/</span>kafka<span class="token operator">-</span><span class="token number">1.0</span><span class="token number">.2</span><span class="token operator">/</span>kerberos<span class="token operator">/</span>kafka<span class="token operator">-</span>client<span class="token operator">-</span>jaas<span class="token punctuation">.</span>conf" </code></pre> <p><strong>第四步，用第一步的配置文件，进行带认证的消费：</strong></p> <pre><code class="prism language-typescript">bin<span class="token operator">/</span>kerberos<span class="token operator">-</span>kafka<span class="token operator">-</span><span class="token builtin">console</span><span class="token operator">-</span>consumer<span class="token punctuation">.</span>sh <span class="token operator">--</span>bootstrap<span class="token operator">-</span>server <span class="token number">192.168</span><span class="token number">.10</span><span class="token number">.102</span><span class="token operator">:</span><span class="token number">9092</span> <span class="token operator">--</span>topic  my<span class="token operator">-</span>topic <span class="token operator">--</span>consumer<span class="token punctuation">.</span>config<span class="token operator">=</span>kerberos<span class="token operator">/</span>client<span class="token operator">-</span>kerberos<span class="token punctuation">.</span>properties <span class="token operator">--</span>from<span class="token operator">-</span>beginning </code></pre> <p><img decoding="async" src="http://img.555519.xyz/uploads/20221230/3bc26639b92443c28bc61de95da44bc7.jpg" alt="Kafka 认证三：添加 Kerberos 认证详细流程"></p> <h3> <a id="KDC__183" rel="nofollow"></a>KDC 日志查看认证过程</h3> <p>KDC 服务中心的日志文件是 <code>/var/log/krb5kdc.log</code> ，每次 Kerberos 认证都对应两条日志信息：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads/20221230/f8f8931310c842b647a413ae41787c96.jpg" alt="Kafka 认证三：添加 Kerberos 认证详细流程"><br /> 如果 Kafka 服务启动或者客户端启动失败，也可以查看该日志文件，常见的错误就是主机和域名、服务名称配置不一致，导致 <code>Server not found in Kerberos database</code> 异常。</p> <p>另外，多域名问题，还没有找到解决办法。如果一个客户端的 krb5.conf 文件中配置多个 Realm ，默认只能有一个 Realm ，但是对于需要同时访问多个 Kafka 、多套认证 Realm 的应用来说，到底该怎么配置呢？</p> <h3> <a id="_191" rel="nofollow"></a>启示录</h3> <p>官方 Kerberos 资料，没有耐心看下去，网络上搜到的，照猫画虎实践下来，其实也能部署下来的，关键是 kerberos.service.name 这个属性，想了两天才想明白，还有主机域名配置等基础支持等，零零碎碎，以此留存网络笔记。</p> </p></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-76352.htm">宠物领养电子合同模板图片 宠物领养电子合同模板图片大全</a></p>
+                                        <p>下一个：<a href="/news/article-77017.htm">淘宝店铺转让交易平台可信吗（淘宝店铺转让会有什么后果吗）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-51567.htm" title="VScode中使用Cmake遇到的问题及其解决方法for Windows OS">VScode中使用Cmake遇到的问题及其解决方法for Windows OS</a></li>
+                        <li class="py-2"><a href="/news/article-72303.htm" title="前端都应该要掌握的防抖和节流">前端都应该要掌握的防抖和节流</a></li>
+                        <li class="py-2"><a href="/news/article-54771.htm" title="聊城宠物吧（聊城宠物店电话）">聊城宠物吧（聊城宠物店电话）</a></li>
+                        <li class="py-2"><a href="/news/article-69041.htm" title="猫咪养多久认主（猫多长时间认主）">猫咪养多久认主（猫多长时间认主）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-3-free-node-subscribe.htm" title="2月3日→19.4M/S|2025年最新免费节点Free V2ray Clash订阅链接地址">2月3日→19.4M/S|2025年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-74290.htm" title="国内最大的狗粮批发市场在哪里进货（国内大型的狗粮厂在哪里）">国内最大的狗粮批发市场在哪里进货（国内大型的狗粮厂在哪里）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-2-node-share-links.htm" title="2月2日→19.6M/S|2025年最新免费节点Free V2ray Clash订阅链接地址">2月2日→19.6M/S|2025年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-5-free-clash.htm" title="1月5日→19.6M/S|2025年最新免费节点Free V2ray Clash订阅链接地址">1月5日→19.6M/S|2025年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-46498.htm" title="送养一个孩子怎样写协议书呢视频（送养一个孩子怎样写协议书呢视频教程）">送养一个孩子怎样写协议书呢视频（送养一个孩子怎样写协议书呢视频教程）</a></li>
+                        <li class="py-2"><a href="/news/article-70990.htm" title="动物疫苗公司排名前十有哪些（动物疫苗行业龙头）">动物疫苗公司排名前十有哪些（动物疫苗行业龙头）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">63</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+        <!--//w3l-faq-block-->
+    <section class="w3l-footer-29-main w3l-copyright">
+        <div class="container">
+            <div class="bottom-copies">
+                <p class="copy-footer-29 text-center">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                    <a href="/">Free V2ray Clash免费机场订阅节点官网</a> 版权所有 Powered by WordPress
+                </p>
+            </div>
+        </div>
+        <!-- move top -->
+        <button onclick="topFunction()" id="movetop" title="Go to top">
+            <span class="fa fa-angle-up"></span>
+        </button>
+        <script>
+        // When the user scrolls down 20px from the top of the document, show the button
+        window.onscroll = function() {
+            scrollFunction()
+        };
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                document.getElementById("movetop").style.display = "block";
+            } else {
+                document.getElementById("movetop").style.display = "none";
+            }
+        }
+
+        // When the user clicks on the button, scroll to the top of the document
+        function topFunction() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }
+        </script>
+        <!-- /move top -->
+    </section>
+    <!-- Template JavaScript -->
+    <script src="/assets/website/js/frontend/freev2rayclash/jquery-3.3.1.min.js"></script>
+    <!-- script for testimonials -->
+    <script>
+    $(document).ready(function() {
+        $('.owl-testimonial').owlCarousel({
+            loop: true,
+            margin: 0,
+            nav: true,
+            responsiveClass: true,
+            autoplay: true,
+            autoplayTimeout: 5000,
+            autoplaySpeed: 1000,
+            autoplayHoverPause: false,
+            responsive: {
+                0: {
+                    items: 1,
+                    nav: false
+                },
+                480: {
+                    items: 1,
+                    nav: false
+                },
+                667: {
+                    items: 1,
+                    nav: true
+                },
+                1000: {
+                    items: 1,
+                    nav: true
+                }
+            }
+        })
+    })
+    </script>
+    <!-- //script for testimonials -->
+    <script src="/assets/website/js/frontend/freev2rayclash/theme-change.js"></script>
+    <!-- js for portfolio lightbox -->
+    <!-- libhtbox -->
+    <script src="/assets/website/js/frontend/freev2rayclash/lightbox-plus-jquery.min.js"></script>
+    <!-- libhtbox -->
+    <script src="/assets/website/js/frontend/freev2rayclash/owl.carousel.js"></script>
+    <!-- script for banner slider-->
+    <script>
+    $(document).ready(function() {
+        $('.owl-one').owlCarousel({
+            loop: true,
+            margin: 0,
+            nav: false,
+            responsiveClass: true,
+            autoplay: true,
+            autoplayTimeout: 5000,
+            autoplaySpeed: 1000,
+            autoplayHoverPause: false,
+            responsive: {
+                0: {
+                    items: 1,
+                    nav: false
+                },
+                480: {
+                    items: 1,
+                    nav: false
+                },
+                667: {
+                    items: 1,
+                    nav: true
+                },
+                1000: {
+                    items: 1,
+                    nav: true
+                }
+            }
+        })
+    })
+    </script>
+    <!-- //script -->
+    <!-- stats number counter-->
+    <script src="/assets/website/js/frontend/freev2rayclash/jquery.waypoints.min.js"></script>
+    <script src="/assets/website/js/frontend/freev2rayclash/jquery.countup.js"></script>
+    <script>
+    $('.counter').countUp();
+    </script>
+    <!-- //stats number counter -->
+    <!-- disable body scroll which navbar is in active -->
+    <script>
+    $(function() {
+        $('.navbar-toggler').click(function() {
+            $('body').toggleClass('noscroll');
+        })
+    });
+    </script>
+    <!-- disable body scroll which navbar is in active -->
+    <!--/MENU-JS-->
+    <script>
+    $(window).on("scroll", function() {
+        var scroll = $(window).scrollTop();
+
+        if (scroll >= 80) {
+            $("#site-header").addClass("nav-fixed");
+        } else {
+            $("#site-header").removeClass("nav-fixed");
+        }
+    });
+
+    //Main navigation Active Class Add Remove
+    $(".navbar-toggler").on("click", function() {
+        $("header").toggleClass("active");
+    });
+    $(document).on("ready", function() {
+        if ($(window).width() > 991) {
+            $("header").removeClass("active");
+        }
+        $(window).on("resize", function() {
+            if ($(window).width() > 991) {
+                $("header").removeClass("active");
+            }
+        });
+    });
+    </script>
+    <!--//MENU-JS-->
+    <script src="/assets/website/js/frontend/freev2rayclash/bootstrap.min.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
