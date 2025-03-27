@@ -1,0 +1,336 @@
+<!doctype html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://freev2rayclash.github.io/news/article-81141.htm" />
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Objective-C 基础教程第九章,内存管理</title>
+        <meta name="description" content="Object-C 基础教程第九章,内存管理  前言： 最近事情比较多，很久没有来更新文章了。 刚好最近又空闲出来点时间，赶紧继续学习OC并且做笔记，这次要学习的是OC的内存管理。 对象生命周期 正如现" />
+        <link rel="icon" href="/assets/website/img/freev2rayclash/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Free V2ray Clash免费机场订阅节点官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://freev2rayclash.github.io/news/article-81141.htm" />
+    <meta property="og:site_name" content="Free V2ray Clash免费机场订阅节点官网" />
+    <meta property="og:title" content="Objective-C 基础教程第九章,内存管理" />
+    <meta property="og:image" content="https://freev2rayclash.github.io/uploads/20240919-1/bf771458f63fc382f4416227588024e3.webp" />
+        <meta property="og:release_date" content="2025-03-25T08:18:58" />
+    <meta property="og:updated_time" content="2025-03-25T08:18:58" />
+        <meta property="og:description" content="Object-C 基础教程第九章,内存管理  前言： 最近事情比较多，很久没有来更新文章了。 刚好最近又空闲出来点时间，赶紧继续学习OC并且做笔记，这次要学习的是OC的内存管理。 对象生命周期 正如现" />
+    
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Objective-C 基础教程第九章,内存管理">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,300;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- Template CSS -->
+    <link rel="stylesheet" href="/assets/website/css/freev2rayclash/style-starter.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SMY6EV424E"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-SMY6EV424E');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!--header-->
+    <header id="site-header" class="fixed-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-dark stroke">
+                <a class="navbar-brand" href="/">
+                                    <span>
+                        Free V2ray Clash                    </span>
+                                </a>
+                <!-- if logo is image enable this   
+      <a class="navbar-brand" href="#index.html">
+          <img src="image-path" alt="Your logo" title="Your logo" style="height:35px;" />
+      </a> -->
+                <button class="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon fa icon-expand fa-bars"></span>
+                    <span class="navbar-toggler-icon fa icon-close fa-times"></span>
+                    </span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                    <ul class="navbar-nav mx-lg-auto">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/free-nodes/">免费节点</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/paid-subscribe/">推荐机场</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/client.htm">客户端</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/news/">新闻资讯</a>
+                        </li>
+                                            </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <!--/header-->
+    <div class="inner-banner">
+    </div>
+    <section class="w3l-breadcrumb">
+        <div class="container">
+            <ul class="breadcrumbs-custom-path">
+                <li><a href="/">首页</a></li>
+                <li><a href="/news/"><span class="fa fa-arrow-right mx-2" aria-hidden="true"></span> 新闻资讯</a></li>
+                <li class="active"><span class="fa fa-arrow-right mx-2" aria-hidden="true"></span> 正文</li>
+            </ul>
+        </div>
+    </section>
+    <!--/about-->
+    <!--/w3l-faq-block-->
+    <div class="w3l-faq-block py-5" id="faq">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                    <h1 class="mb-5">Objective-C 基础教程第九章,内存管理</h1>
+                    
+                                    <input type="hidden" id="share-website-info" data-name="Clash Meta免费节点订阅站" data-url="https://clash-meta.github.io">
+                  				  				  				<div class="toc"> <div class="toc-container-header"><span style="font-size: 2em;">Object-C 基础教程第九章,内存管理</span></div> </div> <h2 id="前言">前言：</h2> <p>最近事情比较多，很久没有来更新文章了。</p> <p>刚好最近又空闲出来点时间，赶紧继续学习OC并且做笔记，这次要学习的是OC的内存管理。</p> <h2 id="对象生命周期">对象生命周期</h2> <p>正如现实世界中的鸟类和蜜蜂一样，程序中你的对象也有生命周期。</p> <p>对象的生命周期包括诞生（通过alloc或者new方法实现）、生存（接收消息并执行操作）、交友（通过复合以及方法传递参数）</p> <p>以及最终死去（被释放掉）。</p> <p>当生命周期结束时，它们的原材料（内存）将被回收以供新的对象使用。</p> <h3 id="引用计数">引用计数</h3> <p>现在，对象何时诞生我们已经很清楚了，而且也讨论了如何使用对象，但是怎么知道对象生命周期结束了呢？Cocoa采用了一种叫做<code>引用计数(reference counting)</code>的技术，有也叫做<code>保留计数(retain counting)</code>。</p> <p>每个对象都有一个关联的整数，当某段代码需求访问一个对象时候，计数器就+1，</p> <p>反之当这段代码结束对象访问时，计数器-1，</p> <p>当计数器为0的时候系统就回收该对象（????可怜的对象）。</p> <ul> <li><code>alloc</code>、<code>new</code>方法或者<code>copy消息</code>会创建一个对象，对象引用计数器被设置为1</li> <li><code>-(id) retain;</code> 增加计数器</li> <li><code>-(oneway void) release</code>减少计数器</li> <li><code>dealloc</code>不要直接调用，系统会调用该方法</li> <li><code>-(NSUInteger) retainCount</code>返回当前引用计数器的值</li> </ul> <h3 id="retaincount1项目例子">RetainCount1项目例子</h3> <pre><code class="language-objc">//声明 @interface RetainTracker: NSObject @end  //实现 @implementation RetainTracker -(id) init {     if(self = [super init])     {         //当对象被创建的时候，调用retainCount来获取当前引用计数器的值.         NSLog(@"init: Retain count of %lu.",[self retainCount]);         return (self);     } }  -(void) dealloc {     //dealloc 方法无需我们自己调用，当计数器为0时候，系统自动调用dealloc回收对象。     NSLog(@"销毁方法被调用！");     [super dealloc]; } @end</code></pre> <pre><code class="language-objc">int main(int argc,const char *argv[]) {     //当通过new创建对象的时候，会将引用计数器设置为1，也会默认调用init方法。     RetainTracker *tracker = [RetainTracker new];      //增加引用计数器 count:2     [tracker retain];     NSLog(@"%d",[tracker retainCount]);     //增加引用计数器 count:3     [tracker retain];     NSLog(@"%d",[tracker retainCount]);          //减少引用计数器 count:2     [tracker release];     NSLog(@"%d",[tracker retainCount]);     //减少引用计数器 count:1     [tracker release];     NSLog(@"%d",[tracker retainCount]);      //增加引用计数器 count:2     [tracker retain];     NSLog(@"%d",[tracker retainCount]);     //减少引用计数器 count:1     [tracker release];     NSLog(@"%d",[tracker retainCount]);      //减少引用计数器 count:0     [tracker release];     NSLog(@"%d",[tracker retainCount]);      //当引用计数器为0的时候，系统将自动调用dealloc方法     //并且输出我们自定义dealloc方法里面的销毁方法被调用。     return(0); }</code></pre> <p>但是当我们要编译的时候会报错，提示：<code>retainCount' is unavailable: not available in automatic reference counting mode</code>。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/39127a86fcd84b9ed58de3ae7898c022.jpg" alt="Objective-C 基础教程第九章,内存管理"></p> <p>解决方案：<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://blog.csdn.net/muy1030725645/article/details/109117668"  target="_blank" rel="nofollow">https://blog.csdn.net/muy1030725645/article/details/109117668</a></p> <p><code>-fno-objc-arc</code></p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/31eb2d674e98cd496370ef6c7df91c25.jpg" alt="Objective-C 基础教程第九章,内存管理"></p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/3c25e5c4f968b404197806b51e07071a.jpg" alt="Objective-C 基础教程第九章,内存管理"></p> <p>最后输出如下图：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/754226ea2d5161f3990e5d333f6eaf6c.jpg" alt="Objective-C 基础教程第九章,内存管理"></p> <p>所以，当用<code>alloc</code>、<code>new</code>创建了一个对象的时候，通过用<code>release</code>对该对象进行释放就能销毁对象并且回收所占用的内存。</p> <h3 id="对象所有权">对象所有权</h3> <p><code>对象所有权(object ownership)</code>概念。</p> <p>当我们说某个实体"拥有一个对象"时，就以为着该实体要负责确保对其他拥有的对象进行清理。</p> <p>当对象里面有其他对象实例，<code>我们称为该对象拥有这些对象</code>。例如复合概念：<code>CarParts</code>类中，<code>car</code>对象拥有其指向的<code>engine</code>和<code>tire</code>对象。同样如果是一个函数创建了一个对象，则称该函数拥有这个对象。</p> <p>当多个实例拥有某个特定的对象时，对象的所有权关系就更加复杂了，这也就是是保留计数器的值大于1的原因。</p> <pre><code class="language-objc">-(void) setEngine:(Engine*) newEngine;  int main() {   Engine *engine = [Engine new];   [car setEngine: engine];//car设置新的引擎 }</code></pre> <p>现在我们参看如上代码，并且进行思考。</p> <ul> <li>现在哪个实体对象拥有engine对象？是<code>main()</code>函数还是<code>Car</code>类？</li> <li>哪个实体负责确保当engine对象不再被使用时能够收到release消息？</li> </ul> <p>答：</p> <pre><code>1.Car类 因为Car类正在使用engine对象，所以不可能是main函数。 2.main()函数 因为main()函数随后可能还会用到engine对象，所以不可能是由Car类实体来收到release消息。  解决方案： 让Car类保留engine对象，将engine对象的保留计数器的值增加到2. Car类应该在setEngine方法中保留engine对象 main()函数应该负责释放engine对象 当Car类完成其任务时再释放engine对象(在某dealloc方法中),最后engine对象占用的资源被回收。</code></pre> <h3 id="访问方法中的保留和释放">访问方法中的保留和释放</h3> <p>编写<code>setEngine</code>方法的第一个内存管理版本。</p> <pre><code class="language-objc">-(void) setEngine:(Engine* )newEngine {   engine = [newEngine retain];//增加引用计数器 }  int main() {   Engine *engine1 = [Engine new];//new会创建一个对象，并且保留计数器会被设置为1 	[car setEngine:engine1];//setEngine方法会调用retain，所以保留计数器+1 = 2 	[engine1 release];//释放对象,保留计数器会被-1 = 1  ，这样main函数还能访问engine1对象      Engine *engine2 = [Engine new];//1   [car setEngine:engine2];//2 }  //如上代码有个bug，因为[engine1 release]的时候，保留计数器还是1，所以导致了内存泄露。</code></pre> <p>修改后</p> <pre><code class="language-objc">-(void) setEngine:(Engine*) newEngine {   [newEngine retain];//保留计数器值+1   [engine release];   engine = newEngine; }</code></pre> <h3 id="自动释放">自动释放</h3> <p>我们都知道，当我们不再使用对象的时候必须将其释放，但是在某些情况下需要弄清楚什么时候不再使用一个对象并不容易，比如：</p> <pre><code class="language-objc">-(NSString *)description {   NSString *description;   description = [[NSString alloc] initWithFormat:@"hello"];//alloc 创建对象保留计数器值=1   return (description); }</code></pre> <pre><code class="language-objc">int main() {   //可以用如下的代码进行释放，但是要写成这样看起来就很麻烦。   NSString *desc = [someObject description];   NSLog(@"%@",desc);   [desc release]; }</code></pre> <h3 id="所有对象放入池中">所有对象放入池中</h3> <p>Cocoa中有个自动释放池(<code>autorelease pool</code>)的概念。你可能已经在Xcode生成代码的时候见过<code>@autoreleasepool</code>或<code>NSAutoreleasePool</code>。那么对象池到底是个什么东西？从名字上看他大概应该是一个存放对象的池子(集合)。</p> <pre><code class="language-objc">-(id) autorelease;</code></pre> <p>该方法是NSObject类提供的，他预先设定了一条会在未来某个时间发送的<code>release</code>消息，其返回值是接收这条消息的对象。</p> <p>当给一个对象发送<code>autorelease</code>消息的时候，实际上是将该对象添加到了自动释放池中。当自动释放池被销毁时，会向该池中的所有对象发送release消息。</p> <p>改进后的之前description方法代码。</p> <pre><code class="language-objc">-(NSString*) description {   NSString *description;   description = [[NSString alloc] initWithFormat:@"hello"];//保留计数器值= 1   return [description autorelease];//将description对象添加到自动释放池中，当自动释放池被销毁，对象也被销毁 }  //NSLog函数调用完毕后，自动释放池被销毁，所以对象也被销毁，内存被回收。 NSLog(@"%@",[someObject description]);</code></pre> <h3 id="自动释放池的销毁时间">自动释放池的销毁时间</h3> <ol> <li>自动释放池什么时候才能会销毁，并向其包含的所有对象发送release消息？</li> <li>还有自动释放池应该什么时候创建？</li> </ol> <p>首先来回答第一个问题</p> <p>我们看如下代码。自动释放池可以用下面两种方式来创建，那么第一种方法用的是OC的关键字，他会在{}结束后进行销毁并且发送release消息。第二种方法则是用<code>NSAutoreleasePool</code>类，来进行创建一个活的池。他会在release后回收并销毁池。</p> <pre><code class="language-objc">@autoreleasepool {   //....Your Code }  NSAutoreleasePool *pool = [NSAutoreleasePool new];   //....Your Code [pool release];</code></pre> <p>回答第二个问题，我们需要先了解了解自动释放池的工作流程。</p> <h3 id="自动释放池的工作流程">自动释放池的工作流程</h3> <p>如下代码展示了自动释放池的工作流程。</p> <pre><code class="language-objc">int main(int argc, char const *argv[]) { 	//NSAutoReleasePool方式自动释放池. 	NSAutoReleasePool *pool = [[NSAutoReleasePool alloc] init]; 	RetainTracker *tracker = [RetainTracker new];//Count = 1 	[tracker retain];//Count = 2 (Count+1) 	[tracker autorelease];//将tracker对象添加到自动释放池, Count = 2 	[tracker release];//Count = 1 (Count-1) 	NSLog(@"释放掉自动释放池(release pool)"); 	[pool release];  	//@autorelease 关键字方式自动释放池 	@autorelease 	{ 		RetainTracker *tracker2 = [RetainTracker new];//count = 1 		[tracker2 retain];//count = 2 		[tracker2 autorelease];//count = 2 //将tracker2对象添加到自动释放池 		[tracker2 release];//count = 1 		NSLog(@"@autorelease关键字，自动释放池!"); 	} 	return 0; }</code></pre> <h2 id="cocoa的内存管理规则">Cocoa的内存管理规则</h2> <ul> <li>当你使用new、alloc、或copy方法创建一个对象时，该对象的保留计数器的值为1。当不再使用该对象时，你应该向对象发送一条release或autorelease消息。</li> <li>当你通过其他方法获得一个对象时，假设该对象的保留计数器的值为1，而且已经被设置为自动释放，那么你不需要执行任何操作来确保该对象得到清理。如果你打算在一段时间内拥有该对象，则需要保留它并确保在操作完成时释放它。</li> <li>如果你保留了某个对象，就需要（最终）释放会自动释放该对象。必须保持<code>retain</code>方法和<code>release</code>方法的使用次数相等。</li> </ul> <h3 id="临时对象">临时对象</h3> <p>接下来我们通过代码来看看一些常用的内存管理生命周期例子。</p> <pre><code class="language-objc">//用new、alloc、copy创建的对象要自己来释放。 NSMutableArray *array; array = [[NSMutalbleArray alloc] init];//调用alloc,保留计数器值=1 [array release];//发送release消息，保留计数器值=0</code></pre> <pre><code class="language-objc">NSMutableArray *array = [NSMutableArray arrayWithCapacity:16];//count = 1,并且设置为了autorelease //这个arrayWithCapacity创建的对象，不需要我们手动去release释放它，它会自动添加到releasepool，在自动释放池销毁掉的时候自动给array对象发送release消息，来进行释放。</code></pre> <pre><code class="language-objc">NSColor *color; color = [NSColor blueColor]; //blueColor方法也不属于alloc、new、copy这三个方法，所以也不需要进行手动释放，当它用blueColor创建对象的时候，会被添加到自动释放池，我们不需要手动来对他进行释放。</code></pre> <h3 id="拥有对象">拥有对象</h3> <p>有时候，你可能希望在多段代码中一直拥有某个对象。典型的方法是把它们加入到诸如NSArray或者NSDicrionary等集合中，作为其他对象的实例变量来使用。</p> <p>手动释放</p> <pre><code class="language-objc">-(void) doStuff {   flonkArray = [NSMutableArray new]; }  -(void) dealloc {   [flonkArray release];   [super dealloc]; }</code></pre> <p>自动释放</p> <pre><code class="language-objc">-(void) doStuff {   //通过非alloc、new、copy函数创建的对象会添加到autorelease中。   flonkArray = [NSMutableArray arrayWithCapacity: 16];   [flonkArray retain];//count = 2   //autorelease后变成1 }  -(void) dealloc {   [flonkArray release];   [super dealloc]; }</code></pre> <p>仔细观察这一段代码，指出哪里有问题？</p> <pre><code class="language-objc">int i; for(i=0;i&lt;1000000;i++) {   id object = [someArray objectAtIndex:i];   NSString *desc = [object description]; }</code></pre> <p>首先，可以看出这段代码会循环1000000次，然后someArray类发送objectAtIndex消息创建了一个对象object。</p> <p>object对象调用description消息会调用NSLog输出消息，接着也会创建一个对象desc。</p> <p>所以说，这里两个对象都是通过非alloc、new、copy创建的，他们会添加到自动释放池。这就创建了1000000个自动释放池，大量的字符串占用了内存。自动释放池在for循环中并不会被销毁，所以这段期间电脑内存占用率会很高，从而影响用户体验。</p> <p>改良后：</p> <pre><code class="language-objc">NSAutoreleasePool *pool; pool = [[NSAutoreleasePool alloc] init];//创建自动释放池  int i; for(i = 0;i&lt;1000000;i++) {   id object = [someArray objectAtIndex:i];   NSString *desc = [object description];      if(i % 1000 == 0)   {     [pool release];//当i=1000时候，销毁自动释放池。也就是当字符串超过1000就开始释放内存了！     pool = [[NSAutoreleasePool alloc] init];//再创建新的自动释放池   } } [pool release];</code></pre> <p>改见后的代码在循环1000次以后，就会释放自动释放池。这样就解决了字符串太多占用内存的问题。</p> <h3 id="垃圾回收">垃圾回收</h3> <p><code>Object-C 2.0</code>后引入了自动内存管理机制，也就是垃圾回收。</p> <p>熟悉<code>Java</code>或<code>Python</code>等语言的程序员应该非常熟悉垃圾回收的概念。对于已经创建和使用的对象，当你忘记清理时，系统会自动识别哪些对象仍在使用，哪些对象可以回收。</p> <p>在Xcode13中，默认是开启垃圾回收功能的。注意！垃圾回收机制只能在macOS开发中用到，iOS开发暂不支持垃圾回收机制。</p> <h3 id="自动引用计数">自动引用计数</h3> <h4 id="ios无法使用垃圾回收机制">iOS无法使用垃圾回收机制</h4> <p>在iOS开发中为什么无法使用垃圾回收机制，这是怎么回事？</p> <p>主要的原因是因为你无法知道垃圾回收器什么时候回起作用。就像在现实生活中，你可能知道周一是垃圾回收日，但是不知道精确时间。假如你正要出门的时候，垃圾车到了该怎么办？垃圾回收机制会对移动设备的可用性产生非常不利的影响，因为移动设备比电脑更加私人化，资源更少。用户可不想再玩游戏或者打电话的时候因为系统突然进行内存清理而卡住。</p> <h4 id="arc介绍">ARC介绍</h4> <p>苹果公司的解决方案被称为<code>自动引用计数</code>(<code>automatic refernce countring</code>)，简称：<code>ARC</code>。</p> <p>顾名思义：<code>ARC</code>会追踪你的对象并确定哪一个仍会使用而哪一个不会再使用，就好像你有了一位专门负责内存管理的管家或私人助理。如果你启用了<code>ARC</code>，只管像平常那样按需分配并使用对象，编译器会帮你插入<code>retain</code>和<code>release</code>语言，无需你自己动手。</p> <p><code>ARC</code>不是垃圾回收器。我们已经讨论过了，垃圾回收器在运行时工作，通过返回的代码来定期检查对象。</p> <p>与此相反，<code>ARC</code>是在编译时进行工作的。它在代码中插入了合适的<code>retain</code>和<code>release</code>语句，就好像是你自己手动写好了所有的内存管理代码。不过编译器替你完成了内存管理的工作。</p> <h4 id="arc条件">ARC条件</h4> <p>如果你想要在代码中使用<code>ARC</code>,必须满足以下三个条件：</p> <ul> <li> <p>能够确定哪些对象需要进行内存管理；</p> </li> <li> <p>能够表明如何去管理对象；</p> </li> <li> <p>有可行的办法传递对象的所有权。</p> <p>第一个条件是最上层集合知道如何去管理他的子对象。</p> </li> </ul> <p>第一个条件例子：</p> <p>这段代码创建了指向10个字符串的C型数组。因为C型数组是不可保留的对象，所以你无法在这个结构体里使ARC特性。</p> <pre><code class="language-objc">NSString **myString; myString = malloc(10 * sizeof(NSString *));</code></pre> <p>第二个条件是你必须能够对某个对象的保留计数器的值进行加1或减1的操作。也就是说所有<code>NSObject</code>类的子类都能进行内存管理。这包括了大部分你需要管理的对象。</p> <p>第三个条件是在传递对象的时候，你的程序需要能够在调用者和接收者（后面会详细介绍）之间传递所有权。</p> <h3 id="弱引用weak强引用">弱引用(Weak)、强引用</h3> <p>强引用：当用指针指向某个对象时，你可以管理他的内存(retain、release)，如果你管理了那么你就拥有了这个对象的<code>强引用(strong refernce)</code>。如果你没有管理，那么你就拥有的是<code>弱引用(weak refernce)</code>。</p> <p>当对象A创建出了对象B，然后对象B有一个指向对象A的强引用。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/64ed130f5a130afff8c89b52f5d6ab13.jpg" alt="Objective-C 基础教程第九章,内存管理"></p> <p>当对象A的拥有者不再需要需要它的时候，发送release消息，这时候对象A、B的值都还是1，引发了内存泄露！</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/4cc7e031c8ae7b429512c82ca86da674.jpg" alt="Objective-C 基础教程第九章,内存管理"></p> <p>解决方案：对象B通过<code>弱应用(weak refernce)</code>来指向对象A，并且记得清空弱引用对象。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/92149035788cd73e1424bea28962b785.jpg" alt="Objective-C 基础教程第九章,内存管理"></p> <pre><code class="language-objc">__weak NSString *myString; @proerty(weak) NSString* myString;  //如果有些比较老旧的系统不支持arc，就用如下方法 __unsafe_unretained</code></pre> <p>    使用ARC的时候两种命名规则需要注意：</p> <ul> <li>属性不能以new 开头，比如说@property NSString *newString;//是不被允许的？ Why？？？？</li> <li>属性不能只有一个read-only而没有内存管理特性。如果你没有启用ARC,可以使用@property(readonly) NSString *title,</li> </ul> <h3 id="拥有者权限">拥有者权限</h3> <p>之前说过指针支持ARC的一个条件是必须是可保留对象指针(ROP)。</p> <p>这意味着你不能简单的 将一个ROP表示成不可保留对象指针(non-ROP)，因为指针的所有权会移交。</p> <pre><code class="language-objc">NSString *theString = @"Learn Objective-C"; CFStringRef cfString = (CFStringRef) theString;</code></pre> <p>theString指针是一个ROP，而另外一个cfString则不是。为了让ARC便于工作，需要告诉编译器哪个对象是指针的拥有者。</p> <pre><code class="language-objc">//(__bridge类型)操作符 //这种类型的转换会传递指针但不会传递它的所有权。 {   NSString *theString = @"Learn Objective-C";   CFStringRef cfString = (__bridge CFStringRef)theString; }  //(__bridge_retained类型)操作符 //这种类型，所有权会转移到non-ROp上。 {   NSString *theString = @"Lean Objective-C";   CFStringRef cfString = (__bridge_retained CFStringRef)theString; }  //(__bridge_transfer类型)操作符 //这种转换类型与上一个相反，它把所有权交给ROP {    NSString *theString = @"Lean Objective-C";    CFStringRef cfString = (__bridge  CFStringRef)theString; }</code></pre> <h2 id="异常">异常</h2> <h3 id="与异常有关的关键字">与异常有关的关键字</h3> <ul> <li>@try：定义用来测试的代码块是否要抛出异常。</li> <li>@catch()：定义用来处理已抛出异常的代码块。</li> <li>@finally：定义无论如何是否有抛出异常都会执行代码块。</li> <li>@throw：抛出异常。</li> </ul> <h3 id="捕捉不同类型的异常">捕捉不同类型的异常</h3> <pre><code class="language-objc">@try {    }@catch(NSException *exception){    }@catch(MyCustomException *custom){    }@catch(id value){    }@finally {    }</code></pre> <h3 id="抛出异常">抛出异常</h3> <pre><code class="language-objc">@try {   NSException *e = @"error";   @throw e; }@catch(NSException *e){   @throw;  }</code></pre> <h3 id="异常也需要内存管理">异常也需要内存管理</h3> <pre><code class="language-objc">-(void) mySimpleMethod {   NSDictionary *dictionary = [[NSDictionary alloc] initWith....];   @try{     [self processDictionary:dictionary];   }   @finally{     [dictionary release];//finally中的代码会比trhow之前运行。   } }</code></pre> <h3 id="异常和自动释放池">异常和自动释放池</h3> <pre><code class="language-objc">-(void) myMethod {   id savedException = nil;   NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];   NSDictionary *myDictionary = [[NSDictionary alloc] initWith....];   @try{     [self processDictionary:myDictionary];   }@catch(NSException *e){     savedException = [e retain];     @throw;   }@finally{     [pool release];     [savedException autorelease];   } }</code></pre> <p>通过使用retain方法，我们在当前池中保留了异常。当池被释放时，我们早已保存了一个异常指针，它会同当前池一同释放。</p> <h2 id="小结">小结</h2> <p>本章介绍了<code>Cocoa</code>的内存管理方法：<code>retain</code>、<code>release</code>、<code>autorelease</code>,还讨论了垃圾回收和<code>自动应用技术</code>(<code>ARC</code>)。</p> <p>Cocoa中有三个关于对象及其保留计数器的规则：</p> <ul> <li>如果使用new、alloc、copy操作获得了一个对象，则该对象的保留计数器的值为1.</li> <li>如果通过其他方法获得一个对象，则假设该对象的保留计数器的值为1，而且已经被设置为自动释放。</li> <li>如果保留了其对象，则必须保持<code>retain</code>方法和<code>release</code>方法的使用次数相等。</li> </ul> <p>ARC技术会在编译过程中，编译器自动插入<code>retain</code>和<code>release</code>这些语句帮你完成内存释放和保留。</p> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-80480.htm">成都宠物领养平台正规吗可靠吗安全吗（成都宠物领养成都宠物赠送）</a></p>
+                                        <p>下一个：<a href="/news/article-81142.htm">做狗粮生意怎么样 做狗粮生意怎么样啊</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2025-2-1-free-subscribe-node.htm" title="2月1日→20.3M/S|2025年最新免费节点Free V2ray Clash订阅链接地址">2月1日→20.3M/S|2025年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-23-free-node-subscribe.htm" title="1月23日→18.3M/S|2025年最新免费节点Free V2ray Clash订阅链接地址">1月23日→18.3M/S|2025年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-70990.htm" title="动物疫苗公司排名前十有哪些（动物疫苗行业龙头）">动物疫苗公司排名前十有哪些（动物疫苗行业龙头）</a></li>
+                        <li class="py-2"><a href="/news/article-79071.htm" title="野生动物园兽医一个月工资大概多少（动物园的兽医招聘）">野生动物园兽医一个月工资大概多少（动物园的兽医招聘）</a></li>
+                        <li class="py-2"><a href="/news/article-49469.htm" title="58同城领养宠物要钱吗（58同城领养宠物要钱吗安全吗）">58同城领养宠物要钱吗（58同城领养宠物要钱吗安全吗）</a></li>
+                        <li class="py-2"><a href="/news/article-38566.htm" title="想开个宠物店需要什么（想开个宠物店需要什么条件）">想开个宠物店需要什么（想开个宠物店需要什么条件）</a></li>
+                        <li class="py-2"><a href="/news/article-42033.htm" title="瑞鹏宠物医疗集团地址（瑞鹏宠物医疗集团电话）">瑞鹏宠物医疗集团地址（瑞鹏宠物医疗集团电话）</a></li>
+                        <li class="py-2"><a href="/news/article-54771.htm" title="聊城宠物吧（聊城宠物店电话）">聊城宠物吧（聊城宠物店电话）</a></li>
+                        <li class="py-2"><a href="/news/article-43025.htm" title="vue项目如何刷新当前页面">vue项目如何刷新当前页面</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-23-node-share-links.htm" title="3月23日→20.8M/S|2025年最新免费节点Free V2ray Clash订阅链接地址">3月23日→20.8M/S|2025年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">81</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+        <!--//w3l-faq-block-->
+    <section class="w3l-footer-29-main w3l-copyright">
+        <div class="container">
+            <div class="bottom-copies">
+                <p class="copy-footer-29 text-center">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                    <a href="/">Free V2ray Clash免费机场订阅节点官网</a> 版权所有 Powered by WordPress
+                </p>
+            </div>
+        </div>
+        <!-- move top -->
+        <button onclick="topFunction()" id="movetop" title="Go to top">
+            <span class="fa fa-angle-up"></span>
+        </button>
+        <script>
+        // When the user scrolls down 20px from the top of the document, show the button
+        window.onscroll = function() {
+            scrollFunction()
+        };
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                document.getElementById("movetop").style.display = "block";
+            } else {
+                document.getElementById("movetop").style.display = "none";
+            }
+        }
+
+        // When the user clicks on the button, scroll to the top of the document
+        function topFunction() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }
+        </script>
+        <!-- /move top -->
+    </section>
+    <!-- Template JavaScript -->
+    <script src="/assets/website/js/frontend/freev2rayclash/jquery-3.3.1.min.js"></script>
+    <!-- script for testimonials -->
+    <script>
+    $(document).ready(function() {
+        $('.owl-testimonial').owlCarousel({
+            loop: true,
+            margin: 0,
+            nav: true,
+            responsiveClass: true,
+            autoplay: true,
+            autoplayTimeout: 5000,
+            autoplaySpeed: 1000,
+            autoplayHoverPause: false,
+            responsive: {
+                0: {
+                    items: 1,
+                    nav: false
+                },
+                480: {
+                    items: 1,
+                    nav: false
+                },
+                667: {
+                    items: 1,
+                    nav: true
+                },
+                1000: {
+                    items: 1,
+                    nav: true
+                }
+            }
+        })
+    })
+    </script>
+    <!-- //script for testimonials -->
+    <script src="/assets/website/js/frontend/freev2rayclash/theme-change.js"></script>
+    <!-- js for portfolio lightbox -->
+    <!-- libhtbox -->
+    <script src="/assets/website/js/frontend/freev2rayclash/lightbox-plus-jquery.min.js"></script>
+    <!-- libhtbox -->
+    <script src="/assets/website/js/frontend/freev2rayclash/owl.carousel.js"></script>
+    <!-- script for banner slider-->
+    <script>
+    $(document).ready(function() {
+        $('.owl-one').owlCarousel({
+            loop: true,
+            margin: 0,
+            nav: false,
+            responsiveClass: true,
+            autoplay: true,
+            autoplayTimeout: 5000,
+            autoplaySpeed: 1000,
+            autoplayHoverPause: false,
+            responsive: {
+                0: {
+                    items: 1,
+                    nav: false
+                },
+                480: {
+                    items: 1,
+                    nav: false
+                },
+                667: {
+                    items: 1,
+                    nav: true
+                },
+                1000: {
+                    items: 1,
+                    nav: true
+                }
+            }
+        })
+    })
+    </script>
+    <!-- //script -->
+    <!-- stats number counter-->
+    <script src="/assets/website/js/frontend/freev2rayclash/jquery.waypoints.min.js"></script>
+    <script src="/assets/website/js/frontend/freev2rayclash/jquery.countup.js"></script>
+    <script>
+    $('.counter').countUp();
+    </script>
+    <!-- //stats number counter -->
+    <!-- disable body scroll which navbar is in active -->
+    <script>
+    $(function() {
+        $('.navbar-toggler').click(function() {
+            $('body').toggleClass('noscroll');
+        })
+    });
+    </script>
+    <!-- disable body scroll which navbar is in active -->
+    <!--/MENU-JS-->
+    <script>
+    $(window).on("scroll", function() {
+        var scroll = $(window).scrollTop();
+
+        if (scroll >= 80) {
+            $("#site-header").addClass("nav-fixed");
+        } else {
+            $("#site-header").removeClass("nav-fixed");
+        }
+    });
+
+    //Main navigation Active Class Add Remove
+    $(".navbar-toggler").on("click", function() {
+        $("header").toggleClass("active");
+    });
+    $(document).on("ready", function() {
+        if ($(window).width() > 991) {
+            $("header").removeClass("active");
+        }
+        $(window).on("resize", function() {
+            if ($(window).width() > 991) {
+                $("header").removeClass("active");
+            }
+        });
+    });
+    </script>
+    <!--//MENU-JS-->
+    <script src="/assets/website/js/frontend/freev2rayclash/bootstrap.min.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
