@@ -1,0 +1,336 @@
+<!doctype html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://freev2rayclash.github.io/news/article-84647.htm" />
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Java类的加载、链接、初始化</title>
+        <meta name="description" content="Java 语言的类型可以分为两大类：基本类型（primitive types）和引用类型（reference types），基本类型是由Java 虚拟机预先定义好的。引用类型，Java 将其细分为四种" />
+        <link rel="icon" href="/assets/website/img/freev2rayclash/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Free V2ray Clash免费机场订阅节点官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://freev2rayclash.github.io/news/article-84647.htm" />
+    <meta property="og:site_name" content="Free V2ray Clash免费机场订阅节点官网" />
+    <meta property="og:title" content="Java类的加载、链接、初始化" />
+    <meta property="og:image" content="https://freev2rayclash.github.io/uploads/20240919-1/77903effddd0f00079b8837274d892eb.webp" />
+        <meta property="og:release_date" content="2025-03-30T09:34:10" />
+    <meta property="og:updated_time" content="2025-03-30T09:34:10" />
+        <meta property="og:description" content="Java 语言的类型可以分为两大类：基本类型（primitive types）和引用类型（reference types），基本类型是由Java 虚拟机预先定义好的。引用类型，Java 将其细分为四种" />
+    
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Java类的加载、链接、初始化">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,300;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- Template CSS -->
+    <link rel="stylesheet" href="/assets/website/css/freev2rayclash/style-starter.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SMY6EV424E"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-SMY6EV424E');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!--header-->
+    <header id="site-header" class="fixed-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-dark stroke">
+                <a class="navbar-brand" href="/">
+                                    <span>
+                        Free V2ray Clash                    </span>
+                                </a>
+                <!-- if logo is image enable this   
+      <a class="navbar-brand" href="#index.html">
+          <img src="image-path" alt="Your logo" title="Your logo" style="height:35px;" />
+      </a> -->
+                <button class="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon fa icon-expand fa-bars"></span>
+                    <span class="navbar-toggler-icon fa icon-close fa-times"></span>
+                    </span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                    <ul class="navbar-nav mx-lg-auto">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/free-nodes/">免费节点</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/paid-subscribe/">推荐机场</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/client.htm">客户端</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/news/">新闻资讯</a>
+                        </li>
+                                            </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <!--/header-->
+    <div class="inner-banner">
+    </div>
+    <section class="w3l-breadcrumb">
+        <div class="container">
+            <ul class="breadcrumbs-custom-path">
+                <li><a href="/">首页</a></li>
+                <li><a href="/news/"><span class="fa fa-arrow-right mx-2" aria-hidden="true"></span> 新闻资讯</a></li>
+                <li class="active"><span class="fa fa-arrow-right mx-2" aria-hidden="true"></span> 正文</li>
+            </ul>
+        </div>
+    </section>
+    <!--/about-->
+    <!--/w3l-faq-block-->
+    <div class="w3l-faq-block py-5" id="faq">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                    <h1 class="mb-5">Java类的加载、链接、初始化</h1>
+                    
+                                    <input type="hidden" id="share-website-info" data-name="Clash Meta免费节点订阅站" data-url="https://clash-meta.github.io">
+                  				  				  				<div id="content_views" class="htmledit_views"> <p style="text-indent:33px;">Java 语言的类型可以分为两大类：基本类型（primitive types）和引用类型（reference types），基本类型是由Java 虚拟机预先定义好的。引用类型，Java 将其细分为四种：类、接口、数组类和泛型参数。由于泛型参数会在编译过程中被擦除（我会在专栏的第二部分详细介绍），因此 Java 虚拟机实际上只有前三种。在类、接口和数组类中，数组类是由 Java 虚拟机直接生成的，其他两种则有对应的字节流(如class文件)。</p> <p style="text-align:center;"><img decoding="async" alt="" src="http://img.555519.xyz/uploads3/20220817/ba289d196c6981021b09be3dc61ebee7.jpg"></p> <p style="margin-left:0cm;"><strong>加载</strong></p> <p>Class 只有在必须要使用的时候才会被装载，Java 虚拟机不会无条件地装载 Class 类型。Java 虚拟机规定，一个类或接口在初次使用前，必须要进行初始化。这里指的 “使用”, 是指主动使用，主动使用只有下列几种情况:</p> <ul> <li>当创建一个类的实例时，比如使用 new 关键字，或者通过反射、克隆、反序列化。</li> <li>当调用类的静态方法时，即当使用了字节码 invokestatic 指令。</li> <li>当使用类或接口的静态字段时 (final 常量除外), 比如，使用 getstatic 或者 putstatic 指令。</li> <li>当使用 java.lang.reflect 包中的方法反射类的方法时。</li> <li>当初始化子类时，要求先初始化父类。</li> <li>作为启动虚拟机，含有 main 方法的那个类。</li> </ul> <p>加载类处于类装载的第一个阶段。在加载类时，Java 虚拟机必须完成以下工作:</p> <ul> <li>通过类的全名，获取类的二进制数据流。</li> <li>解析类的二进制数据流为方法区内的数据结构。</li> <li>创建 java.lang.Class 类的实例，表示该类型。</li> </ul> <p style="text-indent:33px;">启动类加载器负责加载最为基础、最为重要的类，比如存放在 JRE 的 lib目录下 jar 包中的类（以及由虚拟机参数 -Xbootclasspath 指定的类）。除了启动类加载器之外，另外两个重要的类加载器是扩展类加载器（extension class loader）和应用类加载器（application class loader），均由 Java 核心类库提供。</p> <p style="text-indent:33px;">扩展类加载器的父类加载器是启动类加载器。它负责加载相对次要、但又通用的类，比如存放在 JRE 的 lib/ext 目录下 jar 包中的类（以及由系统变量 java.ext.dirs 指定的类）。</p> <p style="text-indent:33px;">应用类加载器的父类加载器则是扩展类加载器。它负责加载应用程序路径下的类。（这里的应用程序路径，便是指虚拟机参数 -cp/-classpath、系统变量 java.class.path 或环境变量CLASSPATH 所指定的路径。）默认情况下，应用程序中包含的类便是由应用类加载器加载的。</p> <p style="margin-left:0cm;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 加载采用双亲委派模型，每当一个类加载器接收到加载请求时，它会先将请求转发给父类加载器。在父类加载器没有找到所请求的类的情况下，该类加载器才会尝试去加载。</p> <p style="margin-left:0cm;"><strong>链接</strong></p> <p style="text-indent:33px;">链接指将创建成的类合并至 Java 虚拟机中，使之能够执行的过程。它可分为验证、准备以及解析三个阶段。</p> <ul> <li style="margin-left:0cm;">验证：确保被加载类能够满足 Java 虚拟机的约束条件。一般Java 编译器生成的类文件必然满足 Java 虚拟机的约束条件。字节码注入的例子之后会介绍。</li> <li style="margin-left:0cm;">准备：则是为被加载类的<strong>静态字段</strong>分配内存。构造其他跟类层次相关的数据结构，比如说用来实现虚方法的动态绑定的方法表。</li> <li style="margin-left:0cm;">解析：<strong>解析阶段的工作就是将类、接口、字段和方法的符号引用转为直接引用。</strong>符号引用就是一些字面量的引用，和虚拟机的内部数据结构和内存布局无关。在 class 文件被加载至 Java 虚拟机之前，这个类无法知道其他类及其方法、字段所对应的具体地址，甚至不知道自己方法、字段的地址。因此，每当需要引用这些成员时，Java 编译器会生成一个<strong>符号引用</strong>。在运行阶段，这个符号引用一般都能够无歧义地定位到具体目标上。例如，对于一个方法调用，编译器会生成一个包含目标方法所在类的名字、目标方法的名字、接收参数类型以及返回值类型的符号引用，来指代所要调用的方法。解析阶段的目的，正是将这些符号引用解析成为实际引用。如果符号引用指向一个未被加载的类，或者未被加载类的字段或方法，那么解析将触发这个类的加载（但未必触发这个类的链接以及初始化。）</li> </ul> <p style="margin-left:0cm;"><strong>初始化</strong></p> <p style="text-indent:33px;">要初始化一个静态字段，可以在声明时直接赋值，也可以在静态代码块中对其赋值。如果直接赋值的静态字段被 final 所修饰，并且它的类型是基本类型或字符串时，那么该字段便会被 Java 编译器标记成常量值（ConstantValue），其初始化直接由 Java 虚拟机完成。除此之外的直接赋值操作，以及所有静态代码块中的代码，则会被 Java 编译器置于同一方法中，并把它命名为 &lt; clinit &gt;。</p> <p style="text-indent:33px;">初始化，便是为标记为常量值的字段赋值，以及执行 &lt; clinit &gt; 方法的过程。Java 虚拟机会通过加锁来确保类的 &lt; clinit &gt; 方法仅被执行一次。初始化触发的条件有：</p> <p style="margin-left:0cm;">1. 当虚拟机启动时，初始化用户指定的主类(main)；</p> <p style="margin-left:0cm;">2. 当遇到用以新建目标类实例的 new 指令时，初始化 new 指令的目标类；</p> <p style="margin-left:0cm;">3. 当遇到调用静态方法的指令时，初始化该静态方法所在的类；</p> <p style="margin-left:0cm;">4. 当遇到访问静态字段的指令时，初始化该静态字段所在的类；</p> <pre><code class="language-java">public class Singleton {      private Singleton() {}      private static class LazyHolder {          static final Singleton INSTANCE = new Singleton();      }      public static Singleton getInstance() {          return LazyHolder.INSTANCE;              }  }</code></pre> <p style="text-indent:33px;">只有当调用Singleton.getInstance 时，程序才会访问 LazyHolder.INSTANCE，才会触发对LazyHolder 的初始化</p> <p style="margin-left:0cm;">5. 子类的初始化会触发父类的初始化；</p> <p style="margin-left:0cm;">6. 如果一个接口定义了 default 方法，那么直接实现或者间接实现该接口的类的初始化，会触发该接口的初始化；</p> <p style="margin-left:0cm;">7. 使用反射 API 对某个类进行反射调用时，初始化这个类；</p> <p style="margin-left:0cm;">8. 当初次调用 MethodHandle 实例时，初始化该 MethodHandle 指向的方法所在的类。</p> <p style="margin-left:0cm;"> <p style="margin-left:0cm;">例子：</p> <pre><code class="language-java">public class Singleton {      private Singleton() {}      private static class LazyHolder {          static final Singleton INSTANCE = new Singleton();      static {          System.out.println("LazyHolder.&lt;clinit&gt;");          }      }  public static Object getInstance(boolean flag) {      if (flag) return new LazyHolder[2];      return LazyHolder.INSTANCE;  }  public static void main(String[] args) {      getInstance(true);      System.out.println("----");      getInstance(false);  }  }</code></pre> <p style="text-indent:33px;"><span style="color:#4c4c4c;">新建数组new LazyHolder[2]会加载元素类LazyHolder；不会初始化元素类。虚拟机必须知道（加载）有这个类，才能创建这个类的数组（容器），但是这个类并没有被使用到（没有达到初始化的条件），所以不会初始化，也不会链接元素类LazyHolder；</span></p> <p style="text-indent:33px;"><span style="color:#4c4c4c;">调用getInstance(false)的时候约等于告诉虚拟机，我要使用这个类了，你把这个类造好（链接），然后把static修饰的字符赋予变量（初始化）。</span></p> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-83956.htm">新手怎么联系厂家进货童装呢（童装厂家怎么找客户）</a></p>
+                                        <p>下一个：<a href="/news/article-84648.htm">养猫的人容易得15种病怎么预防传染（养猫的人容易得15种病怎么预防传染病）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-36608.htm" title="Java 选择排序法">Java 选择排序法</a></li>
+                        <li class="py-2"><a href="/news/article-64614.htm" title="一人分饰多角的网红有哪些（学到了吗）">一人分饰多角的网红有哪些（学到了吗）</a></li>
+                        <li class="py-2"><a href="/news/article-75658.htm" title="选择排序详解（Java实现）">选择排序详解（Java实现）</a></li>
+                        <li class="py-2"><a href="/news/article-40539.htm" title="成都免费领养狗狗（成都免费领养狗狗地点）">成都免费领养狗狗（成都免费领养狗狗地点）</a></li>
+                        <li class="py-2"><a href="/news/article-65230.htm" title="宠物店必定红火的名字 宠物店必定红火的名字有关猫狗的成语">宠物店必定红火的名字 宠物店必定红火的名字有关猫狗的成语</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-18-clash-windows.htm" title="3月18日→20.7M/S|2025年最新免费节点Free V2ray Clash订阅链接地址">3月18日→20.7M/S|2025年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-74987.htm" title="宠颐生中心医院姚海峰（宠颐生医院怎么样）">宠颐生中心医院姚海峰（宠颐生医院怎么样）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-10-free-node-subscribe.htm" title="1月10日→22.8M/S|2025年最新免费节点Free V2ray Clash订阅链接地址">1月10日→22.8M/S|2025年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-70987.htm" title="动物疫苗法律法规最新文件是什么（动物疫苗法案）">动物疫苗法律法规最新文件是什么（动物疫苗法案）</a></li>
+                        <li class="py-2"><a href="/news/article-71655.htm" title="穷人养猫给猫吃什么猫粮（穷人养什么猫好）">穷人养猫给猫吃什么猫粮（穷人养什么猫好）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+        <!--//w3l-faq-block-->
+    <section class="w3l-footer-29-main w3l-copyright">
+        <div class="container">
+            <div class="bottom-copies">
+                <p class="copy-footer-29 text-center">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                    <a href="/">Free V2ray Clash免费机场订阅节点官网</a> 版权所有 Powered by WordPress
+                </p>
+            </div>
+        </div>
+        <!-- move top -->
+        <button onclick="topFunction()" id="movetop" title="Go to top">
+            <span class="fa fa-angle-up"></span>
+        </button>
+        <script>
+        // When the user scrolls down 20px from the top of the document, show the button
+        window.onscroll = function() {
+            scrollFunction()
+        };
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                document.getElementById("movetop").style.display = "block";
+            } else {
+                document.getElementById("movetop").style.display = "none";
+            }
+        }
+
+        // When the user clicks on the button, scroll to the top of the document
+        function topFunction() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }
+        </script>
+        <!-- /move top -->
+    </section>
+    <!-- Template JavaScript -->
+    <script src="/assets/website/js/frontend/freev2rayclash/jquery-3.3.1.min.js"></script>
+    <!-- script for testimonials -->
+    <script>
+    $(document).ready(function() {
+        $('.owl-testimonial').owlCarousel({
+            loop: true,
+            margin: 0,
+            nav: true,
+            responsiveClass: true,
+            autoplay: true,
+            autoplayTimeout: 5000,
+            autoplaySpeed: 1000,
+            autoplayHoverPause: false,
+            responsive: {
+                0: {
+                    items: 1,
+                    nav: false
+                },
+                480: {
+                    items: 1,
+                    nav: false
+                },
+                667: {
+                    items: 1,
+                    nav: true
+                },
+                1000: {
+                    items: 1,
+                    nav: true
+                }
+            }
+        })
+    })
+    </script>
+    <!-- //script for testimonials -->
+    <script src="/assets/website/js/frontend/freev2rayclash/theme-change.js"></script>
+    <!-- js for portfolio lightbox -->
+    <!-- libhtbox -->
+    <script src="/assets/website/js/frontend/freev2rayclash/lightbox-plus-jquery.min.js"></script>
+    <!-- libhtbox -->
+    <script src="/assets/website/js/frontend/freev2rayclash/owl.carousel.js"></script>
+    <!-- script for banner slider-->
+    <script>
+    $(document).ready(function() {
+        $('.owl-one').owlCarousel({
+            loop: true,
+            margin: 0,
+            nav: false,
+            responsiveClass: true,
+            autoplay: true,
+            autoplayTimeout: 5000,
+            autoplaySpeed: 1000,
+            autoplayHoverPause: false,
+            responsive: {
+                0: {
+                    items: 1,
+                    nav: false
+                },
+                480: {
+                    items: 1,
+                    nav: false
+                },
+                667: {
+                    items: 1,
+                    nav: true
+                },
+                1000: {
+                    items: 1,
+                    nav: true
+                }
+            }
+        })
+    })
+    </script>
+    <!-- //script -->
+    <!-- stats number counter-->
+    <script src="/assets/website/js/frontend/freev2rayclash/jquery.waypoints.min.js"></script>
+    <script src="/assets/website/js/frontend/freev2rayclash/jquery.countup.js"></script>
+    <script>
+    $('.counter').countUp();
+    </script>
+    <!-- //stats number counter -->
+    <!-- disable body scroll which navbar is in active -->
+    <script>
+    $(function() {
+        $('.navbar-toggler').click(function() {
+            $('body').toggleClass('noscroll');
+        })
+    });
+    </script>
+    <!-- disable body scroll which navbar is in active -->
+    <!--/MENU-JS-->
+    <script>
+    $(window).on("scroll", function() {
+        var scroll = $(window).scrollTop();
+
+        if (scroll >= 80) {
+            $("#site-header").addClass("nav-fixed");
+        } else {
+            $("#site-header").removeClass("nav-fixed");
+        }
+    });
+
+    //Main navigation Active Class Add Remove
+    $(".navbar-toggler").on("click", function() {
+        $("header").toggleClass("active");
+    });
+    $(document).on("ready", function() {
+        if ($(window).width() > 991) {
+            $("header").removeClass("active");
+        }
+        $(window).on("resize", function() {
+            if ($(window).width() > 991) {
+                $("header").removeClass("active");
+            }
+        });
+    });
+    </script>
+    <!--//MENU-JS-->
+    <script src="/assets/website/js/frontend/freev2rayclash/bootstrap.min.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
