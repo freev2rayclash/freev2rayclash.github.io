@@ -1,0 +1,333 @@
+<!doctype html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://freev2rayclash.github.io/news/article-86105.htm" />
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>c++动态库与静态库</title>
+        <meta name="description" content="什么是库 库是写好的现有的，成熟的，可以复用的代码。现实中每个程序员都要依赖很多基础的底层库，不可能每个人的代码都从零开始，因此库的存在意义非同寻常。 本质上来说库是一种可执行代码的二进制形式，可以被" />
+        <link rel="icon" href="/assets/website/img/freev2rayclash/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Free V2ray Clash免费机场订阅节点官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://freev2rayclash.github.io/news/article-86105.htm" />
+    <meta property="og:site_name" content="Free V2ray Clash免费机场订阅节点官网" />
+    <meta property="og:title" content="c++动态库与静态库" />
+    <meta property="og:image" content="https://freev2rayclash.github.io/uploads/20240919-1/bf771458f63fc382f4416227588024e3.webp" />
+        <meta property="og:release_date" content="2025-04-01T09:48:30" />
+    <meta property="og:updated_time" content="2025-04-01T09:48:30" />
+        <meta property="og:description" content="什么是库 库是写好的现有的，成熟的，可以复用的代码。现实中每个程序员都要依赖很多基础的底层库，不可能每个人的代码都从零开始，因此库的存在意义非同寻常。 本质上来说库是一种可执行代码的二进制形式，可以被" />
+    
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="c++动态库与静态库">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,300;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- Template CSS -->
+    <link rel="stylesheet" href="/assets/website/css/freev2rayclash/style-starter.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SMY6EV424E"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-SMY6EV424E');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!--header-->
+    <header id="site-header" class="fixed-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-dark stroke">
+                <a class="navbar-brand" href="/">
+                                    <span>
+                        Free V2ray Clash                    </span>
+                                </a>
+                <!-- if logo is image enable this   
+      <a class="navbar-brand" href="#index.html">
+          <img src="image-path" alt="Your logo" title="Your logo" style="height:35px;" />
+      </a> -->
+                <button class="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon fa icon-expand fa-bars"></span>
+                    <span class="navbar-toggler-icon fa icon-close fa-times"></span>
+                    </span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                    <ul class="navbar-nav mx-lg-auto">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/free-nodes/">免费节点</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/paid-subscribe/">推荐机场</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/client.htm">客户端</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/news/">新闻资讯</a>
+                        </li>
+                                            </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <!--/header-->
+    <div class="inner-banner">
+    </div>
+    <section class="w3l-breadcrumb">
+        <div class="container">
+            <ul class="breadcrumbs-custom-path">
+                <li><a href="/">首页</a></li>
+                <li><a href="/news/"><span class="fa fa-arrow-right mx-2" aria-hidden="true"></span> 新闻资讯</a></li>
+                <li class="active"><span class="fa fa-arrow-right mx-2" aria-hidden="true"></span> 正文</li>
+            </ul>
+        </div>
+    </section>
+    <!--/about-->
+    <!--/w3l-faq-block-->
+    <div class="w3l-faq-block py-5" id="faq">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                    <h1 class="mb-5">c++动态库与静态库</h1>
+                    
+                                    <input type="hidden" id="share-website-info" data-name="Clash Meta免费节点订阅站" data-url="https://clash-meta.github.io">
+                  				  				  				<div id="content_views" class="markdown_views prism-tomorrow-night"> <h2> <a id="_0" rel="nofollow"></a>什么是库</h2> <p>库是写好的现有的，成熟的，可以复用的代码。现实中每个程序员都要依赖很多基础的底层库，不可能每个人的代码都从零开始，因此库的存在意义非同寻常。</p> <p>本质上来说库是一种可执行代码的二进制形式，可以被操作系统载入内存执行。</p> <p>库有两种：静态库(.a，.lib)和动态库(.so，.all)。</p> <p><strong>所谓静态，动态是指链接。</strong></p> <p>回顾一下，将一整个程序编译成可执行程序的步骤：<br /> ![在这里插入图片描述](https://img-blog.csdnimg.cn/a693a678ff1e4a238f<img decoding="async" src="http://img.555519.xyz/uploads/20230223/d9c38c2a51e676168a9b870f8a65ba22.jpg" alt="c++动态库与静态库"></p> <h2> <a id="_13" rel="nofollow"></a>静态库</h2> <p>之所以称为静态库，是因为在链接阶段，会将汇编生成的目标文件.o与引用到的库一起链接打包到可执行文件中。因此对应的链接方式为静态链接。</p> <p>静态库与汇编生成的目标文件一起链接为可执行文件，那么静态库必定与.o文件格式相似。其实静态库可以简单看成是一组目标文件.o/.obj的集合。</p> <p>静态库特点总结：</p> <ul> <li>静态库对函数库的链接是放在编译时期完成的。</li> <li>程序在运行是与函数再无瓜葛，移植方便。</li> <li>浪费空间和资源，因为所有相关的目标文件与牵涉到的函数库被链接合成一个可执行文件。<br /> 创建静态库过程如下：<br /><img decoding="async" src="http://img.555519.xyz/uploads/20230223/cac57b56c3d4b2d72827b097814dd2ef.jpg" alt="c++动态库与静态库"><br /> VS工程下设置静态库的步骤：<br /><img decoding="async" src="http://img.555519.xyz/uploads/20230223/1afdff01dfa0f52d9895bc1dd26026c0.jpg" alt="c++动态库与静态库"> </li> </ul> <p>使用静态库的三种方法:</p> <p><strong>方法1</strong>：</p> <p>工程“属性面板”，“通用属性”， “框架和引用”，”添加引用”，将显示“添加引用”对话框。 “项目”选项卡列出了当前解决方案中的各个项目以及可以引用的所有库。<br /><img decoding="async" src="http://img.555519.xyz/uploads/20230223/f8167b554a4b712af30a17f8adf409b1.jpg" alt="c++动态库与静态库"><br /> 选择了某个库，必须修改包含目录路径。打开工程“属性面板”，”配置属性”， “C/C++，常规”，在“附加包含目录”属性值中，键入头文件所在目录的路径或浏览至该目录。<br /><img decoding="async" src="http://img.555519.xyz/uploads/20230223/80831a413fc27753a0e7491182680c64.jpg" alt="c++动态库与静态库"></p> <p>如果引用的静态库不是在同一解决方案下的子工程，而是使用第三方提供的静态库lib和头文件，上面的方法设置不了。还有2中方法设置都可行。</p> <p><strong>方法2</strong>：</p> <p>打开工程“属性面板”，”配置属性”， “链接器”，”命令行”，输入静态库的完整路径即可。<br /><img decoding="async" src="http://img.555519.xyz/uploads/20230223/344b916c42399b8ea0d92494bb315f6f.jpg" alt="c++动态库与静态库"><br /><strong>方法3：</strong></p> <ul> <li>“属性面板”，”配置属性”， “链接器”，”常规”，附加依赖库目录中输入，静态库所在目录；</li> <li>“属性面板”，”配置属性”，“链接器”，”输入”，附加依赖库中输入静态库名。<br /><img decoding="async" src="http://img.555519.xyz/uploads/20230223/c5a87964ad0831d01e75f0827040585a.jpg" alt="c++动态库与静态库"><img decoding="async" src="http://img.555519.xyz/uploads/20230223/f5ada0c4c45a31b53a5511e71b7efcb6.jpg" alt="c++动态库与静态库"> </li> </ul> <h2> <a id="_51" rel="nofollow"></a>动态库</h2> <p>通过上面的介绍发现静态库，容易使用和理解，也达到了代码复用的目的，那为什么还需要动态库呢？</p> <p>为什么需要动态库，其实也是静态库的特点导致。</p> <ul> <li> <p>空间浪费是静态库的一个问题。<br /><img decoding="async" src="http://img.555519.xyz/uploads/20230223/0cf55ec95c6cc858400e06f80628ce45.jpg" alt="c++动态库与静态库"></p> </li> <li> <p>另一个问题是静态库对程序的更新、部署和发布页会带来麻烦。如果静态库liba.lib更新了，所以使用它的应用程序都需要重新编译、发布给用户（对于玩家来说，可能是一个很小的改动，却导致整个程序重新下载，全量更新）。</p> </li> </ul> <p>动态库在程序编译时并不会被连接到目标代码中，而是在程序运行是才被载入。<strong>不同的应用程序如果调用相同的库，那么在内存里只需要有一份该共享库的实例，规避了空间浪费问题</strong>。动态库在程序运行是才被载入，也解决了静态库对程序的更新、部署和发布页会带来麻烦。用户只需要更新动态库即可，增量更新。<br /><img decoding="async" src="http://img.555519.xyz/uploads/20230223/eebdeac3cc122118f19f120de9450976.jpg" alt="c++动态库与静态库"></p> <p>动态库特点总结：</p> <ul> <li>动态库把对一些库函数的链接载入推迟到程序运行的时期。</li> <li>可以实现进程之间的资源共享。（因此动态库也称为共享库）</li> <li>将一些程序升级变得简单。 甚至可以真正做到链接载入完全由程序员在程序代码中控制（显示调用）。</li> </ul> <p><strong>动态库的设置与静态库的设置一样。</strong><br /><img decoding="async" src="http://img.555519.xyz/uploads/20230223/420cebaaa5b5bc17abe537abb697a8e1.jpg" alt="c++动态库与静态库"></p> <p>动态库的使用与静态库的使用基本相同。这里不再赘述。</p> <h2> <a id="_76" rel="nofollow"></a>总结</h2> <p><strong>二者的不同点在于代码被载入的时刻不同。</strong></p> <ul> <li>静态库在程序编译时会被连接到目标代码中，程序运行时将不再需要该静态库，因此体积较大。</li> <li>动态库在程序编译时并不会被连接到目标代码中，而是在程序运行是才被载入，因此在程序运行时还需要动态库存在，因此代码体积较小。</li> </ul> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-85384.htm">学宠物医学哪个学校好（学宠物医学哪个学校好就业）</a></p>
+                                        <p>下一个：<a href="/news/article-86106.htm">北京去哪领养狗狗（北京去哪里领养狗）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-68402.htm" title="动物疫苗的作用原理和方法是什么 动物疫苗的作用原理和方法是什么呢">动物疫苗的作用原理和方法是什么 动物疫苗的作用原理和方法是什么呢</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-25-free-node-subscribe.htm" title="3月25日→18.9M/S|2025年最新免费节点Free V2ray Clash订阅链接地址">3月25日→18.9M/S|2025年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-84647.htm" title="Java类的加载、链接、初始化">Java类的加载、链接、初始化</a></li>
+                        <li class="py-2"><a href="/news/article-82532.htm" title="vuex配置项、多组件数据共享案例详解">vuex配置项、多组件数据共享案例详解</a></li>
+                        <li class="py-2"><a href="/news/article-87537.htm" title="一片枫叶的拼音是什么（一片枫叶猜一首歌）">一片枫叶的拼音是什么（一片枫叶猜一首歌）</a></li>
+                        <li class="py-2"><a href="/news/article-85383.htm" title="学宠物美容师需要多少钱（学宠物美容师需要多少钱一个月）">学宠物美容师需要多少钱（学宠物美容师需要多少钱一个月）</a></li>
+                        <li class="py-2"><a href="/news/article-82533.htm" title="猫咪的三针疫苗（猫咪的3针疫苗）">猫咪的三针疫苗（猫咪的3针疫苗）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-11-free-node-subscribe-links.htm" title="3月11日→21.3M/S|2025年最新免费节点Free V2ray Clash订阅链接地址">3月11日→21.3M/S|2025年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-13-free-node-subscribe.htm" title="3月13日→21.2M/S|2025年最新免费节点Free V2ray Clash订阅链接地址">3月13日→21.2M/S|2025年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-4-free-high-speed-nodes.htm" title="3月4日→18M/S|2025年最新免费节点Free V2ray Clash订阅链接地址">3月4日→18M/S|2025年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">9</span> <a href="/date/2025-04/" title="2025-04 归档">2025-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">90</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+        <!--//w3l-faq-block-->
+    <section class="w3l-footer-29-main w3l-copyright">
+        <div class="container">
+            <div class="bottom-copies">
+                <p class="copy-footer-29 text-center">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                    <a href="/">Free V2ray Clash免费机场订阅节点官网</a> 版权所有 Powered by WordPress
+                </p>
+            </div>
+        </div>
+        <!-- move top -->
+        <button onclick="topFunction()" id="movetop" title="Go to top">
+            <span class="fa fa-angle-up"></span>
+        </button>
+        <script>
+        // When the user scrolls down 20px from the top of the document, show the button
+        window.onscroll = function() {
+            scrollFunction()
+        };
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                document.getElementById("movetop").style.display = "block";
+            } else {
+                document.getElementById("movetop").style.display = "none";
+            }
+        }
+
+        // When the user clicks on the button, scroll to the top of the document
+        function topFunction() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }
+        </script>
+        <!-- /move top -->
+    </section>
+    <!-- Template JavaScript -->
+    <script src="/assets/website/js/frontend/freev2rayclash/jquery-3.3.1.min.js"></script>
+    <!-- script for testimonials -->
+    <script>
+    $(document).ready(function() {
+        $('.owl-testimonial').owlCarousel({
+            loop: true,
+            margin: 0,
+            nav: true,
+            responsiveClass: true,
+            autoplay: true,
+            autoplayTimeout: 5000,
+            autoplaySpeed: 1000,
+            autoplayHoverPause: false,
+            responsive: {
+                0: {
+                    items: 1,
+                    nav: false
+                },
+                480: {
+                    items: 1,
+                    nav: false
+                },
+                667: {
+                    items: 1,
+                    nav: true
+                },
+                1000: {
+                    items: 1,
+                    nav: true
+                }
+            }
+        })
+    })
+    </script>
+    <!-- //script for testimonials -->
+    <script src="/assets/website/js/frontend/freev2rayclash/theme-change.js"></script>
+    <!-- js for portfolio lightbox -->
+    <!-- libhtbox -->
+    <script src="/assets/website/js/frontend/freev2rayclash/lightbox-plus-jquery.min.js"></script>
+    <!-- libhtbox -->
+    <script src="/assets/website/js/frontend/freev2rayclash/owl.carousel.js"></script>
+    <!-- script for banner slider-->
+    <script>
+    $(document).ready(function() {
+        $('.owl-one').owlCarousel({
+            loop: true,
+            margin: 0,
+            nav: false,
+            responsiveClass: true,
+            autoplay: true,
+            autoplayTimeout: 5000,
+            autoplaySpeed: 1000,
+            autoplayHoverPause: false,
+            responsive: {
+                0: {
+                    items: 1,
+                    nav: false
+                },
+                480: {
+                    items: 1,
+                    nav: false
+                },
+                667: {
+                    items: 1,
+                    nav: true
+                },
+                1000: {
+                    items: 1,
+                    nav: true
+                }
+            }
+        })
+    })
+    </script>
+    <!-- //script -->
+    <!-- stats number counter-->
+    <script src="/assets/website/js/frontend/freev2rayclash/jquery.waypoints.min.js"></script>
+    <script src="/assets/website/js/frontend/freev2rayclash/jquery.countup.js"></script>
+    <script>
+    $('.counter').countUp();
+    </script>
+    <!-- //stats number counter -->
+    <!-- disable body scroll which navbar is in active -->
+    <script>
+    $(function() {
+        $('.navbar-toggler').click(function() {
+            $('body').toggleClass('noscroll');
+        })
+    });
+    </script>
+    <!-- disable body scroll which navbar is in active -->
+    <!--/MENU-JS-->
+    <script>
+    $(window).on("scroll", function() {
+        var scroll = $(window).scrollTop();
+
+        if (scroll >= 80) {
+            $("#site-header").addClass("nav-fixed");
+        } else {
+            $("#site-header").removeClass("nav-fixed");
+        }
+    });
+
+    //Main navigation Active Class Add Remove
+    $(".navbar-toggler").on("click", function() {
+        $("header").toggleClass("active");
+    });
+    $(document).on("ready", function() {
+        if ($(window).width() > 991) {
+            $("header").removeClass("active");
+        }
+        $(window).on("resize", function() {
+            if ($(window).width() > 991) {
+                $("header").removeClass("active");
+            }
+        });
+    });
+    </script>
+    <!--//MENU-JS-->
+    <script src="/assets/website/js/frontend/freev2rayclash/bootstrap.min.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
