@@ -1,0 +1,335 @@
+<!doctype html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://freev2rayclash.github.io/news/article-91990.htm" />
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Flask框架入门详解（以一个博客后台为例）_在线工具</title>
+        <meta name="description" content="目录   1.安装  1.1 创建虚拟环境 1.2 进入虚拟环境 1.3 安装 flask    2.上手  2.1 最小 Demo 2.2 基本知识    3.解构官网指导 Demo  3.1 克隆" />
+        <link rel="icon" href="/assets/website/img/freev2rayclash/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Free V2ray Clash免费机场订阅节点官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://freev2rayclash.github.io/news/article-91990.htm" />
+    <meta property="og:site_name" content="Free V2ray Clash免费机场订阅节点官网" />
+    <meta property="og:title" content="Flask框架入门详解（以一个博客后台为例）_在线工具" />
+    <meta property="og:image" content="https://freev2rayclash.github.io/uploads/20240919-1/e433ff424b810a2c05f1824d3ccc3471.webp" />
+        <meta property="og:release_date" content="2025-04-09T09:17:23" />
+    <meta property="og:updated_time" content="2025-04-09T09:17:23" />
+        <meta property="og:description" content="目录   1.安装  1.1 创建虚拟环境 1.2 进入虚拟环境 1.3 安装 flask    2.上手  2.1 最小 Demo 2.2 基本知识    3.解构官网指导 Demo  3.1 克隆" />
+    
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Flask框架入门详解（以一个博客后台为例）_在线工具">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,300;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- Template CSS -->
+    <link rel="stylesheet" href="/assets/website/css/freev2rayclash/style-starter.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SMY6EV424E"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-SMY6EV424E');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!--header-->
+    <header id="site-header" class="fixed-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-dark stroke">
+                <a class="navbar-brand" href="/">
+                                    <span>
+                        Free V2ray Clash                    </span>
+                                </a>
+                <!-- if logo is image enable this   
+      <a class="navbar-brand" href="#index.html">
+          <img src="image-path" alt="Your logo" title="Your logo" style="height:35px;" />
+      </a> -->
+                <button class="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon fa icon-expand fa-bars"></span>
+                    <span class="navbar-toggler-icon fa icon-close fa-times"></span>
+                    </span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                    <ul class="navbar-nav mx-lg-auto">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/free-nodes/">免费节点</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/paid-subscribe/">推荐机场</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/client.htm">客户端</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/news/">新闻资讯</a>
+                        </li>
+                                            </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <!--/header-->
+    <div class="inner-banner">
+    </div>
+    <section class="w3l-breadcrumb">
+        <div class="container">
+            <ul class="breadcrumbs-custom-path">
+                <li><a href="/">首页</a></li>
+                <li><a href="/news/"><span class="fa fa-arrow-right mx-2" aria-hidden="true"></span> 新闻资讯</a></li>
+                <li class="active"><span class="fa fa-arrow-right mx-2" aria-hidden="true"></span> 正文</li>
+            </ul>
+        </div>
+    </section>
+    <!--/about-->
+    <!--/w3l-faq-block-->
+    <div class="w3l-faq-block py-5" id="faq">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                    <h1 class="mb-5">Flask框架入门详解（以一个博客后台为例）_在线工具</h1>
+                    
+                                    <input type="hidden" id="share-website-info" data-name="Clash Meta免费节点订阅站" data-url="https://clash-meta.github.io">
+                  				  				  				<p></p> <div class="toc"> <div class="toc-container-header">目录</div> <ul> <li> <a href="#1%E5%AE%89%E8%A3%85"  rel="nofollow">1.安装</a></p> <ul> <li><a href="#11-%E5%88%9B%E5%BB%BA%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83"  rel="nofollow">1.1 创建虚拟环境</a></li> <li><a href="#12-%E8%BF%9B%E5%85%A5%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83"  rel="nofollow">1.2 进入虚拟环境</a></li> <li><a href="#13-%E5%AE%89%E8%A3%85-flask"  rel="nofollow">1.3 安装 flask</a></li> </ul> </li> <li> <a href="#2%E4%B8%8A%E6%89%8B"  rel="nofollow">2.上手</a></p> <ul> <li><a href="#21-%E6%9C%80%E5%B0%8F-demo"  rel="nofollow">2.1 最小 Demo</a></li> <li><a href="#22-%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86"  rel="nofollow">2.2 基本知识</a></li> </ul> </li> <li> <a href="#3%E8%A7%A3%E6%9E%84%E5%AE%98%E7%BD%91%E6%8C%87%E5%AF%BC-demo"  rel="nofollow">3.解构官网指导 Demo</a></p> <ul> <li><a href="#31-%E5%85%8B%E9%9A%86%E4%B8%8E%E4%BB%A3%E7%A0%81%E6%9E%B6%E6%9E%84%E5%88%86%E6%9E%90"  rel="nofollow">3.1 克隆与代码架构分析</a></li> <li><a href="#32-%E5%85%A5%E5%8F%A3%E6%96%87%E4%BB%B6-initpy"  rel="nofollow">3.2 入口文件 <strong>init</strong>.py</a></li> <li><a href="#33-%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E7%BD%AE"  rel="nofollow">3.3 数据库设置</a></li> <li><a href="#34-%E8%93%9D%E5%9B%BE%E5%92%8C%E8%A7%86%E5%9B%BE"  rel="nofollow">3.4 蓝图和视图</a></li> </ul> </li> <li><a href="#4%E5%85%B6%E4%BB%96"  rel="nofollow">4.其他</a></li> <li><a href="#5%E8%B7%91%E8%B5%B7-demo"  rel="nofollow">5.跑起 DEMO</a></li> <li><a href="#%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5"  rel="nofollow">参考链接</a></li> </ul> </div> <p></p> <h3 id="1安装">1.安装</h3> <h4 id="11-创建虚拟环境">1.1 创建虚拟环境</h4> <pre><code>mkdir myproject cd myproject python3 -m venv venv </code></pre> <h4 id="12-进入虚拟环境">1.2 进入虚拟环境</h4> <pre><code>. venv/bin/activate </code></pre> <h4 id="13-安装-flask">1.3 安装 flask</h4> <pre><code>pip install Flask </code></pre> <p></p> <h3 id="2上手">2.上手</h3> <h4 id="21-最小-demo">2.1 最小 Demo</h4> <p>将下列代码保存为 <code>hello.py</code>：</p> <pre><code class="language-Python">from flask import Flask  app = Flask(__name__)  @app.route("/") def hello_world():     return "&lt;p&gt;Hello, World!&lt;/p&gt;" </code></pre> <p>运行上述代码：</p> <pre><code>export FLASK_APP=hello flask run </code></pre> <p>这样访问：<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=http://127.0.0.1:5000"  target="_blank"  rel="nofollow">http://127.0.0.1:5000</a> 会看到 Hello, World!</p> <p></p> <h4 id="22-基本知识">2.2 基本知识</h4> <p>这里有 flask 的基本知识（非常重要的基础，大家可以自己看：<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://flask.palletsprojects.com/en/2.1.x/quickstart/"  target="_blank"  rel="nofollow">链接</a></p> <ul> <li> <p>HTML Escaping (利用 Jinja，参考：<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.cnblogs.com/zjutlitao/p/16127063.html"  target="_blank"  rel="nofollow">链接</a></p> </li> <li> <p>Routing (下面几个例子)</p> <pre><code class="language-Python">@app.route('/') def index():     return 'Index Page'  @app.route('/hello') def hello():     return 'Hello, World'  @app.route('/user/&lt;username&gt;') def show_user_profile(username):     # show the user profile for that user     return f'User {escape(username)}'  @app.route('/post/&lt;int:post_id&gt;') def show_post(post_id):     # show the post with the given id, the id is an integer     return f'Post {post_id}'  @app.route('/path/&lt;path:subpath&gt;') def show_subpath(subpath):     # show the subpath after /path/     return f'Subpath {escape(subpath)}' </code></pre> </li> <li> <p>HTTP Methods</p> <pre><code class="language-Python">@app.route('/login', methods=['GET', 'POST']) def login():     if request.method == 'POST':     else: </code></pre> </li> <li> <p>Static Files (<code>url_for('static', filename='style.css')</code>)</p> </li> <li> <p>Rendering Templates (这个参考之前的 Jinja)</p> </li> <li> <p>File Uploads、Cookies、Redirects and Errors、About Responses、APIs with JSON、Sessions、Message Flashing、Logging 这些等我们实际用到时再过来看</p> </li> </ul> <p></p> <h3 id="3解构官网指导-demo">3.解构官网指导 Demo</h3> <p>第 1 节教大家如何利用 python 虚拟环境，快速构建 flask 环境；第 2 节带着大家简单熟悉了 flask 的编程规则（或风格）。</p> <p>大家在着手本节时，务必将第 2 节中的基础的代码跟着官网敲一下！因为，这一节我们不是由简到难一步步搭建 flask 服务器，而是直接拿搭建好的反过来分析。</p> <h4 id="31-克隆与代码架构分析">3.1 克隆与代码架构分析</h4> <pre><code class="language-Shell">$ git clone https://github.com/pallets/flask $ cd flask $ cd examples/tutorial </code></pre> <p>代码目录结构如下：</p> <pre><code>➜  tutorial git:(main) tree -L 4 . ├── flaskr │   ├── __init__.py │   ├── db.py │   ├── schema.sql │   ├── auth.py │   ├── blog.py │   │ │   ├── templates │   │   ├── base.html │   │   ├── auth │   │   │   ├── login.html │   │   │   └── register.html │   │   └── blog │   │       ├── create.html │   │       ├── index.html │   │       └── update.html │   │ │   └── static │       └── style.css │   ├── MANIFEST.in └── setup.py </code></pre> <p></p> <h4 id="32-入口文件-initpy">3.2 入口文件 <strong>init</strong>.py</h4> <pre><code class="language-Python">def create_app(test_config=None):     """Create and configure an instance of the Flask application."""     # 1-创建一个 Flask 实例     # 并设置一些 APP 需要用到的参数     app = Flask(__name__, instance_relative_config=True)     app.config.from_mapping(         # a default secret that should be overridden by instance config         SECRET_KEY="dev",         # store the database in the instance folder         DATABASE=os.path.join(app.instance_path, "flaskr.sqlite"),     )  	# 2-测试用的     if test_config is None:         # load the instance config, if it exists, when not testing         app.config.from_pyfile("config.py", silent=True)     else:         # load the test config if passed in         app.config.update(test_config)  	# 3-创建一个文件夹，用来存 DB 运行时的产生的文件     # ensure the instance folder exists     try:         os.makedirs(app.instance_path)     except OSError:         pass      @app.route("/hello")     def hello():         return "Hello, World!"      # register the database commands     # 3.3 数据库设置（为 flask 新增一个 init_db 命令，这样直接敲 flask init_db 就能生成表）     from flaskr import db      db.init_app(app)      # apply the blueprints to the app     # #### 3.4 蓝图和视图（基于蓝图来管理组织视图，视图注册到蓝图，蓝图注册到应用）     from flaskr import auth, blog      app.register_blueprint(auth.bp)     app.register_blueprint(blog.bp)      # make url_for('index') == url_for('blog.index')     # in another app, you might define a separate main index here with     # app.route, while giving the blog blueprint a url_prefix, but for     # the tutorial the blog will be the main index     app.add_url_rule("/", endpoint="index")      return app </code></pre> <p></p> <h4 id="33-数据库设置">3.3 数据库设置</h4> <p>该项目采用了 SQLite 作为数据库（Python 内置了，免去安装和配置工作）。</p> <ol> <li>SQL 文件 schema.sql</li> </ol> <p>SQLite 的数据存储在表格中，在向表格增删改查数据前，需要先建表。该项目中的 schema.sql 编写了建表的 SQL 语句。分别创建了一个 user 表和 post 表。</p> <pre><code>DROP TABLE IF EXISTS user; DROP TABLE IF EXISTS post;  CREATE TABLE user (   id INTEGER PRIMARY KEY AUTOINCREMENT,   username TEXT UNIQUE NOT NULL,   password TEXT NOT NULL );  CREATE TABLE post (   id INTEGER PRIMARY KEY AUTOINCREMENT,   author_id INTEGER NOT NULL,   created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,   title TEXT NOT NULL,   body TEXT NOT NULL,   FOREIGN KEY (author_id) REFERENCES user (id) ); </code></pre> <p></p> <p>2）与数据库建立连接与断开</p> <pre><code class="language-Python">def get_db():     """Connect to the application's configured database. The connection     is unique for each request and will be reused if this is called     again.     """     if "db" not in g:         g.db = sqlite3.connect(             current_app.config["DATABASE"], detect_types=sqlite3.PARSE_DECLTYPES         )         g.db.row_factory = sqlite3.Row      return g.db   def close_db(e=None):     """If this request connected to the database, close the     connection.     """     db = g.pop("db", None)      if db is not None:         db.close() </code></pre> <p>g 是一个特殊结构，对于每次请求，会产生一个。</p> <p></p> <p>3）数据库初始化（生成表）</p> <p>第 1 节的 schema.sql 用于建表，那么如何执行其中的建表命令呢？ db.py 中的 init_db 就是干这个事情的。</p> <pre><code class="language-Python">def init_db():     """Clear existing data and create new tables."""     db = get_db()      # 获取数据库（如果没有则创建）      	# 读取 schema.sql 中的 SQL 命令，并用 db.executescript 执行 SQL 命令     with current_app.open_resource("schema.sql") as f:         db.executescript(f.read().decode("utf8"))    </code></pre> <p>4）将 init_db 注册为 flask 命令</p> <p>由于数据库初始化并不需要每次启动数据库时运行（不属于运行时需要执行的函数），我们需要将注册成 flask 一个指令，只要在命令行中敲 <code>flask init-db</code> 就能够执行 <code>init_db</code>，其实现方法如下：</p> <pre><code class="language-Python">@click.command("init-db") @with_appcontext def init_db_command():     """Clear existing data and create new tables."""     init_db()     click.echo("Initialized the database.")      def init_app(app):     """Register database functions with the Flask app. This is called by     the application factory.     """     app.teardown_appcontext(close_db) # 在返回响应后进行清理时调用该函数     app.cli.add_command(init_db_command) # 添加一个可以用flask命令调用的新命令 </code></pre> <p>这样，执行完之后，flask.sqlite 文件将会出现在 instance 文件夹。</p> <p></p> <h4 id="34-蓝图和视图">3.4 蓝图和视图</h4> <p>蓝图是一种组织一组相关视图和其他代码的方法。它们不是直接向应用程序注册视图和其他代码，而是向蓝图注册。然后，当蓝图在factory函数中可用时，它将在应用程序中注册。</p> <p>该项目中有两个蓝图：auth 和 blog</p> <pre><code>bp = Blueprint("auth", __name__, url_prefix="/auth")   # in auth.py bp = Blueprint("blog", __name__) # in blog.py </code></pre> <p>参数分别是：蓝图的名字，import_name（一般为 __name__），url 前缀</p> <p><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://github.com/pallets/flask/tree/2.1.1/examples/tutorial"  target="_blank"  rel="nofollow">[1].官方 Demo Github 仓库</a></p> <p>1）auth 视图</p> <p>这里主要有三个路由：</p> <pre><code class="language-Python">@bp.route("/register", methods=("GET", "POST")) def register(): ...  @bp.route("/login", methods=("GET", "POST")) def login(): ...  @bp.route("/logout") def logout(): </code></pre> <p>2）blog 视图</p> <p>这里主要有四个路由：</p> <pre><code class="language-Python">@bp.route("/") def index(): ...  @bp.route("/create", methods=("GET", "POST")) @login_required def create(): ...  @bp.route("/&lt;int:id&gt;/update", methods=("GET", "POST")) @login_required def update(id): ...  @bp.route("/&lt;int:id&gt;/delete", methods=("POST",)) @login_required def delete(id): ... </code></pre> <p>3）注册视图中各个功能实现介绍</p> <ul> <li> <p>注册</p> <p>注册逻辑为：首先从 POST 中获取 username 和 password，然后调用数据库插入操作：</p> <ul> <li><code>username = request.form["username"]</code></li> <li><code>password = request.form["password"]</code></li> <li><code>db.execute("INSERT INTO user (username, password) VALUES (?, ?)", (username, generate_password_hash(password)),)</code></li> </ul> </li> <li> <p>登录</p> <p>登录逻辑为：首先从 POST 中获取 username 和 password，然后调用数据库查询操作，获取该用户的密码，然后进行密码匹配：</p> <ul> <li><code>user = db.execute("SELECT * FROM user WHERE username = ?",username,)).fetchone()</code></li> <li><code>check_password_hash(user["password"], password)</code></li> </ul> <p>密码匹配后，需要创建 session：</p> <pre><code class="language-Python">if error is None:     # store the user id in a new session and return to the index     session.clear()     session["user_id"] = user["id"]     return redirect(url_for("index")) </code></pre> </li> <li> <p>注销</p> <p>注销需要清空 session：</p> <ul> <li><code>session.clear()</code></li> </ul> </li> <li> <p>Session</p> <p>Session 逻辑如下：注册一个方法，让其在任何 URL 请求之前执行，在其中做 Session 管理：</p> <pre><code class="language-Python">@bp.before_app_request def load_logged_in_user():     user_id = session.get('user_id')      if user_id is None:         g.user = None     else:         g.user = get_db().execute(             'SELECT * FROM user WHERE id = ?', (user_id,)         ).fetchone() </code></pre> </li> <li> <p>其他 View 使用认证</p> <p>其他 View 也想使用认证该如何做？在 auth.py 中实现 login_required 函数，判断 user 是否为空，如果为空，则跳转到登录页面：</p> <pre><code class="language-Python">def login_required(view): @functools.wraps(view) def wrapped_view(**kwargs):     if g.user is None:         return redirect(url_for('auth.login'))      return view(**kwargs)  return wrapped_view </code></pre> </li> </ul> <p>4）博客视图中各个功能实现介绍</p> <ul> <li> <p>展示所有博客<br /> 逻辑如下：执行数据库查询操作，获取所有博客，然后加载：</p> <pre><code class="language-Python">@bp.route("/") def index():     """Show all the posts, most recent first."""     db = get_db()     posts = db.execute(         "SELECT p.id, title, body, created, author_id, username"         " FROM post p JOIN user u ON p.author_id = u.id"         " ORDER BY created DESC"     ).fetchall()     return render_template("blog/index.html", posts=posts) </code></pre> </li> <li> <p>创建博客<br /> 逻辑如下：函数前加上 <code>@login_required</code> 前缀，这样就能自动判断是否已经登录，否则跳到登录页面；创建博客就是获取标题和内容，然后调用插入命令，进行插入：</p> <pre><code class="language-Python">@bp.route("/create", methods=("GET", "POST")) @login_required def create():     """Create a new post for the current user."""     if request.method == "POST":         title = request.form["title"]         body = request.form["body"]         error = None          if not title:             error = "Title is required."          if error is not None:             flash(error)         else:             db = get_db()             db.execute(                 "INSERT INTO post (title, body, author_id) VALUES (?, ?, ?)",                 (title, body, g.user["id"]),             )             db.commit()             return redirect(url_for("blog.index"))      return render_template("blog/create.html") </code></pre> </li> <li> <p>更新和删除博客<br /> 更新和删除博客，需要传入一个 id，然后有一个内部函数用于判断该 id 是否存在：</p> <pre><code class="language-Python">def get_post(id, check_author=True):     """Get a post and its author by id.      Checks that the id exists and optionally that the current user is     the author.      :param id: id of post to get     :param check_author: require the current user to be the author     :return: the post with author information     :raise 404: if a post with the given id doesn't exist     :raise 403: if the current user isn't the author     """     post = (         get_db()         .execute(             "SELECT p.id, title, body, created, author_id, username"             " FROM post p JOIN user u ON p.author_id = u.id"             " WHERE p.id = ?",             (id,),         )         .fetchone()     )      if post is None:         abort(404, f"Post id {id} doesn't exist.")      if check_author and post["author_id"] != g.user["id"]:         abort(403)      return post </code></pre> <p>因此，更新的逻辑如下：</p> <pre><code class="language-Python">@bp.route("/&lt;int:id&gt;/update", methods=("GET", "POST")) @login_required def update(id):     """Update a post if the current user is the author."""     post = get_post(id)      if request.method == "POST":         title = request.form["title"]         body = request.form["body"]         error = None          if not title:             error = "Title is required."          if error is not None:             flash(error)         else:             db = get_db()             db.execute(                 "UPDATE post SET title = ?, body = ? WHERE id = ?", (title, body, id)             )             db.commit()             return redirect(url_for("blog.index"))      return render_template("blog/update.html", post=post) </code></pre> <p>删除的逻辑如下：</p> <pre><code class="language-Python">@bp.route("/&lt;int:id&gt;/delete", methods=("POST",)) @login_required def delete(id):     """Delete a post.      Ensures that the post exists and that the logged in user is the     author of the post.     """     get_post(id)     db = get_db()     db.execute("DELETE FROM post WHERE id = ?", (id,))     db.commit()     return redirect(url_for("blog.index")) </code></pre> </li> </ul> <p></p> <h3 id="4其他">4.其他</h3> <p>其他还有一些，是大家玩熟了之后才需要看的：</p> <ul> <li><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://flask.palletsprojects.com/en/2.1.x/tutorial/install/"  target="_blank"  rel="nofollow">工程部署安装</a></li> <li><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://flask.palletsprojects.com/en/2.1.x/tutorial/tests/"  target="_blank"  rel="nofollow">工程自动化测试</a></li> </ul> <p></p> <h3 id="5跑起-demo">5.跑起 DEMO</h3> <p>最后，我们跑起 Demo 看看效果：</p> <p>1）在 tutorial 目录下，创建虚拟环境，并安装 Flask：</p> <pre><code class="language-Shell">python3 -m venv venv . venv/bin/activate pip install Flask </code></pre> <p>2）以开发者方式运行：</p> <pre><code class="language-Shell">export FLASK_APP=flaskr export FLASK_ENV=development flask init-db flask run </code></pre> <p>效果如下：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220505/1ae68b09977a1d0b525fe66825ded33a.jpg" alt="Flask框架入门详解（以一个博客后台为例）_在线工具"></p> <p></p> <h3 id="参考链接">参考链接</h3> <p><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://github.com/pallets/flask/tree/2.1.1/examples/tutorial"  target="_blank"  rel="nofollow">[1]. 本文源码</a><br /><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://flask.palletsprojects.com/en/2.1.x/"  target="_blank"  rel="nofollow">[2]. Flask 文档主页</a><br /><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://flask.palletsprojects.com/en/2.1.x/tutorial/"  target="_blank"  rel="nofollow">[3]. tutorial 主页</a><br /><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.cnblogs.com/zjutlitao/p/16127063.html"  target="_blank"  rel="nofollow">[4]. Jinja 模板入门</a><br /><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.cnblogs.com/zjutlitao/p/9919922.html"  target="_blank"  rel="nofollow">[5]. python django web 开发</a><br /><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.cnblogs.com/keyou1/p/10861212.html"  target="_blank"  rel="nofollow">[6]. 真正搞明白Python中Django和Flask框架的区别</a></p> <p></p> <hr> <p>: <font color="#FF000"> <strong>这篇是在大家熟悉基本的 flaskr 之后，进行稍微大一点的项目开发的指导，里面涉及到数据库、蓝图等...</p> <p>如果觉得不错，帮忙点个支持哈～</strong>  </font></p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220505/7b66a88d502705139a8fa90e687781b9.jpg" alt="Flask框架入门详解（以一个博客后台为例）_在线工具"></p> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-91987.htm">Qt QComboBox之setEditable和currentTextChanged及其源码分析</a></p>
+                                        <p>下一个：<a href="/news/article-92708.htm">Qt(QtWebEngine)加载本地网页跨域问题的总结</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2025-3-21-free-clash.htm" title="3月21日→20.8M/S|2025年最新免费节点Free V2ray Clash订阅链接地址">3月21日→20.8M/S|2025年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-87538.htm" title="宠物领养协议书范本免费模板大全图片下载（宠物领养协议是否有法律效力）">宠物领养协议书范本免费模板大全图片下载（宠物领养协议是否有法律效力）</a></li>
+                        <li class="py-2"><a href="/news/article-80479.htm" title="动物疫苗在哪买比较好 动物疫苗在哪买比较好一点">动物疫苗在哪买比较好 动物疫苗在哪买比较好一点</a></li>
+                        <li class="py-2"><a href="/news/article-72303.htm" title="前端都应该要掌握的防抖和节流">前端都应该要掌握的防抖和节流</a></li>
+                        <li class="py-2"><a href="/news/article-67114.htm" title="MQTT物联网通讯协议入门及Demo实现">MQTT物联网通讯协议入门及Demo实现</a></li>
+                        <li class="py-2"><a href="/news/article-77016.htm" title="Kafka 认证三：添加 Kerberos 认证详细流程">Kafka 认证三：添加 Kerberos 认证详细流程</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-17-free-node-subscribe-links.htm" title="3月17日→22.3M/S|2025年最新免费节点Free V2ray Clash订阅链接地址">3月17日→22.3M/S|2025年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-65849.htm" title="宠物美容师的工作内容描述（宠物美容师的岗位职责）">宠物美容师的工作内容描述（宠物美容师的岗位职责）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-6-free-node-subscribe-links.htm" title="3月6日→20.6M/S|2025年最新免费节点Free V2ray Clash订阅链接地址">3月6日→20.6M/S|2025年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-25-free-node-subscribe.htm" title="3月25日→18.9M/S|2025年最新免费节点Free V2ray Clash订阅链接地址">3月25日→18.9M/S|2025年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">36</span> <a href="/date/2025-04/" title="2025-04 归档">2025-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">90</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+        <!--//w3l-faq-block-->
+    <section class="w3l-footer-29-main w3l-copyright">
+        <div class="container">
+            <div class="bottom-copies">
+                <p class="copy-footer-29 text-center">
+                                                <p>
+                                                <a href="/">首页</a> |
+                                                <a href="/free-nodes/">免费节点</a> |
+                                                <a href="/paid-subscribe/">推荐机场</a> |
+                                                <a href="/client.htm">客户端</a> |
+                                                <a href="/news/">新闻资讯</a> |
+                                                <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                    <a href="/">Free V2ray Clash免费机场订阅节点官网</a> 版权所有 Powered by WordPress
+                </p>
+            </div>
+        </div>
+        <!-- move top -->
+        <button onclick="topFunction()" id="movetop" title="Go to top">
+            <span class="fa fa-angle-up"></span>
+        </button>
+        <script>
+        // When the user scrolls down 20px from the top of the document, show the button
+        window.onscroll = function() {
+            scrollFunction()
+        };
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                document.getElementById("movetop").style.display = "block";
+            } else {
+                document.getElementById("movetop").style.display = "none";
+            }
+        }
+
+        // When the user clicks on the button, scroll to the top of the document
+        function topFunction() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }
+        </script>
+        <!-- /move top -->
+    </section>
+    <!-- Template JavaScript -->
+    <script src="/assets/website/js/frontend/freev2rayclash/jquery-3.3.1.min.js"></script>
+    <!-- script for testimonials -->
+    <script>
+    $(document).ready(function() {
+        $('.owl-testimonial').owlCarousel({
+            loop: true,
+            margin: 0,
+            nav: true,
+            responsiveClass: true,
+            autoplay: true,
+            autoplayTimeout: 5000,
+            autoplaySpeed: 1000,
+            autoplayHoverPause: false,
+            responsive: {
+                0: {
+                    items: 1,
+                    nav: false
+                },
+                480: {
+                    items: 1,
+                    nav: false
+                },
+                667: {
+                    items: 1,
+                    nav: true
+                },
+                1000: {
+                    items: 1,
+                    nav: true
+                }
+            }
+        })
+    })
+    </script>
+    <!-- //script for testimonials -->
+    <script src="/assets/website/js/frontend/freev2rayclash/theme-change.js"></script>
+    <!-- js for portfolio lightbox -->
+    <!-- libhtbox -->
+    <script src="/assets/website/js/frontend/freev2rayclash/lightbox-plus-jquery.min.js"></script>
+    <!-- libhtbox -->
+    <script src="/assets/website/js/frontend/freev2rayclash/owl.carousel.js"></script>
+    <!-- script for banner slider-->
+    <script>
+    $(document).ready(function() {
+        $('.owl-one').owlCarousel({
+            loop: true,
+            margin: 0,
+            nav: false,
+            responsiveClass: true,
+            autoplay: true,
+            autoplayTimeout: 5000,
+            autoplaySpeed: 1000,
+            autoplayHoverPause: false,
+            responsive: {
+                0: {
+                    items: 1,
+                    nav: false
+                },
+                480: {
+                    items: 1,
+                    nav: false
+                },
+                667: {
+                    items: 1,
+                    nav: true
+                },
+                1000: {
+                    items: 1,
+                    nav: true
+                }
+            }
+        })
+    })
+    </script>
+    <!-- //script -->
+    <!-- stats number counter-->
+    <script src="/assets/website/js/frontend/freev2rayclash/jquery.waypoints.min.js"></script>
+    <script src="/assets/website/js/frontend/freev2rayclash/jquery.countup.js"></script>
+    <script>
+    $('.counter').countUp();
+    </script>
+    <!-- //stats number counter -->
+    <!-- disable body scroll which navbar is in active -->
+    <script>
+    $(function() {
+        $('.navbar-toggler').click(function() {
+            $('body').toggleClass('noscroll');
+        })
+    });
+    </script>
+    <!-- disable body scroll which navbar is in active -->
+    <!--/MENU-JS-->
+    <script>
+    $(window).on("scroll", function() {
+        var scroll = $(window).scrollTop();
+
+        if (scroll >= 80) {
+            $("#site-header").addClass("nav-fixed");
+        } else {
+            $("#site-header").removeClass("nav-fixed");
+        }
+    });
+
+    //Main navigation Active Class Add Remove
+    $(".navbar-toggler").on("click", function() {
+        $("header").toggleClass("active");
+    });
+    $(document).on("ready", function() {
+        if ($(window).width() > 991) {
+            $("header").removeClass("active");
+        }
+        $(window).on("resize", function() {
+            if ($(window).width() > 991) {
+                $("header").removeClass("active");
+            }
+        });
+    });
+    </script>
+    <!--//MENU-JS-->
+    <script src="/assets/website/js/frontend/freev2rayclash/bootstrap.min.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>

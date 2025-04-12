@@ -1,0 +1,335 @@
+<!doctype html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://freev2rayclash.github.io/news/article-91987.htm" />
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Qt QComboBox之setEditable和currentTextChanged及其源码分析</title>
+        <meta name="description" content="目录  Qt QComboBox之setEditable和currentTextChanged以及其源码分析  前言 问题的出现 问题分析 currentTextChanged信号触发 源码分析   " />
+        <link rel="icon" href="/assets/website/img/freev2rayclash/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Free V2ray Clash免费机场订阅节点官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://freev2rayclash.github.io/news/article-91987.htm" />
+    <meta property="og:site_name" content="Free V2ray Clash免费机场订阅节点官网" />
+    <meta property="og:title" content="Qt QComboBox之setEditable和currentTextChanged及其源码分析" />
+    <meta property="og:image" content="https://freev2rayclash.github.io/uploads/20240919-1/77903effddd0f00079b8837274d892eb.webp" />
+        <meta property="og:release_date" content="2025-04-09T09:17:22" />
+    <meta property="og:updated_time" content="2025-04-09T09:17:22" />
+        <meta property="og:description" content="目录  Qt QComboBox之setEditable和currentTextChanged以及其源码分析  前言 问题的出现 问题分析 currentTextChanged信号触发 源码分析   " />
+    
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Qt QComboBox之setEditable和currentTextChanged及其源码分析">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,300;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- Template CSS -->
+    <link rel="stylesheet" href="/assets/website/css/freev2rayclash/style-starter.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SMY6EV424E"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-SMY6EV424E');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!--header-->
+    <header id="site-header" class="fixed-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-dark stroke">
+                <a class="navbar-brand" href="/">
+                                    <span>
+                        Free V2ray Clash                    </span>
+                                </a>
+                <!-- if logo is image enable this   
+      <a class="navbar-brand" href="#index.html">
+          <img src="image-path" alt="Your logo" title="Your logo" style="height:35px;" />
+      </a> -->
+                <button class="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon fa icon-expand fa-bars"></span>
+                    <span class="navbar-toggler-icon fa icon-close fa-times"></span>
+                    </span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                    <ul class="navbar-nav mx-lg-auto">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/free-nodes/">免费节点</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/paid-subscribe/">推荐机场</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/client.htm">客户端</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/news/">新闻资讯</a>
+                        </li>
+                                            </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <!--/header-->
+    <div class="inner-banner">
+    </div>
+    <section class="w3l-breadcrumb">
+        <div class="container">
+            <ul class="breadcrumbs-custom-path">
+                <li><a href="/">首页</a></li>
+                <li><a href="/news/"><span class="fa fa-arrow-right mx-2" aria-hidden="true"></span> 新闻资讯</a></li>
+                <li class="active"><span class="fa fa-arrow-right mx-2" aria-hidden="true"></span> 正文</li>
+            </ul>
+        </div>
+    </section>
+    <!--/about-->
+    <!--/w3l-faq-block-->
+    <div class="w3l-faq-block py-5" id="faq">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                    <h1 class="mb-5">Qt QComboBox之setEditable和currentTextChanged及其源码分析</h1>
+                    
+                                    <input type="hidden" id="share-website-info" data-name="Clash Meta免费节点订阅站" data-url="https://clash-meta.github.io">
+                  				  				  				<div class="toc"> <div class="toc-container-header">目录</div> <ul> <li><a href="#qt-qcombobox%E4%B9%8Bseteditable%E5%92%8Ccurrenttextchanged%E4%BB%A5%E5%8F%8A%E5%85%B6%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90" rel="nofollow">Qt QComboBox之setEditable和currentTextChanged以及其源码分析</a> <ul> <li><a href="#%E5%89%8D%E8%A8%80" rel="nofollow">前言</a></li> <li><a href="#%E9%97%AE%E9%A2%98%E7%9A%84%E5%87%BA%E7%8E%B0" rel="nofollow">问题的出现</a></li> <li><a href="#%E9%97%AE%E9%A2%98%E5%88%86%E6%9E%90" rel="nofollow">问题分析</a></li> <li><a href="#currenttextchanged%E4%BF%A1%E5%8F%B7%E8%A7%A6%E5%8F%91" rel="nofollow">currentTextChanged信号触发</a></li> <li><a href="#%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90" rel="nofollow">源码分析</a></li> </ul> </li> </ul> </div> </h1> <h2 id="前言">前言</h2> <p>最近做了一个QComboBox里有选项，然后选中选项之后就会自动触发条件搜索。然后我发现，在我初始化comboBox时，由于信号连接的原因会触发这个currentTextChanged信号。代码大致如下：</p> <pre><code class="language-cpp">connect(ui-&gt;comboBox, &amp;QComboBox::currentTextChanged,         this,         &amp;CountryType::slot_pageSearch);   void Country::setComboBox() {     QStringList content;     int maxLen = 0;     QFont font;     font.setFamily("Microsoft YaHei");     font.setPixelSize(16);     QFontMetrics fontMetrics(font);      QString command = jointQueryComboBoxTextCommand();     QList&lt;QStringList&gt; texts = m_oracle-&gt;runSelectCommand(command);     foreach (QStringList text, texts) {         QString item = text.value(0)+"-"+text.value(1);         content.push_back(item);         // 计算最大宽度         maxLen = maxLen &gt; fontMetrics.boundingRect(item).width() ?                     maxLen :                     fontMetrics.boundingRect(item).width();     }      // comboBox的宽度为 文字的最大宽度 + 下拉箭头的宽度 + 文字两边的间距     ui-&gt;comboBox-&gt;setMinimumWidth(maxLen + 38 + 8);     ui-&gt;comboBox-&gt;clear();     // 填充一个空选项作为筛选所有     ui-&gt;comboBox-&gt;addItem("");     ui-&gt;comboBox-&gt;addItems(content); }  void Country::search() {     setComboBox(); }</code></pre> <h2 id="问题的出现">问题的出现</h2> <p>在我每一次对页面进行切换的时候，我发现这个<code>search</code>都会触发这个<code>slot_pageSearch</code>槽函数，然后执行条件搜索。<br /> 但是我今天突发奇想，我是不是应该让使用者能够手动的输入这个条件呢，于是我<code>setEditable(true);</code>，将编辑打开了。<br /> 也就是:</p> <pre><code class="language-cpp">ui-&gt;comboBox-&gt;setEditable(true);</code></pre> <p>在设置了这个之后，我惊奇的发现，并没有像之前一样会触发<code>slot_pageSearch</code>这个槽函数。</p> <h2 id="问题分析">问题分析</h2> <p>因为我只修改了<code>ui-&gt;comboBox-&gt;setEditable(true);</code>，所以我肯定，问题就是发生在这个地方，于是我在网上搜索与这个问题有关联的答案。</p> <p>最后，我还是在QT的官方文档中对于<code>currentText</code>这个部分的介绍中，找到了问题的原因。<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/2064e12d8685e02e0b3e0cc73137cc6a.jpg" alt="Qt QComboBox之setEditable和currentTextChanged及其源码分析">大概意思就是说，当你将<code>QComboBox</code>设置成可编辑的状态时（<code>setEditable(true)</code>），<code>currentText</code>就是当前的框内显示的文字。当不为可编辑的状态时，<code>currentText</code>就是当前的选项或者是一个空的字符串。</p> <p>所以我猜想，设置成不可编辑状态时，由于我进行了一个条目的添加，所以就将当前的选项改变了。</p> <h2 id="currenttextchanged信号触发">currentTextChanged信号触发</h2> <p>于是我在正常的流程下，添加了一些打印语句，用于证实我的猜想。</p> <pre><code class="language-cpp">    void Country::setComboBox() {         ...         // 填充一个空选项作为筛选所有          qDebug() &lt;&lt; "1";         ui-&gt;comboBox-&gt;addItem("");         qDebug() &lt;&lt; "2";         ui-&gt;comboBox-&gt;addItems(content);         qDebug() &lt;&lt; "3";         ...     }      void CountryType::slot_pageSearch()     {         ...         qDebug() &lt;&lt; "111";         ...     }</code></pre> <p>输出的结果为：</p> <pre><code class="language-cpp">    1     111     2     3</code></pre> <p>这也就表明了，我是在<code>setItem</code>之后，就会触发槽函数。但是具体为啥是这样的，为啥<code>addItems</code>不会触发<code>currentTextChanged</code>呢？<br /> 所以我带着问题，决定去源码里找答案</p> <h2 id="源码分析">源码分析</h2> <pre><code class="language-cpp">// 代码调用结构 1. QComboBox::addItem(int , const QIcon &amp;, const QString &amp;, const QVariant &amp;) ----&gt; QStandardItem::setData(const QVariant &amp;, int ) 	  ----&gt; QStandardItemModelPrivate::itemChanged(QStandardItem *, const QVector&lt;int&gt; &amp;) 			----&gt; signal: QStandardItemModel::dataChanged(QModelIndex,QModelIndex) slot: QComboBox::_q_dataChanged(QModelIndex,QModelIndex) 				  ----&gt; if (lineEdit) lineEdit-&gt;setText(); else emit currentTextChanged(QString);    2. QComboxBox::addItems(QStringList) ----&gt; QComboxBox::insertItems(int, QStringList) 	  ----&gt; QStandardItem::insertRows(int, QList&lt;QStandardItem*&gt;) 			----&gt; QStandardItemPrivate::insertRows(int, QList&lt;QStandardItem*&gt;) 				  ----&gt; rowsAboutToBeInserted(QStandardItem *, int , int) 						----&gt; QAbstractItemModel::beginInsertRows(const QModelIndex &amp;, int , int ) 							  ----&gt; signal: rowsAboutToBeInserted(const QModelIndex &amp;, int , int ) slot:  							  ----&gt; QAbstractItemModelPrivate::rowsAboutToBeInserted(const QModelIndex &amp;, int , int ) 				  ----&gt; QStandardItemModelPrivate::rowsInserted(QStandardItem *, int , int ) 						----&gt; QAbstractItemModel::endInsertRows() 							  ----&gt; void QAbstractItemModelPrivate::rowsInserted(const QModelIndex &amp;, int , int ) 							  ----&gt; signal: QAbstractItemModel::rowsInserted(QModelIndex,int,int) slot: QComboBox::_q_rowsInserted(QModelIndex,int,int)</code></pre> <ol> <li>首先，我从最简单的来入手——<code>addItem</code><br /><img decoding="async" src="https://img-blog.csdnimg.cn/34b566987a8e484083b019c99ca8a932.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5biI5LuO5ZCN5YmR5bGx,size_20,color_FFFFFF,t_70,g_se,x_16" alt="请添加图片描述" loading="lazy"/><br /> 在上面这张图里可以知道,<code>addItem</code>调用的是<code>insertItem</code>这个函数，这个是用来插入条目的一个函数;</li> </ol> <p>然后就是<code>insertItem</code>这个函数，我们可以看到，这个函数会根据你的是不是原始的<code>QStandardItemModel</code>，是的话，就会去设置数据；<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/1790c858c65210866762afe516d12ee3.jpg" alt="Qt QComboBox之setEditable和currentTextChanged及其源码分析"><br /> 这里有两个分支，</p> <ul> <li><code>setData</code><br /><img decoding="async" src="https://img-blog.csdnimg.cn/4836b02cd60240cc8a4a9567182e465e.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5biI5LuO5ZCN5YmR5bGx,size_18,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述" loading="lazy"/><br /><img decoding="async" src="https://img-blog.csdnimg.cn/4f9d43647b5d4f0480bb2dd9fb2b4fcd.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5biI5LuO5ZCN5YmR5bGx,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述" loading="lazy"/><br /> 随着函数的调用过程，信号<code>dataChanged</code>被发射了，同时，在qcombobox.cpp中有对这个信号的连接，<br /><img decoding="async" src="https://img-blog.csdnimg.cn/ef1c106b6f7e432db5051a0510afdd5e.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5biI5LuO5ZCN5YmR5bGx,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述" loading="lazy"/><img decoding="async" src="https://img-blog.csdnimg.cn/2d0e6217b2ca47f789747313d8e62879.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5biI5LuO5ZCN5YmR5bGx,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述" loading="lazy"/><br /> 我们进到这个<code>_q_dataChanged()</code>函数里面，<br /><img decoding="async" src="https://img-blog.csdnimg.cn/7f4c4bf97ab740b3b72682be34aaaae6.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5biI5LuO5ZCN5YmR5bGx,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述" loading="lazy"/><br /> 这里有一段代码：</li> </ul> <pre><code class="language-cpp"> if (currentIndex.row() &gt;= topLeft.row() &amp;&amp; currentIndex.row() &lt;= bottomRight.row()) {         const QString text = q-&gt;itemText(currentIndex.row());         if (lineEdit) {             lineEdit-&gt;setText(text);             updateLineEditGeometry();         } else {             emit q-&gt;currentTextChanged(text);         }         q-&gt;update(); #ifndef QT_NO_ACCESSIBILITY         QAccessibleValueChangeEvent event(q, text);         QAccessible::updateAccessibility(&amp;event); #endif     }</code></pre> <p>在这里，我们就找到了我们的目标<code>currentTextChanged</code>这个信号。但是发射这个信号的前提条件是：</p> <ul> <li><code>currentIndex.row() &gt;= topLeft.row() &amp;&amp; currentIndex.row() &lt;= bottomRight.row()</code>也就是说，当前的下标的值需要在范围内</li> <li>当前的状态必须是不可编辑状态才会发射信号</li> </ul> <p>所以这里就是设置成可编辑状态后，不会触发信号的原因；</p> <ul> <li><code>insertRow</code><br /><img decoding="async" src="https://img-blog.csdnimg.cn/0f58cc8903d044dc8ade101f8d095472.png" alt="Qt QComboBox之setEditable和currentTextChanged及其源码分析"><img decoding="async" src="https://img-blog.csdnimg.cn/07e637d3da73442d913c7810142e6368.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5biI5LuO5ZCN5YmR5bGx,size_17,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述" loading="lazy"/><br /><img decoding="async" src="https://img-blog.csdnimg.cn/8f6d997893a649f695451dbabb94f104.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5biI5LuO5ZCN5YmR5bGx,size_18,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述" loading="lazy"/><br /> 现在关键的函数要来了，这个函数<code>bool QStandardItemPrivate::insertRows</code>，在待会<code>addItems</code>这个函数分析时也会用到。<br /><img decoding="async" src="https://img-blog.csdnimg.cn/92801610b1f54d1d8981357479ac6529.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5biI5LuO5ZCN5YmR5bGx,size_19,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述" loading="lazy"/><br /><img decoding="async" src="https://img-blog.csdnimg.cn/0d9796c7fb33479d9a00fab72d10a95a.png" alt="Qt QComboBox之setEditable和currentTextChanged及其源码分析"><br /> 在这里发射了这个<code>rowInserted()</code>信号，这个信号，又在QComboBox中进行了槽函数的连接<br /><img decoding="async" src="https://img-blog.csdnimg.cn/69b28956e3434ebfb07f086231fa507a.png" alt="Qt QComboBox之setEditable和currentTextChanged及其源码分析"><br /><img decoding="async" src="https://img-blog.csdnimg.cn/2e24b2d0ac764a2d9f093862285430e9.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5biI5LuO5ZCN5YmR5bGx,size_14,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述" loading="lazy"/><br /> 所以在这个函数里面，如果是插入的第一个条目，就会把当前的下表设置成0，这时候就会触发另外一个信号<code>currentIndexChanged</code>。<br /><img decoding="async" src="https://img-blog.csdnimg.cn/0be278f7f2c5469ba583f0ea45df3435.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5biI5LuO5ZCN5YmR5bGx,size_18,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述" loading="lazy"/><br /> 至此，我们就能明白，为什么<code>addItem</code>会触发<code>currentTextChanged</code>的信号。同时，如果设置成可编辑状态，又是为何不会触发<code>currentTextChanged</code></li> </ul> <ol start="2"> <li>其次，我们从第二个函数，也就是<code>addItems</code><br /><img decoding="async" src="https://img-blog.csdnimg.cn/4f375e3f9c9045c5804155967a1248f4.png" alt="Qt QComboBox之setEditable和currentTextChanged及其源码分析"><br /><img decoding="async" src="https://img-blog.csdnimg.cn/50ed99bb404b4905a086d0b2cdde5a80.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5biI5LuO5ZCN5YmR5bGx,size_18,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述" loading="lazy"/><br /> 到这里，就能发现，这个部分调用的还是这个<code>bool QStandardItemPrivate::insertRows</code>,同样根据条件判断，<code>currentIndex = 0</code>而其他两个分别为1和添加条目的数量，很显然不符合要求。<br /> 所以这也就是为什么<code>addItems</code>不会触发<code>currentIndexChange</code>的原因。<br /> 至此，根据源码的分析，所有发生的事情，都能够正常的解释通了。</li> </ol> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-91457.htm">动物医院的电话是什么 动物医院的电话是什么?</a></p>
+                                        <p>下一个：<a href="/news/article-91990.htm">Flask框架入门详解（以一个博客后台为例）_在线工具</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2025-3-12-free-clash.htm" title="3月12日→22.1M/S|2025年最新免费节点Free V2ray Clash订阅链接地址">3月12日→22.1M/S|2025年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-85383.htm" title="学宠物美容师需要多少钱（学宠物美容师需要多少钱一个月）">学宠物美容师需要多少钱（学宠物美容师需要多少钱一个月）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-8-clash-node-daily-updates.htm" title="4月8日→19.1M/S|2025年最新免费节点Free V2ray Clash订阅链接地址">4月8日→19.1M/S|2025年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-6-free-node-subscribe-links.htm" title="3月6日→20.6M/S|2025年最新免费节点Free V2ray Clash订阅链接地址">3月6日→20.6M/S|2025年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-74987.htm" title="宠颐生中心医院姚海峰（宠颐生医院怎么样）">宠颐生中心医院姚海峰（宠颐生医院怎么样）</a></li>
+                        <li class="py-2"><a href="/news/article-81827.htm" title="HTML URL 编码转换表">HTML URL 编码转换表</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-5-node-share.htm" title="4月5日→22.4M/S|2025年最新免费节点Free V2ray Clash订阅链接地址">4月5日→22.4M/S|2025年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/news/article-72970.htm" title="南京宠物领养中心官网地址 南京宠物领养中心官网地址查询">南京宠物领养中心官网地址 南京宠物领养中心官网地址查询</a></li>
+                        <li class="py-2"><a href="/news/article-83955.htm" title="宠物粮食生产厂家（国内宠物粮食十大厂家）">宠物粮食生产厂家（国内宠物粮食十大厂家）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-19-clash-windows.htm" title="3月19日→20.6M/S|2025年最新免费节点Free V2ray Clash订阅链接地址">3月19日→20.6M/S|2025年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">33</span> <a href="/date/2025-04/" title="2025-04 归档">2025-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">90</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+        <!--//w3l-faq-block-->
+    <section class="w3l-footer-29-main w3l-copyright">
+        <div class="container">
+            <div class="bottom-copies">
+                <p class="copy-footer-29 text-center">
+                                                <p>
+                                                <a href="/">首页</a> |
+                                                <a href="/free-nodes/">免费节点</a> |
+                                                <a href="/paid-subscribe/">推荐机场</a> |
+                                                <a href="/client.htm">客户端</a> |
+                                                <a href="/news/">新闻资讯</a> |
+                                                <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                    <a href="/">Free V2ray Clash免费机场订阅节点官网</a> 版权所有 Powered by WordPress
+                </p>
+            </div>
+        </div>
+        <!-- move top -->
+        <button onclick="topFunction()" id="movetop" title="Go to top">
+            <span class="fa fa-angle-up"></span>
+        </button>
+        <script>
+        // When the user scrolls down 20px from the top of the document, show the button
+        window.onscroll = function() {
+            scrollFunction()
+        };
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                document.getElementById("movetop").style.display = "block";
+            } else {
+                document.getElementById("movetop").style.display = "none";
+            }
+        }
+
+        // When the user clicks on the button, scroll to the top of the document
+        function topFunction() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }
+        </script>
+        <!-- /move top -->
+    </section>
+    <!-- Template JavaScript -->
+    <script src="/assets/website/js/frontend/freev2rayclash/jquery-3.3.1.min.js"></script>
+    <!-- script for testimonials -->
+    <script>
+    $(document).ready(function() {
+        $('.owl-testimonial').owlCarousel({
+            loop: true,
+            margin: 0,
+            nav: true,
+            responsiveClass: true,
+            autoplay: true,
+            autoplayTimeout: 5000,
+            autoplaySpeed: 1000,
+            autoplayHoverPause: false,
+            responsive: {
+                0: {
+                    items: 1,
+                    nav: false
+                },
+                480: {
+                    items: 1,
+                    nav: false
+                },
+                667: {
+                    items: 1,
+                    nav: true
+                },
+                1000: {
+                    items: 1,
+                    nav: true
+                }
+            }
+        })
+    })
+    </script>
+    <!-- //script for testimonials -->
+    <script src="/assets/website/js/frontend/freev2rayclash/theme-change.js"></script>
+    <!-- js for portfolio lightbox -->
+    <!-- libhtbox -->
+    <script src="/assets/website/js/frontend/freev2rayclash/lightbox-plus-jquery.min.js"></script>
+    <!-- libhtbox -->
+    <script src="/assets/website/js/frontend/freev2rayclash/owl.carousel.js"></script>
+    <!-- script for banner slider-->
+    <script>
+    $(document).ready(function() {
+        $('.owl-one').owlCarousel({
+            loop: true,
+            margin: 0,
+            nav: false,
+            responsiveClass: true,
+            autoplay: true,
+            autoplayTimeout: 5000,
+            autoplaySpeed: 1000,
+            autoplayHoverPause: false,
+            responsive: {
+                0: {
+                    items: 1,
+                    nav: false
+                },
+                480: {
+                    items: 1,
+                    nav: false
+                },
+                667: {
+                    items: 1,
+                    nav: true
+                },
+                1000: {
+                    items: 1,
+                    nav: true
+                }
+            }
+        })
+    })
+    </script>
+    <!-- //script -->
+    <!-- stats number counter-->
+    <script src="/assets/website/js/frontend/freev2rayclash/jquery.waypoints.min.js"></script>
+    <script src="/assets/website/js/frontend/freev2rayclash/jquery.countup.js"></script>
+    <script>
+    $('.counter').countUp();
+    </script>
+    <!-- //stats number counter -->
+    <!-- disable body scroll which navbar is in active -->
+    <script>
+    $(function() {
+        $('.navbar-toggler').click(function() {
+            $('body').toggleClass('noscroll');
+        })
+    });
+    </script>
+    <!-- disable body scroll which navbar is in active -->
+    <!--/MENU-JS-->
+    <script>
+    $(window).on("scroll", function() {
+        var scroll = $(window).scrollTop();
+
+        if (scroll >= 80) {
+            $("#site-header").addClass("nav-fixed");
+        } else {
+            $("#site-header").removeClass("nav-fixed");
+        }
+    });
+
+    //Main navigation Active Class Add Remove
+    $(".navbar-toggler").on("click", function() {
+        $("header").toggleClass("active");
+    });
+    $(document).on("ready", function() {
+        if ($(window).width() > 991) {
+            $("header").removeClass("active");
+        }
+        $(window).on("resize", function() {
+            if ($(window).width() > 991) {
+                $("header").removeClass("active");
+            }
+        });
+    });
+    </script>
+    <!--//MENU-JS-->
+    <script src="/assets/website/js/frontend/freev2rayclash/bootstrap.min.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
