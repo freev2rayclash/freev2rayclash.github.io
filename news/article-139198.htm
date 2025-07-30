@@ -1,0 +1,334 @@
+<!doctype html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://freev2rayclash.github.io/news/article-139198.htm" />
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>从零开始：云服务器搭建V2Ray科学上网全攻略</title>
+        <meta name="description" content="引言：为什么选择V2Ray？  在当今数字化时代，网络自由已成为许多网民的基本需求。无论是为了获取全球资讯、学术研究还是商业情报，突破网络限制的需求日益增长。在众多代理工具中，V2Ray凭借其强大的功" />
+        <link rel="icon" href="/assets/website/img/freev2rayclash/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Free V2ray Clash免费机场订阅节点官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://freev2rayclash.github.io/news/article-139198.htm" />
+    <meta property="og:site_name" content="Free V2ray Clash免费机场订阅节点官网" />
+    <meta property="og:title" content="从零开始：云服务器搭建V2Ray科学上网全攻略" />
+    <meta property="og:image" content="https://freev2rayclash.github.io/uploads/20240919-1/b39dd78d67032f685039fe63aa00dfb7.webp" />
+        <meta property="og:release_date" content="2025-07-29T10:10:10" />
+    <meta property="og:updated_time" content="2025-07-29T10:10:10" />
+        <meta property="og:description" content="引言：为什么选择V2Ray？  在当今数字化时代，网络自由已成为许多网民的基本需求。无论是为了获取全球资讯、学术研究还是商业情报，突破网络限制的需求日益增长。在众多代理工具中，V2Ray凭借其强大的功" />
+    
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="从零开始：云服务器搭建V2Ray科学上网全攻略">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,300;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- Template CSS -->
+    <link rel="stylesheet" href="/assets/website/css/freev2rayclash/style-starter.css">
+    <link rel="stylesheet" href="/assets/website/css/G.css" />
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SMY6EV424E"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-SMY6EV424E');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!--header-->
+    <header id="site-header" class="fixed-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-dark stroke">
+                <a class="navbar-brand" href="/">
+                                    <span>
+                        Free V2ray Clash                    </span>
+                                </a>
+                <!-- if logo is image enable this   
+      <a class="navbar-brand" href="#index.html">
+          <img src="image-path" alt="Your logo" title="Your logo" style="height:35px;" />
+      </a> -->
+                <button class="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon fa icon-expand fa-bars"></span>
+                    <span class="navbar-toggler-icon fa icon-close fa-times"></span>
+                    </span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                    <ul class="navbar-nav mx-lg-auto">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/paid-subscribe/">推荐机场</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/client.htm">客户端</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/news/">新闻资讯</a>
+                        </li>
+                                            </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <!--/header-->
+    <div class="inner-banner">
+    </div>
+    <section class="w3l-breadcrumb">
+        <div class="container">
+            <ul class="breadcrumbs-custom-path">
+                <li><a href="/">首页</a></li>
+                <li><a href="/news/"><span class="fa fa-arrow-right mx-2" aria-hidden="true"></span> 新闻资讯</a></li>
+                <li class="active"><span class="fa fa-arrow-right mx-2" aria-hidden="true"></span> 正文</li>
+            </ul>
+        </div>
+    </section>
+    <!--/about-->
+    <!--/w3l-faq-block-->
+    <div class="w3l-faq-block py-5" id="faq">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                    <h1 class="mb-5">从零开始：云服务器搭建V2Ray科学上网全攻略</h1>
+                    
+                                    <input type="hidden" id="share-website-info" data-name="Clash Meta免费节点订阅站" data-url="https://clash-meta.github.io">
+                <div class="xcblog-blog-detail xcblog-blog-detail-defined">
+                      <h2>引言：为什么选择V2Ray？</h2>  <p>在当今数字化时代，网络自由已成为许多网民的基本需求。无论是为了获取全球资讯、学术研究还是商业情报，突破网络限制的需求日益增长。在众多代理工具中，V2Ray凭借其强大的功能、灵活的配置和出色的隐蔽性脱颖而出，成为技术爱好者和专业人士的首选解决方案。</p>  <p>V2Ray不仅支持多种传输协议（如VMess、VLESS、Shadowsocks等），还能通过复杂的路由规则实现智能分流，更重要的是它采用了先进的加密技术，能有效防止流量特征识别，大大降低了被封锁的风险。本文将手把手教你如何在云服务器上部署V2Ray，让你轻松实现安全、稳定的科学上网体验。</p>  <h2>第一章：云服务器选购与基础配置</h2>  <h3>1.1 选择合适的云服务商</h3>  <p>搭建V2Ray的第一步是选择可靠的云服务提供商。市面上主流的选择包括：</p>  <ul> <li><strong>阿里云</strong>：国内用户首选，连接速度快，中文支持完善</li> <li><strong>腾讯云</strong>：性价比高，经常有优惠活动</li> <li><strong>Amazon AWS</strong>：全球节点丰富，适合国际业务</li> <li><strong>Google Cloud</strong>：提供永久免费套餐（需信用卡验证）</li> </ul>  <p>对于中国大陆用户，建议优先考虑香港、新加坡或日本等邻近地区的服务器，这些节点通常能提供较好的网络延迟。而面向国际用户的，则可以根据目标受众选择欧美节点。</p>  <h3>1.2 创建服务器实例</h3>  <p>购买云服务器时，需要注意以下关键参数：</p>  <ul> <li><strong>操作系统</strong>：推荐Ubuntu 20.04/22.04 LTS或Debian 10/11，这些系统社区支持完善，软件兼容性好</li> <li><strong>硬件配置</strong>：V2Ray对资源要求不高，1核CPU、1GB内存的基础配置就足够个人使用</li> <li><strong>带宽选择</strong>：建议至少5Mbps，观看高清视频则需更高带宽</li> </ul>  <h3>1.3 基础安全设置</h3>  <p>创建实例后，首要任务是加强服务器安全：</p>  <p>```bash</p>  <h1>更新系统软件包  <p>sudo apt update &amp;&amp; sudo apt upgrade -y</p>  <h1>修改SSH默认端口（可选但推荐）  <p>sudo nano /etc/ssh/sshd_config</p>  <h1>找到Port 22改为其他端口如2222  <p>sudo systemctl restart sshd</p>  <h1>设置防火墙规则  <p>sudo ufw allow 2222/tcp  # 新SSH端口 sudo ufw enable ```</p>  <p><strong>安全提示</strong>：强烈建议禁用密码登录，改用SSH密钥认证方式，可大幅降低暴力破解风险。</p>  <h2>第二章：V2Ray安装与配置详解</h2>  <h3>2.1 安装必要依赖</h3>  <p>在安装V2Ray前，需要确保系统已安装基础工具：</p>  <p>```bash</p>  <h1>Ubuntu/Debian系统  <p>sudo apt install -y git curl wget</p>  <h1>CentOS/RHEL系统  <p>sudo yum install -y git curl wget ```</p>  <h3>2.2 一键安装V2Ray</h3>  <p>推荐使用官方脚本自动化安装：</p>  <p><code>bash bash &lt;(curl -s -L https://git.io/v2ray.sh)</code></p>  <p>这个脚本会自动完成以下工作： 1. 检测系统环境 2. 下载最新版V2Ray 3. 配置systemd服务 4. 生成默认配置文件</p>  <p>安装完成后，检查服务状态：</p>  <p><code>bash systemctl status v2ray</code></p>  <p>如果看到"active (running)"字样，说明V2Ray已成功启动。</p>  <h3>2.3 深入配置文件解析</h3>  <p>V2Ray的核心配置文件位于<code>/etc/v2ray/config.json</code>（注意：某些版本可能是config.yaml），让我们剖析一个典型配置：</p>  <p><code>json {   "inbounds": [{     "port": 10086,     "protocol": "vmess",     "settings": {       "clients": [         {           "id": "b831381d-6324-4d53-ad4f-8cda48b30811",           "alterId": 64         }       ]     }   }],   "outbounds": [{     "protocol": "freedom",     "settings": {}   }] }</code></p>  <p><strong>关键参数说明</strong>： - <code>port</code>: 监听端口，建议使用443(HTTPS)或80(HTTP)等常见端口提高隐蔽性 - <code>protocol</code>: 入站协议，VMess是V2Ray原创的加密协议 - <code>id</code>: 用户唯一标识，相当于密码，必须妥善保管 - <code>alterId</code>: 额外ID，增加安全性但会消耗更多资源</p>  <h3>2.4 高级配置技巧</h3>  <p><strong>多用户支持</strong>：在clients数组中添加多个用户对象即可实现多账号共享。</p>  <p><strong>流量伪装</strong>（WebSocket+TLS）： <code>json "streamSettings": {   "network": "ws",   "security": "tls",   "wsSettings": {     "path": "/ray",     "headers": {}   },   "tlsSettings": {     "certificates": [{       "certificateFile": "/etc/v2ray/cert.pem",     }]   } }</code></p>  <p>此配置能让V2Ray流量看起来像普通HTTPS流量，极大提高抗封锁能力。</p>  <h2>第三章：网络优化与安全加固</h2>  <h3>3.1 防火墙精细配置</h3>  <p>仅开放必要端口是服务器安全的基本准则：</p>  <p>```bash</p>  <h1>清空现有规则  <p>sudo ufw reset</p>  <h1>允许SSH连接  <p>sudo ufw allow 2222/tcp</p>  <h1>允许V2Ray端口  <p>sudo ufw allow 443/tcp sudo ufw allow 80/tcp</p>  <h1>启用防火墙  <p>sudo ufw enable ```</p>  <h3>3.2 性能调优建议</h3>  <ol> <li><p><strong>开启BBR加速</strong>（Linux内核≥4.9）： <code>bash echo "net.core.default_qdisc=fq" &gt;&gt; /etc/sysctl.conf echo "net.ipv4.tcp_congestion_control=bbr" &gt;&gt; /etc/sysctl.conf sysctl -p</code></p></li> <li><p><strong>多路复用优化</strong>： 在配置文件中添加： <code>json "mux": { "enabled": true, "concurrency": 8 }</code></p></li> </ol>  <h3>3.3 日志管理与监控</h3>  <p>V2Ray默认日志路径： - <code>/var/log/v2ray/access.log</code>：连接记录 - <code>/var/log/v2ray/error.log</code>：错误信息</p>  <p>推荐使用logrotate管理日志大小： <code>bash sudo nano /etc/logrotate.d/v2ray</code> 添加内容： <code>/var/log/v2ray/*.log {     daily     missingok     rotate 7     compress     delaycompress     notifempty     create 0640 root root }</code></p>  <h2>第四章：客户端配置指南</h2>  <h3>4.1 Windows平台</h3>  <p>推荐使用V2RayN客户端： 1. 下载地址：GitHub v2rayN releases 2. 添加服务器：右键系统托盘图标 → 服务器 → 添加VMess服务器 3. 填写配置：    - 地址：云服务器公网IP    - 端口：443    - 用户ID：配置文件中的UUID    - 额外ID：64    - 加密方式：auto    - 传输协议：ws（如果配置了WebSocket）    - 伪装类型：none或http</p>  <h3>4.2 macOS平台</h3>  <p>推荐使用V2RayU或ClashX： 1. 下载安装客户端 2. 导入配置文件或手动填写服务器信息 3. 启用系统代理或配置浏览器插件</p>  <h3>4.3 移动端配置</h3>  <p><strong>Android</strong>： - 推荐App：V2RayNG - 配置方式：扫描二维码或手动输入</p>  <p><strong>iOS</strong>： - 推荐App：Shadowrocket（需外区账号） - 配置要点：选择V2Ray协议，填写相应参数</p>  <h2>第五章：疑难解答与进阶技巧</h2>  <h3>5.1 常见问题排查</h3>  <p><strong>连接失败检查步骤</strong>： 1. 确认服务器防火墙已放行端口    <code>bash    sudo ufw status numbered</code> 2. 检查V2Ray服务状态    <code>bash    systemctl status v2ray</code> 3. 查看错误日志    <code>bash    tail -f /var/log/v2ray/error.log</code> 4. 测试端口连通性    <code>bash    telnet your_server_ip 443</code></p>  <h3>5.2 协议选择建议</h3>  <ul> <li><strong>VMess</strong>：V2Ray原创协议，功能全面但特征较明显</li> <li><strong>VLESS</strong>：轻量版VMess，性能更好但需要较新版本支持</li> <li><strong>Trojan</strong>：模仿HTTPS流量，抗封锁能力强</li> <li><strong>Shadowsocks</strong>：兼容旧设备，但需配合插件使用</li> </ul>  <h3>5.3 自动更新方案</h3>  <p>设置cron定时任务检查更新： <code>bash sudo crontab -e</code> 添加： <code>0 3 * * * bash /usr/local/bin/v2ray update</code></p>  <h2>结语：安全上网的智慧之选</h2>  <p>通过本文的详细指导，相信您已经成功在云服务器上部署了V2Ray代理服务。V2Ray的强大之处不仅在于它能突破网络限制，更在于其灵活的架构设计可以适应各种复杂的网络环境。无论是简单的科学上网需求，还是企业级的跨境网络解决方案，V2Ray都能胜任。</p>  <p><strong>技术点评</strong>： V2Ray代表了代理技术的现代化演进方向，其模块化设计、多协议支持和强大的路由功能使其在同类工具中脱颖而出。相比传统的SS/SSR，V2Ray具有以下显著优势： 1. <strong>更强的隐蔽性</strong>：通过TLS+WebSocket等技术，流量特征更接近正常HTTPS 2. <strong>更智能的路由</strong>：可根据域名、IP、地理位置等条件实现精细分流 3. <strong>更完善的生态</strong>：活跃的开发社区和丰富的第三方客户端支持</p>  <p>然而，技术只是工具，使用时应始终遵守当地法律法规，将之用于正当的学习和工作需求。网络无国界，但信息有边界，希望每位用户都能善用技术，开拓视野，促进交流。</p>  <p>最后提醒：定期检查服务器安全，及时更新V2Ray版本，并考虑使用CDN进一步隐藏真实IP，这些措施都能让你的科学上网体验更加安全稳定。如遇任何技术问题，V2Ray的GitHub仓库和各大技术论坛都有丰富的讨论资源可供参考。</p>                 </div>
+                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-138849.htm">Clash Web 管理地址详解与设置教程：从入门到精通</a></p>
+                                        <p>下一个：<a href="/news/article-139556.htm">数字封锁下的突围之路：搬瓦工V2Ray被墙深度解析与实战应对策略</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-131361.htm" title="CLASH代理工具异常排查与依赖重装完全指南：从故障诊断到系统恢复">CLASH代理工具异常排查与依赖重装完全指南：从故障诊断到系统恢复</a></li>
+                        <li class="py-2"><a href="/news/article-125230.htm" title="V2Ray完全指南：从零开始掌握高效代理工具">V2Ray完全指南：从零开始掌握高效代理工具</a></li>
+                        <li class="py-2"><a href="/news/article-138849.htm" title="Clash Web 管理地址详解与设置教程：从入门到精通">Clash Web 管理地址详解与设置教程：从入门到精通</a></li>
+                        <li class="py-2"><a href="/news/article-135655.htm" title="突破数字边界：深度解析科学上网与代理工具的实战指南">突破数字边界：深度解析科学上网与代理工具的实战指南</a></li>
+                        <li class="py-2"><a href="/news/article-126887.htm" title="突破网络边界：全面指南与实用方法助你自由访问全球互联网">突破网络边界：全面指南与实用方法助你自由访问全球互联网</a></li>
+                        <li class="py-2"><a href="/news/article-123601.htm" title="从零开始玩转Clash直播：手把手教你成为人气主播">从零开始玩转Clash直播：手把手教你成为人气主播</a></li>
+                        <li class="py-2"><a href="/news/article-124896.htm" title="深度解析：美区Quantumult X的定价策略与完整购买指南">深度解析：美区Quantumult X的定价策略与完整购买指南</a></li>
+                        <li class="py-2"><a href="/news/article-129606.htm" title="突破网络边界：2024年科学上网工具下载与使用终极指南">突破网络边界：2024年科学上网工具下载与使用终极指南</a></li>
+                        <li class="py-2"><a href="/news/article-131707.htm" title="科学上网真的能免流量吗？深度解析流量消耗与优化策略">科学上网真的能免流量吗？深度解析流量消耗与优化策略</a></li>
+                        <li class="py-2"><a href="/news/article-130669.htm" title="解锁网络自由：Towelroot一键Root与科学上网全攻略">解锁网络自由：Towelroot一键Root与科学上网全攻略</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">28</span> <a href="/date/2025-07/" title="2025-07 归档">2025-07</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">21</span> <a href="/date/2025-06/" title="2025-06 归档">2025-06</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+        <!--//w3l-faq-block-->
+    <section class="w3l-footer-29-main w3l-copyright">
+        <div class="container">
+            <div class="bottom-copies">
+                <p class="copy-footer-29 text-center">
+                                                <p>
+                                                <a href="/">首页</a> |
+                                                <a href="/paid-subscribe/">推荐机场</a> |
+                                                <a href="/client.htm">客户端</a> |
+                                                <a href="/news/">新闻资讯</a> |
+                                                <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                    <a href="/">Free V2ray Clash免费机场订阅节点官网</a> 版权所有 Powered by WordPress
+                </p>
+            </div>
+        </div>
+        <!-- move top -->
+        <button onclick="topFunction()" id="movetop" title="Go to top">
+            <span class="fa fa-angle-up"></span>
+        </button>
+        <script>
+        // When the user scrolls down 20px from the top of the document, show the button
+        window.onscroll = function() {
+            scrollFunction()
+        };
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                document.getElementById("movetop").style.display = "block";
+            } else {
+                document.getElementById("movetop").style.display = "none";
+            }
+        }
+
+        // When the user clicks on the button, scroll to the top of the document
+        function topFunction() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }
+        </script>
+        <!-- /move top -->
+    </section>
+    <!-- Template JavaScript -->
+    <script src="/assets/website/js/frontend/freev2rayclash/jquery-3.3.1.min.js"></script>
+    <!-- script for testimonials -->
+    <script>
+    $(document).ready(function() {
+        $('.owl-testimonial').owlCarousel({
+            loop: true,
+            margin: 0,
+            nav: true,
+            responsiveClass: true,
+            autoplay: true,
+            autoplayTimeout: 5000,
+            autoplaySpeed: 1000,
+            autoplayHoverPause: false,
+            responsive: {
+                0: {
+                    items: 1,
+                    nav: false
+                },
+                480: {
+                    items: 1,
+                    nav: false
+                },
+                667: {
+                    items: 1,
+                    nav: true
+                },
+                1000: {
+                    items: 1,
+                    nav: true
+                }
+            }
+        })
+    })
+    </script>
+    <!-- //script for testimonials -->
+    <script src="/assets/website/js/frontend/freev2rayclash/theme-change.js"></script>
+    <!-- js for portfolio lightbox -->
+    <!-- libhtbox -->
+    <script src="/assets/website/js/frontend/freev2rayclash/lightbox-plus-jquery.min.js"></script>
+    <!-- libhtbox -->
+    <script src="/assets/website/js/frontend/freev2rayclash/owl.carousel.js"></script>
+    <!-- script for banner slider-->
+    <script>
+    $(document).ready(function() {
+        $('.owl-one').owlCarousel({
+            loop: true,
+            margin: 0,
+            nav: false,
+            responsiveClass: true,
+            autoplay: true,
+            autoplayTimeout: 5000,
+            autoplaySpeed: 1000,
+            autoplayHoverPause: false,
+            responsive: {
+                0: {
+                    items: 1,
+                    nav: false
+                },
+                480: {
+                    items: 1,
+                    nav: false
+                },
+                667: {
+                    items: 1,
+                    nav: true
+                },
+                1000: {
+                    items: 1,
+                    nav: true
+                }
+            }
+        })
+    })
+    </script>
+    <!-- //script -->
+    <!-- stats number counter-->
+    <script src="/assets/website/js/frontend/freev2rayclash/jquery.waypoints.min.js"></script>
+    <script src="/assets/website/js/frontend/freev2rayclash/jquery.countup.js"></script>
+    <script>
+    $('.counter').countUp();
+    </script>
+    <!-- //stats number counter -->
+    <!-- disable body scroll which navbar is in active -->
+    <script>
+    $(function() {
+        $('.navbar-toggler').click(function() {
+            $('body').toggleClass('noscroll');
+        })
+    });
+    </script>
+    <!-- disable body scroll which navbar is in active -->
+    <!--/MENU-JS-->
+    <script>
+    $(window).on("scroll", function() {
+        var scroll = $(window).scrollTop();
+
+        if (scroll >= 80) {
+            $("#site-header").addClass("nav-fixed");
+        } else {
+            $("#site-header").removeClass("nav-fixed");
+        }
+    });
+
+    //Main navigation Active Class Add Remove
+    $(".navbar-toggler").on("click", function() {
+        $("header").toggleClass("active");
+    });
+    $(document).on("ready", function() {
+        if ($(window).width() > 991) {
+            $("header").removeClass("active");
+        }
+        $(window).on("resize", function() {
+            if ($(window).width() > 991) {
+                $("header").removeClass("active");
+            }
+        });
+    });
+    </script>
+    <!--//MENU-JS-->
+    <script src="/assets/website/js/frontend/freev2rayclash/bootstrap.min.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
