@@ -1,4 +1,4 @@
-# 9月21日→20.2M/S|2025年最新免费节点Free V2ray Clash订阅链接地址  更新时间 2025-09-21 10:39:42
+# 9月21日→22M/S|2025年最新免费节点Free V2ray Clash订阅链接地址  更新时间 2025-09-21 21:28:41
 所有免费clash节点都爬取自网络，请勿用于非法用途 。节点地址：<a href="https://freev2rayclash.github.io" target="_blank">点击跳转</a>
 
 ## clash使用教程：
