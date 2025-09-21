@@ -1,337 +1,878 @@
-<!doctype html>
-<html xml:lang="zh-CN" lang="zh-CN">
-
+<!DOCTYPE html>
+<html>
 <head>
-        <link rel="canonical" href="https://freev2rayclash.github.io/news/article-155183.htm" />
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>网络隐私的守护者：vmess协议的安全挑战与应对之道</title>
-        <meta name="description" content="在当今数字化时代，网络隐私与安全已成为全球互联网用户关注的焦点。随着各国网络审查与监控技术的不断升级，科学上网工具如V2Ray及其核心协议vmess逐渐走入大众视野。vmess协议作为一种高效的数据转" />
-        <link rel="icon" href="/assets/website/img/freev2rayclash/favicon.ico" type="image/x-icon"/>
+    <meta charset="UTF-8">
+    <title>System Error</title>
+    <meta name="robots" content="noindex,nofollow" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <style>
+        /* Base */
+        body {
+            color: #333;
+            font: 14px Verdana, "Helvetica Neue", helvetica, Arial, 'Microsoft YaHei', sans-serif;
+            margin: 0;
+            padding: 0 20px 20px;
+            word-break: break-word;
+        }
+        h1{
+            margin: 10px 0 0;
+            font-size: 28px;
+            font-weight: 500;
+            line-height: 32px;
+        }
+        h2{
+            color: #4288ce;
+            font-weight: 400;
+            padding: 6px 0;
+            margin: 6px 0 0;
+            font-size: 18px;
+            border-bottom: 1px solid #eee;
+        }
+        h3.subheading {
+            color: #4288ce;
+            margin: 6px 0 0;
+            font-weight: 400;
+        }
+        h3{
+            margin: 12px;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        abbr{
+            cursor: help;
+            text-decoration: underline;
+            text-decoration-style: dotted;
+        }
+        a{
+            color: #868686;
+            cursor: pointer;
+        }
+        a:hover{
+            text-decoration: underline;
+        }
+        .line-error{
+            background: #f8cbcb;
+        }
 
-    <meta name="author" content="Free V2ray Clash免费机场订阅节点官网">
-    <meta property="og:type" content="article" />
-    <meta property="og:url" content="https://freev2rayclash.github.io/news/article-155183.htm" />
-    <meta property="og:site_name" content="Free V2ray Clash免费机场订阅节点官网" />
-    <meta property="og:title" content="网络隐私的守护者：vmess协议的安全挑战与应对之道" />
-    <meta property="og:image" content="https://freev2rayclash.github.io/uploads/20240919-1/dcb4b12dde57aed7c7b86a0c82279c3b.webp" />
-        <meta property="og:release_date" content="2025-09-12T05:57:04" />
-    <meta property="og:updated_time" content="2025-09-12T05:57:04" />
-        <meta property="og:description" content="在当今数字化时代，网络隐私与安全已成为全球互联网用户关注的焦点。随着各国网络审查与监控技术的不断升级，科学上网工具如V2Ray及其核心协议vmess逐渐走入大众视野。vmess协议作为一种高效的数据转" />
-    
-    <meta name="applicable-device" content="pc,mobile" />
-    <meta name="renderer" content="webkit" />
-    <meta name="force-rendering" content="webkit" />
-    <meta http-equiv="Cache-Control" content="no-transform" />
-    <meta name="robots" content="max-image-preview:large" />
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta name="apple-mobile-web-app-title" content="网络隐私的守护者：vmess协议的安全挑战与应对之道">
-    <meta name="format-detection" content="telephone=no">
+        .echo table {
+            width: 100%;
+        }
 
-    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
-    <link rel="dns-prefetch" href="https://www.googleadservices.com">
-    <link rel="dns-prefetch" href="https://www.google-analytics.com">
-    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
-    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
-    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+        .echo pre {
+            padding: 16px;
+            overflow: auto;
+            font-size: 85%;
+            line-height: 1.45;
+            background-color: #f7f7f7;
+            border: 0;
+            border-radius: 3px;
+            font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+        }
 
-    <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,300;0,600;0,700;1,400&display=swap" rel="stylesheet">
-    <!-- Template CSS -->
-    <link rel="stylesheet" href="/assets/website/css/freev2rayclash/style-starter.css">
-    <link rel="stylesheet" href="/assets/website/css/G.css" />
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-SMY6EV424E"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+        .echo pre > pre {
+            padding: 0;
+            margin: 0;
+        }
+        /* Layout */
+        .col-md-3 {
+            width: 25%;
+        }
+        .col-md-9 {
+            width: 75%;
+        }
+        [class^="col-md-"] {
+            float: left;
+        }
+        .clearfix {
+            clear:both;
+        }
+        @media only screen 
+        and (min-device-width : 375px) 
+        and (max-device-width : 667px) { 
+            .col-md-3,
+            .col-md-9 {
+                width: 100%;
+            }
+        }
+        /* Exception Info */
+        .exception {
+            margin-top: 20px;
+        }
+        .exception .message{
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-bottom: 0 none;
+            line-height: 18px;
+            font-size:16px;
+            border-top-left-radius: 4px;
+            border-top-right-radius: 4px;
+            font-family: Consolas,"Liberation Mono",Courier,Verdana,"微软雅黑";
+        }
 
-  gtag('config', 'G-SMY6EV424E');
-</script>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
-     crossorigin="anonymous"></script>
+        .exception .code{
+            float: left;
+            text-align: center;
+            color: #fff;
+            margin-right: 12px;
+            padding: 16px;
+            border-radius: 4px;
+            background: #999;
+        }
+        .exception .source-code{
+            padding: 6px;
+            border: 1px solid #ddd;
+
+            background: #f9f9f9;
+            overflow-x: auto;
+
+        }
+        .exception .source-code pre{
+            margin: 0;
+        }
+        .exception .source-code pre ol{
+            margin: 0;
+            color: #4288ce;
+            display: inline-block;
+            min-width: 100%;
+            box-sizing: border-box;
+        font-size:14px;
+            font-family: "Century Gothic",Consolas,"Liberation Mono",Courier,Verdana;
+            padding-left: 56px;
+        }
+        .exception .source-code pre li{
+            border-left: 1px solid #ddd;
+            height: 18px;
+            line-height: 18px;
+        }
+        .exception .source-code pre code{
+            color: #333;
+            height: 100%;
+            display: inline-block;
+            border-left: 1px solid #fff;
+        font-size:14px;
+            font-family: Consolas,"Liberation Mono",Courier,Verdana,"微软雅黑";
+        }
+        .exception .trace{
+            padding: 6px;
+            border: 1px solid #ddd;
+            border-top: 0 none;
+            line-height: 16px;
+        font-size:14px;
+            font-family: Consolas,"Liberation Mono",Courier,Verdana,"微软雅黑";
+        }
+        .exception .trace ol{
+            margin: 12px;
+        }
+        .exception .trace ol li{
+            padding: 2px 4px;
+        }
+        .exception div:last-child{
+            border-bottom-left-radius: 4px;
+            border-bottom-right-radius: 4px;
+        }
+
+        /* Exception Variables */
+        .exception-var table{
+            width: 100%;
+            margin: 12px 0;
+            box-sizing: border-box;
+            table-layout:fixed;
+            word-wrap:break-word;            
+        }
+        .exception-var table caption{
+            text-align: left;
+            font-size: 16px;
+            font-weight: bold;
+            padding: 6px 0;
+        }
+        .exception-var table caption small{
+            font-weight: 300;
+            display: inline-block;
+            margin-left: 10px;
+            color: #ccc;
+        }
+        .exception-var table tbody{
+            font-size: 13px;
+            font-family: Consolas,"Liberation Mono",Courier,"微软雅黑";
+        }
+        .exception-var table td{
+            padding: 0 6px;
+            vertical-align: top;
+            word-break: break-all;
+        }
+        .exception-var table td:first-child{
+            width: 28%;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+        .exception-var table td pre{
+            margin: 0;
+        }
+
+        /* Copyright Info */
+        .copyright{
+            margin-top: 24px;
+            padding: 12px 0;
+            border-top: 1px solid #eee;
+        }
+
+        /* SPAN elements with the classes below are added by prettyprint. */
+        pre.prettyprint .pln { color: #000 }  /* plain text */
+        pre.prettyprint .str { color: #080 }  /* string content */
+        pre.prettyprint .kwd { color: #008 }  /* a keyword */
+        pre.prettyprint .com { color: #800 }  /* a comment */
+        pre.prettyprint .typ { color: #606 }  /* a type name */
+        pre.prettyprint .lit { color: #066 }  /* a literal value */
+        /* punctuation, lisp open bracket, lisp close bracket */
+        pre.prettyprint .pun, pre.prettyprint .opn, pre.prettyprint .clo { color: #660 }
+        pre.prettyprint .tag { color: #008 }  /* a markup tag name */
+        pre.prettyprint .atn { color: #606 }  /* a markup attribute name */
+        pre.prettyprint .atv { color: #080 }  /* a markup attribute value */
+        pre.prettyprint .dec, pre.prettyprint .var { color: #606 }  /* a declaration; a variable name */
+        pre.prettyprint .fun { color: red }  /* a function name */
+    </style>
 </head>
-
-<body data-page="detail">
-        <!--header-->
-    <header id="site-header" class="fixed-top">
-        <div class="container">
-            <nav class="navbar navbar-expand-lg navbar-dark stroke">
-                <a class="navbar-brand" href="/">
-                                    <span>
-                        Free V2ray Clash                    </span>
-                                </a>
-                <!-- if logo is image enable this   
-      <a class="navbar-brand" href="#index.html">
-          <img src="image-path" alt="Your logo" title="Your logo" style="height:35px;" />
-      </a> -->
-                <button class="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon fa icon-expand fa-bars"></span>
-                    <span class="navbar-toggler-icon fa icon-close fa-times"></span>
-                    </span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-                    <ul class="navbar-nav mx-lg-auto">
-                                                <li class="nav-item">
-                            <a class="nav-link" href="/">首页</a>
-                        </li>
-                                                <li class="nav-item">
-                            <a class="nav-link" href="/free-nodes/">免费节点</a>
-                        </li>
-                                                <li class="nav-item">
-                            <a class="nav-link" href="/paid-subscribe/">推荐机场</a>
-                        </li>
-                                                <li class="nav-item">
-                            <a class="nav-link" href="/client.htm">客户端</a>
-                        </li>
-                                                <li class="nav-item">
-                            <a class="nav-link" href="/news/">新闻资讯</a>
-                        </li>
-                                            </ul>
-                </div>
-            </nav>
-        </div>
-    </header>
-    <!--/header-->
-    <div class="inner-banner">
-    </div>
-    <section class="w3l-breadcrumb">
-        <div class="container">
-            <ul class="breadcrumbs-custom-path">
-                <li><a href="/">首页</a></li>
-                <li><a href="/news/"><span class="fa fa-arrow-right mx-2" aria-hidden="true"></span> 新闻资讯</a></li>
-                <li class="active"><span class="fa fa-arrow-right mx-2" aria-hidden="true"></span> 正文</li>
-            </ul>
-        </div>
-    </section>
-    <!--/about-->
-    <!--/w3l-faq-block-->
-    <div class="w3l-faq-block py-5" id="faq">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-9">
-                    <h1 class="mb-5">网络隐私的守护者：vmess协议的安全挑战与应对之道</h1>
-                    
-                                    <input type="hidden" id="share-website-info" data-name="Clash Meta免费节点订阅站" data-url="https://clash-meta.github.io">
-                <div class="xcblog-blog-detail xcblog-blog-detail-defined">
-                      <p>在当今数字化时代，网络隐私与安全已成为全球互联网用户关注的焦点。随着各国网络审查与监控技术的不断升级，科学上网工具如V2Ray及其核心协议vmess逐渐走入大众视野。vmess协议作为一种高效的数据转发方式，被广泛用于绕过网络封锁、保护数据传输隐私。然而，许多用户心存疑虑：vmess协议是否容易被发现？它真的能确保匿名和安全吗？本文将从协议特性、工作原理、风险因素及应对策略等方面，全面探讨vmess协议在网络安全与隐私保护中的作用与挑战。</p>  <h2>什么是vmess协议？</h2>  <p>vmess是一种基于V2Ray项目的网络传输协议，专为优化数据转发和增强隐私性而设计。V2Ray本身是一个模块化的代理软件，支持多种协议，用于帮助用户对抗互联网审查，实现自由访问。vmess作为其核心协议之一，通过加密和混淆技术，使网络流量在传输过程中难以被识别和拦截。</p>  <p>vmess协议具有几个关键特性：首先，它采用强加密算法（如AES）对数据进行加密，确保内容不被窃取或篡改；其次，协议数据结构经过精心设计，包含版本号、用户ID、服务器地址和端口等信息，形成完整的通信框架；最后，vmess支持动态端口和多重代理路径，进一步增加了其灵活性和隐蔽性。这些特性使vmess在科学上网场景中备受青睐，尤其适用于需要高安全级别的用户。</p>  <h2>vmess的工作原理</h2>  <p>vmess协议通过客户端与服务器之间的协作实现安全通信。其工作流程可分为三个主要步骤：</p>  <p>第一步，用户通过客户端（如V2Ray客户端）配置服务器信息，包括IP地址、端口、用户ID和加密方式等。这些配置是建立连接的基础，确保了通信的定向性和安全性。</p>  <p>第二步，客户端将用户数据（如浏览请求或文件传输）进行加密处理，并通过本地代理发送至服务器。加密过程使用预共享密钥和算法，使得数据在传输过程中即使被截获，也难以解密。</p>  <p>第三步，服务器接收到加密数据后，进行解密并转发至目标地址（如访问的网站或服务）。响应数据同样经过加密返回给客户端，完成整个通信循环。这种方式有效隐藏了用户的真实IP和行踪，外部观测者只能看到加密的数据流，而无法识别其内容或目的。</p>  <p>vmess的加密和转发机制使其在对抗网络审查时表现出色，但这也引出一个问题：如此精心设计的协议，为何仍可能被发现？</p>  <h2>vmess的使用场景</h2>  <p>vmess协议广泛应用于多种需要隐私和安全的环境。首先是科学上网场景，许多用户依靠它访问被地域封锁的内容，如社交媒体、新闻网站或流媒体服务。在部分国家或地区，互联网审查严格，vmess帮助用户绕过防火墙，实现自由浏览。</p>  <p>其次，vmess适用于数据安全传输。例如，在企业环境中，员工可能通过公共Wi-Fi处理敏感业务数据，vmess的加密功能可防止数据泄露。同样，个人用户在不信任的网络中（如咖啡馆或机场Wi-Fi）使用vmess，可以保护密码、金融信息等隐私。</p>  <p>此外，vmess还用于反审查活动。记者、活动人士或普通网民在高压网络环境下，依靠它匿名发布信息或交流，避免政府监控。这些使用场景凸显了vmess在维护数字权利方面的价值，但同时也使其成为监控者的目标。</p>  <h2>vmess容易被发现的原因</h2>  <p>尽管vmess协议设计精密，但在实际应用中仍存在被识别的风险。主要原因包括流量分析、特征匹配和代理陷阱。</p>  <p>流量分析是网络运营商常用的检测手段。通过深度包检测（DPI）技术，他们可以分析数据包的行为模式，例如数据流的大小、频率和目的地。vmess流量虽然加密，但可能表现出独特的模式（如定期心跳包或固定端口使用），从而被算法标记为“可疑”。例如，某些防火墙会监控异常流量峰值，并与已知代理特征库匹配，导致vmess连接被阻断。</p>  <p>特征匹配是另一个风险点。vmess协议头部包含特定信息（如版本号和用户ID），如果这些信息未被充分混淆，监控系统可能通过模式识别将其识别出来。近年来，防火墙技术不断升级，能够实时扫描和匹配协议特征，使得即使加密流量也可能暴露。</p>  <p>代理陷阱则源于第三方服务。一些公共VPN或代理提供商可能记录用户行为，或将数据分享给 authorities（当局）。如果用户使用不信任的vmess服务器，其IP和活动模式可能被日志记录，最终通过大数据分析被发现。此外，恶意服务器可能设置“蜜罐”陷阱，主动识别和封锁vmess用户。</p>  <p>这些因素表明，vmess并非绝对隐形，用户需意识到其局限性。</p>  <h2>如何降低vmess被发现的风险</h2>  <p>为提升vmess协议的安全性，用户可以采取多项措施。首先，使用混淆技术至关重要。通过TLS/SSL包装vmess流量，使其外观类似于常规HTTPS流量（如网页浏览），可以有效规避DPI检测。许多V2Ray客户端支持此类混淆，用户只需在配置中启用即可。</p>  <p>其次，定期更换服务器和端口。恒定使用同一IP或端口易被标记，因此建议周期性切换服务器节点，并选择随机或非标准端口（如443或80以外的端口）。这减少了模式化行为，降低被关联分析的风险。</p>  <p>第三，隐匿流量特征。将vmess流量与其他常规流量（如视频流或游戏数据）混合，可以掩盖其独特模式。此外，使用多重代理链（如vmess over Shadowsocks）增加了一层混淆，使追踪更困难。</p>  <p>最后，用户应选择可信的服务器提供商，并关注其隐私政策。避免使用免费或匿名服务，因为它们更可能成为监控目标。同时，保持客户端和服务器软件更新，以获取最新的安全补丁。</p>  <p>通过这些策略，用户能显著降低vmess被发现的概率，但需记住：没有百分之百的安全，持续警惕才是关键。</p>  <h2>常见问题解答</h2>  <p><strong>vmess协议与其他协议（如SS或VPN）相比有什么优势？</strong><br /> vmess的优势在于其高度可配置性和强大的混淆能力。与Shadowsocks（SS）相比，vmess支持更复杂的路由和加密选项；与传统VPN相比，它更轻量且专注于抗审查，适合动态网络环境。</p>  <p><strong>使用vmess是否完全安全？</strong><br /> 不，没有任何协议能保证绝对安全。vmess提供 robust（强大）加密，但风险依然存在，如用户配置错误或服务器漏洞。用户应结合其他安全实践，如使用强密码和避免敏感操作。</p>  <p><strong>操作vmess需要哪些前置条件？</strong><br /> 用户需安装V2Ray客户端（如Windows上的V2RayN或手机上的v2rayNG），并获取服务器信息（IP、端口、用户ID等）。基本网络知识有助于优化配置。</p>  <p><strong>如何选择合适的vmess服务器？</strong><br /> 优先选择低延迟（通过ping测试）、高带宽的服务器，地理位置靠近用户可提升速度。同时，参考用户评价和提供商信誉，避免隐私风险。</p>  <p><strong>vmess能访问局域网资源吗？</strong><br /> vmess主要用于互联网通信，局域网访问需额外配置（如路由规则）。通常，它不直接处理本地网络任务。</p>  <h2>结论</h2>  <p>vmess协议作为网络隐私保护的重要工具，在科学上网和数据安全领域发挥着关键作用。其加密和混淆技术为用户提供了可靠的屏蔽，但并非无懈可击。流量分析、特征匹配和外部陷阱使其面临被发现的風險。通过采用混淆技术、定期更换服务器及隐匿流量特征，用户可以显著增强安全性。</p>  <p>最终，网络安全是一个持续的过程，而非一劳永逸的解决方案。用户在使用vmess时，应保持安全意识，结合多层次保护策略，以在数字世界中 navigate（航行）得更安全、更自由。在互联网日益监控化的今天，工具只是手段，真正的隐私始于每一个谨慎的选择。</p>  <hr />  <p><strong>点评</strong>：<br /> vmess协议犹如数字世界中的“隐形斗篷”，既强大又脆弱。它代表了技术对抗审查的智慧，但也提醒我们：隐私保护是一场永无止境的猫鼠游戏。文章通过深入解析其机制与风险，不仅解答了用户的疑虑，更强调了主动安全措施的重要性。在语言上，采用比喻和实用建议相结合，使复杂技术话题变得生动且 actionable（可操作），读后既能增长知识，又能激发行动。最终，它呼吁读者在享受科技便利时，不忘守护自己的数字足迹——这正是当代网络公民的必备素养。</p>                 </div>
-                <div class="clearfix"></div>
-                <div class="col-md-12 mt-5">
-                                        <p>上一个：<a href="/news/article-154809.htm">V2Ray协议稳定性深度评测：如何选择最适合你的加密通道？</a></p>
-                                    </div>
-                                </div>
-                <div class="col-md-3">
-                    <div class="panel panel-default">
-    <div class="panel-heading">
-        <h3 class="panel-title">热门文章</h3>
-    </div>
-    <div class="panel-body">
-        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/news/article-150453.htm" title="苹果设备科学上网全攻略：安全访问全球网络资源的终极指南">苹果设备科学上网全攻略：安全访问全球网络资源的终极指南</a></li>
-                        <li class="py-2"><a href="/news/article-146699.htm" title="苹果用户必备：Clash官网入口与完整使用指南深度解析">苹果用户必备：Clash官网入口与完整使用指南深度解析</a></li>
-                        <li class="py-2"><a href="/news/article-141616.htm" title="突破网络限制：离线安装科学上网工具的终极指南">突破网络限制：离线安装科学上网工具的终极指南</a></li>
-                        <li class="py-2"><a href="/news/article-143057.htm" title="苹果手机用户必备：v2rayng下载安装与配置全攻略">苹果手机用户必备：v2rayng下载安装与配置全攻略</a></li>
-                        <li class="py-2"><a href="/news/article-154081.htm" title="Clash订阅转：从入门到精通的完整指南与实战教程">Clash订阅转：从入门到精通的完整指南与实战教程</a></li>
-                        <li class="py-2"><a href="/news/article-155183.htm" title="网络隐私的守护者：vmess协议的安全挑战与应对之道">网络隐私的守护者：vmess协议的安全挑战与应对之道</a></li>
-                        <li class="py-2"><a href="/news/article-152274.htm" title="突破网络限制：谷歌云盘与V2Ray的完美结合指南">突破网络限制：谷歌云盘与V2Ray的完美结合指南</a></li>
-                        <li class="py-2"><a href="/news/article-143771.htm" title="Clash 全面解析：从科学上网到高级网络管理，一篇文章掌握所有技巧">Clash 全面解析：从科学上网到高级网络管理，一篇文章掌握所有技巧</a></li>
-                        <li class="py-2"><a href="/news/article-144144.htm" title="手把手教你用Shadowrocket配置L2TP VPN：从入门到精通">手把手教你用Shadowrocket配置L2TP VPN：从入门到精通</a></li>
-                        <li class="py-2"><a href="/news/article-144873.htm" title="手机科学上网全攻略：解锁全球网络资源的终极指南">手机科学上网全攻略：解锁全球网络资源的终极指南</a></li>
-                    </ul>
-    </div>
-</div>
-
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <h3 class="panel-title">归纳</h3>
-    </div>
-    <div class="panel-body">
-        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2">
-                <h4><span class="badge" style="float: right;">15</span> <a href="/date/2025-09/" title="2025-09 归档">2025-09</a></h4>
-            </li>
-                        <li class="py-2">
-                <h4><span class="badge" style="float: right;">28</span> <a href="/date/2025-08/" title="2025-08 归档">2025-08</a></h4>
-            </li>
-                    </ul>
-    </div>
-</div>
-
-                </div>
+<body>
+    <div class="echo">
             </div>
+        <div class="exception">
+    <div class="message">
+        
+            <div class="info">
+                <div>
+                    <h2>[2]&nbsp;<abbr title="think\exception\ErrorException">ErrorException</abbr> in <a class="toggle" title="E:\SVNRepositories\ClashGitPages2\runtime\temp\abb11b913fa9c95fa94d91966db929bc.php line 187">abb11b913fa9c95fa94d91966db929bc.php line 187</a></h2>
+                </div>
+                <div><h1>count(): Parameter must be an array or an object that implements Countable</h1></div>
+            </div>
+        
+    </div>
+	        <div class="source-code">
+            <pre class="prettyprint lang-php"><ol start="178"><li class="line-178"><code>                                                &lt;p&gt;
+</code></li><li class="line-179"><code>                        &lt;?php if(is_array($menu_list) || $menu_list instanceof \think\Collection || $menu_list instanceof \think\Paginator): $i = 0; $__LIST__ = $menu_list;if( count($__LIST__)==0 ) : echo &quot;&quot; ;else: foreach($__LIST__ as $key=&gt;$item): $mod = ($i % 2 );++$i;?&gt;
+</code></li><li class="line-180"><code>                        &lt;a href=&quot;&lt;?php echo $item['url']; ?&gt;&quot;&gt;&lt;?php echo $item['name']; ?&gt;&lt;/a&gt; |
+</code></li><li class="line-181"><code>                        &lt;?php endforeach; endif; else: echo &quot;&quot; ;endif; ?&gt;
+</code></li><li class="line-182"><code>                        &lt;a href=&quot;/about-us.htm&quot;&gt;关于我们&lt;/a&gt; |
+</code></li><li class="line-183"><code>                        &lt;a href=&quot;/disclaimer.htm&quot;&gt;免责申明&lt;/a&gt; |
+</code></li><li class="line-184"><code>                        &lt;a href=&quot;/privacy.htm&quot;&gt;隐私申明&lt;/a&gt; |
+</code></li><li class="line-185"><code>                        &lt;a href=&quot;/sitemap.xml&quot;&gt;网站地图&lt;/a&gt;
+</code></li><li class="line-186"><code>                    &lt;/p&gt;
+</code></li><li class="line-187"><code>                    &lt;?php if(count($site_config['friendship_links_rows']) &gt; 0): ?&gt;
+</code></li><li class="line-188"><code>                    &lt;p&gt;
+</code></li><li class="line-189"><code>                        &lt;b&gt;友情链接：&lt;/b&gt;
+</code></li><li class="line-190"><code>                        &lt;?php if(is_array($site_config['friendship_links_rows']) || $site_config['friendship_links_rows'] instanceof \think\Collection || $site_config['friendship_links_rows'] instanceof \think\Paginator): $i = 0; $__LIST__ = $site_config['friendship_links_rows'];if( count($__LIST__)==0 ) : echo &quot;&quot; ;else: foreach($__LIST__ as $key=&gt;$item): $mod = ($i % 2 );++$i;?&gt;
+</code></li><li class="line-191"><code>                        &lt;a href=&quot;&lt;?php echo $item['url']; ?&gt;&quot; target=&quot;_blank&quot; title=&quot;&lt;?php echo $item['name']; ?&gt;&quot;&gt;&lt;?php echo $item['name']; ?&gt;&lt;/a&gt;
+</code></li><li class="line-192"><code>                        &lt;?php endforeach; endif; else: echo &quot;&quot; ;endif; ?&gt;
+</code></li><li class="line-193"><code>                    &lt;/p&gt;
+</code></li><li class="line-194"><code>                    &lt;?php endif; ?&gt;
+</code></li><li class="line-195"><code>                    &lt;a href=&quot;/&quot;&gt;&lt;?php echo $site_config['name']; ?&gt;&lt;/a&gt; 版权所有 Powered by WordPress
+</code></li><li class="line-196"><code>                &lt;/p&gt;
+</code></li></ol></pre>
+        </div>
+	        <div class="trace">
+            <h2>Call Stack</h2>
+            <ol>
+                <li>in <a class="toggle" title="E:\SVNRepositories\ClashGitPages2\runtime\temp\abb11b913fa9c95fa94d91966db929bc.php line 187">abb11b913fa9c95fa94d91966db929bc.php line 187</a></li>
+                                <li>
+                at <abbr title="think\Error">Error</abbr>::appError(2, '<a class="toggle" title="count(): Parameter must be an array or an object that implements Countable">count(): Parameter m...</a>', '<a class="toggle" title="E:\SVNRepositories\ClashGitPages2\runtime\temp\abb11b913fa9c95fa94d91966db929bc.php">E:\SVNRepositories\C...</a>', 187, ['cacheFile' => '<a class="toggle" title="E:\SVNRepositories\ClashGitPages2\runtime\temp\abb11b913fa9c95fa94d91966db929bc.php">E:\SVNRepositories\C...</a>', 'vars' => ['user' => <em>null</em>, 'site' => ['name' => '我的网站', 'beian' => '', 'cdnurl' => '', ...], 'config' => ['site' => ['name' => '我的网站', 'cdnurl' => '', 'version' => 1758423239, ...], 'upload' => ['cdnurl' => '', 'uploadurl' => '<a class="toggle" title="/index.php/index/ajax/upload">/index.php/index/aja...</a>', 'bucket' => 'local', ...], 'modulename' => 'index', ...], ...], 'user' => <em>null</em>, ...]) in <a class="toggle" title="E:\SVNRepositories\ClashGitPages2\runtime\temp\abb11b913fa9c95fa94d91966db929bc.php line 187">abb11b913fa9c95fa94d91966db929bc.php line 187</a>                </li>
+                                <li>
+                at include('<a class="toggle" title="E:\SVNRepositories\ClashGitPages2\runtime\temp\abb11b913fa9c95fa94d91966db929bc.php">E:\SVNRepositories\C...</a>') in <a class="toggle" title="E:\SVNRepositories\ClashGitPages2\thinkphp\library\think\template\driver\File.php line 53">File.php line 53</a>                </li>
+                                <li>
+                at <abbr title="think\template\driver\File">File</abbr>->read('<a class="toggle" title="E:\SVNRepositories\ClashGitPages2\runtime\temp\abb11b913fa9c95fa94d91966db929bc.php">E:\SVNRepositories\C...</a>', ['user' => <em>null</em>, 'site' => ['name' => '我的网站', 'beian' => '', 'cdnurl' => '', ...], 'config' => ['site' => ['name' => '我的网站', 'cdnurl' => '', 'version' => 1758423239, ...], 'upload' => ['cdnurl' => '', 'uploadurl' => '<a class="toggle" title="/index.php/index/ajax/upload">/index.php/index/aja...</a>', 'bucket' => 'local', ...], 'modulename' => 'index', ...], ...]) in <a class="toggle" title="E:\SVNRepositories\ClashGitPages2\thinkphp\library\think\Template.php line 188">Template.php line 188</a>                </li>
+                                <li>
+                at <abbr title="think\Template">Template</abbr>->fetch('<a class="toggle" title="E:\SVNRepositories\ClashGitPages2\public/../application/index\view\freev2rayclash\index\url_blog.html">E:\SVNRepositories\C...</a>', ['user' => <em>null</em>, 'site' => ['name' => '我的网站', 'beian' => '', 'cdnurl' => '', ...], 'config' => ['site' => ['name' => '我的网站', 'cdnurl' => '', 'version' => 1758423239, ...], 'upload' => ['cdnurl' => '', 'uploadurl' => '<a class="toggle" title="/index.php/index/ajax/upload">/index.php/index/aja...</a>', 'bucket' => 'local', ...], 'modulename' => 'index', ...], ...], []) in <a class="toggle" title="E:\SVNRepositories\ClashGitPages2\thinkphp\library\think\view\driver\Think.php line 86">Think.php line 86</a>                </li>
+                                <li>
+                at <abbr title="think\view\driver\Think">Think</abbr>->fetch('<a class="toggle" title="E:\SVNRepositories\ClashGitPages2\public/../application/index\view\freev2rayclash\index\url_blog.html">E:\SVNRepositories\C...</a>', ['user' => <em>null</em>, 'site' => ['name' => '我的网站', 'beian' => '', 'cdnurl' => '', ...], 'config' => ['site' => ['name' => '我的网站', 'cdnurl' => '', 'version' => 1758423239, ...], 'upload' => ['cdnurl' => '', 'uploadurl' => '<a class="toggle" title="/index.php/index/ajax/upload">/index.php/index/aja...</a>', 'bucket' => 'local', ...], 'modulename' => 'index', ...], ...], []) in <a class="toggle" title="E:\SVNRepositories\ClashGitPages2\thinkphp\library\think\View.php line 163">View.php line 163</a>                </li>
+                                <li>
+                at <abbr title="think\View">View</abbr>->fetch('<a class="toggle" title="freev2rayclash/index/url_blog">freev2rayclash/index...</a>') in <a class="toggle" title="E:\SVNRepositories\ClashGitPages2\application\index\controller\Index.php line 334">Index.php line 334</a>                </li>
+                                <li>
+                at <abbr title="app\index\controller\Index">Index</abbr>->url_blog()                </li>
+                                <li>
+                at <abbr title="ReflectionMethod">ReflectionMethod</abbr>->invokeArgs(<em>object</em>(<abbr title="app\index\controller\Index">Index</abbr>), []) in <a class="toggle" title="E:\SVNRepositories\ClashGitPages2\thinkphp\library\think\App.php line 343">App.php line 343</a>                </li>
+                                <li>
+                at <abbr title="think\App">App</abbr>::invokeMethod([<em>object</em>(<abbr title="app\index\controller\Index">Index</abbr>), 'url_blog'], []) in <a class="toggle" title="E:\SVNRepositories\ClashGitPages2\thinkphp\library\think\App.php line 611">App.php line 611</a>                </li>
+                                <li>
+                at <abbr title="think\App">App</abbr>::module(['index', 'index', 'url_blog'], ['app_host' => '', 'app_debug' => <em>true</em>, 'app_trace' => <em>false</em>, ...], <em>true</em>) in <a class="toggle" title="E:\SVNRepositories\ClashGitPages2\thinkphp\library\think\App.php line 456">App.php line 456</a>                </li>
+                                <li>
+                at <abbr title="think\App">App</abbr>::exec(['type' => 'module', 'module' => ['index', 'index', 'url_blog']], ['app_host' => '', 'app_debug' => <em>true</em>, 'app_trace' => <em>false</em>, ...]) in <a class="toggle" title="E:\SVNRepositories\ClashGitPages2\thinkphp\library\think\App.php line 139">App.php line 139</a>                </li>
+                                <li>
+                at <abbr title="think\App">App</abbr>::run() in <a class="toggle" title="E:\SVNRepositories\ClashGitPages2\thinkphp\start.php line 19">start.php line 19</a>                </li>
+                                <li>
+                at require('<a class="toggle" title="E:\SVNRepositories\ClashGitPages2\thinkphp\start.php">E:\SVNRepositories\C...</a>') in <a class="toggle" title="E:\SVNRepositories\ClashGitPages2\public\index.php line 23">index.php line 23</a>                </li>
+                            </ol>
         </div>
     </div>
-        <!--//w3l-faq-block-->
-    <section class="w3l-footer-29-main w3l-copyright">
-        <div class="container">
-            <div class="bottom-copies">
-                <p class="copy-footer-29 text-center">
-                                                <p>
-                                                <a href="/">首页</a> |
-                                                <a href="/free-nodes/">免费节点</a> |
-                                                <a href="/paid-subscribe/">推荐机场</a> |
-                                                <a href="/client.htm">客户端</a> |
-                                                <a href="/news/">新闻资讯</a> |
-                                                <a href="/about-us.htm">关于我们</a> |
-                        <a href="/disclaimer.htm">免责申明</a> |
-                        <a href="/privacy.htm">隐私申明</a> |
-                        <a href="/sitemap.xml">网站地图</a>
-                    </p>
-                    <a href="/">Free V2ray Clash免费机场订阅节点官网</a> 版权所有 Powered by WordPress
-                </p>
+        
+    
+        <div class="exception-var">
+        <h2>Environment Variables</h2>
+                <div>
+                        <h3 class="subheading">GET Data</h3>
+            <div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>website_id</strong></div>
+                    <div class="col-md-9"><small>
+                        127                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>id</strong></div>
+                    <div class="col-md-9"><small>
+                        155183                    </small></div>
+                </div>
+                            </div>
+                    </div>
+                <div>
+                        <div class="clearfix">
+                <div class="col-md-3"><strong>POST Data</strong></div>
+                <div class="col-md-9"><small>empty</small></div>
             </div>
-        </div>
-        <!-- move top -->
-        <button onclick="topFunction()" id="movetop" title="Go to top">
-            <span class="fa fa-angle-up"></span>
-        </button>
+                    </div>
+                <div>
+                        <div class="clearfix">
+                <div class="col-md-3"><strong>Files</strong></div>
+                <div class="col-md-9"><small>empty</small></div>
+            </div>
+                    </div>
+                <div>
+                        <div class="clearfix">
+                <div class="col-md-3"><strong>Cookies</strong></div>
+                <div class="col-md-9"><small>empty</small></div>
+            </div>
+                    </div>
+                <div>
+                        <div class="clearfix">
+                <div class="col-md-3"><strong>Session</strong></div>
+                <div class="col-md-9"><small>empty</small></div>
+            </div>
+                    </div>
+                <div>
+                        <h3 class="subheading">Server/Request Data</h3>
+            <div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>ALLUSERSPROFILE</strong></div>
+                    <div class="col-md-9"><small>
+                        C:\ProgramData                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>APPDATA</strong></div>
+                    <div class="col-md-9"><small>
+                        C:\Windows\system32\config\systemprofile\AppData\Roaming                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>CommonProgramFiles</strong></div>
+                    <div class="col-md-9"><small>
+                        C:\Program Files\Common Files                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>CommonProgramFiles(x86)</strong></div>
+                    <div class="col-md-9"><small>
+                        C:\Program Files (x86)\Common Files                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>CommonProgramW6432</strong></div>
+                    <div class="col-md-9"><small>
+                        C:\Program Files\Common Files                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>COMPUTERNAME</strong></div>
+                    <div class="col-md-9"><small>
+                        DESKTOP-NSJC0E1                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>ComSpec</strong></div>
+                    <div class="col-md-9"><small>
+                        C:\Windows\system32\cmd.exe                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>DriverData</strong></div>
+                    <div class="col-md-9"><small>
+                        C:\Windows\System32\Drivers\DriverData                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>LOCALAPPDATA</strong></div>
+                    <div class="col-md-9"><small>
+                        C:\Windows\system32\config\systemprofile\AppData\Local                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>NUMBER_OF_PROCESSORS</strong></div>
+                    <div class="col-md-9"><small>
+                        6                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>OS</strong></div>
+                    <div class="col-md-9"><small>
+                        Windows_NT                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>Path</strong></div>
+                    <div class="col-md-9"><small>
+                                            </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>PATHEXT</strong></div>
+                    <div class="col-md-9"><small>
+                        .COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>PROCESSOR_ARCHITECTURE</strong></div>
+                    <div class="col-md-9"><small>
+                        AMD64                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>PROCESSOR_IDENTIFIER</strong></div>
+                    <div class="col-md-9"><small>
+                        Intel64 Family 6 Model 158 Stepping 10, GenuineIntel                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>PROCESSOR_LEVEL</strong></div>
+                    <div class="col-md-9"><small>
+                        6                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>PROCESSOR_REVISION</strong></div>
+                    <div class="col-md-9"><small>
+                        9e0a                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>ProgramData</strong></div>
+                    <div class="col-md-9"><small>
+                        C:\ProgramData                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>ProgramFiles</strong></div>
+                    <div class="col-md-9"><small>
+                        C:\Program Files                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>ProgramFiles(x86)</strong></div>
+                    <div class="col-md-9"><small>
+                        C:\Program Files (x86)                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>ProgramW6432</strong></div>
+                    <div class="col-md-9"><small>
+                        C:\Program Files                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>PSModulePath</strong></div>
+                    <div class="col-md-9"><small>
+                        C:\Program Files\WindowsPowerShell\Modules;C:\Windows\system32\WindowsPowerShell\v1.0\Modules                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>PUBLIC</strong></div>
+                    <div class="col-md-9"><small>
+                        C:\Users\Public                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>SystemDrive</strong></div>
+                    <div class="col-md-9"><small>
+                        C:                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>SystemRoot</strong></div>
+                    <div class="col-md-9"><small>
+                        C:\Windows                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>TEMP</strong></div>
+                    <div class="col-md-9"><small>
+                        C:\Windows\TEMP                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>TMP</strong></div>
+                    <div class="col-md-9"><small>
+                        C:\Windows\TEMP                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>USERDOMAIN</strong></div>
+                    <div class="col-md-9"><small>
+                        WORKGROUP                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>USERNAME</strong></div>
+                    <div class="col-md-9"><small>
+                        DESKTOP-NSJC0E1$                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>USERPROFILE</strong></div>
+                    <div class="col-md-9"><small>
+                        C:\Windows\system32\config\systemprofile                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>windir</strong></div>
+                    <div class="col-md-9"><small>
+                        C:\Windows                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>HTTP_ACCEPT</strong></div>
+                    <div class="col-md-9"><small>
+                        */*                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>HTTP_USER_AGENT</strong></div>
+                    <div class="col-md-9"><small>
+                        Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.98 Safari/537.36                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>HTTP_HOST</strong></div>
+                    <div class="col-md-9"><small>
+                        cgp2-b.com                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>REDIRECT_STATUS</strong></div>
+                    <div class="col-md-9"><small>
+                        200                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>SERVER_NAME</strong></div>
+                    <div class="col-md-9"><small>
+                        cgp2-b.com                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>SERVER_PORT</strong></div>
+                    <div class="col-md-9"><small>
+                        80                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>SERVER_ADDR</strong></div>
+                    <div class="col-md-9"><small>
+                        127.0.0.1                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>REMOTE_PORT</strong></div>
+                    <div class="col-md-9"><small>
+                        54515                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>REMOTE_ADDR</strong></div>
+                    <div class="col-md-9"><small>
+                        127.0.0.1                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>SERVER_SOFTWARE</strong></div>
+                    <div class="col-md-9"><small>
+                        nginx/1.15.11                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>GATEWAY_INTERFACE</strong></div>
+                    <div class="col-md-9"><small>
+                        CGI/1.1                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>REQUEST_SCHEME</strong></div>
+                    <div class="col-md-9"><small>
+                        http                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>SERVER_PROTOCOL</strong></div>
+                    <div class="col-md-9"><small>
+                        HTTP/1.1                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>DOCUMENT_ROOT</strong></div>
+                    <div class="col-md-9"><small>
+                        E:/SVNRepositories/ClashGitPages2/public                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>DOCUMENT_URI</strong></div>
+                    <div class="col-md-9"><small>
+                        /index.php/index/index/url_blog                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>REQUEST_URI</strong></div>
+                    <div class="col-md-9"><small>
+                        /index.php/index/index/url_blog?website_id=127&amp;id=155183                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>SCRIPT_NAME</strong></div>
+                    <div class="col-md-9"><small>
+                        /index.php                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>CONTENT_LENGTH</strong></div>
+                    <div class="col-md-9"><small>
+                                            </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>CONTENT_TYPE</strong></div>
+                    <div class="col-md-9"><small>
+                                            </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>REQUEST_METHOD</strong></div>
+                    <div class="col-md-9"><small>
+                        GET                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>QUERY_STRING</strong></div>
+                    <div class="col-md-9"><small>
+                        website_id=127&amp;id=155183                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>PATH_TRANSLATED</strong></div>
+                    <div class="col-md-9"><small>
+                        E:/SVNRepositories/ClashGitPages2/public/index/index/url_blog                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>PATH_INFO</strong></div>
+                    <div class="col-md-9"><small>
+                        /index/index/url_blog                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>SCRIPT_FILENAME</strong></div>
+                    <div class="col-md-9"><small>
+                        E:/SVNRepositories/ClashGitPages2/public/index.php                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>FCGI_ROLE</strong></div>
+                    <div class="col-md-9"><small>
+                        RESPONDER                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>PHP_SELF</strong></div>
+                    <div class="col-md-9"><small>
+                        /index.php/index/index/url_blog                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>REQUEST_TIME_FLOAT</strong></div>
+                    <div class="col-md-9"><small>
+                        1758423239.6252                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>REQUEST_TIME</strong></div>
+                    <div class="col-md-9"><small>
+                        1758423239                    </small></div>
+                </div>
+                            </div>
+                    </div>
+                <div>
+                        <div class="clearfix">
+                <div class="col-md-3"><strong>Environment Variables</strong></div>
+                <div class="col-md-9"><small>empty</small></div>
+            </div>
+                    </div>
+                <div>
+                        <h3 class="subheading">ThinkPHP Constants</h3>
+            <div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>APP_PATH</strong></div>
+                    <div class="col-md-9"><small>
+                        E:\SVNRepositories\ClashGitPages2\public/../application/                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>THINK_VERSION</strong></div>
+                    <div class="col-md-9"><small>
+                        5.0.28                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>THINK_START_TIME</strong></div>
+                    <div class="col-md-9"><small>
+                        1758423239.6256                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>THINK_START_MEM</strong></div>
+                    <div class="col-md-9"><small>
+                        408864                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>EXT</strong></div>
+                    <div class="col-md-9"><small>
+                        .php                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>DS</strong></div>
+                    <div class="col-md-9"><small>
+                        \                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>THINK_PATH</strong></div>
+                    <div class="col-md-9"><small>
+                        E:\SVNRepositories\ClashGitPages2\thinkphp\                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>LIB_PATH</strong></div>
+                    <div class="col-md-9"><small>
+                        E:\SVNRepositories\ClashGitPages2\thinkphp\library\                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>CORE_PATH</strong></div>
+                    <div class="col-md-9"><small>
+                        E:\SVNRepositories\ClashGitPages2\thinkphp\library\think\                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>TRAIT_PATH</strong></div>
+                    <div class="col-md-9"><small>
+                        E:\SVNRepositories\ClashGitPages2\thinkphp\library\traits\                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>ROOT_PATH</strong></div>
+                    <div class="col-md-9"><small>
+                        E:\SVNRepositories\ClashGitPages2\                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>EXTEND_PATH</strong></div>
+                    <div class="col-md-9"><small>
+                        E:\SVNRepositories\ClashGitPages2\extend\                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>VENDOR_PATH</strong></div>
+                    <div class="col-md-9"><small>
+                        E:\SVNRepositories\ClashGitPages2\vendor\                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>RUNTIME_PATH</strong></div>
+                    <div class="col-md-9"><small>
+                        E:\SVNRepositories\ClashGitPages2\runtime\                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>LOG_PATH</strong></div>
+                    <div class="col-md-9"><small>
+                        E:\SVNRepositories\ClashGitPages2\runtime\log\                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>CACHE_PATH</strong></div>
+                    <div class="col-md-9"><small>
+                        E:\SVNRepositories\ClashGitPages2\runtime\cache\                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>TEMP_PATH</strong></div>
+                    <div class="col-md-9"><small>
+                        E:\SVNRepositories\ClashGitPages2\runtime\temp\                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>CONF_PATH</strong></div>
+                    <div class="col-md-9"><small>
+                        E:\SVNRepositories\ClashGitPages2\public/../application/                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>CONF_EXT</strong></div>
+                    <div class="col-md-9"><small>
+                        .php                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>ENV_PREFIX</strong></div>
+                    <div class="col-md-9"><small>
+                        PHP_                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>IS_CLI</strong></div>
+                    <div class="col-md-9"><small>
+                        false                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>IS_WIN</strong></div>
+                    <div class="col-md-9"><small>
+                        true                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>FILTER_VALIDATE_BOOL</strong></div>
+                    <div class="col-md-9"><small>
+                        258                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>HTMLPURIFIER_PREFIX</strong></div>
+                    <div class="col-md-9"><small>
+                        E:\SVNRepositories\ClashGitPages2\vendor\ezyang\htmlpurifier\library                    </small></div>
+                </div>
+                                <div class="clearfix">
+                    <div class="col-md-3"><strong>ADDON_PATH</strong></div>
+                    <div class="col-md-9"><small>
+                        E:\SVNRepositories\ClashGitPages2\addons\                    </small></div>
+                </div>
+                            </div>
+                    </div>
+            </div>
+    
+    <div class="copyright">
+        <a title="官方网站" href="http://www.thinkphp.cn">ThinkPHP</a> 
+        <span>V5.0.28</span> 
+        <span>{ 十年磨一剑-为API开发设计的高性能框架 }</span>
+    </div>
         <script>
-        // When the user scrolls down 20px from the top of the document, show the button
-        window.onscroll = function() {
-            scrollFunction()
-        };
+        var LINE = 187;
 
-        function scrollFunction() {
-            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-                document.getElementById("movetop").style.display = "block";
+        function $(selector, node){
+            var elements;
+
+            node = node || document;
+            if(document.querySelectorAll){
+                elements = node.querySelectorAll(selector);
             } else {
-                document.getElementById("movetop").style.display = "none";
-            }
-        }
-
-        // When the user clicks on the button, scroll to the top of the document
-        function topFunction() {
-            document.body.scrollTop = 0;
-            document.documentElement.scrollTop = 0;
-        }
-        </script>
-        <!-- /move top -->
-    </section>
-    <!-- Template JavaScript -->
-    <script src="/assets/website/js/frontend/freev2rayclash/jquery-3.3.1.min.js"></script>
-    <!-- script for testimonials -->
-    <script>
-    $(document).ready(function() {
-        $('.owl-testimonial').owlCarousel({
-            loop: true,
-            margin: 0,
-            nav: true,
-            responsiveClass: true,
-            autoplay: true,
-            autoplayTimeout: 5000,
-            autoplaySpeed: 1000,
-            autoplayHoverPause: false,
-            responsive: {
-                0: {
-                    items: 1,
-                    nav: false
-                },
-                480: {
-                    items: 1,
-                    nav: false
-                },
-                667: {
-                    items: 1,
-                    nav: true
-                },
-                1000: {
-                    items: 1,
-                    nav: true
+                switch(selector.substr(0, 1)){
+                    case '#':
+                        elements = [node.getElementById(selector.substr(1))];
+                        break;
+                    case '.':
+                        if(document.getElementsByClassName){
+                            elements = node.getElementsByClassName(selector.substr(1));
+                        } else {
+                            elements = get_elements_by_class(selector.substr(1), node);
+                        }
+                        break;
+                    default:
+                        elements = node.getElementsByTagName();
                 }
             }
-        })
-    })
-    </script>
-    <!-- //script for testimonials -->
-    <script src="/assets/website/js/frontend/freev2rayclash/theme-change.js"></script>
-    <!-- js for portfolio lightbox -->
-    <!-- libhtbox -->
-    <script src="/assets/website/js/frontend/freev2rayclash/lightbox-plus-jquery.min.js"></script>
-    <!-- libhtbox -->
-    <script src="/assets/website/js/frontend/freev2rayclash/owl.carousel.js"></script>
-    <!-- script for banner slider-->
-    <script>
-    $(document).ready(function() {
-        $('.owl-one').owlCarousel({
-            loop: true,
-            margin: 0,
-            nav: false,
-            responsiveClass: true,
-            autoplay: true,
-            autoplayTimeout: 5000,
-            autoplaySpeed: 1000,
-            autoplayHoverPause: false,
-            responsive: {
-                0: {
-                    items: 1,
-                    nav: false
-                },
-                480: {
-                    items: 1,
-                    nav: false
-                },
-                667: {
-                    items: 1,
-                    nav: true
-                },
-                1000: {
-                    items: 1,
-                    nav: true
+            return elements;
+
+            function get_elements_by_class(search_class, node, tag) {
+                var elements = [], eles, 
+                    pattern  = new RegExp('(^|\\s)' + search_class + '(\\s|$)');
+
+                node = node || document;
+                tag  = tag  || '*';
+
+                eles = node.getElementsByTagName(tag);
+                for(var i = 0; i < eles.length; i++) {
+                    if(pattern.test(eles[i].className)) {
+                        elements.push(eles[i])
+                    }
+                }
+
+                return elements;
+            }
+        }
+
+        $.getScript = function(src, func){
+            var script = document.createElement('script');
+            
+            script.async  = 'async';
+            script.src    = src;
+            script.onload = func || function(){};
+            
+            $('head')[0].appendChild(script);
+        }
+
+        ;(function(){
+            var files = $('.toggle');
+            var ol    = $('ol', $('.prettyprint')[0]);
+            var li    = $('li', ol[0]);   
+
+            // 短路径和长路径变换
+            for(var i = 0; i < files.length; i++){
+                files[i].ondblclick = function(){
+                    var title = this.title;
+
+                    this.title = this.innerHTML;
+                    this.innerHTML = title;
                 }
             }
-        })
-    })
-    </script>
-    <!-- //script -->
-    <!-- stats number counter-->
-    <script src="/assets/website/js/frontend/freev2rayclash/jquery.waypoints.min.js"></script>
-    <script src="/assets/website/js/frontend/freev2rayclash/jquery.countup.js"></script>
-    <script>
-    $('.counter').countUp();
-    </script>
-    <!-- //stats number counter -->
-    <!-- disable body scroll which navbar is in active -->
-    <script>
-    $(function() {
-        $('.navbar-toggler').click(function() {
-            $('body').toggleClass('noscroll');
-        })
-    });
-    </script>
-    <!-- disable body scroll which navbar is in active -->
-    <!--/MENU-JS-->
-    <script>
-    $(window).on("scroll", function() {
-        var scroll = $(window).scrollTop();
 
-        if (scroll >= 80) {
-            $("#site-header").addClass("nav-fixed");
-        } else {
-            $("#site-header").removeClass("nav-fixed");
-        }
-    });
+            // 设置出错行
+            var err_line = $('.line-' + LINE, ol[0])[0];
+            err_line.className = err_line.className + ' line-error';
 
-    //Main navigation Active Class Add Remove
-    $(".navbar-toggler").on("click", function() {
-        $("header").toggleClass("active");
-    });
-    $(document).on("ready", function() {
-        if ($(window).width() > 991) {
-            $("header").removeClass("active");
-        }
-        $(window).on("resize", function() {
-            if ($(window).width() > 991) {
-                $("header").removeClass("active");
-            }
-        });
-    });
+            $.getScript('//lf26-cdn-tos.bytecdntp.com/cdn/expire-1-M/prettify/r298/prettify.min.js', function(){
+                prettyPrint();
+
+                // 解决Firefox浏览器一个很诡异的问题
+                // 当代码高亮后，ol的行号莫名其妙的错位
+                // 但是只要刷新li里面的html重新渲染就没有问题了
+                if(window.navigator.userAgent.indexOf('Firefox') >= 0){
+                    ol[0].innerHTML = ol[0].innerHTML;
+                }
+            });
+
+        })();
     </script>
-    <!--//MENU-JS-->
-    <script src="/assets/website/js/frontend/freev2rayclash/bootstrap.min.js"></script>
-    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
-    <script src="/assets/website/js/frontend/G.js"></script>
-</body>
-
+    </body>
 </html>
