@@ -1,4 +1,4 @@
-# 9月25日→18.8M/S|2025年最新免费节点Free V2ray Clash订阅链接地址  更新时间 2025-09-25 10:22:16
+# 10月1日→19.1M/S|2025年最新免费节点Free V2ray Clash订阅链接地址  更新时间 2025-10-01 09:10:52
 所有免费clash节点都爬取自网络，请勿用于非法用途 。节点地址：<a href="https://freev2rayclash.github.io" target="_blank">点击跳转</a>
 
 ## clash使用教程：
@@ -7,27 +7,27 @@
 
 ## 订阅链接：
 
-### Clash订阅链接
+### 免费Clash节点订阅链接
 
-- https://freev2rayclash.github.io/uploads/2025/09/0-20250925.yaml
-- https://freev2rayclash.github.io/uploads/2025/09/1-20250925.yaml
-- https://freev2rayclash.github.io/uploads/2025/09/2-20250925.yaml
-- https://freev2rayclash.github.io/uploads/2025/09/3-20250925.yaml
-- https://freev2rayclash.github.io/uploads/2025/09/4-20250925.yaml
+- https://freev2rayclash.github.io/uploads/2025/10/0-20251001.yaml
+- https://freev2rayclash.github.io/uploads/2025/10/1-20251001.yaml
+- https://freev2rayclash.github.io/uploads/2025/10/2-20251001.yaml
+- https://freev2rayclash.github.io/uploads/2025/10/3-20251001.yaml
+- https://freev2rayclash.github.io/uploads/2025/10/4-20251001.yaml
 
-### V2ray订阅链接
+### 免费V2ray节点订阅链接
 
-- https://freev2rayclash.github.io/uploads/2025/09/0-20250925.txt
-- https://freev2rayclash.github.io/uploads/2025/09/1-20250925.txt
-- https://freev2rayclash.github.io/uploads/2025/09/2-20250925.txt
-- https://freev2rayclash.github.io/uploads/2025/09/3-20250925.txt
-- https://freev2rayclash.github.io/uploads/2025/09/4-20250925.txt
+- https://freev2rayclash.github.io/uploads/2025/10/0-20251001.txt
+- https://freev2rayclash.github.io/uploads/2025/10/1-20251001.txt
+- https://freev2rayclash.github.io/uploads/2025/10/2-20251001.txt
+- https://freev2rayclash.github.io/uploads/2025/10/3-20251001.txt
+- https://freev2rayclash.github.io/uploads/2025/10/4-20251001.txt
 
-### Sing-box订阅链接
+### 免费Sing-box节点订阅链接
 
-- https://freev2rayclash.github.io/uploads/2025/09/20250925.json
+- https://freev2rayclash.github.io/uploads/2025/10/20251001.json
 
-## 更多clash节点订阅 ：
+## 更多Clash节点订阅 ：
 
 
 ### 高速机场推荐1【<a href="https://www.nfsq.us/#/register?code=UTg5SIHV" target="_blank">农夫山泉</a>】
