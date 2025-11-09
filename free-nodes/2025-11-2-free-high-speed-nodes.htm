@@ -210,14 +210,9 @@ A5：Xray不断更新安全特性，具备良好的隐私保护能力，适合�
     </div>
 <h4>FAQ</h4>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>Potatso Lite 手动节点切换有哪些优点？</h5></div>
+    <div class="panel-heading"><h5>如何将 Windows 上的 V2Ray 与 WSL 环境联合调试？</h5></div>
     <div class="panel-body">
-        手动切换节点可以根据延迟和用途选择最佳节点，适合在节点不稳定或特殊需求下使用。虽然不支持自动订阅更新，但足够满足轻量用户对节点管理和分流的需求。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>QuantumultX 可以按协议类型分流吗？</h5></div>
-    <div class="panel-body">
-        支持。用户可按 TCP、UDP 或特定应用协议分流流量，结合策略组，实现游戏加速、视频优化或广告屏蔽等定制化网络策略，提高访问速度和稳定性。<hr />    </div>
+        在 WSL 内运行需要的调试工具并通过 localhost 或将 V2Ray 监听地址绑定为 0.0.0.0，然后在 Windows 与 WSL 之间配置端口映射。注意 Windows 防火墙规则需允许 WSL 与 Windows 进程通信。<hr />    </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading"><h5>SSR 的混淆和协议组合如何选择？</h5></div>
@@ -225,19 +220,24 @@ A5：Xray不断更新安全特性，具备良好的隐私保护能力，适合�
         根据网络封锁情况选择适合的混淆和协议组合，例如 tls1.2_ticket_auth 模拟 HTTPS 流量。不同组合对抗 DPI 和封锁能力不同，需要测试后选择最稳定和高效的方案。<hr />    </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>如何将 Windows 上的 V2Ray 与 WSL 环境联合调试？</h5></div>
+    <div class="panel-heading"><h5>如何在 macOS 上运行 ClashX？</h5></div>
     <div class="panel-body">
-        在 WSL 内运行需要的调试工具并通过 localhost 或将 V2Ray 监听地址绑定为 0.0.0.0，然后在 Windows 与 WSL 之间配置端口映射。注意 Windows 防火墙规则需允许 WSL 与 Windows 进程通信。<hr />    </div>
+        ClashX 是 macOS 平台专用客户端，用户可在 GitHub 下载 DMG 安装包。安装后导入订阅即可使用，支持系统代理集成、自动更新和延迟测试。界面简洁直观，深受苹果用户欢迎。<hr />    </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>Potatso Lite 的节点测速功能有何局限？</h5></div>
+    <div class="panel-heading"><h5>QuantumultX 可以按协议类型分流吗？</h5></div>
     <div class="panel-body">
-        Potatso Lite 节点测速只能显示延迟，无法测出带宽或实际下载速度。此外，测速结果受网络波动影响较大，建议结合实际使用体验来判断节点性能。<hr />    </div>
+        支持。用户可按 TCP、UDP 或特定应用协议分流流量，结合策略组，实现游戏加速、视频优化或广告屏蔽等定制化网络策略，提高访问速度和稳定性。<hr />    </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>VLESS + XTLS 模式在移动网络下的优势是什么？</h5></div>
+    <div class="panel-heading"><h5>Potatso Lite 手动节点切换有哪些优点？</h5></div>
     <div class="panel-body">
-        XTLS 模式减少握手次数和加密开销，适合高延迟或不稳定的移动网络。结合策略组和多出口节点使用，可提高访问速度和连接稳定性，保证用户体验流畅可靠。<hr />    </div>
+        手动切换节点可以根据延迟和用途选择最佳节点，适合在节点不稳定或特殊需求下使用。虽然不支持自动订阅更新，但足够满足轻量用户对节点管理和分流的需求。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>VMess AEAD 加密在安全性方面有何优势？</h5></div>
+    <div class="panel-body">
+        AEAD 加密可防止数据篡改、重放攻击和流量特征泄露。在高封锁环境下保证节点可用，提升数据安全和连接稳定性，同时降低被检测风险，确保长期安全访问。<hr />    </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading"><h5>VMess 的 WebSocket + TLS 配置有哪些好处？</h5></div>
@@ -245,9 +245,9 @@ A5：Xray不断更新安全特性，具备良好的隐私保护能力，适合�
         WebSocket + TLS 可伪装为普通 HTTPS 流量，增强抗封锁能力和隐蔽性。结合域名伪装和策略组使用，可以在高封锁网络中保持稳定、高速和安全的网络访问体验。<hr />    </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>如何在 macOS 上运行 ClashX？</h5></div>
+    <div class="panel-heading"><h5>VLESS + XTLS 模式在移动网络下的优势是什么？</h5></div>
     <div class="panel-body">
-        ClashX 是 macOS 平台专用客户端，用户可在 GitHub 下载 DMG 安装包。安装后导入订阅即可使用，支持系统代理集成、自动更新和延迟测试。界面简洁直观，深受苹果用户欢迎。<hr />    </div>
+        XTLS 模式减少握手次数和加密开销，适合高延迟或不稳定的移动网络。结合策略组和多出口节点使用，可提高访问速度和连接稳定性，保证用户体验流畅可靠。<hr />    </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading"><h5>Netch 使用 TAP 驱动时 Windows 弹出网络变更提示，该如何处理？</h5></div>
@@ -255,9 +255,9 @@ A5：Xray不断更新安全特性，具备良好的隐私保护能力，适合�
         这是正常现象，TAP 虚拟网卡会改变系统网络状态。建议在首次启用时允许驱动安装并授予网络权限，若频繁弹窗可在网络设置中调整网络识别类型或将 TAP 设为非计量连接。<hr />    </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>VMess AEAD 加密在安全性方面有何优势？</h5></div>
+    <div class="panel-heading"><h5>Potatso Lite 的节点测速功能有何局限？</h5></div>
     <div class="panel-body">
-        AEAD 加密可防止数据篡改、重放攻击和流量特征泄露。在高封锁环境下保证节点可用，提升数据安全和连接稳定性，同时降低被检测风险，确保长期安全访问。    </div>
+        Potatso Lite 节点测速只能显示延迟，无法测出带宽或实际下载速度。此外，测速结果受网络波动影响较大，建议结合实际使用体验来判断节点性能。    </div>
 </div>
 <div class="panel panel-default mt-5">
     <div class="panel-heading">
@@ -286,16 +286,16 @@ A5：Xray不断更新安全特性，具备良好的隐私保护能力，适合�
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/free-nodes/2025-10-10-node-share.htm" title="10月10日→21.1M/S|2025年最新免费节点Free V2ray Clash订阅链接地址">10月10日→21.1M/S|2025年最新免费节点Free V2ray Clash订阅链接地址</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-10-18-free-ssr-node.htm" title="10月18日→18.4M/S|2025年最新免费节点Free V2ray Clash订阅链接地址">10月18日→18.4M/S|2025年最新免费节点Free V2ray Clash订阅链接地址</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-10-4-clash-v2ray-ss-ssr.htm" title="10月4日→19.5M/S|2025年最新免费节点Free V2ray Clash订阅链接地址">10月4日→19.5M/S|2025年最新免费节点Free V2ray Clash订阅链接地址</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-10-7-free-node-subscribe.htm" title="10月7日→18.8M/S|2025年最新免费节点Free V2ray Clash订阅链接地址">10月7日→18.8M/S|2025年最新免费节点Free V2ray Clash订阅链接地址</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-10-11-free-subscribe-node.htm" title="10月11日→19.5M/S|2025年最新免费节点Free V2ray Clash订阅链接地址">10月11日→19.5M/S|2025年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-10-5-clash-node.htm" title="10月5日→18.2M/S|2025年最新免费节点Free V2ray Clash订阅链接地址">10月5日→18.2M/S|2025年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-10-6-free-shadowrocket-node.htm" title="10月6日→20.2M/S|2025年最新免费节点Free V2ray Clash订阅链接地址">10月6日→20.2M/S|2025年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-10-16-node-share-links.htm" title="10月16日→18.3M/S|2025年最新免费节点Free V2ray Clash订阅链接地址">10月16日→18.3M/S|2025年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-11-4-clash-node.htm" title="11月4日→18.2M/S|2025年最新免费节点Free V2ray Clash订阅链接地址">11月4日→18.2M/S|2025年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-10-26-clash-node-daily-updates.htm" title="10月26日→19.7M/S|2025年最新免费节点Free V2ray Clash订阅链接地址">10月26日→19.7M/S|2025年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-10-9-node-share.htm" title="10月9日→19.9M/S|2025年最新免费节点Free V2ray Clash订阅链接地址">10月9日→19.9M/S|2025年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-10-27-free-v2ray-subscribe.htm" title="10月27日→18.3M/S|2025年最新免费节点Free V2ray Clash订阅链接地址">10月27日→18.3M/S|2025年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-11-7-clash-node-daily-updates.htm" title="11月7日→19.8M/S|2025年最新免费节点Free V2ray Clash订阅链接地址">11月7日→19.8M/S|2025年最新免费节点Free V2ray Clash订阅链接地址</a></li>
                         <li class="py-2"><a href="/free-nodes/2025-10-17-node-share-links.htm" title="10月17日→21.7M/S|2025年最新免费节点Free V2ray Clash订阅链接地址">10月17日→21.7M/S|2025年最新免费节点Free V2ray Clash订阅链接地址</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-10-15-free-high-speed-nodes.htm" title="10月15日→21.7M/S|2025年最新免费节点Free V2ray Clash订阅链接地址">10月15日→21.7M/S|2025年最新免费节点Free V2ray Clash订阅链接地址</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-10-8-free-node-subscribe-links.htm" title="10月8日→19.2M/S|2025年最新免费节点Free V2ray Clash订阅链接地址">10月8日→19.2M/S|2025年最新免费节点Free V2ray Clash订阅链接地址</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-11-1-free-ssr-node.htm" title="11月1日→18.9M/S|2025年最新免费节点Free V2ray Clash订阅链接地址">11月1日→18.9M/S|2025年最新免费节点Free V2ray Clash订阅链接地址</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-10-25-shadowrocket-node.htm" title="10月25日→18.2M/S|2025年最新免费节点Free V2ray Clash订阅链接地址">10月25日→18.2M/S|2025年最新免费节点Free V2ray Clash订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-10-11-free-subscribe-node.htm" title="10月11日→19.5M/S|2025年最新免费节点Free V2ray Clash订阅链接地址">10月11日→19.5M/S|2025年最新免费节点Free V2ray Clash订阅链接地址</a></li>
                     </ul>
     </div>
 </div>
@@ -307,7 +307,7 @@ A5：Xray不断更新安全特性，具备良好的隐私保护能力，适合�
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">3</span> <a href="/date/2025-11/" title="2025-11 归档">2025-11</a></h4>
+                <h4><span class="badge" style="float: right;">9</span> <a href="/date/2025-11/" title="2025-11 归档">2025-11</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">26</span> <a href="/date/2025-10/" title="2025-10 归档">2025-10</a></h4>
