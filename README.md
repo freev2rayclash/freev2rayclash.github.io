@@ -1,4 +1,4 @@
-# 3月11日→22.2M/S|2025年最新免费节点Free V2ray Clash订阅链接地址  更新时间 2026-03-11 09:47:46
+# 3月18日→19.8M/S|2025年最新免费节点Free V2ray Clash订阅链接地址  更新时间 2026-03-18 10:02:36
 所有免费clash节点都爬取自网络，请勿用于非法用途 。节点地址：<a href="https://freev2rayclash.github.io" target="_blank">点击跳转</a>
 
 ## clash使用教程：
@@ -9,23 +9,23 @@
 
 ### 免费Clash节点订阅链接
 
-- https://freev2rayclash.github.io/uploads/2026/03/0-20260311.yaml
-- https://freev2rayclash.github.io/uploads/2026/03/1-20260311.yaml
-- https://freev2rayclash.github.io/uploads/2026/03/2-20260311.yaml
-- https://freev2rayclash.github.io/uploads/2026/03/3-20260311.yaml
-- https://freev2rayclash.github.io/uploads/2026/03/4-20260311.yaml
+- https://freev2rayclash.github.io/uploads/2026/03/0-20260318.yaml
+- https://freev2rayclash.github.io/uploads/2026/03/1-20260318.yaml
+- https://freev2rayclash.github.io/uploads/2026/03/2-20260318.yaml
+- https://freev2rayclash.github.io/uploads/2026/03/3-20260318.yaml
+- https://freev2rayclash.github.io/uploads/2026/03/4-20260318.yaml
 
 ### 免费V2ray节点订阅链接
 
-- https://freev2rayclash.github.io/uploads/2026/03/0-20260311.txt
-- https://freev2rayclash.github.io/uploads/2026/03/1-20260311.txt
-- https://freev2rayclash.github.io/uploads/2026/03/2-20260311.txt
-- https://freev2rayclash.github.io/uploads/2026/03/3-20260311.txt
-- https://freev2rayclash.github.io/uploads/2026/03/4-20260311.txt
+- https://freev2rayclash.github.io/uploads/2026/03/0-20260318.txt
+- https://freev2rayclash.github.io/uploads/2026/03/1-20260318.txt
+- https://freev2rayclash.github.io/uploads/2026/03/2-20260318.txt
+- https://freev2rayclash.github.io/uploads/2026/03/3-20260318.txt
+- https://freev2rayclash.github.io/uploads/2026/03/4-20260318.txt
 
 ### 免费Sing-box节点订阅链接
 
-- https://freev2rayclash.github.io/uploads/2026/03/20260311.json
+- https://freev2rayclash.github.io/uploads/2026/03/20260318.json
 
 ## 更多Clash节点订阅 ：
 
