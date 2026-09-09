@@ -154,9 +154,9 @@ IPLC、IEPL中转，点对点专线连接。高速冲浪，科学上网不二选
     </div>
 <h4>FAQ</h4>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>VLESS + Reality 与 Trojan 在性能上差异大吗？</h5></div>
+    <div class="panel-heading"><h5>QuantumultX 支持按端口和协议分流吗？</h5></div>
     <div class="panel-body">
-        两者性能相近。VLESS + Reality 伪装更自然，适合强封锁地区；Trojan 则依托标准 TLS 实现高速连接。选择取决于服务器支持与环境稳定性。<hr />    </div>
+        支持。QuantumultX 可以按 TCP、UDP、端口和应用协议分流流量，结合策略组使用，确保游戏、视频和广告屏蔽走最优节点，提高访问速度和网络稳定性。<hr />    </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading"><h5>Trojan 节点无法连接时应如何排查？</h5></div>
@@ -164,19 +164,9 @@ IPLC、IEPL中转，点对点专线连接。高速冲浪，科学上网不二选
         遇到 Trojan 无法连接时，需检查服务器证书是否有效、端口是否开放、密码配置是否匹配。还应确认防火墙未阻断相关端口，并尝试切换 TLS 版本或使用 IP 地址连接。<hr />    </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>Netch 的全局代理与规则代理有何不同？</h5></div>
+    <div class="panel-heading"><h5>Matsuri 节点延迟排序功能如何使用？</h5></div>
     <div class="panel-body">
-        全局代理将所有流量都通过节点转发，而规则代理只针对指定 IP、端口或应用。全局代理适合游戏和全局科学上网，规则代理适合优化带宽和分流特定流量。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>QuantumultX 支持按端口和协议分流吗？</h5></div>
-    <div class="panel-body">
-        支持。QuantumultX 可以按 TCP、UDP、端口和应用协议分流流量，结合策略组使用，确保游戏、视频和广告屏蔽走最优节点，提高访问速度和网络稳定性。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>SSR 的协议插件与加密方式如何搭配使用？</h5></div>
-    <div class="panel-body">
-        协议插件可增强抗封锁能力，加密方式确保数据安全。合理搭配可模拟正常流量特征，同时保障传输安全，有助于在封锁严格环境下维持节点可用性和稳定连接。<hr />    </div>
+        Matsuri 定期测速节点延迟，并结合策略组自动选择延迟最低的节点。用户无需手动切换节点，即可保持高速访问，提高网页、视频和游戏体验的稳定性。<hr />    </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading"><h5>SSR 的混淆插件如何增强隐蔽性？</h5></div>
@@ -184,19 +174,29 @@ IPLC、IEPL中转，点对点专线连接。高速冲浪，科学上网不二选
         混淆插件可模拟正常协议特征，如 HTTP 或 TLS 流量，使 SSR 流量难以被检测。合理选择混淆方式和协议，可提升在高封锁环境下的长期稳定性和安全性。<hr />    </div>
 </div>
 <div class="panel panel-default">
+    <div class="panel-heading"><h5>Hiddify Next 订阅更新后节点消失，如何恢复？</h5></div>
+    <div class="panel-body">
+        先检查订阅源是否更改格式或被下架，尝试重新粘贴订阅链接并手动刷新；若仍缺失，联系订阅提供方确认是否停用某些节点或使用了新的访问权限机制（例如 token 验证）。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>Netch 的全局代理与规则代理有何不同？</h5></div>
+    <div class="panel-body">
+        全局代理将所有流量都通过节点转发，而规则代理只针对指定 IP、端口或应用。全局代理适合游戏和全局科学上网，规则代理适合优化带宽和分流特定流量。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>SSR 的协议插件与加密方式如何搭配使用？</h5></div>
+    <div class="panel-body">
+        协议插件可增强抗封锁能力，加密方式确保数据安全。合理搭配可模拟正常流量特征，同时保障传输安全，有助于在封锁严格环境下维持节点可用性和稳定连接。<hr />    </div>
+</div>
+<div class="panel panel-default">
     <div class="panel-heading"><h5>Mihomo 启动后 CPU 占用高，有哪些优化建议？</h5></div>
     <div class="panel-body">
         检查是否启用了大量日志或复杂脚本，关闭不必要的规则提供者与日志调试；在多核服务器上启用并发或调整线程数；更新到最新版本以获得性能优化，并监控是否有异常连接导致处理压力。<hr />    </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>Matsuri 节点延迟排序功能如何使用？</h5></div>
+    <div class="panel-heading"><h5>VLESS + Reality 与 Trojan 在性能上差异大吗？</h5></div>
     <div class="panel-body">
-        Matsuri 定期测速节点延迟，并结合策略组自动选择延迟最低的节点。用户无需手动切换节点，即可保持高速访问，提高网页、视频和游戏体验的稳定性。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>Hiddify Next 订阅更新后节点消失，如何恢复？</h5></div>
-    <div class="panel-body">
-        先检查订阅源是否更改格式或被下架，尝试重新粘贴订阅链接并手动刷新；若仍缺失，联系订阅提供方确认是否停用某些节点或使用了新的访问权限机制（例如 token 验证）。<hr />    </div>
+        两者性能相近。VLESS + Reality 伪装更自然，适合强封锁地区；Trojan 则依托标准 TLS 实现高速连接。选择取决于服务器支持与环境稳定性。<hr />    </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading"><h5>PassWall2 如何自动切换最优节点？</h5></div>
@@ -249,16 +249,16 @@ IPLC、IEPL中转，点对点专线连接。高速冲浪，科学上网不二选
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/free-nodes/2026-8-24-free-clash.htm" title="8月24日→20.8M/S|2025年最新免费节点Free V2ray Clash订阅链接地址">8月24日→20.8M/S|2025年最新免费节点Free V2ray Clash订阅链接地址</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/free-node-subscribe-links-2026-8-21.htm" title="8月21日→18.7M/S|2025年最新免费节点Free V2ray Clash订阅链接地址">8月21日→18.7M/S|2025年最新免费节点Free V2ray Clash订阅链接地址</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/free-ssr-node-2026-8-11.htm" title="8月11日→19.7M/S|2025年最新免费节点Free V2ray Clash订阅链接地址">8月11日→19.7M/S|2025年最新免费节点Free V2ray Clash订阅链接地址</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-8-26-clash-v2ray-ss-ssr.htm" title="8月26日→22.8M/S|2025年最新免费节点Free V2ray Clash订阅链接地址">8月26日→22.8M/S|2025年最新免费节点Free V2ray Clash订阅链接地址</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-8-8-free-clash.htm" title="8月8日→19.9M/S|2025年最新免费节点Free V2ray Clash订阅链接地址">8月8日→19.9M/S|2025年最新免费节点Free V2ray Clash订阅链接地址</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-8-20-clash-v2ray-ss-ssr.htm" title="8月20日→18.6M/S|2025年最新免费节点Free V2ray Clash订阅链接地址">8月20日→18.6M/S|2025年最新免费节点Free V2ray Clash订阅链接地址</a><hr /></li>
                         <li class="py-2"><a href="/free-nodes/2026-8-12-free-shadowrocket-node.htm" title="8月12日→18M/S|2025年最新免费节点Free V2ray Clash订阅链接地址">8月12日→18M/S|2025年最新免费节点Free V2ray Clash订阅链接地址</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-9-4-free-shadowrocket-node.htm" title="9月4日→19.8M/S|2025年最新免费节点Free V2ray Clash订阅链接地址">9月4日→19.8M/S|2025年最新免费节点Free V2ray Clash订阅链接地址</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/free-ssr-node-2026-8-9.htm" title="8月9日→23M/S|2025年最新免费节点Free V2ray Clash订阅链接地址">8月9日→23M/S|2025年最新免费节点Free V2ray Clash订阅链接地址</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/free-ssr-node-2026-8-11.htm" title="8月11日→19.7M/S|2025年最新免费节点Free V2ray Clash订阅链接地址">8月11日→19.7M/S|2025年最新免费节点Free V2ray Clash订阅链接地址</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/free-node-subscribe-links-2026-8-25.htm" title="8月25日→22M/S|2025年最新免费节点Free V2ray Clash订阅链接地址">8月25日→22M/S|2025年最新免费节点Free V2ray Clash订阅链接地址</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/node-share-links-2026-8-7.htm" title="8月7日→20.2M/S|2025年最新免费节点Free V2ray Clash订阅链接地址">8月7日→20.2M/S|2025年最新免费节点Free V2ray Clash订阅链接地址</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/free-high-speed-nodes-2026-8-27.htm" title="8月27日→21.1M/S|2025年最新免费节点Free V2ray Clash订阅链接地址">8月27日→21.1M/S|2025年最新免费节点Free V2ray Clash订阅链接地址</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-8-28-free-node-subscribe.htm" title="8月28日→19.1M/S|2025年最新免费节点Free V2ray Clash订阅链接地址">8月28日→19.1M/S|2025年最新免费节点Free V2ray Clash订阅链接地址</a><hr /></li>
                         <li class="py-2"><a href="/free-nodes/2026-8-30-free-shadowrocket-node.htm" title="8月30日→21.4M/S|2025年最新免费节点Free V2ray Clash订阅链接地址">8月30日→21.4M/S|2025年最新免费节点Free V2ray Clash订阅链接地址</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/free-node-subscribe-links-2026-8-15.htm" title="8月15日→19.5M/S|2025年最新免费节点Free V2ray Clash订阅链接地址">8月15日→19.5M/S|2025年最新免费节点Free V2ray Clash订阅链接地址</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/clash-windows-2026-8-5.htm" title="8月5日→21M/S|2025年最新免费节点Free V2ray Clash订阅链接地址">8月5日→21M/S|2025年最新免费节点Free V2ray Clash订阅链接地址</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-8-26-clash-v2ray-ss-ssr.htm" title="8月26日→22.8M/S|2025年最新免费节点Free V2ray Clash订阅链接地址">8月26日→22.8M/S|2025年最新免费节点Free V2ray Clash订阅链接地址</a><hr /></li>
                     </ul>
     </div>
 </div>
@@ -270,10 +270,10 @@ IPLC、IEPL中转，点对点专线连接。高速冲浪，科学上网不二选
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">2</span> <a href="/date/2026-09/" title="2026-09 归档">2026-09</a></h4>
+                <h4><span class="badge" style="float: right;">4</span> <a href="/date/2026-09/" title="2026-09 归档">2026-09</a></h4>
             </li>
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">29</span> <a href="/date/2026-08/" title="2026-08 归档">2026-08</a></h4>
+                <h4><span class="badge" style="float: right;">26</span> <a href="/date/2026-08/" title="2026-08 归档">2026-08</a></h4>
             </li>
                     </ul>
     </div>
