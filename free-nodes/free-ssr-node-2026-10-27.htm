@@ -338,16 +338,6 @@ netsh winsock reset
     </div>
 <h4>FAQ</h4>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>Netch 的 UDP 转发模式适合哪些应用？</h5></div>
-    <div class="panel-body">
-        UDP 转发模式适合游戏、语音通话和实时视频等需要低延迟的应用。通过代理 UDP 流量，可以保证这些应用在代理环境下仍然保持快速响应。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>Trojan TLS 如何避免被 DPI 检测？</h5></div>
-    <div class="panel-body">
-        通过选择真实可访问域名并使用有效证书，Trojan 流量可完全模拟 HTTPS 请求。隐藏真实流量特征，降低被封锁和 DPI 检测风险，保证节点长期可用。<hr />    </div>
-</div>
-<div class="panel panel-default">
     <div class="panel-heading"><h5>SSR 节点延迟高、丢包严重，常见排查步骤有哪些？</h5></div>
     <div class="panel-body">
         先用 ping 和 traceroute 检查到服务器的延迟与路由跳数；再通过测速工具测带宽并尝试更换不同出站端口或混淆方式；若仍然不稳，考虑更换节点或联系客服查看服务端链路质量。<hr />    </div>
@@ -358,24 +348,19 @@ netsh winsock reset
         节点分组可按用途、地区或延迟分类，结合策略组实现自动分流。方便用户管理大量节点，快速选择最佳节点，提高访问速度和连接稳定性，同时优化维护效率。<hr />    </div>
 </div>
 <div class="panel panel-default">
+    <div class="panel-heading"><h5>V2Ray 如何设置多入口实现不同访问控制？</h5></div>
+    <div class="panel-body">
+        通过定义多个 inbound，对不同端口绑定不同的 tag 并在路由中匹配流量。可针对内网用户、远程用户或特定 IP 段应用不同规则，实现灵活访问控制与流量隔离。<hr />    </div>
+</div>
+<div class="panel panel-default">
     <div class="panel-heading"><h5>SSR 协议和混淆选择如何影响稳定性？</h5></div>
     <div class="panel-body">
         根据网络封锁情况选择合适协议和混淆方式，如 tls1.2_ticket_auth 模拟 HTTPS 流量。合理组合可提升抗封锁能力和连接稳定性，确保节点长期可用，优化网络访问。<hr />    </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>V2Ray 的 TCP + TLS 模式适合什么场景？</h5></div>
+    <div class="panel-heading"><h5>Netch 的 UDP 转发模式适合哪些应用？</h5></div>
     <div class="panel-body">
-        TCP + TLS 模式可模拟 HTTPS 流量，增强抗封锁能力。适合网络封锁严格的环境，通过策略组选择最佳节点，可保证访问速度和连接稳定性，尤其适用于网页浏览和视频播放。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>Surfboard 与 Shadowrocket 有什么区别？</h5></div>
-    <div class="panel-body">
-        两者都是 iOS 上的代理工具。Shadowrocket 功能更全面、更新更频繁，而 Surfboard 以轻量和快速见长。若只需简单分流与节点切换，Surfboard 足以满足日常使用。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>V2Ray 如何设置多入口实现不同访问控制？</h5></div>
-    <div class="panel-body">
-        通过定义多个 inbound，对不同端口绑定不同的 tag 并在路由中匹配流量。可针对内网用户、远程用户或特定 IP 段应用不同规则，实现灵活访问控制与流量隔离。<hr />    </div>
+        UDP 转发模式适合游戏、语音通话和实时视频等需要低延迟的应用。通过代理 UDP 流量，可以保证这些应用在代理环境下仍然保持快速响应。<hr />    </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading"><h5>Hysteria2 的多路复用在短连接场景下有什么优势？</h5></div>
@@ -383,9 +368,24 @@ netsh winsock reset
         多路复用允许多个短连接共享同一通道，减少握手延迟和资源消耗。适合高频短连接应用，如游戏和即时通讯，能提高吞吐量和连接稳定性，优化网络体验。<hr />    </div>
 </div>
 <div class="panel panel-default">
+    <div class="panel-heading"><h5>Surfboard 与 Shadowrocket 有什么区别？</h5></div>
+    <div class="panel-body">
+        两者都是 iOS 上的代理工具。Shadowrocket 功能更全面、更新更频繁，而 Surfboard 以轻量和快速见长。若只需简单分流与节点切换，Surfboard 足以满足日常使用。<hr />    </div>
+</div>
+<div class="panel panel-default">
     <div class="panel-heading"><h5>VMess AEAD 加密在封锁严格地区的作用？</h5></div>
     <div class="panel-body">
-        AEAD 加密防止数据篡改和流量特征泄露，降低被封锁和 DPI 检测风险。保证节点长期可用，提高数据传输安全性和访问可靠性，优化用户体验。    </div>
+        AEAD 加密防止数据篡改和流量特征泄露，降低被封锁和 DPI 检测风险。保证节点长期可用，提高数据传输安全性和访问可靠性，优化用户体验。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>V2Ray 的 TCP + TLS 模式适合什么场景？</h5></div>
+    <div class="panel-body">
+        TCP + TLS 模式可模拟 HTTPS 流量，增强抗封锁能力。适合网络封锁严格的环境，通过策略组选择最佳节点，可保证访问速度和连接稳定性，尤其适用于网页浏览和视频播放。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>Trojan TLS 如何避免被 DPI 检测？</h5></div>
+    <div class="panel-body">
+        通过选择真实可访问域名并使用有效证书，Trojan 流量可完全模拟 HTTPS 请求。隐藏真实流量特征，降低被封锁和 DPI 检测风险，保证节点长期可用。    </div>
 </div>
 <div class="panel panel-default mt-5">
     <div class="panel-heading">
@@ -433,16 +433,16 @@ netsh winsock reset
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2026-9-4-free-shadowrocket-node.htm" title="9月4日→19.8M/S|2025年最新免费节点Free V2ray Clash订阅链接地址">9月4日→19.8M/S|2025年最新免费节点Free V2ray Clash订阅链接地址</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/free-clash-subscribe-2026-10-1.htm" title="10月1日→21M/S|2025年最新免费节点Free V2ray Clash订阅链接地址">10月1日→21M/S|2025年最新免费节点Free V2ray Clash订阅链接地址</a><hr /></li>
                         <li class="py-2"><a href="/free-nodes/2026-10-10-free-node-subscribe.htm" title="10月10日→20.2M/S|2025年最新免费节点Free V2ray Clash订阅链接地址">10月10日→20.2M/S|2025年最新免费节点Free V2ray Clash订阅链接地址</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/free-high-speed-nodes-2026-9-17.htm" title="9月17日→20.5M/S|2025年最新免费节点Free V2ray Clash订阅链接地址">9月17日→20.5M/S|2025年最新免费节点Free V2ray Clash订阅链接地址</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-9-18-clash-node-daily-updates.htm" title="9月18日→22.5M/S|2025年最新免费节点Free V2ray Clash订阅链接地址">9月18日→22.5M/S|2025年最新免费节点Free V2ray Clash订阅链接地址</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/free-subscribe-node-2026-9-21.htm" title="9月21日→21.3M/S|2025年最新免费节点Free V2ray Clash订阅链接地址">9月21日→21.3M/S|2025年最新免费节点Free V2ray Clash订阅链接地址</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-10-24-free-clash.htm" title="10月24日→19.2M/S|2025年最新免费节点Free V2ray Clash订阅链接地址">10月24日→19.2M/S|2025年最新免费节点Free V2ray Clash订阅链接地址</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/clash-windows-2026-9-19.htm" title="9月19日→21.6M/S|2025年最新免费节点Free V2ray Clash订阅链接地址">9月19日→21.6M/S|2025年最新免费节点Free V2ray Clash订阅链接地址</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-9-2-free-v2ray.htm" title="9月2日→19.1M/S|2025年最新免费节点Free V2ray Clash订阅链接地址">9月2日→19.1M/S|2025年最新免费节点Free V2ray Clash订阅链接地址</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/free-ssr-node-2026-10-27.htm" title="10月27日→20M/S|2025年最新免费节点Free V2ray Clash订阅链接地址">10月27日→20M/S|2025年最新免费节点Free V2ray Clash订阅链接地址</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-10-18-clash-node-daily-updates.htm" title="10月18日→20.1M/S|2025年最新免费节点Free V2ray Clash订阅链接地址">10月18日→20.1M/S|2025年最新免费节点Free V2ray Clash订阅链接地址</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/free-high-speed-nodes-2026-10-17.htm" title="10月17日→19.7M/S|2025年最新免费节点Free V2ray Clash订阅链接地址">10月17日→19.7M/S|2025年最新免费节点Free V2ray Clash订阅链接地址</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/free-clash-subscribe-2026-10-5.htm" title="10月5日→22.6M/S|2025年最新免费节点Free V2ray Clash订阅链接地址">10月5日→22.6M/S|2025年最新免费节点Free V2ray Clash订阅链接地址</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/free-subscribe-node-2026-9-25.htm" title="9月25日→20.6M/S|2025年最新免费节点Free V2ray Clash订阅链接地址">9月25日→20.6M/S|2025年最新免费节点Free V2ray Clash订阅链接地址</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-9-10-clash-v2ray-ss-ssr.htm" title="9月10日→21.3M/S|2025年最新免费节点Free V2ray Clash订阅链接地址">9月10日→21.3M/S|2025年最新免费节点Free V2ray Clash订阅链接地址</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-9-12-free-node-subscribe.htm" title="9月12日→20.9M/S|2025年最新免费节点Free V2ray Clash订阅链接地址">9月12日→20.9M/S|2025年最新免费节点Free V2ray Clash订阅链接地址</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/free-v2ray-subscribe-2026-11-1.htm" title="11月1日→19.3M/S|2025年最新免费节点Free V2ray Clash订阅链接地址">11月1日→19.3M/S|2025年最新免费节点Free V2ray Clash订阅链接地址</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-10-2-node-share.htm" title="10月2日→22.5M/S|2025年最新免费节点Free V2ray Clash订阅链接地址">10月2日→22.5M/S|2025年最新免费节点Free V2ray Clash订阅链接地址</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-9-24-node-share.htm" title="9月24日→22.2M/S|2025年最新免费节点Free V2ray Clash订阅链接地址">9月24日→22.2M/S|2025年最新免费节点Free V2ray Clash订阅链接地址</a><hr /></li>
                     </ul>
     </div>
 </div>
@@ -454,7 +454,10 @@ netsh winsock reset
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">28</span> <a href="/date/2026-10/" title="2026-10 归档">2026-10</a></h4>
+                <h4><span class="badge" style="float: right;">5</span> <a href="/date/2026-11/" title="2026-11 归档">2026-11</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2026-10/" title="2026-10 归档">2026-10</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">29</span> <a href="/date/2026-09/" title="2026-09 归档">2026-09</a></h4>
